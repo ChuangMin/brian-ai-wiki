@@ -25,6 +25,7 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）整理他從 Faceboo
 | 影片 4 | Blender 魚群路徑動畫 | [reel/1433262628273189](https://www.facebook.com/reel/1433262628273189) | 2026-10-31 |
 | 影片 5 | 自動化垂直港口動畫（@marlenuii） | [reel/1665373244995510](https://www.facebook.com/reel/1665373244995510) | 2026-10-31 |
 | 影片 6 | Video to Game：影片變成可玩遊戲（OdinLovis） | [reel/1118797844231418](https://www.facebook.com/reel/1118797844231418) | 2026-10-31 |
+| 影片 7 | n8n 一鍵五步驟自動化（CODER.X） | [reel/3209079722631476](https://www.facebook.com/reel/3209079722631476) | 2026-10-31 |
 
 ## 圖表演示
 
