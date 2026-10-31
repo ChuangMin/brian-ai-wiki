@@ -1,18 +1,18 @@
 # AI 影片收藏 Wiki
 
-Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片與截圖整理 AI 工具與觀點，依主題分類收錄，並另外標示引流、概念動畫等可信度；之後的新影片會繼續加進來。
+Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片、截圖與推薦清單整理 AI 工具與觀點，依主題分類收錄，並另外標示引流、概念動畫等可信度；之後的新影片會繼續加進來。
 
-星數為 2026-10-30 晚上（台北時間）查詢的數字；video-to-game 為 2026-10-31 上午查詢；截圖批次 2 為 2026-10-31 中午查詢。影片 16 的事件與數字取自影片文案，未逐一查證。
+星數為 2026-10-30 晚上（台北時間）查詢的數字；video-to-game 為 2026-10-31 上午查詢；截圖批次 2 為 2026-10-31 中午查詢；Brian 推薦清單與 Filee 為 2026-10-31 晚上查詢。影片 16 的事件與數字取自影片文案，未逐一查證。
 
-可信度標籤與分類分開標示：⚠️ 引流（導流、推薦碼、課程漏斗）、概念動畫／概念介面（設計好的畫面，不是真實產品或實測）、AI 生成、後製包裝、宣稱待驗證、商用・無 repo、付費模板。GitHub 項目的預覽圖取自 GitHub 的 Open Graph 卡片。
+可信度標籤與分類分開標示：⚠️ 引流（導流、推薦碼、課程漏斗）、概念動畫／概念介面（設計好的畫面，不是真實產品或實測）、AI 生成、後製包裝、宣稱待驗證、商用・無 repo、付費模板、搞笑短劇。GitHub 項目的預覽圖取自 GitHub 的 Open Graph 卡片。
 
-共 56 則。
+共 65 則。
 
 ## 分類
 
 - [Agent 系統與編排](docs/agent-orchestration.md)（7）— 多 agent 指揮、swarm、中斷續跑、商用 agent OS 與 agent 平台全景
-- [記憶與上下文](docs/memory-context.md)（4）— 知識圖譜、長期記憶、跨 agent 交接
-- [Skills／MCP／工具](docs/skills-mcp-tools.md)（5）— 通用的 agent 能力元件：MCP、skill、語音、抽取模型
+- [記憶與上下文](docs/memory-context.md)（5）— 知識圖譜、程式碼圖譜、長期記憶、跨 agent 交接
+- [Skills／MCP／工具](docs/skills-mcp-tools.md)（8）— 通用的 agent 能力元件：MCP、skill、開發方法論 skill、語音、抽取模型
 - [程式開發與品質](docs/dev-quality.md)（4）— 版控、過程重播、瀏覽器自我驗收、verify＋gate 流程
 - [前端與 UI 設計](docs/frontend-ui.md)（8）— 設計系統、UI linter、設計 skill、介面模板與概念介面
 - [3D／動畫與 DCC](docs/dcc-animation.md)（7）— Blender 等 DCC 外掛、運鏡、程序化動畫、遊戲生成
@@ -21,8 +21,11 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 - [金融與交易](docs/finance-trading.md)（5）— 交易圖表、財務 Claude 技巧，以及交易機器人導流片
 - [安全與治理](docs/security-governance.md)（3）— agent 對齊事故、隱私疑慮、AI 輔助金融資安
 - [實體 AI 與硬體](docs/physical-ai.md)（2）— ESP32、機器人等實體裝置
-- [成本與取捨](docs/cost-tradeoffs.md)（4）— token 成本、agent 與傳統工具的成本對比
+- [成本與取捨](docs/cost-tradeoffs.md)（5）— token 成本、指令輸出壓縮、agent 與傳統工具的成本對比
 - [團隊與組織](docs/teams-org.md)（1）— 協作成本、決策結構、組織設計
+- [演講與 Talk](docs/talks.md)（1）— 演講、訪談、Podcast 片段：AI 領袖與從業者的第一手說法
+- [搞笑與迷因](docs/memes.md)（2）— 關於 AI 的職場迷因、搞笑短劇與梗圖
+- [生產力與開源工具](docs/productivity-tools.md)（1）— 本身不是 AI 的實用工具：轉檔、桌面效率、開源小工具
 
 面試時可以拿來講的整理見 [面試可用的重點](docs/interview-takeaways.md)。
 
@@ -48,11 +51,17 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 | 截圖批次 | 舊影片截圖：OpenAI 監控事件、Clairic、Apex、ZOEY OS、Vessa／Cadra（無原始連結） | — | 2026-10-31 |
 | 截圖批次 2 | n8n Email Agent、OPZEN AI、ORBITAL X-02 火箭、Microduck、Agentic AI 心智圖、ALGORY、RuView、Grok Desk、chief-night-01（Viktor）、Open Design Agent Kit、Opus 5.5 逆向工程看板、日系插畫 prompt；@beamnxw 的 20 HOT REPOS 是影片 1 的轉貼，不重複收錄（無原始連結） | — | 2026-10-31 |
 | 影片 16 | AI 會引發新的金融危機嗎？（Hà Bình／HB QuantFlow，越南語） | [reel/1863665758475395](https://www.facebook.com/reel/1863665758475395) | 2026-10-31 |
+| Brian 推薦清單 2026-10-31 | Agent skills 推薦：Superpowers、Matt Pocock Skills、Ponytail、CodeGraph、RTK（無影片） | — | 2026-10-31 |
+| 影片 17 | Sam Altman 談新模型與失落感（Cheeky Pint 片段，大叔美股筆記 Uncle Investment Note） | [reel/1167964102224005](https://www.facebook.com/reel/1167964102224005) | 2026-10-31 |
+| 影片 18 | Every meeting in 2026（Champagnecruz，The new gold rush） | [reel/1778931116724534](https://www.facebook.com/reel/1778931116724534) | 2026-10-31 |
+| 影片 19 | 未來博物館的純人類員工（Christopher Chong，AI 生成短劇） | [reel/1141885222030708](https://www.facebook.com/reel/1141885222030708) | 2026-10-31 |
+| 影片 20 | Filee 拖曳轉檔工具（DevPik） | [reel/1143388538027657](https://www.facebook.com/reel/1143388538027657) | 2026-10-31 |
 
-沒有連結的截圖批次，來源裡附的待確認事項：
+沒有連結的來源，附上來源裡的待確認事項：
 
 - **截圖批次**：mex 訓練曲線那支待確認 repo
 - **截圖批次 2**：待確認：Tommy Vaga 是否即 VagaFX 的 Tomas Edgar、Opus 5.5 看板作者是否為 @Klonzu、Microduck 與 Open Duck Mini 的關係、Grok Desk 推文內文（X 擋抓取）、OPZEN 功能細節取自搜尋摘要；REA 星數 41 萬偏高但照 API 回傳；火箭、心智圖、插畫 prompt 三支沒有原始連結
+- **Brian 推薦清單 2026-10-31**：依名稱對應到 GitHub 星數最高的 repo：obra/superpowers、mattpocock/skills、DietrichGebert/ponytail、colbymchenry/codegraph、rtk-ai/rtk；ponytail、codegraph 有多個同名或衍生專案，Ponytail 的效能數字是作者自測
 
 ## 圖表演示
 
