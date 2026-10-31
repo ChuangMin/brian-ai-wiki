@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bar Replay Chart Animation (Demo)</title>
+<!--
+=====================================================================
+  BAR-REPLAY CHART ANIMATION  —  single file, no dependencies
+=====================================================================
+  Everything is drawn on one <canvas> with plain JS + requestAnimationFrame.
+
+  HOW TO CUSTOMISE (edit the CONFIG object in the <script> below):
+  - Duration / pacing : CONFIG.loopSeconds (length of one replay loop),
+                        CONFIG.bars (total bars per loop),
+                        CONFIG.visibleBars (bars across the screen),
+                        CONFIG.holdSeconds (pause at the end before restart).
+  - Price data        : CONFIG.waypoints = [[barIndex, price], ...] is the
+                        "script" the random walk follows (down -> Sell ->
+                        bottom/Buy -> rally to TP1/2/3). CONFIG.noise sets
+                        how jagged candles are. CONFIG.jitter randomises
+                        each loop. To use REAL data, replace genData() so it
+                        returns {bars:[{o,h,l,c,v,t,ticks:[...]}], ...}.
+  - Bar timeframe     : CONFIG.barMinutes, CONFIG.startTime.
+  - Style             : CONFIG.chartType 'candles' | 'line',
+                        COLORS object (background, grid, MA colours, zones...).
+  - Text              : CONFIG.symbol, HUD titles in CONFIG.hud*.
+  - URL options       : ?clean=1 hides the control buttons (for recording),
+                        ?speed=2 sets initial speed, ?seed=123 fixes data.
+  Keyboard: Space = play/pause, R = restart, 1/2/4 = speed, H = hide UI.
+
+  NOTE: all prices are SIMULATED demo data, not real market data.
+=====================================================================
+-->
+<style>
+  html,body{margin:0;height:100%;background:#0B0E14;overflow:hidden;
+    font-family:-apple-system,BlinkMacSystemFont,"Trebuchet MS",Roboto,"Segoe UI",Ubuntu,sans-serif;}
+  #stage{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#131722;}
+  canvas{display:block;width:100%;height:100%;}
+  #ui{position:absolute;left:10px;bottom:38px;display:flex;gap:6px;align-items:center;opacity:.85;}
+  #ui button,#ui select{background:#1E222D;color:#D1D4DC;border:1px solid #363A45;border-radius:4px;
+    font:12px inherit;font-family:inherit;padding:3px 8px;cursor:pointer;height:24px;}
+  #ui button:hover,#ui select:hover{border-color:#00BCD4;color:#fff;}
+  .hidden{display:none !important;}
+</style>
+</head>
+<body>
+<div id="stage">
+  <canvas id="c"></canvas>
+  <div id="ui">
+    <button id="btnPlay" title="Play / Pause (Space)">❚❚</button>
+    <button id="btnRestart" title="Restart (R)">⟲</button>
+    <select id="selSpeed" title="Speed">
+      <option value="1">1x</option><option value="2">2x</option><option value="4">4x</option>
+    </select>
+  </div>
+</div>
+<script>
+"use strict";
+/* ------------------------------ CONFIG ------------------------------ */
+const CONFIG = {
+  loopSeconds: 15,        // one full replay loop (at 1x)
+  holdSeconds: 1.2,       // pause at end of loop before restarting
+  bars: 130,              // bars generated per loop
+  visibleBars: 80,        // bars visible across the plot
+  rightPadBars: 6,        // empty space to the right of the last bar
+  barMinutes: 15,         // timeframe of each bar
+  startTime: new Date(2026, 9, 30, 19, 0), // first bar time (local)
+  chartType: 'candles',   // 'candles' or 'line'
+  symbol: 'DEMO / USD · 15m',
+  emaFast: 9, emaSlow: 21,
+  noise: 0.032,           // random-walk noise per sub-tick
+  jitter: 0.18,           // random price offset for waypoints per loop
+  // scripted path: [bar index, price]
+  waypoints: [[-40,53.1],[0,53.6],[24,54.35],[44,52.6],[60,51.35],[72,52.25],[86,52.9],
+              [98,53.55],[110,54.1],[129,54.9]],
+  profileBuckets: 26,
+  hudTitle1: 'Quantum v2 (Momentum Engine)',
+  hudTitle2: 'Quantum v2 (Daily State)',
+};
+const COLORS = {
+  bg:'#131722', grid:'#2A2E39', text:'#B2B5BE', textBright:'#FFFFFF', axisLine:'#2A2E39',
+  up:'#26A69A', down:'#EF5350', line:'#2962FF',
+  maFast:'#D132A3', maSlow:'#00BCD4',
+  ribbonBull:'rgba(76,175,80,0.28)', ribbonBear:'rgba(255,82,82,0.28)',
+  premium:'rgba(242,54,69,0.10)', discount:'rgba(8,153,129,0.11)', eq:'#FFEB3B',
+  sell:'#FF5252', buy:'#4CAF50', tp:'#4CAF50',
+  obBull:'rgba(76,175,80,0.22)', obBear:'rgba(255,82,82,0.22)',
+  profUp:'rgba(0,188,212,0.38)', profDown:'rgba(209,50,163,0.38)',
+  hudBg:'rgba(19,23,34,0.80)',
+};
+
+/* ------------------------------ helpers ----------------------------- */
+const qs = new URLSearchParams(location.search);
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);
+  t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}}
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const lerp=(a,b,t)=>a+(b-a)*t;
+function easeOutBack(t){t=clamp(t,0,1);const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(t-1,3)+c1*Math.pow(t-1,2);}
+const pad2=n=>String(n).padStart(2,'0');
+const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+/* --------------------------- data generation ------------------------ */
+function genData(seed){
+  const rnd = mulberry32(seed);
+  const gauss = ()=>{let u=0,v=0;while(!u)u=rnd();while(!v)v=rnd();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);};
+  const N=CONFIG.bars, PRE=40, SUB=8;
+  const wp = CONFIG.waypoints.map(([i,p],k)=>[i+(k>1&&k<CONFIG.waypoints.length-1?Math.round((rnd()-.5)*4):0),
+                                              p+(rnd()-.5)*2*CONFIG.jitter*(k===4?0.5:1)]);
+  function path(x){
+    for(let k=0;k<wp.length-1;k++){const [i0,p0]=wp[k],[i1,p1]=wp[k+1];
+      if(x<=i1){const t=clamp((x-i0)/(i1-i0),0,1);return lerp(p0,p1,(1-Math.cos(Math.PI*t))/2);}}
+    return wp[wp.length-1][1];
+  }
+  let p=path(-PRE); const all=[];
+  for(let i=-PRE;i<N;i++){
+    const ticks=[p]; let volMul=1+(rnd()<0.08?1.8:0);
+    for(let s=1;s<=SUB;s++){
+      const target=path(i+s/SUB);
+      p += (target-p)*0.22 + gauss()*CONFIG.noise*volMul;
+      ticks.push(p);
+    }
+    const o=ticks[0],c=ticks[SUB];
+    const h=Math.max(...ticks)+rnd()*0.03, l=Math.min(...ticks)-rnd()*0.03;
+    const v=(600+rnd()*900)*(1+Math.abs(c-o)*12)*volMul;
+    all.push({o,h,l,c,v,ticks,t:new Date(CONFIG.startTime.getTime()+i*CONFIG.barMinutes*60000)});
+  }
+  // EMA on full history, then drop warm-up bars
+  const ema=(n)=>{const a=2/(n+1);let e=all[0].c;return all.map(b=>e=e+a*(b.c-e));};
+  const ef=ema(CONFIG.emaFast), es=ema(CONFIG.emaSlow);
+  const bars=all.slice(PRE).map((b,i)=>Object.assign(b,{ef:ef[i+PRE],es:es[i+PRE],efPrev:ef[i+PRE-1],esPrev:es[i+PRE-1]}));
+
+  // ---- scripted signals ----
+  const argmax=(a,b)=>{let k=a;for(let i=a;i<=b;i++)if(bars[i].h>bars[k].h)k=i;return k;};
+  const argmin=(a,b)=>{let k=a;for(let i=a;i<=b;i++)if(bars[i].l<bars[k].l)k=i;return k;};
+  const sellI=argmax(wp[2][0]-8,wp[2][0]+6), buyI=argmin(wp[4][0]-8,wp[4][0]+6);
+  const sig=[];
+  sig.push({idx:sellI,type:'sell',text:'Sell',price:bars[sellI].c});
+  sig.push({idx:sellI,type:'obBear',top:bars[sellI].h,bot:Math.max(bars[sellI].o,bars[sellI].c)-0.05,len:14});
+  let tb=sellI+1; while(tb<N-1 && !(bars[tb].ef<bars[tb].es)) tb++;
+  tb=Math.max(tb,sellI+4); sig.push({idx:tb,type:'trendBear',text:'Trend Bear'});
+  sig.push({idx:buyI,type:'buy',text:'Buy',price:bars[buyI].c});
+  sig.push({idx:buyI,type:'obBull',top:Math.min(bars[buyI].o,bars[buyI].c)+0.05,bot:bars[buyI].l,len:14});
+  let tu=buyI+1; while(tu<N-1 && !(bars[tu].ef>bars[tu].es)) tu++;
+  tu=Math.max(tu,buyI+4); sig.push({idx:tu,type:'trendBull',text:'Trend Bull'});
+  // take-profit levels
+  const entry=bars[buyI].c; let top=entry; for(let i=buyI;i<N;i++) top=Math.max(top,bars[i].h);
+  const tps=[0.40,0.68,0.93].map((f,k)=>{const price=+(entry+(top-entry)*f).toFixed(2);
+    let hit=-1; for(let i=buyI+1;i<N;i++) if(bars[i].h>=price){hit=i;break;}
+    return {k:k+1,price,hit};});
+  tps.forEach(tp=>{ if(tp.hit>0) sig.push({idx:tp.hit,type:'tpHit',text:'TP '+tp.k,tp}); });
+  return {bars,sig,tps,sellI,buyI,entry,N};
+}
+
+/* ------------------------------ canvas ------------------------------ */
+const stage=document.getElementById('stage'), cv=document.getElementById('c'), ctx=cv.getContext('2d');
+let W=0,H=0,U=1,DPR=1;
+function resize(){
+  const ww=innerWidth, wh=innerHeight;
+  if(ww/wh>16/9){H=wh;W=Math.round(wh*16/9);}else{W=ww;H=Math.round(ww*9/16);}
+  stage.style.width=W+'px'; stage.style.height=H+'px';
+  DPR=Math.max(1,window.devicePixelRatio||1);
+  cv.width=Math.round(W*DPR); cv.height=Math.round(H*DPR);
+  U=H/720;
+  yInit=false;
+}
+addEventListener('resize',resize);
+const FONT=(px,w='')=>`${w} ${Math.round(px*U*10)/10}px -apple-system,BlinkMacSystemFont,"Trebuchet MS",Roboto,"Segoe UI",Ubuntu,sans-serif`;
+
+/* ------------------------------ state ------------------------------- */
+let seed = qs.has('seed') ? +qs.get('seed') : (Date.now()%100000);
+let D = genData(seed);
+let t=0, playing=true, speed=+(qs.get('speed')||1), last=performance.now();
+let yMin=51, yMax=55, zHi=55, zLo=51, yInit=false;
+const rate=()=>CONFIG.bars/(CONFIG.loopSeconds-CONFIG.holdSeconds); // bars per second at 1x
+
+function restart(newData=true){ if(newData){seed=(seed*16807+11)%2147483647; D=genData(seed);} t=0; yInit=false; }
+
+/* ---------------------------- drawing utils -------------------------- */
+function roundRect(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+// pill with optional pointer: dir 'down' (label above point) / 'up' (label below) / null
+function pill(x,y,text,bg,fg,scale=1,dir=null,size=12){
+  if(scale<=0.01)return;
+  ctx.save(); ctx.translate(x,y); ctx.scale(scale,scale);
+  ctx.font=FONT(size,'600'); const tw=ctx.measureText(text).width;
+  const ph=(size+9)*U, pw=tw+14*U, r=4*U, ar=5*U;
+  let oy = dir==='down' ? -ph-ar : dir==='up' ? ar : -ph/2;
+  ctx.fillStyle=bg; ctx.shadowColor='rgba(0,0,0,0.35)'; ctx.shadowBlur=6*U;
+  roundRect(-pw/2,oy,pw,ph,r); ctx.fill();
+  if(dir){ctx.beginPath(); if(dir==='down'){ctx.moveTo(-ar,-ar);ctx.lineTo(ar,-ar);ctx.lineTo(0,0);}
+          else {ctx.moveTo(-ar,ar);ctx.lineTo(ar,ar);ctx.lineTo(0,0);} ctx.fill();}
+  ctx.shadowBlur=0; ctx.fillStyle=fg; ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText(text,0,oy+ph/2+0.5*U); ctx.restore();
+}
+function niceStep(range,target){const raw=range/target, mag=Math.pow(10,Math.floor(Math.log10(raw)));
+  const n=raw/mag; return (n<1.5?1:n<3?2:n<7?5:10)*mag;}
+
+/* ------------------------------- frame ------------------------------ */
+function frame(now){
+  const dt=Math.min(0.05,(now-last)/1000); last=now;
+  if(playing) t+=dt*speed;
+  const N=D.N, bars=D.bars;
+  const playT = CONFIG.loopSeconds - CONFIG.holdSeconds;
+  if(t>CONFIG.loopSeconds+0.35){restart(true);}
+  const bf = Math.min(N-1e-6, t*rate());            // bars elapsed (float)
+  const cur = Math.floor(bf), frac = bf-cur;        // current forming bar
+  // partial (forming) candle
+  const B=bars[cur], k=Math.max(1,Math.ceil(frac*(B.ticks.length-1)));
+  const tk=B.ticks.slice(0,k+1);
+  const pc={o:B.o,c:tk[tk.length-1],h:Math.max(...tk),l:Math.min(...tk),t:B.t,v:B.v*Math.max(frac,0.05)};
+  if(frac>0.999||t>=playT){pc.h=B.h;pc.l=B.l;}
+  const aF=2/(CONFIG.emaFast+1), aS=2/(CONFIG.emaSlow+1);
+  pc.ef=B.efPrev+aF*(pc.c-B.efPrev); pc.es=B.esPrev+aS*(pc.c-B.esPrev);
+  const getBar=i=>i===cur?pc:bars[i];
+
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+  ctx.fillStyle=COLORS.bg; ctx.fillRect(0,0,W,H);
+
+  // layout
+  const axisW=64*U, axisH=28*U, footH=0;
+  const pL=0, pT=0, pR=W-axisW, pB=H-axisH-footH, pW=pR-pL, pH=pB-pT;
+  const VB=CONFIG.visibleBars, barW=pW/VB;
+  const left=Math.max(0, bf+1+CONFIG.rightPadBars-VB);  // smooth scroll
+  const xOf=i=>pL+(i-left+0.5)*barW;
+  const i0=Math.max(0,Math.floor(left)-1), i1=cur;
+
+  // visible range
+  let vh=-Infinity, vl=Infinity;
+  for(let i=Math.max(0,Math.ceil(left)-1);i<=i1;i++){const b=getBar(i);vh=Math.max(vh,b.h);vl=Math.min(vl,b.l);}
+  if(vh-vl<1.2){const m=(vh+vl)/2;vh=Math.max(vh,m+0.6);vl=Math.min(vl,m-0.6);}
+  const padY=(vh-vl)*0.14;
+  const tMax=vh+padY*1.9, tMin=vl-padY;
+  const sm=1-Math.exp(-dt*speed*3.2);
+  if(!yInit){yMax=tMax;yMin=tMin;zHi=vh;zLo=vl;yInit=true;}
+  else {yMax=lerp(yMax,tMax,sm);yMin=lerp(yMin,tMin,sm);zHi=lerp(zHi,vh,sm);zLo=lerp(zLo,vl,sm);}
+  const yOf=p=>pT+(yMax-p)/(yMax-yMin)*pH;
+
+  // ---- grid ----
+  const step=niceStep(yMax-yMin,9);
+  ctx.save(); ctx.strokeStyle=COLORS.grid; ctx.lineWidth=1; ctx.setLineDash([3*U,4*U]);
+  ctx.beginPath();
+  for(let p=Math.ceil(yMin/step)*step;p<=yMax;p+=step){const y=Math.round(yOf(p))+0.5;ctx.moveTo(pL,y);ctx.lineTo(pR,y);}
+  // time grid: every hour or every 2h depending on spacing
+  const barsPerHour=60/CONFIG.barMinutes;
+  const hourStep = barW*barsPerHour>70*U?1:barW*barsPerHour>35*U?2:4;
+  const timeMarks=[];
+  for(let i=Math.floor(left)-barsPerHour;i<=Math.ceil(left+VB);i++){
+    const tt=new Date(CONFIG.startTime.getTime()+i*CONFIG.barMinutes*60000);
+    if(tt.getMinutes()===0 && tt.getHours()%hourStep===0){timeMarks.push([i,tt]);
+      const x=Math.round(xOf(i))+0.5; ctx.moveTo(x,pT); ctx.lineTo(x,pB);}
+  }
+  ctx.stroke(); ctx.restore();
+
+  // ---- plot area (clipped) ----
+  ctx.save(); ctx.beginPath(); ctx.rect(pL,pT,pW,pH); ctx.clip();
+
+  // zones
+  const zr=zHi-zLo, yP=yOf(zHi-zr/3), yD=yOf(zLo+zr/3), yE=yOf((zHi+zLo)/2);
+  ctx.fillStyle=COLORS.premium; ctx.fillRect(pL,yOf(zHi),pW,yP-yOf(zHi));
+  ctx.fillStyle=COLORS.discount; ctx.fillRect(pL,yD,pW,yOf(zLo)-yD);
+  ctx.strokeStyle=COLORS.eq; ctx.lineWidth=1.2*U; ctx.setLineDash([6*U,5*U]);
+  ctx.beginPath(); ctx.moveTo(pL,yE); ctx.lineTo(pR,yE); ctx.stroke(); ctx.setLineDash([]);
+  ctx.font=FONT(12,'600'); ctx.textAlign='right'; ctx.textBaseline='bottom';
+  const zx=pR-286*U; // left of the HUD panels
+  ctx.fillStyle='rgba(255,82,82,0.85)'; ctx.fillText('Premium',zx,yOf(zHi)-4*U);
+  ctx.fillStyle='rgba(255,235,59,0.9)'; ctx.fillText('Equilibrium',zx,yE-4*U);
+  ctx.textBaseline='top'; ctx.fillStyle='rgba(76,175,80,0.9)'; ctx.fillText('Discount',zx,yOf(zLo)+4*U);
+
+  // volume profile (visible bars)
+  const NB=CONFIG.profileBuckets, up=new Array(NB).fill(0), dn=new Array(NB).fill(0);
+  const pMin=zLo, pMax=zHi, bs=(pMax-pMin)/NB;
+  for(let i=Math.max(0,Math.floor(left));i<=i1;i++){const b=getBar(i);
+    const vv = i===cur ? b===pc ? bars[i].v*frac : b.v : b.v;
+    const n=Math.max(1,Math.round((b.h-b.l)/bs)); // spread volume across the bar's range
+    for(let s=0;s<n;s++){const pp=b.l+(s+0.5)*(b.h-b.l)/n; const kk=clamp(Math.floor((pp-pMin)/bs),0,NB-1);
+      if(b.c>=b.o) up[kk]+=vv/n; else dn[kk]+=vv/n;}}
+  let vmax=1; for(let kk=0;kk<NB;kk++) vmax=Math.max(vmax,up[kk]+dn[kk]);
+  const profX=pL+pW*0.05, profW=pW*0.26;
+  let poc=0; for(let kk=0;kk<NB;kk++) if(up[kk]+dn[kk]>up[poc]+dn[poc]) poc=kk;
+  for(let kk=0;kk<NB;kk++){
+    const yA=yOf(pMin+(kk+1)*bs)+1, yB=yOf(pMin+kk*bs)-1, hgt=Math.max(1,yB-yA);
+    const wu=up[kk]/vmax*profW, wd=dn[kk]/vmax*profW;
+    ctx.fillStyle=COLORS.profUp; ctx.fillRect(profX,yA,wu,hgt);
+    ctx.fillStyle=COLORS.profDown; ctx.fillRect(profX+wu,yA,wd,hgt);
+    if(kk===poc){ctx.strokeStyle='rgba(255,255,255,0.35)';ctx.lineWidth=1;ctx.strokeRect(profX,yA,wu+wd,hgt);}
+  }
+
+  // ribbon between EMAs (green when fast > slow)
+  for(let i=i0;i<i1;i++){
+    const a=getBar(i), b=getBar(i+1), xa=xOf(i), xb=xOf(i+1);
+    ctx.fillStyle = (a.ef+b.ef)>(a.es+b.es) ? COLORS.ribbonBull : COLORS.ribbonBear;
+    ctx.beginPath(); ctx.moveTo(xa,yOf(a.ef)); ctx.lineTo(xb,yOf(b.ef)); ctx.lineTo(xb,yOf(b.es)); ctx.lineTo(xa,yOf(a.es)); ctx.closePath(); ctx.fill();
+  }
+  // EMA lines
+  for(const [key,col] of [['es',COLORS.maSlow],['ef',COLORS.maFast]]){
+    ctx.strokeStyle=col; ctx.lineWidth=2*U; ctx.lineJoin='round'; ctx.beginPath();
+    for(let i=i0;i<=i1;i++){const b=getBar(i); i===i0?ctx.moveTo(xOf(i),yOf(b[key])):ctx.lineTo(xOf(i),yOf(b[key]));}
+    ctx.stroke();
+  }
+
+  // order blocks (behind candles)
+  const popBars=3;
+  for(const s of D.sig){ if((s.type!=='obBull'&&s.type!=='obBear')||s.idx>cur) continue;
+    const age=clamp((bf-s.idx)/popBars,0,1); const endI=Math.min(s.idx+s.len*age, bf);
+    const x0=xOf(s.idx)-barW/2, x1=xOf(endI)+barW/2, y0=yOf(s.top), y1=yOf(s.bot);
+    ctx.fillStyle=s.type==='obBull'?COLORS.obBull:COLORS.obBear; ctx.fillRect(x0,y0,x1-x0,y1-y0);
+    ctx.strokeStyle=s.type==='obBull'?'rgba(76,175,80,0.6)':'rgba(255,82,82,0.6)'; ctx.lineWidth=1; ctx.strokeRect(x0,y0,x1-x0,y1-y0);
+    ctx.globalAlpha=age; ctx.font=FONT(10,'600'); ctx.fillStyle='#E0E3EB'; ctx.textAlign='left'; ctx.textBaseline='middle';
+    ctx.fillText(s.type==='obBull'?'Internal OB Bullish':'Internal OB Bearish', x0+4*U, (y0+y1)/2); ctx.globalAlpha=1;
+  }
+
+  // TP lines (after Buy)
+  if(cur>=D.buyI){
+    const age=clamp((bf-D.buyI)/popBars,0,1);
+    for(const tp of D.tps){
+      const y=yOf(tp.price), x0=xOf(D.buyI), done=tp.hit>=0&&cur>=tp.hit;
+      ctx.strokeStyle=done?'rgba(76,175,80,0.95)':'rgba(76,175,80,0.7)'; ctx.lineWidth=1.3*U; ctx.setLineDash([5*U,4*U]);
+      ctx.beginPath(); ctx.moveTo(x0,y); ctx.lineTo(lerp(x0,pR,age),y); ctx.stroke(); ctx.setLineDash([]);
+      ctx.font=FONT(10,'600'); ctx.textAlign='left'; ctx.textBaseline='bottom'; ctx.fillStyle='rgba(76,175,80,0.95)';
+      ctx.globalAlpha=age; ctx.fillText(`TP ${tp.k}  ${tp.price.toFixed(2)}${done?'  ✓':''}`, x0+6*U, y-3*U); ctx.globalAlpha=1;
+    }
+    // entry line
+    ctx.strokeStyle='rgba(178,181,190,0.45)'; ctx.setLineDash([2*U,3*U]); ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(xOf(D.buyI),yOf(D.entry)); ctx.lineTo(lerp(xOf(D.buyI),pR,age),yOf(D.entry)); ctx.stroke(); ctx.setLineDash([]);
+  }
+
+  // candles / line
+  if(CONFIG.chartType==='line'){
+    ctx.strokeStyle=COLORS.line; ctx.lineWidth=2*U; ctx.beginPath();
+    for(let i=i0;i<=i1;i++){const b=getBar(i); i===i0?ctx.moveTo(xOf(i),yOf(b.c)):ctx.lineTo(xOf(i),yOf(b.c));} ctx.stroke();
+  } else {
+    const bw=Math.max(1,barW*0.68);
+    for(let i=i0;i<=i1;i++){const b=getBar(i), x=xOf(i), col=b.c>=b.o?COLORS.up:COLORS.down;
+      ctx.fillStyle=col; ctx.fillRect(Math.round(x-0.5*U),yOf(b.h),Math.max(1,U),yOf(b.l)-yOf(b.h));
+      const yo=yOf(b.o), yc=yOf(b.c); ctx.fillRect(x-bw/2,Math.min(yo,yc),bw,Math.max(1,Math.abs(yc-yo)));}
+  }
+
+  // pills
+  for(const s of D.sig){ if(s.idx>cur || s.type.startsWith('ob')) continue;
+    const sc=easeOutBack((bf-s.idx)/popBars), b=bars[s.idx], x=xOf(s.idx);
+    if(s.type==='sell') pill(x,yOf(b.h)-6*U,'Sell',COLORS.sell,'#fff',sc,'down',13);
+    else if(s.type==='buy') pill(x,yOf(b.l)+6*U,'Buy',COLORS.buy,'#fff',sc,'up',13);
+    else if(s.type==='trendBear') pill(x,yOf(b.h)-10*U,'Trend Bear','rgba(255,82,82,0.9)','#fff',sc,'down',10.5);
+    else if(s.type==='trendBull') pill(x,yOf(b.l)+10*U,'Trend Bull','rgba(76,175,80,0.9)','#fff',sc,'up',10.5);
+    else if(s.type==='tpHit') pill(x,yOf(b.h)-8*U,'TP '+s.tp.k,'#1B5E20','#C8E6C9',sc,'down',10.5);
+  }
+  ctx.restore(); // end clip
+
+  // current price line + axis tag
+  const lastC=pc.c, lcol=pc.c>=pc.o?COLORS.up:COLORS.down, yl=yOf(lastC);
+  ctx.strokeStyle=lcol; ctx.lineWidth=1; ctx.setLineDash([1.5*U,2.5*U]);
+  ctx.beginPath(); ctx.moveTo(pL,Math.round(yl)+0.5); ctx.lineTo(pR,Math.round(yl)+0.5); ctx.stroke(); ctx.setLineDash([]);
+
+  // ---- axes ----
+  ctx.fillStyle=COLORS.bg; ctx.fillRect(pR,0,axisW,H); ctx.fillRect(0,pB,W,axisH);
+  ctx.strokeStyle=COLORS.axisLine; ctx.lineWidth=1; ctx.beginPath();
+  ctx.moveTo(Math.round(pR)+0.5,0); ctx.lineTo(Math.round(pR)+0.5,pB); ctx.moveTo(0,Math.round(pB)+0.5); ctx.lineTo(W,Math.round(pB)+0.5); ctx.stroke();
+  ctx.font=FONT(11.5); ctx.fillStyle=COLORS.text; ctx.textAlign='left'; ctx.textBaseline='middle';
+  for(let p=Math.ceil(yMin/step)*step;p<=yMax;p+=step){const y=yOf(p); if(y>8*U&&y<pB-6*U) ctx.fillText(p.toFixed(2),pR+8*U,y);}
+  // eq / tp axis tags
+  const axTag=(p,bg,fg)=>{const y=yOf(p); if(y<0||y>pB)return; ctx.fillStyle=bg; roundRect(pR+1,y-9*U,axisW-3,18*U,2*U); ctx.fill();
+    ctx.fillStyle=fg; ctx.font=FONT(11.5,'600'); ctx.textAlign='left'; ctx.fillText(p.toFixed(2),pR+8*U,y+0.5);};
+  axTag((zHi+zLo)/2,'#3A3A1E','#FFEB3B');
+  axTag(lastC,lcol,'#fff');
+  // time labels
+  ctx.font=FONT(11.5); ctx.textAlign='center'; ctx.textBaseline='middle';
+  const tagX=clamp(xOf(cur),70*U,pR-70*U);
+  for(const [i,tt] of timeMarks){const x=xOf(i); if(x<20*U||x>pR-20*U||Math.abs(x-tagX)<95*U)continue;
+    if(tt.getHours()===0){ctx.font=FONT(11.5,'700');ctx.fillStyle=COLORS.textBright;ctx.fillText(String(tt.getDate()),x,pB+axisH/2);ctx.font=FONT(11.5);}
+    else {ctx.fillStyle=COLORS.text; ctx.fillText(pad2(tt.getHours())+':'+pad2(tt.getMinutes()),x,pB+axisH/2);}}
+  // date tag at current bar
+  { const x=clamp(xOf(cur),70*U,pR-70*U), tt=pc.t;
+    const s=`${DOW[tt.getDay()]} ${tt.getDate()} ${MON[tt.getMonth()]} '${String(tt.getFullYear()).slice(2)}  ${pad2(tt.getHours())}:${pad2(tt.getMinutes())}`;
+    ctx.font=FONT(11.5,'600'); const w=ctx.measureText(s).width+14*U;
+    ctx.fillStyle='#363A45'; roundRect(x-w/2,pB+4*U,w,axisH-8*U,2*U); ctx.fill();
+    ctx.fillStyle=COLORS.textBright; ctx.fillText(s,x,pB+axisH/2+0.5); }
+
+  // ---- header (symbol + OHLC) ----
+  ctx.textAlign='left'; ctx.textBaseline='top';
+  ctx.font=FONT(15,'700'); ctx.fillStyle=COLORS.textBright; ctx.fillText(CONFIG.symbol,12*U,10*U);
+  const sw=ctx.measureText(CONFIG.symbol).width;
+  ctx.font=FONT(12); let hx=12*U+sw+14*U;
+  for(const [lab,val] of [['O',pc.o],['H',pc.h],['L',pc.l],['C',pc.c]]){
+    ctx.fillStyle=COLORS.text; ctx.fillText(lab,hx,12*U); hx+=ctx.measureText(lab).width+3*U;
+    ctx.fillStyle=lcol; const vs=val.toFixed(2); ctx.fillText(vs,hx,12*U); hx+=ctx.measureText(vs).width+9*U; }
+  ctx.font=FONT(11.5); let lx=12*U;
+  for(const [lab,col,val] of [[`EMA ${CONFIG.emaFast}`,COLORS.maFast,pc.ef],[`EMA ${CONFIG.emaSlow}`,COLORS.maSlow,pc.es]]){
+    ctx.fillStyle=COLORS.text; ctx.fillText(lab,lx,32*U); lx+=ctx.measureText(lab).width+5*U;
+    ctx.fillStyle=col; const vs=val.toFixed(2); ctx.fillText(vs,lx,32*U); lx+=ctx.measureText(vs).width+14*U; }
+  ctx.fillStyle='rgba(255,152,0,0.95)'; ctx.font=FONT(11,'700');
+  ctx.fillText(playing?'● REPLAY':'❚❚ PAUSED', 12*U, 50*U);
+
+  // ---- HUD ----
+  drawHUD(pR, bf, cur, pc, getBar);
+
+  // footer
+  ctx.font=FONT(10); ctx.fillStyle='rgba(178,181,190,0.55)'; ctx.textAlign='right'; ctx.textBaseline='bottom';
+  ctx.fillText('Demo data — simulated random walk, not real market data', pR-8*U, pB-6*U);
+
+  // loop fade
+  const fade = t>CONFIG.loopSeconds-0.05 ? clamp((t-(CONFIG.loopSeconds-0.05))/0.4,0,1) : t<0.25 ? 1-t/0.25 : 0;
+  if(fade>0){ctx.fillStyle=`rgba(19,23,34,${fade})`; ctx.fillRect(0,0,W,H);}
+
+  requestAnimationFrame(frame);
+}
+
+/* ------------------------------- HUD -------------------------------- */
+function hudBox(x,y,w,h,border){
+  ctx.fillStyle=COLORS.hudBg; roundRect(x,y,w,h,4*U); ctx.fill();
+  const g=ctx.createLinearGradient(x,y,x+w,y+h); g.addColorStop(0,'rgba(0,188,212,0.9)'); g.addColorStop(1,'rgba(209,50,163,0.9)');
+  ctx.strokeStyle=border||g; ctx.lineWidth=1*U; roundRect(x+0.5,y+0.5,w-1,h-1,4*U); ctx.stroke();
+}
+function statusChip(xr,y,text,col){
+  ctx.font=FONT(10.5,'700'); const w=Math.max(70*U,ctx.measureText(text).width+14*U), h=17*U;
+  ctx.fillStyle=col; roundRect(xr-w,y-h/2,w,h,3*U); ctx.fill();
+  ctx.fillStyle='#fff'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(text,xr-w/2,y+0.5*U);
+}
+function drawHUD(pR,bf,cur,pc,getBar){
+  const bars=D.bars, G=COLORS.buy, R=COLORS.sell, Y='#FFB300', Gy='#787B86';
+  // derived live stats
+  const bull=pc.ef>pc.es;
+  let atr=0,atrL=0,upV=0,dnV=0; const n=Math.min(10,cur+1);
+  const nf=Math.min(16,cur); for(let i=cur-nf+1;i<=cur;i++){const b=getBar(i),pb=getBar(i-1); const d=(b.c-pb.c)*b.v; if(d>=0)upV+=d; else dnV-=d;}
+  for(let i=cur-n+1;i<=cur;i++){const b=getBar(i);atr+=(b.h-b.l)/n; }
+  const m=Math.min(40,cur+1); for(let i=cur-m+1;i<=cur;i++){const b=getBar(i);atrL+=(b.h-b.l)/m;}
+  const mom=clamp(50+50*Math.tanh((pc.ef-pc.es)/(atr*0.9+1e-6)),1,99);
+  const volState=atr>atrL*1.15?['High',R]:atr<atrL*0.85?['Low',Gy]:['Normal',Y];
+  const flow=upV>=dnV?['Inflow',G]:['Outflow',R];
+  const mid=(zHi+zLo)/2, zr=zHi-zLo;
+  const zone=pc.c>zHi-zr/3?'Premium':pc.c<zLo+zr/3?'Discount':'Equilibrium';
+  // signals so far
+  let latest=['—',Gy], pos=['Flat',Gy], target=['—',Gy];
+  if(cur>=D.sellI){latest=[`SELL @ ${bars[D.sellI].c.toFixed(2)}`,R]; pos=['Short Active',R];}
+  if(cur>=D.buyI){latest=[`BUY @ ${D.entry.toFixed(2)}`,G]; pos=['Long Active',G];
+    const next=D.tps.find(tp=>!(tp.hit>=0&&cur>=tp.hit));
+    if(next){target=[`TP ${next.k} → ${next.price.toFixed(2)}`,G];}
+    else {target=['All TPs Hit ✓',G]; pos=['Closed +Profit',G];}
+    const hits=D.tps.filter(tp=>tp.hit>=0&&cur>=tp.hit); if(hits.length) latest=[`TP ${hits[hits.length-1].k} HIT`,G];
+  }
+  const x=pR-276*U, w=266*U; let y=10*U;
+  // panel 1
+  hudBox(x,y,w,98*U);
+  ctx.font=FONT(12,'700'); ctx.fillStyle=COLORS.textBright; ctx.textAlign='left'; ctx.textBaseline='middle';
+  ctx.fillText(CONFIG.hudTitle1,x+10*U,y+15*U);
+  ctx.strokeStyle='rgba(42,46,57,1)'; ctx.beginPath(); ctx.moveTo(x+8*U,y+27*U); ctx.lineTo(x+w-8*U,y+27*U); ctx.stroke();
+  const rows1=[['Momentum Trend', bull?['Bullish',G]:['Bearish',R]],
+               ['Volume Profile', flow[0]==='Inflow'?['Accumulation',G]:['Distribution',R]],
+               ['Pattern Bias', zone==='Discount'?['Discount',G]:zone==='Premium'?['Premium',R]:['Neutral',Y]]];
+  rows1.forEach(([lab,[val,col]],k)=>{const ry=y+42*U+k*20*U; ctx.font=FONT(11.5); ctx.fillStyle=COLORS.text;
+    ctx.textAlign='left'; ctx.fillText(lab,x+10*U,ry); statusChip(x+w-10*U,ry,val,col);});
+  // panel 2
+  y+=106*U; const h2=196*U; hudBox(x,y,w,h2);
+  ctx.font=FONT(12,'700'); ctx.fillStyle=COLORS.textBright; ctx.textAlign='left'; ctx.fillText(CONFIG.hudTitle2,x+10*U,y+15*U);
+  const blink=(Math.floor(performance.now()/500)%2)?1:0.45;
+  ctx.font=FONT(11,'600'); ctx.fillStyle=bull?G:R; ctx.globalAlpha=blink; ctx.fillText('●',x+10*U,y+34*U); ctx.globalAlpha=1;
+  ctx.fillStyle=COLORS.text; ctx.fillText('Status: ',x+22*U,y+34*U);
+  ctx.fillStyle=bull?G:R; ctx.fillText(bull?'Bullish Momentum':'Bearish Pressure',x+22*U+ctx.measureText('Status: ').width,y+34*U);
+  ctx.strokeStyle='rgba(42,46,57,1)'; ctx.beginPath(); ctx.moveTo(x+8*U,y+45*U); ctx.lineTo(x+w-8*U,y+45*U); ctx.stroke();
+  const rows2=[['Trend Bias', bull?['Bullish ▲',G]:['Bearish ▼',R]],
+               ['Momentum Strength', [mom.toFixed(1)+'%', mom>=55?G:mom<=45?R:Y], mom],
+               ['Volatility State', volState],
+               ['Volume Flow', flow],
+               ['Latest Signal', latest],
+               ['Position Status', pos],
+               ['Active Target', target]];
+  rows2.forEach(([lab,[val,col],bar],k)=>{const ry=y+58*U+k*19.5*U;
+    ctx.font=FONT(11.5); ctx.fillStyle=COLORS.text; ctx.textAlign='left'; ctx.fillText(lab,x+10*U,ry);
+    if(bar!==undefined){const bw=56*U,bx=x+122*U; ctx.fillStyle='#2A2E39'; ctx.fillRect(bx,ry-3*U,bw,6*U);
+      ctx.fillStyle=col; ctx.fillRect(bx,ry-3*U,bw*bar/100,6*U);}
+    ctx.font=FONT(11.5,'700'); ctx.fillStyle=col; ctx.textAlign='right'; ctx.fillText(val,x+w-10*U,ry);});
+}
+
+/* ------------------------------ controls ---------------------------- */
+const btnPlay=document.getElementById('btnPlay'), selSpeed=document.getElementById('selSpeed'), ui=document.getElementById('ui');
+selSpeed.value=String(speed);
+const setPlay=p=>{playing=p; btnPlay.textContent=p?'❚❚':'▶';};
+btnPlay.onclick=()=>setPlay(!playing);
+document.getElementById('btnRestart').onclick=()=>{restart(true);setPlay(true);};
+selSpeed.onchange=()=>{speed=+selSpeed.value;};
+if(qs.get('clean')==='1') ui.classList.add('hidden');
+addEventListener('keydown',e=>{
+  if(e.code==='Space'){e.preventDefault();setPlay(!playing);}
+  else if(e.key==='r'||e.key==='R'){restart(true);setPlay(true);}
+  else if('124'.includes(e.key)){speed=+e.key;selSpeed.value=e.key;}
+  else if(e.key==='h'||e.key==='H') ui.classList.toggle('hidden');
+});
+resize();
+requestAnimationFrame(t0=>{last=t0;requestAnimationFrame(frame);});
+</script>
+</body>
+</html>
