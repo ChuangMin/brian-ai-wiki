@@ -10,7 +10,7 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 
 標了引流的條目，連結和說明裡的網址旁邊都會加上 ⚠️。
 
-共 83 則。
+共 84 則。
 
 ## 分類
 
@@ -18,7 +18,7 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 - [記憶與上下文](docs/memory-context.md)（7）— 知識圖譜、程式碼圖譜、長期記憶、跨 agent 交接
 - [Skills／MCP／工具](docs/skills-mcp-tools.md)（11）— 通用的 agent 能力元件：MCP、skill、開發方法論 skill、語音、抽取模型
 - [程式開發與品質](docs/dev-quality.md)（5）— 版控、過程重播、瀏覽器自我驗收、verify＋gate 流程
-- [前端與 UI 設計](docs/frontend-ui.md)（11）— 設計系統、UI linter、設計 skill、介面模板與概念介面
+- [前端與 UI 設計](docs/frontend-ui.md)（12）— 設計系統、UI linter、設計 skill、介面模板與概念介面
 - [3D／動畫與 DCC](docs/dcc-animation.md)（7）— Blender 等 DCC 外掛、運鏡、程序化動畫、遊戲生成
 - [AI 影像與影片](docs/ai-media.md)（4）— AI 生成影片與圖片、prompt、AI 渲染、程式化影片
 - [自動化工作流](docs/automation-workflows.md)（2）— n8n 等流程自動化，規則優先與人工核准閘門
@@ -77,6 +77,7 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 | 影片 34 | GitHub Spec Kit（Dann Paker - LeadGen & AI） | [reel/1430221521958832](https://www.facebook.com/reel/1430221521958832) | 2026-10-31 |
 | 影片 35 | Kishan 平面設計作品集 | [reel/1670796030659910](https://www.facebook.com/reel/1670796030659910) | 2026-10-31 |
 | 影片 36 | 6 種圖表與使用時機（Statsmaniaofficial） | [reel/1742098810210214](https://www.facebook.com/reel/1742098810210214) | 2026-10-31 |
+| 影片 37 | Cinema back office dashboard（Code & Chill） | [reel/1473800611304190](https://www.facebook.com/reel/1473800611304190) | 2026-10-31 |
 | Brian 推薦清單 2026-10-31 | 圖表 skill 推薦：archify、diagram-design（無影片） | — | 2026-10-31 |
 
 沒有連結的來源，附上來源裡的待確認事項：
