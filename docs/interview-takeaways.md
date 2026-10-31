@@ -23,3 +23,7 @@
 ## 成本治理
 
 [TokenEconomizer](https://github.com/microsoft/TokenEconomizer) 與 [Claude Code vs Blender 梗](https://www.facebook.com/reel/1867596277567322)：agent 不是萬用解，要量化成本與成效。
+
+## 規則優先、AI 其次
+
+[n8n 工單流程](https://www.facebook.com/reel/3209079722631476)：能用明確規則判斷的就不丟給 AI，結果可預測、可測試；寫入用 idempotent（ON CONFLICT）處理重試，這也是控管 AI 產出流程的基本功。

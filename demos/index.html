@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demos 索引 — AI 影片收藏 Wiki</title>
+<style>
+  :root {
+    --bg: #0B0E14;
+    --card: #131722;
+    --line: #2A2E39;
+    --line-strong: #363A45;
+    --text: #D1D4DC;
+    --muted: #B2B5BE;
+    --bright: #FFFFFF;
+    --accent: #00BCD4;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--text); }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Trebuchet MS", Roboto, "Segoe UI", "PingFang TC", "Noto Sans TC", Ubuntu, sans-serif;
+    line-height: 1.5;
+    min-height: 100%;
+  }
+  a { color: var(--accent); }
+  a:hover { color: var(--bright); }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 32px 20px 64px; }
+  .home {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .home:hover { color: var(--accent); }
+  h1 { margin: 14px 0 8px; font-size: 32px; letter-spacing: 0.02em; color: var(--bright); }
+  .lead { margin: 0 0 22px; color: var(--muted); max-width: 42em; }
+  #filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; }
+  #filters button {
+    background: #1E222D;
+    color: var(--text);
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    font: inherit;
+    font-size: 14px;
+    padding: 6px 12px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  #filters button:hover { border-color: var(--accent); color: var(--bright); }
+  #filters button.on { border-color: var(--accent); color: var(--bright); background: #17343a; }
+  #filters .count {
+    color: var(--muted);
+    font-size: 12px;
+    min-width: 1.2em;
+    text-align: center;
+  }
+  #filters button.on .count { color: var(--accent); }
+  .group { margin: 0 0 28px; }
+  .group h2 {
+    margin: 0 0 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 16px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 100%;
+  }
+  .meta { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .tag {
+    color: var(--accent);
+    background: rgba(0, 188, 212, 0.1);
+    border: 1px solid rgba(0, 188, 212, 0.35);
+    border-radius: 999px;
+    font-size: 12px;
+    padding: 2px 8px;
+  }
+  time { color: var(--muted); font-size: 12px; }
+  h3 { margin: 0; font-size: 18px; color: var(--bright); }
+  .desc { margin: 0; color: var(--text); flex: 1; }
+  .source { margin: 0; color: var(--muted); font-size: 14px; }
+  .open {
+    align-self: flex-start;
+    margin-top: 4px;
+    background: #1E222D;
+    color: var(--text);
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+  .open:hover { border-color: var(--accent); color: var(--bright); }
+  .empty, #status { color: var(--muted); }
+  button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="home" href="../README.md">回 wiki 首頁</a>
+  <h1>Demos</h1>
+  <p class="lead">可在瀏覽器打開的 HTML 示範，依分類排列。要加入新的示範，放一個資料夾，並在 demos.json 加一筆。</p>
+  <nav id="filters" aria-label="分類"></nav>
+  <div id="gallery"></div>
+  <p id="status" hidden></p>
+</div>
+<script>
+"use strict";
+const gallery = document.getElementById("gallery");
+const filters = document.getElementById("filters");
+const statusEl = document.getElementById("status");
+
+function el(tag, attrs) {
+  const node = document.createElement(tag);
+  if (attrs) {
+    Object.keys(attrs).forEach(function (key) {
+      if (key === "class") node.className = attrs[key];
+      else if (key === "text") node.textContent = attrs[key];
+      else node.setAttribute(key, attrs[key]);
+    });
+  }
+  for (let i = 2; i < arguments.length; i++) {
+    if (arguments[i]) node.append(arguments[i]);
+  }
+  return node;
+}
+
+function safeHttp(url) {
+  return typeof url === "string" && /^https?:\/\//i.test(url) ? url : "";
+}
+
+function safePath(path) {
+  if (typeof path !== "string") return "";
+  if (/^[a-z]+:/i.test(path) || path.startsWith("//")) return "";
+  return path;
+}
+
+function categoryOf(demo) {
+  const name = demo && typeof demo.category === "string" ? demo.category.trim() : "";
+  return name || "未分類";
+}
+
+function groupByCategory(demos) {
+  const order = [];
+  const map = new Map();
+  demos.forEach(function (demo) {
+    const cat = categoryOf(demo);
+    if (!map.has(cat)) {
+      map.set(cat, []);
+      order.push(cat);
+    }
+    map.get(cat).push(demo);
+  });
+  return order.map(function (cat) { return { cat: cat, items: map.get(cat) }; });
+}
+
+function card(demo) {
+  const cat = categoryOf(demo);
+  const metaKids = [el("span", { class: "tag", text: cat })];
+  if (demo.added) metaKids.push(el("time", { datetime: String(demo.added), text: String(demo.added) }));
+  const sourceUrl = safeHttp(demo.sourceUrl);
+  const sourceLink = el("a", {
+    href: sourceUrl || "#",
+    text: demo.source || "",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  });
+  if (!sourceUrl) sourceLink.removeAttribute("href");
+  const href = safePath(demo.path);
+  const title = demo.title || demo.id || "";
+  const open = el("a", { class: "open", href: href || "#", text: "開啟示範" });
+  if (title) open.setAttribute("aria-label", "開啟示範：" + title);
+  return el("article", { class: "card" },
+    el("div", { class: "meta" }, metaKids[0], metaKids[1]),
+    el("h3", { text: title }),
+    el("p", { class: "desc", text: demo.desc || "" }),
+    el("p", { class: "source" }, document.createTextNode("出處 "), sourceLink),
+    open
+  );
+}
+
+function render(groups, active) {
+  gallery.replaceChildren();
+  const shown = active === "全部" ? groups : groups.filter(function (g) { return g.cat === active; });
+  if (!shown.length || shown.every(function (g) { return !g.items.length; })) {
+    gallery.append(el("p", { class: "empty", text: "這個分類還沒有示範。" }));
+    return;
+  }
+  shown.forEach(function (group) {
+    const grid = el("div", { class: "grid" });
+    group.items.forEach(function (demo) { grid.append(card(demo)); });
+    gallery.append(el("section", { class: "group" },
+      el("h2", { text: group.cat }),
+      grid
+    ));
+  });
+}
+
+function renderFilters(groups, active, onPick) {
+  const total = groups.reduce(function (n, g) { return n + g.items.length; }, 0);
+  const cats = [{ name: "全部", count: total }].concat(groups.map(function (g) {
+    return { name: g.cat, count: g.items.length };
+  }));
+  filters.replaceChildren();
+  cats.forEach(function (cat) {
+    const button = el("button", { type: "button", "aria-pressed": cat.name === active ? "true" : "false" },
+      el("span", { text: cat.name }),
+      el("span", { class: "count", text: String(cat.count) })
+    );
+    if (cat.name === active) button.classList.add("on");
+    button.addEventListener("click", function () { onPick(cat.name); });
+    filters.append(button);
+  });
+}
+
+function fail(message) {
+  statusEl.hidden = false;
+  statusEl.textContent = message;
+}
+
+fetch("demos.json").then(function (res) {
+  if (!res.ok) throw new Error(String(res.status));
+  return res.json();
+}).then(function (data) {
+  if (!Array.isArray(data)) throw new Error("not-array");
+  const groups = groupByCategory(data);
+  let active = "全部";
+  function pick(cat) {
+    active = cat;
+    renderFilters(groups, active, pick);
+    render(groups, active);
+  }
+  if (!data.length) {
+    renderFilters(groups, active, pick);
+    gallery.append(el("p", { class: "empty", text: "還沒有示範。" }));
+    return;
+  }
+  pick("全部");
+}).catch(function () {
+  fail("讀不到 demos.json。請用本機伺服器或 GitHub Pages 開啟這個頁面（直接以檔案開啟時，瀏覽器會擋住 fetch）。");
+});
+</script>
+</body>
+</html>
