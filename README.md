@@ -2,13 +2,14 @@
 
 Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）整理他從 Facebook Reels 收集的 AI 工具與技巧。條目依分類收錄，之後的新影片會繼續加進來。
 
-星數為 2026-10-30 晚上（台北時間）查詢的數字；video-to-game 為 2026-10-31 上午查詢。沒有 GitHub 專案的條目，星數記為 —。
+星數為 2026-10-30 晚上（台北時間）查詢的數字；video-to-game 為 2026-10-31 上午查詢；影片 9 的五個設計外掛為 2026-10-31 查詢。沒有 GitHub 專案的條目，星數記為 —。
 
 ## 分類
 
 - [Agent 系統](docs/agent-systems.md)
 - [記憶與上下文](docs/memory-context.md)
 - [工具與研究](docs/tools-research.md)
+- [Skills 與外掛](docs/skills-plugins.md)
 - [建構與創作](docs/build-create.md)
 - [成本與觀點](docs/cost-perspective.md)
 - [動畫與視覺](docs/animation-visual.md)
@@ -26,6 +27,11 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）整理他從 Faceboo
 | 影片 5 | 自動化垂直港口動畫（@marlenuii） | [reel/1665373244995510](https://www.facebook.com/reel/1665373244995510) | 2026-10-31 |
 | 影片 6 | Video to Game：影片變成可玩遊戲（OdinLovis） | [reel/1118797844231418](https://www.facebook.com/reel/1118797844231418) | 2026-10-31 |
 | 影片 7 | n8n 一鍵五步驟自動化（CODER.X） | [reel/3209079722631476](https://www.facebook.com/reel/3209079722631476) | 2026-10-31 |
+| 影片 8 | Claude Code vs Blender：機械變色龍（@marlenuii） | [reel/1413855857399181](https://www.facebook.com/reel/1413855857399181) | 2026-10-31 |
+| 影片 9 | Claude Code 前端必裝 5 個設計外掛（hayderdotdev） | [reel/1780228483203385](https://www.facebook.com/reel/1780228483203385) | 2026-10-31 |
+| 影片 10 | VirtuCamera 真手持運鏡做 AI 動畫 | [reel/2599932377114150](https://www.facebook.com/reel/2599932377114150) | 2026-10-31 |
+| 影片 11 | Spider Walker：機械蜘蛛／蝎子程序化走路動畫 | [reel/1442232340569116](https://www.facebook.com/reel/1442232340569116) | 2026-10-31 |
+| 影片 12 | 財務人員的 25 個 Claude 技巧（Nicolas Boucher） | [reel/1411775787706586](https://www.facebook.com/reel/1411775787706586) | 2026-10-31 |
 
 ## 圖表演示
 

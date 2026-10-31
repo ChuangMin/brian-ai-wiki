@@ -27,3 +27,11 @@
 ## 規則優先、AI 其次
 
 [n8n 工單流程](https://www.facebook.com/reel/3209079722631476)：能用明確規則判斷的就不丟給 AI，結果可預測、可測試；寫入用 idempotent（ON CONFLICT）處理重試，這也是控管 AI 產出流程的基本功。
+
+## 生成前給標準＋生成後自動驗收
+
+[Awesome DESIGN.md](https://github.com/VoltAgent/awesome-design-md)、[Taste Skill](https://github.com/Leonxlnx/taste-skill)、[Impeccable](https://github.com/pbakaus/impeccable)：生成前先給設計標準。生成後用 [Web Design Guidelines](https://github.com/vercel-labs/agent-skills/tree/main/skills/web-design-guidelines) 做 lint，再用 [Playwright MCP](https://github.com/microsoft/playwright-mcp) 開瀏覽器自己點過、截圖、修跑版。
+
+## 最小權限＋先計畫後核准＋防幻覺驗證
+
+[財務人員的 25 個 Claude 技巧](https://www.facebook.com/reel/1411775787706586) 第 14、15、23 點：只開專用資料夾的最小權限、先列計畫等核准再動檔案、做完要防幻覺驗證。
