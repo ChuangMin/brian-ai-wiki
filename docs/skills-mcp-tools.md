@@ -133,3 +133,17 @@ DietrichGebert 的「懶惰資深工程師」skill：只寫任務需要的程式
 | — | 63.4k | Brian 推薦清單 2026-10-31 |
 
 給 Claude Code、Codex、Copilot、Cursor 等 agent 用的圖表 skill，產出獨立 HTML 加內嵌 SVG 的編輯級品質圖表。MIT，官網 https://diagramdesign.dev 。中文 fork patrick-xin/diagram-design-zh（https://github.com/patrick-xin/diagram-design-zh ，48 ⭐）內建中日韓文字排版。出自 Brian 的文字推薦，無影片。配樂：不適用（無影片）。面試：同 archify，讓 agent 從 codebase 產生架構圖，審查時保持文件與程式碼同步
+
+### [PPT Master：文件或主題 → 可編輯的原生 PPTX（AI 技能包）](https://github.com/hugohe3/ppt-master)
+
+丟 PDF／Word／文字或只給主題，AI 做出文字框、形狀、圖表都能改的真 PowerPoint，不是圖片
+
+![hugohe3/ppt-master 的 GitHub 預覽](https://opengraph.githubassets.com/1/hugohe3/ppt-master)
+
+![hugohe3/ppt-master-examples 的 GitHub 預覽](https://opengraph.githubassets.com/1/hugohe3/ppt-master-examples)
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 可信度高 | 71.6k | [影片 39](https://www.facebook.com/reel/1051071164608370) |
+
+小礦工挖挖礦上傳的 1:28 影片，畫面是官方範例網站的錄影，沒有現場生成示範。給 Claude Code、Cursor、Codex CLI 用的技能包。功能：生成前先確認模板、比例、頁數等規格（要求快速模式才跳過）；圖表預設是可編輯的形狀，加參數可改成原生圖表；會加轉場與動畫，並把旁白稿寫進備忘稿；圖片來自 AI 生成或開放圖庫，並在投影片上標註來源；也能套用公司模板並保留原設計。官方範例站有 72 份簡報、1012 頁，涵蓋中、日、韓、德文；範例 repo：https://github.com/hugohe3/ppt-master-examples （22 ⭐）。需求：Python 3.10–3.14 加一個 AI 程式助理。作者提醒別期待第一次就完美，仍要自己再修。值得一看的 fork：academic-ppt-master（論文轉 PPTX）、ppt-master-plus。MIT，2025-12-10 建立，最近推送 2026-10-30。可信度：高，星數與 GitHub API 一致；片尾只問你最想先做哪份簡報，是輕微的留言引導，不算引流。配樂：輕快、俏皮的電子配樂（休閒遊戲風）。無 GIF 片段。面試：AI 產出要能「再編輯」，而不是一次定稿；human-in-the-loop 的設計，跟控管 AI 程式碼品質同一個道理
