@@ -6,12 +6,12 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 
 可信度標籤與分類分開標示：⚠️ 引流（導流、推薦碼、課程漏斗）、概念動畫／概念介面（設計好的畫面，不是真實產品或實測）、AI 生成、後製包裝、宣稱待驗證、商用・無 repo、付費模板、搞笑短劇。GitHub 項目的預覽圖取自 GitHub 的 Open Graph 卡片。
 
-共 65 則。
+共 66 則。
 
 ## 分類
 
 - [Agent 系統與編排](docs/agent-orchestration.md)（7）— 多 agent 指揮、swarm、中斷續跑、商用 agent OS 與 agent 平台全景
-- [記憶與上下文](docs/memory-context.md)（5）— 知識圖譜、程式碼圖譜、長期記憶、跨 agent 交接
+- [記憶與上下文](docs/memory-context.md)（6）— 知識圖譜、程式碼圖譜、長期記憶、跨 agent 交接
 - [Skills／MCP／工具](docs/skills-mcp-tools.md)（8）— 通用的 agent 能力元件：MCP、skill、開發方法論 skill、語音、抽取模型
 - [程式開發與品質](docs/dev-quality.md)（4）— 版控、過程重播、瀏覽器自我驗收、verify＋gate 流程
 - [前端與 UI 設計](docs/frontend-ui.md)（8）— 設計系統、UI linter、設計 skill、介面模板與概念介面
@@ -56,12 +56,17 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 | 影片 18 | Every meeting in 2026（Champagnecruz，The new gold rush） | [reel/1778931116724534](https://www.facebook.com/reel/1778931116724534) | 2026-10-31 |
 | 影片 19 | 未來博物館的純人類員工（Christopher Chong，AI 生成短劇） | [reel/1141885222030708](https://www.facebook.com/reel/1141885222030708) | 2026-10-31 |
 | 影片 20 | Filee 拖曳轉檔工具（DevPik） | [reel/1143388538027657](https://www.facebook.com/reel/1143388538027657) | 2026-10-31 |
+| 影片 21 | RAG Design patterns (You must know in 2026)（Ankur Mishra 轉貼，圖：@MindBoostTutorix） | [reel/4570321283241437](https://www.facebook.com/reel/4570321283241437) | 2026-10-31 |
 
 沒有連結的來源，附上來源裡的待確認事項：
 
 - **截圖批次**：mex 訓練曲線那支待確認 repo
 - **截圖批次 2**：待確認：Tommy Vaga 是否即 VagaFX 的 Tomas Edgar、Opus 5.5 看板作者是否為 @Klonzu、Microduck 與 Open Duck Mini 的關係、Grok Desk 推文內文（X 擋抓取）、OPZEN 功能細節取自搜尋摘要；REA 星數 41 萬偏高但照 API 回傳；火箭、心智圖、插畫 prompt 三支沒有原始連結
 - **Brian 推薦清單 2026-10-31**：依名稱對應到 GitHub 星數最高的 repo：obra/superpowers、mattpocock/skills、DietrichGebert/ponytail、colbymchenry/codegraph、rtk-ai/rtk；ponytail、codegraph 有多個同名或衍生專案，Ponytail 的效能數字是作者自測
+
+來源另外記下的一句：
+
+- **影片 21**：另一支 reel 1110027721743729 下載失敗，未收錄
 
 ## 圖表演示
 

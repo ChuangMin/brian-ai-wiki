@@ -16,6 +16,10 @@
 
 [Graphify](https://github.com/Graphify-Labs/graphify)、[ai-memory](https://github.com/akitaonrails/ai-memory)：給 agent 正確的程式碼結構和規範（如 AGENTS.md），從源頭少寫錯。
 
+## RAG 演進路線：用評測決定加什麼
+
+[影片 21](https://www.facebook.com/reel/4570321283241437)：先做 Naive RAG 並建好評測集，量到召回或精準度不足才加 rerank、hybrid、graph；agentic 與多 agent 是最後手段，每加一層都要能說明換來多少品質、付出多少延遲與成本。
+
 ## Agent 自我驗收
 
 [video-to-game](https://github.com/lovisdotio/video-to-game)：agent 寫完遊戲後自己用鍵盤玩、錄影、對照原始影片截圖，把「跑起來看結果」變成流程的一部分，而不是只看程式碼。
