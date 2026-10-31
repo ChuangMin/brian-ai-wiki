@@ -248,5 +248,16 @@
     "duration": 10.05,
     "what_it_shows": "深色背景 2×3 圖表卡（長條、圓餅、折線、散佈、直方圖、箱形圖），一條發光掃描線橫向掃過各圖並逐一高亮資料點；可用 SVG/Canvas 畫圖表 + 移動的漸層遮罩線（mix-blend-mode）重現，整段 10 秒可無縫循環",
     "size_bytes": 1951474
+  },
+  {
+    "file": "v37-view-transition-wipe.gif",
+    "video_number": "影片 37",
+    "entry_name": "Kinlo 後台儀表板（View Transitions 圓形轉場）",
+    "reel_url": "https://www.facebook.com/reel/1473800611304190",
+    "segment_start": 2,
+    "duration": 3.0,
+    "what_it_shows": "淺色電影院後台（影片中 logo 拼作 Kinlo）：游標點 Finance 側欄的 Cards 分頁、再點 Calendar，每次換頁都從點擊處以圓形 clip-path 擴散蓋過舊畫面；下方同時顯示 src/App.tsx 的 setTheme() 原始碼（document.startViewTransition + animate clipPath on ::view-transition-new(root)）",
+    "size_bytes": 957321,
+    "rebuild_note": "來源檔 /workspace/fb/reel39.mp4（檔名是 39，內容是影片 37）。重製：ffmpeg -ss 2 -t 3 -i reel39.mp4 -vf \"crop=1040:1100:20:560,fps=12,scale=720:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=160:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=4:diff_mode=rectangle\" v37-view-transition-wipe.gif（裁切範圍含儀表板＋程式碼面板，720×762，36 格，約 0.96 MB）。可互動的重製版在 demos/view-transition-dashboard/。"
   }
 ]

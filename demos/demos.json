@@ -48,5 +48,15 @@
     "source": "影片 35",
     "sourceUrl": "https://www.facebook.com/reel/1670796030659910",
     "added": "2026-10-31"
+  },
+  {
+    "id": "view-transition-dashboard",
+    "title": "Kinlo 後台儀表板（View Transitions 圓形轉場）",
+    "desc": "電影院後台儀表板：點側欄、分頁或主題鈕，畫面從點擊處以圓形擴散切換（document.startViewTransition + clip-path）。含漸層 KPI 數字跳動、10 月行事曆、場次座位圖，可展開 setTheme() 原始碼。",
+    "category": "網頁設計",
+    "path": "view-transition-dashboard/",
+    "source": "影片 37",
+    "sourceUrl": "https://www.facebook.com/reel/1473800611304190",
+    "added": "2026-10-31"
   }
 ]

@@ -149,3 +149,17 @@ Statsmaniaofficial 的「Different visualizations — 6 charts · when to use th
 深色背景 2×3 圖表卡（長條、圓餅、折線、散佈、直方圖、箱形圖），一條發光掃描線橫向掃過各圖並逐一高亮資料點；可用 SVG/Canvas 畫圖表 + 移動的漸層遮罩線（mix-blend-mode）重現，整段 10 秒可無縫循環
 
 ▶ 互動 Demo：[開啟](../demos/charts/)（https://wiki.singularityengine.dev/demos/charts/）
+
+### Kinlo 後台儀表板：View Transitions 圓形擦除轉場
+
+點擊切換頁面或主題時，用 View Transitions API 從點擊位置展開圓形遮罩，產生擦除轉場。
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 可信度高 | — | [影片 37](https://www.facebook.com/reel/1473800611304190) |
+
+Code & Chill 的 Reel，示範電影院後台儀表板（側欄、Finance › Cards、Calendar）。做法是呼叫 `document.startViewTransition`，再對 `::view-transition-new(root)` 的 `clipPath` 做動畫：從 `circle(0px at x y)` 放到 `circle(d px at x y)`，其中 `d = Math.hypot(Math.max(x, innerWidth-x), Math.max(y, innerHeight-y))`，大約 400 ms。API 不支援，或使用者設定 `prefers-reduced-motion` 時，改成立即切換。配樂：未確認。面試：小細節的動效能提升產品質感，且要做 progressive enhancement。
+
+![Kinlo 儀表板圓形擦除轉場](../assets/gifs/v37-view-transition-wipe.gif)
+
+▶ 互動 Demo：[開啟](../demos/view-transition-dashboard/)（https://wiki.singularityengine.dev/demos/view-transition-dashboard/）
