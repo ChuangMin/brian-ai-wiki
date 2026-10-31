@@ -55,7 +55,7 @@
 說明。
 ```
 
-`配樂` 和 `留言精華` 沒有就省略，不要為了填而發明內容。有的話寫進說明。影片 11 的 synthwave 純演奏、影片 12 的女聲 EDM／House、影片 13 的駭客風 synthwave、影片 14 的 synth-pop／chill house、OPZEN 的 Sayfalse – DARE、ALGORY 的 ayaibrahimx 原聲、影片 20 的免版稅 synth-pop，都已經寫在說明裡；曲名除了來源點名的以外都不要猜。影片 17–19 寫明沒有配樂。RuView 的留言精華也寫在說明裡。
+`配樂` 和 `留言精華` 沒有就省略，不要為了填而發明內容。有的話寫進說明。影片 11 的 synthwave 純演奏、影片 12 的女聲 EDM／House、影片 13 的駭客風 synthwave、影片 14 的 synth-pop／chill house、OPZEN 的 Sayfalse – DARE、ALGORY 的 ayaibrahimx 原聲、影片 20 的免版稅 synth-pop，都已經寫在說明裡；曲名除了來源點名的以外都不要猜。影片 17–19 寫明沒有配樂。影片 21 無旁白，是免版稅輕快 synth-pop。RuView 的留言精華也寫在說明裡。
 
 ## 新增一支影片時
 
