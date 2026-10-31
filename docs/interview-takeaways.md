@@ -20,18 +20,14 @@
 
 [video-to-game](https://github.com/lovisdotio/video-to-game)：agent 寫完遊戲後自己用鍵盤玩、錄影、對照原始影片截圖，把「跑起來看結果」變成流程的一部分，而不是只看程式碼。
 
-## 成本治理
-
-[TokenEconomizer](https://github.com/microsoft/TokenEconomizer) 與 [Claude Code vs Blender 梗](https://www.facebook.com/reel/1867596277567322)：agent 不是萬用解，要量化成本與成效。
-
 ## 規則優先、AI 其次
 
 [n8n 工單流程](https://www.facebook.com/reel/3209079722631476)：能用明確規則判斷的就不丟給 AI，結果可預測、可測試；寫入用 idempotent（ON CONFLICT）處理重試，這也是控管 AI 產出流程的基本功。
 
-## 生成前給標準＋生成後自動驗收
+## 成本治理
 
-[Awesome DESIGN.md](https://github.com/VoltAgent/awesome-design-md)、[Taste Skill](https://github.com/Leonxlnx/taste-skill)、[Impeccable](https://github.com/pbakaus/impeccable)：生成前先給設計標準。生成後用 [Web Design Guidelines](https://github.com/vercel-labs/agent-skills/tree/main/skills/web-design-guidelines) 做 lint，再用 [Playwright MCP](https://github.com/microsoft/playwright-mcp) 開瀏覽器自己點過、截圖、修跑版。
+[TokenEconomizer](https://github.com/microsoft/TokenEconomizer) 與 [Claude Code vs Blender 梗](https://www.facebook.com/reel/1867596277567322)：agent 不是萬用解，要量化成本與成效。
 
-## 最小權限＋先計畫後核准＋防幻覺驗證
+## 憑證有效 ≠ 意圖正確
 
-[財務人員的 25 個 Claude 技巧](https://www.facebook.com/reel/1411775787706586) 第 14、15、23 點：只開專用資料夾的最小權限、先列計畫等核准再動檔案、做完要防幻覺驗證。
+[影片 16](https://www.facebook.com/reel/1863665758475395)：密碼、裝置、核准人都對，決策者仍可能被 AI 仿聲或假訊息騙；agent 流程的高風險動作要做意圖驗證與帶外核准，不能只靠身分驗證。
