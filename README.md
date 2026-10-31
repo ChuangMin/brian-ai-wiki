@@ -30,6 +30,8 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）整理他從 Faceboo
 
 影片 3 的 K 線回放有一份自包含的 canvas 重現（示範資料）：[K 線回放圖表演示](demos/chart-replay/index.html)。用法見 [demos/chart-replay/README.md](demos/chart-replay/README.md)。
 
+線上版：<https://wiki.singularityengine.dev/demos/chart-replay/>
+
 ## 怎麼追加
 
 新影片請依 [CONTRIBUTING.md](CONTRIBUTING.md) 的條目格式往下加。

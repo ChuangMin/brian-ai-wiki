@@ -4,6 +4,8 @@
 
 用瀏覽器直接開啟 `index.html` 即可播放。GitHub 的檔案預覽不會執行這份頁面。若要在網上提供，可以把這個倉庫交給 GitHub Pages（此倉庫尚未啟用或設定 Pages）。
 
+線上版：<https://wiki.singularityengine.dev/demos/chart-replay/>
+
 ## 操作
 
 - 播放／暫停、重新開始、速度 1x／2x／4x（左下角按鈕）。
