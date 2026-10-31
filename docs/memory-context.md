@@ -2,7 +2,7 @@
 
 [回首頁](../README.md)
 
-知識圖譜、長期記憶、跨 agent 交接
+知識圖譜、程式碼圖譜、長期記憶、跨 agent 交接
 
 ### [Graphify](https://github.com/Graphify-Labs/graphify)
 
@@ -51,3 +51,15 @@ agent CLI 的長期記憶，方便跨 agent 交接
 | — | 1,876 | [影片 1](https://www.facebook.com/reel/2050168028979180) |
 
 騰訊混元的 agent 記憶引擎，跨工具共享記憶
+
+### [CodeGraph](https://github.com/colbymchenry/codegraph)
+
+預先索引程式碼成知識圖譜，透過 MCP 給 agent 精準上下文
+
+![CodeGraph 的 GitHub 預覽](https://opengraph.githubassets.com/1/colbymchenry/codegraph)
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| — | 76.1k | Brian 推薦清單 2026-10-31 |
+
+colbymchenry 的本地端程式碼知識圖譜（Rust 核心）：預先索引函式、類別、呼叫鏈與跨檔關係，程式碼變動時自動同步，透過 MCP server 讓 Claude Code、Cursor、Codex、Gemini、Copilot、Grok Build 等直接查詢，不必每次 grep 整個 repo；100% 本地。安裝：`curl -fsSL https://raw.githubusercontent.com/colbymchenry/codegraph/main/install.sh | sh`（或 `npm i -g @colbymchenry/codegraph`），再 `codegraph install` 接上 agent，每個專案 `codegraph init` 建索引；MIT。同名專案很多（CodeGraphContext 4.4k 星等），這個星數最高。面試：上下文工程的做法之一，先給 agent 正確的結構圖，比讓它亂搜更省 token 也更少改錯地方

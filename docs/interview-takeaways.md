@@ -26,7 +26,15 @@
 
 ## 成本治理
 
-[TokenEconomizer](https://github.com/microsoft/TokenEconomizer) 與 [Claude Code vs Blender 梗](https://www.facebook.com/reel/1867596277567322)：agent 不是萬用解，要量化成本與成效。
+[TokenEconomizer](https://github.com/microsoft/TokenEconomizer)、[RTK](https://github.com/rtk-ai/rtk) 與 [Claude Code vs Blender 梗](https://www.facebook.com/reel/1867596277567322)：agent 不是萬用解，要量化成本與成效；先過濾上下文雜訊再談換模型。
+
+## 先對齊、再寫碼
+
+[Superpowers](https://github.com/obra/superpowers)、[Matt Pocock Skills](https://github.com/mattpocock/skills)：開工前讓 agent 拷問需求、確認設計與計畫、建立共用詞彙，再用 TDD 與子 agent 審查實作，把方法論寫成團隊共用的 skill。
+
+## 最少必要程式
+
+[Ponytail](https://github.com/DietrichGebert/ponytail)：review 不只問對不對，也問是不是多寫了；重用既有元件、但不省測試、驗證與安全。
 
 ## 憑證有效 ≠ 意圖正確
 
