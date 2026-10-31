@@ -106,9 +106,9 @@ VS Code 擴充把 270+ 設計 skill、150+ 品牌設計系統、160+ 範例做�
 
 | 可信度 | 星數 | 出處 |
 | --- | --- | --- |
-| ⚠️ 引流 | — | [影片 29](https://www.facebook.com/reel/1834273334429297) |
+| ⚠️ 引流 | — | [影片 29](https://www.facebook.com/reel/1834273334429297) ⚠️ |
 
-wearebrand 的「Websites in 2026 🤩」，文案「Comment “WEBSITE” and let’s make your brand stand out」是留言關鍵字招攬接案的導流，片中的網站不一定是他們做的。真實拍攝在 Mac 上捲動兩個 WebGL 很重的網站：① Aethelburg（⚠️ https://aethelburg.network ），粒子群、扭曲字型、捲動時的 3D 平面，片中是某工作室的職缺頁；網域存在，但網頁標題是「AETHELNET // Sovereign Mesh Observer & Neural Manifold」，是否就是片中那頁未確認；② Montfort（⚠️ https://mont-fort.com ，不是 montfortgroup.com，那是一家磚石公司），能源與大宗商品貿易公司（據點在阿聯、新加坡、瑞士），捲動視差從雲中山峰到海上貨輪再到旋轉 3D 地球；mesh3d.gallery 記載是 Immersive Garden 用 Three.js、自訂 shader 與 Lenis 製作。片中沒有任何 AI 工具。配樂：聽起來是 Tyla《Water》（未確認）。面試：重度 WebGL 會拖累效能與無障礙，上線前要量 Core Web Vitals，並支援 prefers-reduced-motion
+wearebrand 的「Websites in 2026 🤩」，文案「Comment “WEBSITE” and let’s make your brand stand out」是留言關鍵字招攬接案的導流，片中的網站不一定是他們做的。真實拍攝在 Mac 上捲動兩個 WebGL 很重的網站：① Aethelburg（⚠️ https://aethelburg.network ⚠️），粒子群、扭曲字型、捲動時的 3D 平面，片中是某工作室的職缺頁；網域存在，但網頁標題是「AETHELNET // Sovereign Mesh Observer & Neural Manifold」，是否就是片中那頁未確認；② Montfort（⚠️ https://mont-fort.com ⚠️，不是 montfortgroup.com，那是一家磚石公司），能源與大宗商品貿易公司（據點在阿聯、新加坡、瑞士），捲動視差從雲中山峰到海上貨輪再到旋轉 3D 地球；mesh3d.gallery 記載是 Immersive Garden 用 Three.js、自訂 shader 與 Lenis 製作。片中沒有任何 AI 工具。配樂：聽起來是 Tyla《Water》（未確認）。面試：重度 WebGL 會拖累效能與無障礙，上線前要量 Core Web Vitals，並支援 prefers-reduced-motion
 
 ![WebGL 作品集網站：捲動時 3D 卡片／面板在空間中飛過，彩色粒子與故障（glitch）RGB 分離文字 'DISCOVER YOUR PATRONUS'；可用 Three.js 捲動驅動相機 + 粒子 + RGB shift 後處理重現](../assets/gifs/v29-aethelburg-webgl.gif)
 
