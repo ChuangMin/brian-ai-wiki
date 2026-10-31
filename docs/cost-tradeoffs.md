@@ -26,6 +26,10 @@ token 成本、指令輸出壓縮、agent 與傳統工具的成本對比
 
 同一段機械鸚鵡螺 3D 動畫，Claude Code 計數器跳到 512 美元，Blender 只要 14 美元，諷刺用 agent 生複雜動畫的 token 成本
 
+![左右分屏 3D 機械鸚鵡螺展開動畫＋上方金額計數器飛快跳動；可用 Three.js 模型動畫 + requestAnimationFrame 數字滾動計數器重現](../assets/gifs/v02-nautilus-3d-cost-race.gif)
+
+左右分屏 3D 機械鸚鵡螺展開動畫＋上方金額計數器飛快跳動；可用 Three.js 模型動畫 + requestAnimationFrame 數字滾動計數器重現
+
 ### [Claude Code vs Blender：機械變色龍](https://www.facebook.com/reel/1413855857399181)
 
 同系列成本對比動畫，主角換成機械變色龍
@@ -35,6 +39,10 @@ token 成本、指令輸出壓縮、agent 與傳統工具的成本對比
 | 概念動畫 | — | [影片 8](https://www.facebook.com/reel/1413855857399181) |
 
 同影片 2 的對戰版型（左 Claude Code、右 Blender，金額計數器 512 美元 vs 14 美元），主角換成機械變色龍：雙眼各自轉動、沿樹枝走六步、伸出伸縮舌頭、鱗片波浪變色。底部附完整 prompt，作者 @marlenuii
+
+![左右分屏機械變色龍沿樹枝行走、鱗片波浪式變色、金額計數器跳動；變色可用 shader 依位置+時間偏移 hue 重現](../assets/gifs/v08-chameleon-3d-cost-race.gif)
+
+左右分屏機械變色龍沿樹枝行走、鱗片波浪式變色、金額計數器跳動；變色可用 shader 依位置+時間偏移 hue 重現
 
 ### Claude Code vs Blender：ORBITAL X-02 火箭
 

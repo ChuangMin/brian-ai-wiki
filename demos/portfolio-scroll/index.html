@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026 作品集・自動捲動模板 — 示範</title>
+<!--
+  自動捲動單頁作品集模板 — 單一檔案、無外部相依、無任何圖片檔
+  重現 AI WIKI 影片 35 的「設計作品集一路往下捲」效果。所有作品圖都是 CSS 畫的占位圖（黑／金配色），
+  換成自己的作品時，把 .art 裡的內容換成 <img> 即可。
+  自動捲動：滑鼠停在作品卡片上、或手指觸碰畫面時暫停；捲到底後停 2 秒再回到頂端重播。
+  網址參數：?speed=90（每秒捲動像素，預設 70）、?clean=1（隱藏返回連結、出處與控制鈕，錄影用）、?autoplay=0
+  鍵盤：空白鍵 暫停／繼續
+-->
+<style>
+  :root{--ink:#0D0D0D;--ink2:#1A1A1A;--gold:#C9A24A;--gold2:#E8C877;--paper:#FFFFFF;--soft:#F3F1EC;--text:#2A2A2A;--muted:#7A7A7A;--accent:#00BCD4}
+  *{box-sizing:border-box}
+  html{scroll-behavior:auto}
+  body{margin:0;background:#121212;color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Trebuchet MS",Roboto,"Segoe UI","PingFang TC","Noto Sans TC",Ubuntu,sans-serif}
+  a{color:inherit}
+  /* overlay bar */
+  .hud{position:fixed;left:0;right:0;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:8px;
+    padding:8px 12px;pointer-events:none}
+  .hud>*{pointer-events:auto}
+  .pill{background:rgba(13,13,13,.78);color:#D1D4DC;border:1px solid #363A45;border-radius:999px;padding:5px 12px;font-size:13px;
+    text-decoration:none;backdrop-filter:blur(6px)}
+  a.pill:hover{border-color:var(--accent);color:#fff}
+  .pill a{color:var(--accent)}
+  .right{display:flex;gap:8px;align-items:center}
+  button.pill{font:inherit;font-size:13px;cursor:pointer}
+  button.pill:hover{border-color:var(--accent);color:#fff}
+  .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#2BD67B;margin-right:6px;vertical-align:1px}
+  .paused .dot{background:#FFB020}
+  .progress{position:fixed;left:0;top:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));z-index:60;width:0}
+  .clean .hud{display:none}
+  /* hero */
+  .hero{min-height:92vh;background:radial-gradient(circle at 80% 20%,#2A2316 0,#0D0D0D 55%);color:#fff;display:flex;flex-direction:column;
+    justify-content:center;padding:80px 8vw 60px;position:relative;overflow:hidden}
+  .hero .yr{font:800 clamp(64px,16vw,190px)/.9 "Trebuchet MS",Roboto,sans-serif;letter-spacing:-.02em;color:transparent;-webkit-text-stroke:2px var(--gold)}
+  .hero h1{margin:0;font:900 clamp(44px,10vw,120px)/.95 "Trebuchet MS",Roboto,sans-serif;letter-spacing:.04em}
+  .hero h1 span{color:var(--gold)}
+  .hero p{max-width:34em;color:#BDB6A6;font-size:clamp(15px,2vw,18px);margin:22px 0 0}
+  .hero .who{margin-top:28px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .hero .who b{font-size:20px}
+  .tag{border:1px solid var(--gold);color:var(--gold2);border-radius:999px;padding:4px 12px;font-size:13px}
+  .hero .ring{position:absolute;right:-12vw;top:12vh;width:48vw;height:48vw;max-width:560px;max-height:560px;border-radius:50%;
+    border:1px solid rgba(201,162,74,.35);box-shadow:inset 0 0 0 40px rgba(201,162,74,.04)}
+  .hero .ring::after{content:"";position:absolute;inset:18%;border-radius:50%;border:1px dashed rgba(201,162,74,.4)}
+  .hero .scrollhint{position:absolute;bottom:24px;left:8vw;color:#8C8473;font-size:12px;letter-spacing:.3em}
+  .index{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:30px;color:#8C8473;font-size:13px;letter-spacing:.08em}
+  .index span b{color:var(--gold);margin-right:6px}
+  /* sections */
+  main{padding:40px 5vw 20px;display:flex;flex-direction:column;gap:36px;max-width:1200px;margin:0 auto}
+  .card{background:var(--paper);border-radius:18px;padding:clamp(22px,4vw,48px);display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(20px,4vw,48px);
+    align-items:center;box-shadow:0 20px 50px rgba(0,0,0,.35);transition:transform .4s}
+  .card:nth-child(even){grid-template-columns:1.15fr 1fr}
+  .card:nth-child(even) .txt{order:2}
+  .card:hover{transform:translateY(-3px)}
+  .num{font:900 64px/1 "Trebuchet MS",Roboto,sans-serif;color:var(--gold);letter-spacing:-.02em}
+  .txt h2{margin:6px 0 4px;font-size:clamp(26px,3.4vw,40px);color:var(--ink);letter-spacing:.02em}
+  .txt h3{margin:0 0 14px;font-size:15px;color:var(--muted);font-weight:500;letter-spacing:.2em;text-transform:uppercase}
+  .txt p{margin:0 0 14px;line-height:1.75;color:#444}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chips span{background:var(--soft);border-radius:6px;padding:4px 10px;font-size:13px;color:#555}
+  .art{background:var(--ink);border-radius:14px;aspect-ratio:4/3;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .art::before{content:"";position:absolute;inset:0;background:radial-gradient(rgba(201,162,74,.12) 1px,transparent 1.5px) 0 0/16px 16px}
+  /* 01 about */
+  .about{gap:6%;padding:0 8%;width:100%;display:flex;align-items:center;position:relative}
+  .portrait{width:40%;aspect-ratio:3/4;border-radius:12px;background:linear-gradient(160deg,#2A2416,#141414);position:relative;overflow:hidden;border:1px solid #3B3220}
+  .portrait::before{content:"";position:absolute;left:50%;top:22%;width:38%;aspect-ratio:1;border-radius:50%;background:var(--gold);transform:translateX(-50%)}
+  .portrait::after{content:"";position:absolute;left:50%;bottom:-14%;width:78%;aspect-ratio:1;border-radius:50%;background:var(--gold);transform:translateX(-50%);opacity:.9}
+  .skills{flex:1;display:flex;flex-direction:column;gap:12px}
+  .skill{color:#CFC6B2;font-size:12px;letter-spacing:.1em}
+  .skill i{display:block;height:6px;border-radius:3px;background:#2B2B2B;margin-top:5px;overflow:hidden}
+  .skill i::after{content:"";display:block;height:100%;width:var(--w);background:linear-gradient(90deg,var(--gold),var(--gold2))}
+  /* 02 logo */
+  .logos{display:grid;grid-template-columns:repeat(3,1fr);gap:6%;width:84%;position:relative}
+  .logo{aspect-ratio:1;border-radius:12px;background:#171717;border:1px solid #2E2A20;display:flex;align-items:center;justify-content:center}
+  .lm1{width:56%;aspect-ratio:1;border-radius:50%;border:3px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font:900 clamp(16px,3vw,34px)/1 Georgia,serif}
+  .lm2{width:52%;aspect-ratio:1;background:var(--gold);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);position:relative}
+  .lm2::after{content:"";position:absolute;inset:28%;background:#171717;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+  .lm3{color:#fff;font:900 clamp(12px,2.2vw,22px)/1 "Trebuchet MS",sans-serif;letter-spacing:.12em;text-align:center}
+  .lm3 small{display:block;color:var(--gold);font-size:.5em;letter-spacing:.4em;margin-top:6px}
+  /* 03 thumbnail */
+  .thumb{width:86%;aspect-ratio:16/9;border-radius:10px;background:linear-gradient(120deg,#1C1C1C 0 55%,var(--gold) 55% 100%);position:relative;overflow:hidden;box-shadow:0 12px 30px rgba(0,0,0,.5)}
+  .thumb .big{position:absolute;left:6%;top:14%;color:#fff;font:900 clamp(18px,3.6vw,40px)/1.05 "Trebuchet MS",sans-serif;max-width:60%}
+  .thumb .big em{font-style:normal;color:var(--gold2);display:block}
+  .thumb .face{position:absolute;right:8%;bottom:-10%;width:34%;aspect-ratio:3/4;border-radius:50% 50% 12px 12px;background:#111;border:3px solid #fff}
+  .thumb .face::before{content:"";position:absolute;left:50%;top:16%;width:46%;aspect-ratio:1;border-radius:50%;background:#2B2B2B;transform:translateX(-50%)}
+  .thumb .time{position:absolute;right:3%;bottom:5%;background:rgba(0,0,0,.8);color:#fff;font:600 11px ui-monospace,monospace;padding:2px 5px;border-radius:3px}
+  .thumb .play{position:absolute;left:6%;bottom:12%;width:12%;aspect-ratio:1.4;background:#E63A2E;border-radius:22%}
+  .thumb .play::after{content:"";position:absolute;left:40%;top:28%;border:solid transparent;border-width:clamp(5px,1vw,9px) 0 clamp(5px,1vw,9px) clamp(8px,1.6vw,14px);border-left-color:#fff}
+  /* 04 social */
+  .social{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:80%;position:relative}
+  .post{aspect-ratio:1;border-radius:8px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;font:900 clamp(12px,2.4vw,24px)/1 "Trebuchet MS",sans-serif}
+  .p1{background:var(--gold);color:#111}
+  .p2{background:#1C1C1C;border:1px solid #3A3220;color:var(--gold2)}
+  .p3{background:linear-gradient(135deg,#111 50%,var(--gold) 50%)}
+  .p4{background:#F4EBD5;color:#111;font-size:clamp(10px,1.6vw,15px);padding:10%;text-align:center;font-family:Georgia,serif;font-style:italic}
+  .p5{background:#1C1C1C}
+  .p5::before{content:"";width:46%;aspect-ratio:1;border-radius:50%;border:6px solid var(--gold);border-right-color:transparent}
+  .p6{background:var(--gold);color:#111;flex-direction:column;gap:4px}
+  .p6 small{font-size:.45em;letter-spacing:.2em}
+  /* 05 mockups */
+  .mock{position:relative;width:86%;height:78%}
+  .laptop{position:absolute;left:0;top:6%;width:80%}
+  .screen{aspect-ratio:16/10;background:#222;border:6px solid #2E2E2E;border-radius:10px 10px 0 0;padding:6%;display:grid;grid-template-columns:1fr 1fr;gap:6%}
+  .screen i{background:#3A3A3A;border-radius:4px}
+  .screen i:first-child{grid-column:span 2;background:linear-gradient(90deg,var(--gold),var(--gold2))}
+  .base{height:10px;background:linear-gradient(#5A5A5A,#2A2A2A);border-radius:0 0 12px 12px;margin:0 -6%}
+  .phone{position:absolute;right:0;bottom:0;width:26%;aspect-ratio:9/18;background:#111;border:4px solid #3A3A3A;border-radius:18px;padding:12% 8%;display:flex;flex-direction:column;gap:8%;box-shadow:-10px 10px 30px rgba(0,0,0,.6)}
+  .phone i{flex:1;border-radius:4px;background:#2C2C2C}
+  .phone i:first-child{flex:1.6;background:var(--gold)}
+  /* 06 brochure */
+  .bro{display:flex;width:84%;aspect-ratio:2.2;perspective:900px;position:relative}
+  .panel{flex:1;background:#F6F1E4;position:relative;padding:5%;display:flex;flex-direction:column;gap:7%}
+  .panel:nth-child(1){transform:rotateY(18deg);transform-origin:right;background:#EDE5D0}
+  .panel:nth-child(2){background:#111;color:var(--gold);align-items:center;justify-content:center;font:900 clamp(12px,2.2vw,22px)/1.1 Georgia,serif;text-align:center}
+  .panel:nth-child(3){transform:rotateY(-18deg);transform-origin:left;background:#EDE5D0}
+  .panel b{height:22%;background:var(--gold);border-radius:3px}
+  .panel s{height:5%;background:#BBB2A0;border-radius:2px;text-decoration:none}
+  .panel s:nth-child(odd){width:70%}
+  /* 07 packaging */
+  .pack{display:flex;gap:14%;align-items:flex-end;position:relative;perspective:700px}
+  .box3d{width:clamp(70px,11vw,130px);aspect-ratio:1;position:relative;transform-style:preserve-3d;transform:rotateX(-18deg) rotateY(-32deg);animation:spin 12s linear infinite}
+  .bf{position:absolute;inset:0;border:1px solid rgba(0,0,0,.2)}
+  .box3d .bf{display:flex;align-items:center;justify-content:center;font:900 clamp(10px,1.5vw,16px)/1 Georgia,serif;letter-spacing:.1em}
+  .f1{background:var(--gold);color:#111;transform:translateZ(calc(clamp(70px,11vw,130px)/2))}
+  .f2{background:#1B1B1B;color:var(--gold);transform:rotateY(90deg) translateZ(calc(clamp(70px,11vw,130px)/2))}
+  .f3{background:#C2973D;transform:rotateY(180deg) translateZ(calc(clamp(70px,11vw,130px)/2))}
+  .f4{background:#111;transform:rotateY(-90deg) translateZ(calc(clamp(70px,11vw,130px)/2))}
+  .f5{background:#D9B35E;transform:rotateX(90deg) translateZ(calc(clamp(70px,11vw,130px)/2))}
+  @keyframes spin{to{transform:rotateX(-18deg) rotateY(328deg)}}
+  .jar{width:clamp(48px,7vw,84px);aspect-ratio:.62;background:linear-gradient(90deg,#141414,#2A2A2A 45%,#121212);border-radius:12px 12px 16px 16px;position:relative;border:1px solid #3A3220}
+  .jar::before{content:"";position:absolute;left:12%;right:12%;top:-12%;height:14%;background:var(--gold);border-radius:4px}
+  .jar::after{content:"";position:absolute;left:0;right:0;top:36%;height:30%;background:var(--gold)}
+  /* 08 hoarding */
+  .bill{width:88%;position:relative;display:flex;flex-direction:column;align-items:center}
+  .board{width:100%;aspect-ratio:3.2;background:linear-gradient(100deg,#111 0 58%,var(--gold) 58%);border:6px solid #2C2C2C;border-radius:4px;display:flex;align-items:center;padding:0 6%;position:relative;overflow:hidden}
+  .board .t{color:#fff;font:900 clamp(12px,2.3vw,26px)/1 "Trebuchet MS",sans-serif;letter-spacing:.06em}
+  .board .t em{display:block;font-style:normal;color:var(--gold2);font-size:.45em;letter-spacing:.4em;margin-top:8px}
+  .board .o{position:absolute;right:6%;top:50%;width:13%;aspect-ratio:1;border-radius:50%;border:5px solid #111;transform:translateY(-50%)}
+  .legs{width:56%;height:clamp(24px,5vw,56px);display:flex;justify-content:space-between}
+  .legs i{width:6px;background:#3A3A3A}
+  .shine{position:absolute;top:0;bottom:0;width:30%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.18),transparent);animation:shine 4s ease-in-out infinite}
+  @keyframes shine{from{left:-40%}to{left:120%}}
+  /* footer */
+  footer{background:var(--ink);color:#DDD;padding:70px 8vw 90px;margin-top:40px;text-align:center}
+  footer h2{font:900 clamp(32px,6vw,64px)/1 "Trebuchet MS",sans-serif;margin:0 0 10px;color:#fff}
+  footer h2 span{color:var(--gold)}
+  footer p{color:#9C9688;margin:0 0 26px}
+  .contacts{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+  .contacts span{border:1px solid #3A3220;border-radius:10px;padding:10px 16px;font-size:14px;color:#E8DCC0}
+  .contacts b{color:var(--gold);margin-right:8px;font-weight:600}
+  .fine{margin-top:34px;font-size:12px;color:#6A665D}
+  .fine a{color:var(--accent)}
+  @media (max-width:760px){
+    .card,.card:nth-child(even){grid-template-columns:1fr}
+    .card:nth-child(even) .txt{order:0}
+    .num{font-size:48px}
+    .hud .pill{font-size:12px;padding:4px 10px}
+    .hud .credit{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){.box3d,.shine{animation:none}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="hud">
+  <a class="pill" href="../index.html">← Demos 索引</a>
+  <div class="right">
+    <span class="pill credit">出處：<a href="https://www.facebook.com/reel/1670796030659910" target="_blank" rel="noopener noreferrer">AI WIKI 影片 35</a></span>
+    <button class="pill" id="toggle" type="button"><span class="dot"></span><span id="state">自動捲動中</span></button>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="ring"></div>
+  <div class="yr">2026</div>
+  <h1>PORT<span>FOLIO</span></h1>
+  <p>平面設計作品集。品牌識別、社群、包裝與戶外廣告，從概念到落地。</p>
+  <div class="who"><b>你的名字</b><span class="tag">平面設計師</span><span class="tag">品牌設計</span><span class="tag">台北</span></div>
+  <div class="index">
+    <span><b>01</b>關於我</span><span><b>02</b>Logo</span><span><b>03</b>縮圖</span><span><b>04</b>社群</span>
+    <span><b>05</b>情境模擬</span><span><b>06</b>摺頁</span><span><b>07</b>包裝</span><span><b>08</b>圍籬廣告</span>
+  </div>
+  <div class="scrollhint">SCROLL ↓</div>
+</header>
+
+<main id="main">
+  <section class="card">
+    <div class="txt"><div class="num">01</div><h2>關於我</h2><h3>About</h3>
+      <p>8 年平面設計經驗，專注品牌識別與行銷素材。相信好的設計是把複雜的事說清楚。</p>
+      <div class="chips"><span>Illustrator</span><span>Photoshop</span><span>Figma</span><span>InDesign</span></div></div>
+    <div class="art"><div class="about"><div class="portrait"></div>
+      <div class="skills"><div class="skill">品牌識別<i style="--w:92%"></i></div><div class="skill">排版設計<i style="--w:84%"></i></div><div class="skill">插畫<i style="--w:70%"></i></div><div class="skill">動態設計<i style="--w:62%"></i></div></div></div></div>
+  </section>
+  <section class="card">
+    <div class="txt"><div class="num">02</div><h2>Logo 設計</h2><h3>Logo</h3>
+      <p>從字母組合、幾何符號到文字標，為品牌找到最簡潔、最好記的樣子。</p>
+      <div class="chips"><span>Monogram</span><span>Symbol</span><span>Wordmark</span></div></div>
+    <div class="art"><div class="logos"><div class="logo"><div class="lm1">M</div></div><div class="logo"><div class="lm2"></div></div><div class="logo"><div class="lm3">NORTH<small>STUDIO</small></div></div></div></div>
+  </section>
+  <section class="card">
+    <div class="txt"><div class="num">03</div><h2>影片縮圖</h2><h3>Thumbnail</h3>
+      <p>大字、高對比、一眼看懂。為 YouTube 與短影音設計會被點開的封面。</p>
+      <div class="chips"><span>YouTube</span><span>Reels</span><span>A/B 測試</span></div></div>
+    <div class="art"><div class="thumb"><div class="big">10 個<em>設計技巧</em></div><div class="face"></div><div class="play"></div><div class="time">12:34</div></div></div>
+  </section>
+  <section class="card">
+    <div class="txt"><div class="num">04</div><h2>社群貼文</h2><h3>Social Media</h3>
+      <p>一致的版型系統，讓每一則貼文都像同一個品牌說的話。</p>
+      <div class="chips"><span>Instagram</span><span>Facebook</span><span>版型系統</span></div></div>
+    <div class="art"><div class="social"><div class="post p1">NEW</div><div class="post p2">50%</div><div class="post p3"></div><div class="post p4">「少即是多」</div><div class="post p5"></div><div class="post p6">SALE<small>本週限定</small></div></div></div>
+  </section>
+  <section class="card">
+    <div class="txt"><div class="num">05</div><h2>情境模擬</h2><h3>Mockups</h3>
+      <p>把設計放進真實情境：網站、App、螢幕與裝置，讓客戶提前看到成品。</p>
+      <div class="chips"><span>Web</span><span>App</span><span>Device</span></div></div>
+    <div class="art"><div class="mock"><div class="laptop"><div class="screen"><i></i><i></i><i></i></div><div class="base"></div></div><div class="phone"><i></i><i></i><i></i></div></div></div>
+  </section>
+  <section class="card">
+    <div class="txt"><div class="num">06</div><h2>三摺頁</h2><h3>Brochure</h3>
+      <p>資訊層次清楚的印刷品：封面吸睛、內頁好讀、摺起來剛好。</p>
+      <div class="chips"><span>印刷</span><span>排版</span><span>三摺</span></div></div>
+    <div class="art"><div class="bro"><div class="panel"><b></b><s></s><s></s><s></s><s></s></div><div class="panel">GOLDEN<br>HOUR</div><div class="panel"><s></s><s></s><b></b><s></s><s></s></div></div></div>
+  </section>
+  <section class="card">
+    <div class="txt"><div class="num">07</div><h2>包裝設計</h2><h3>Packaging</h3>
+      <p>在貨架上三秒被看見。結構、材質與視覺一起考慮。</p>
+      <div class="chips"><span>盒型</span><span>瓶罐</span><span>標籤</span></div></div>
+    <div class="art"><div class="pack"><div class="box3d"><div class="bf f1">AURUM</div><div class="bf f2">AU</div><div class="bf f3"></div><div class="bf f4"></div><div class="bf f5"></div></div><div class="jar"></div></div></div>
+  </section>
+  <section class="card">
+    <div class="txt"><div class="num">08</div><h2>圍籬廣告</h2><h3>Hoarding</h3>
+      <p>工地圍籬與大型看板：遠看要有記憶點，近看要有細節。</p>
+      <div class="chips"><span>戶外</span><span>大型輸出</span><span>看板</span></div></div>
+    <div class="art"><div class="bill"><div class="board"><div class="t">GRAND OPENING<em>2026 · 敬請期待</em></div><div class="o"></div><div class="shine"></div></div><div class="legs"><i></i><i></i></div></div></div>
+  </section>
+</main>
+
+<footer>
+  <h2>一起合作<span>？</span></h2>
+  <p>歡迎來信洽談品牌、包裝與活動視覺。</p>
+  <div class="contacts">
+    <span><b>Email</b>hello@example.com</span>
+    <span><b>電話</b>0900-000-000</span>
+    <span><b>IG</b>@your.design</span>
+    <span><b>Behance</b>/yourname</span>
+  </div>
+  <div class="fine">作品皆為 CSS 繪製的占位示意，非真實作品 · 版型重製自 <a href="https://www.facebook.com/reel/1670796030659910" target="_blank" rel="noopener noreferrer">AI WIKI 影片 35</a></div>
+</footer>
+
+<script>
+"use strict";
+const params = new URLSearchParams(location.search);
+if (params.get("clean")) document.body.classList.add("clean");
+const SPEED = parseFloat(params.get("speed")) || 70;           // 每秒捲動幾像素
+const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+let userPaused = params.get("autoplay") === "0" || reduce;      // 按鈕手動暫停
+let hoverPause = false;                                          // 滑鼠停在卡片上
+let holdUntil = 0;                                               // 觸控／滾輪後暫停到這個時間
+let pos = window.scrollY, last = null, phase = "scroll", phaseUntil = 0;
+const stateEl = document.getElementById("state"), toggle = document.getElementById("toggle"), bar = document.getElementById("progress");
+
+function maxY() { return Math.max(0, document.documentElement.scrollHeight - window.innerHeight); }
+function paused(now) { return userPaused || hoverPause || now < holdUntil; }
+function label(now) {
+  const p = paused(now);
+  document.body.classList.toggle("paused", p);
+  stateEl.textContent = userPaused ? "已暫停（點一下繼續）" : p ? "暫停中" : phase === "rewind" ? "回到開頭…" : "自動捲動中";
+}
+function loop(now) {
+  const dt = last === null ? 0 : Math.min(64, now - last); last = now;
+  if (phase === "scroll") {
+    if (!paused(now)) {
+      if (Math.abs(window.scrollY - pos) > 2) pos = window.scrollY; // 使用者自己捲過就從那裡接著捲
+      pos = Math.min(maxY(), pos + SPEED * dt / 1000);
+      window.scrollTo(0, pos);
+      if (pos >= maxY() - 1) { phase = "end"; phaseUntil = now + 2000; }
+    }
+  } else if (phase === "end" && now > phaseUntil && !paused(now)) {
+    phase = "rewind"; window.scrollTo({ top: 0, behavior: "smooth" }); phaseUntil = now + 2600;
+  } else if (phase === "rewind" && now > phaseUntil) {
+    phase = "scroll"; pos = 0; window.scrollTo(0, 0);
+  }
+  bar.style.width = (maxY() ? window.scrollY / maxY() * 100 : 0) + "%";
+  label(now);
+  requestAnimationFrame(loop);
+}
+// 滑鼠停在作品卡片上就暫停
+document.querySelectorAll(".card").forEach(function (c) {
+  c.addEventListener("mouseenter", function () { hoverPause = true; });
+  c.addEventListener("mouseleave", function () { hoverPause = false; });
+});
+// 觸控：手指放上去就暫停，放開後再等 3 秒
+let touching = false;
+window.addEventListener("touchstart", function () { touching = true; holdUntil = Infinity; }, { passive: true });
+window.addEventListener("touchend", function () { touching = false; holdUntil = performance.now() + 3000; }, { passive: true });
+window.addEventListener("wheel", function () { holdUntil = performance.now() + 2500; pos = window.scrollY; }, { passive: true });
+toggle.addEventListener("click", function () { userPaused = !userPaused; holdUntil = 0; pos = window.scrollY; });
+document.addEventListener("keydown", function (e) { if (e.code === "Space") { e.preventDefault(); toggle.click(); } });
+if (params.get("start")) { pos = parseFloat(params.get("start")) || 0; window.scrollTo(0, pos); }
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

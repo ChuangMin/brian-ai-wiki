@@ -97,3 +97,39 @@ TypeScript 講師 Matt Pocock 從自己 .agents 目錄公開的 skill 集，刻�
 | — | 181.2k | Brian 推薦清單 2026-10-31 |
 
 DietrichGebert 的「懶惰資深工程師」skill：只寫任務需要的程式，優先重用 repo 既有元件，但不准砍驗證、錯誤處理、安全與無障礙。附 /ponytail-review（連 diff 以外受影響的檔案一起審）、/ponytail-audit 等指令。README 自述 Ponytail 5 在 Claude Code 39 個任務的測試：程式碼 -53%、時間 -41%、成本 -26%、token -45%，高風險邏輯 98% 附測試（無 skill 為 68%），屬作者自測。安裝：Claude Code 先 `/plugin marketplace add DietrichGebert/ponytail` 再 `/plugin install ponytail@ponytail`，其他 agent 可直接放 AGENTS.md；MIT。作者提醒只從這個 repo 或 npm `@dietrichgebert/ponytail` 安裝，帶 .exe／.dll 的是假冒版。面試：AI 程式碼品質不只看對不對，還要看是不是多寫了；把「最少必要程式＋不省測試與安全」寫成 review 標準
+
+### [CLI-Anything：讓所有軟體都有命令列](https://github.com/HKUDS/CLI-Anything)
+
+自動幫專業軟體生出命令列，讓 AI agent 不用點畫面就能操作
+
+![CLI-Anything：讓所有軟體都有命令列 的 GitHub 預覽](https://opengraph.githubassets.com/1/HKUDS/CLI-Anything)
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| — | 57.9k | [影片 26](https://www.facebook.com/reel/1857279712725267) |
+
+香港大學 HKUDS 的開源專案（repo 簡介：Making ALL Software Agent-Native）：替專業軟體自動產生 CLI，讓 agent 用指令操作，而不是截圖加點擊。在 Claude Code 執行 `/cli-anything <軟體路徑或 GitHub 網址>`，走 7 個階段：分析程式碼→設計 CLI→實作→規劃測試→寫測試→寫測試文件→發佈到 PyPI。會呼叫真的軟體（LibreOffice 轉 PDF、Blender 算圖），輸出結構化 JSON，文案稱有 2,000+ 個測試；CLI-Hub（https://clianything.cc/ ）讓 agent 搜尋、安裝社群做好的 CLI（SKILL.md）。影片示範 FreeCAD 做好奇號風探測車、Blender 軌道中繼無人機、《殺戮尖塔 2》CLI；但畫面上的殺戮尖塔看起來是一代不是二代，示範畫面也是 README 裡美化過的展示。和本 wiki 的 blender-skills、Spider Walker 等 DCC 項目是同一方向：讓 agent 用可測試的介面操作 3D 軟體。Python、Apache-2.0，2026-03-08 建立、5.2k fork。影片是小礦工挖挖礦的繁中 AI 配音。配樂：無。面試：要 agent 可靠又可測試，優先給它確定性、結構化的介面（CLI＋JSON），少靠 GUI 自動化
+
+### [archify：把想法或程式碼變成互動架構圖](https://github.com/tt-a1i/archify)
+
+讓 AI agent 把想法、計畫或程式碼轉成可互動的圖
+
+![archify：把想法或程式碼變成互動架構圖 的 GitHub 預覽](https://opengraph.githubassets.com/1/tt-a1i/archify)
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| — | 92.0k | Brian 推薦清單 2026-10-31 |
+
+給 Claude Code、Codex 等 agent 用的 skill，把一個想法、計畫或整個 codebase 轉成互動式圖表。Apache-2.0，2026-04-15 建立，官網 https://archify.si 。出自 Brian 的文字推薦，無影片。配樂：不適用（無影片）。面試：讓 agent 從 codebase 自動產生架構圖，審查時可以檢查文件與程式碼是否一致
+
+### [diagram-design：編輯級品質的圖表 skill](https://github.com/cathrynlavery/diagram-design)
+
+讓 AI agent 畫出雜誌等級的 HTML＋SVG 圖表
+
+![diagram-design：編輯級品質的圖表 skill 的 GitHub 預覽](https://opengraph.githubassets.com/1/cathrynlavery/diagram-design)
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| — | 63.4k | Brian 推薦清單 2026-10-31 |
+
+給 Claude Code、Codex、Copilot、Cursor 等 agent 用的圖表 skill，產出獨立 HTML 加內嵌 SVG 的編輯級品質圖表。MIT，官網 https://diagramdesign.dev 。中文 fork patrick-xin/diagram-design-zh（https://github.com/patrick-xin/diagram-design-zh ，48 ⭐）內建中日韓文字排版。出自 Brian 的文字推薦，無影片。配樂：不適用（無影片）。面試：同 archify，讓 agent 從 codebase 產生架構圖，審查時保持文件與程式碼同步

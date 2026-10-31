@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>六種圖表，什麼時候用 — 示範</title>
+<!--
+  六種圖表示範 — 單一檔案、純 SVG + JS、無外部相依
+  重現 AI WIKI 影片 36。所有資料都是用固定種子的亂數（mulberry32）產生的合成資料：
+    - 直方圖和盒鬚圖用的是「同一組」90 筆外送時間（DELIVERY 陣列），
+      分箱為 10–70 的 6 個等寬區間；四分位數採線性內插（與 numpy.percentile 預設相同），
+      離群值 = 超出 [Q1 − 1.5×IQR, Q3 + 1.5×IQR] 的點。
+  掃描線每 10 秒掃過一次，亮起掃描線下方的資料。圓餅圖改用旋轉指針掃描（垂直線掃圓餅沒有意義）。
+  網址參數：?clean=1 隱藏返回連結與出處（錄影用）、?seed=37 換外送時間資料、?t=4.2 凍結在第 4.2 秒（截圖用）
+-->
+<style>
+  :root{--bg:#0A0F24;--card:rgba(22,30,58,.72);--line:#27315A;--text:#D7DCEC;--muted:#8B93B5;
+    --cyan:#22C3DA;--pink:#E5609F;--gold:#F2B630;--green:#2CC48A;--purple:#9C87F7;--orange:#FF9845;--accent:#00BCD4;}
+  *{box-sizing:border-box}
+  html,body{margin:0;color:var(--text);background:var(--bg)}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Trebuchet MS",Roboto,"Segoe UI","PingFang TC","Noto Sans TC",Ubuntu,sans-serif;
+    background:radial-gradient(circle at 50% 0%,#1A2350 0%,rgba(10,15,36,0) 55%),
+      radial-gradient(rgba(130,150,220,.16) 1px,transparent 1.2px) 0 0/18px 18px,
+      linear-gradient(180deg,#0A0F24,#0E0B2A);min-height:100vh}
+  a{color:var(--accent)} a:hover{color:#fff}
+  .wrap{max-width:960px;margin:0 auto;padding:14px 16px 28px}
+  .top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+  .back{color:var(--muted);text-decoration:none;font-size:14px}
+  .back:hover{color:var(--accent)}
+  .credit{font-size:12px;color:var(--muted);background:rgba(20,26,52,.8);border:1px solid var(--line);border-radius:999px;padding:4px 12px}
+  h1{text-align:center;font-size:34px;margin:14px 0 2px;color:#fff;letter-spacing:.02em}
+  h1 em{font-style:normal;color:var(--cyan)}
+  .sub{text-align:center;color:var(--muted);margin:0 0 18px;font-size:14px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 10px 14px;
+    box-shadow:0 10px 30px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.04);backdrop-filter:blur(2px)}
+  .plot{background:#0B1230;border:1px solid #222C55;border-radius:10px;overflow:hidden}
+  .plot svg{display:block;width:100%;height:auto}
+  .info{padding:10px 6px 0;position:relative}
+  .info h2{margin:0;font-size:20px}
+  .num{position:absolute;right:8px;top:12px;color:#4D567C;font:600 11px ui-monospace,Menlo,Consolas,monospace}
+  .formula{font:700 14px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#fff;margin:4px 0 6px}
+  .use{margin:0;color:#B9C0D9;font-size:14px;line-height:1.5}
+  .foot{text-align:center;color:var(--muted);font-size:12px;margin-top:18px}
+  /* svg */
+  .cap{font:700 9.5px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.06em}
+  .ax{stroke:#3A4675;stroke-width:1}
+  .gl{stroke:#1C2650;stroke-width:1;stroke-dasharray:2 3}
+  .tk{fill:#7D86AA;font:9px ui-monospace,Menlo,Consolas,monospace}
+  .val{font:700 10px ui-monospace,Menlo,Consolas,monospace;fill:#E6EAF7;text-anchor:middle}
+  .bar,.hb{transition:filter .2s,opacity .2s}
+  .dim{opacity:.55}
+  .hot{filter:url(#glow);opacity:1}
+  .scan line{stroke-width:1.4}
+  .ro{font:700 9.5px ui-monospace,Menlo,Consolas,monospace;text-anchor:middle}
+  .leg text{font:600 11px ui-monospace,Menlo,Consolas,monospace;fill:#D7DCEC}
+  .leg rect.bgrow{fill:transparent;transition:fill .2s}
+  .leg g.on rect.bgrow{fill:rgba(255,255,255,.08)}
+  .rug{stroke-width:1.2;opacity:.45}
+  .rug.on{opacity:1;stroke-width:2}
+  .qlbl{font:600 9px ui-monospace,Menlo,Consolas,monospace;fill:#9AA2C4;text-anchor:middle;transition:fill .2s}
+  .qlbl.on{fill:#fff}
+  @media (max-width:700px){.grid{grid-template-columns:1fr} h1{font-size:26px}}
+  .clean .back,.clean .credit{visibility:hidden}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="back" href="../index.html">← Demos 索引</a>
+    <span class="credit">出處：<a href="https://www.facebook.com/reel/1742098810210214" target="_blank" rel="noopener noreferrer">AI WIKI 影片 36</a>（重製示範）</span>
+  </div>
+  <h1>六種<em>圖表</em>，什麼時候用</h1>
+  <p class="sub">6 種圖表 · 各自的公式與適用時機</p>
+  <div class="grid" id="grid"></div>
+  <p class="foot" id="foot">合成資料 · 直方圖為等寬分箱 · 四分位數採線性內插</p>
+</div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="soft" filterUnits="userSpaceOnUse" x="-20" y="-20" width="360" height="220"><feGaussianBlur stdDeviation="3"/></filter>
+    <linearGradient id="areaG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F2B630" stop-opacity=".45"/><stop offset="1" stop-color="#F2B630" stop-opacity="0"/></linearGradient>
+    <linearGradient id="histG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9C87F7" stop-opacity=".95"/><stop offset="1" stop-color="#6B55D8" stop-opacity=".55"/></linearGradient>
+  </defs>
+</svg>
+<script>
+"use strict";
+const params = new URLSearchParams(location.search);
+if (params.get("clean")) document.body.classList.add("clean");
+const NS = "http://www.w3.org/2000/svg";
+function sv(tag, a, p) { const e = document.createElementNS(NS, tag); if (a) for (const k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; }
+function txt(p, x, y, s, cls, extra) { const t = sv("text", Object.assign({ x: x, y: y, class: cls || "tk" }, extra || {}), p); t.textContent = s; return t; }
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function gaussFrom(r) { return function () { let u = 0; while (!u) u = r(); const v = r(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }; }
+const C = { cyan: "#22C3DA", pink: "#E5609F", gold: "#F2B630", green: "#2CC48A", purple: "#9C87F7", orange: "#FF9845" };
+
+/* ======================= 資料 ======================= */
+const CATS = [["A", 18, C.cyan], ["B", 32, C.pink], ["C", 24, C.gold], ["D", 26, C.green]];
+const CAT_TOTAL = CATS.reduce(function (s, c) { return s + c[1]; }, 0);
+
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const MONTHS_ZH = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"];
+const LINE = (function () { const r = mulberry32(12), g = gaussFrom(r); return MONTHS.map(function (m, i) { return Math.max(4, Math.min(48, Math.round(14 + i * 2.6 + g() * 3.2))); }); })();
+
+const SCATTER = (function () {
+  const r = mulberry32(4), g = gaussFrom(r), pts = [];
+  for (let i = 0; i < 46; i++) { const x = 3 + r() * 40; const y = Math.max(1, Math.min(44, 0.72 * x + 6 + g() * 4.2)); pts.push([x, y]); }
+  return pts;
+})();
+function pearson(p) { const n = p.length; let sx = 0, sy = 0; p.forEach(function (q) { sx += q[0]; sy += q[1]; }); const mx = sx / n, my = sy / n; let a = 0, b = 0, c = 0; p.forEach(function (q) { a += (q[0] - mx) * (q[1] - my); b += (q[0] - mx) * (q[0] - mx); c += (q[1] - my) * (q[1] - my); }); return a / Math.sqrt(b * c); }
+
+// 90 筆外送時間（分鐘）：右偏的對數常態 + 5% 特別慢的訂單。直方圖與盒鬚圖共用這一個陣列。
+const DSEED = parseInt(params.get("seed") || "37", 10) || 37;
+const DELIVERY = (function () {
+  const r = mulberry32(DSEED), g = gaussFrom(r), d = [];
+  for (let i = 0; i < 90; i++) {
+    let x = r() < 0.05 ? 48 + r() * 20 : 10 + Math.exp(Math.log(19.5) + 0.33 * g());
+    x = Math.min(69.5, Math.max(10.5, x)); d.push(Math.round(x * 10) / 10);
+  }
+  return d;
+})();
+const BIN_LO = 10, BIN_HI = 70, NBINS = 6, BW = (BIN_HI - BIN_LO) / NBINS;
+const BINS = (function () { const b = new Array(NBINS).fill(0); DELIVERY.forEach(function (x) { b[Math.min(NBINS - 1, Math.floor((x - BIN_LO) / BW))]++; }); return b; })();
+function quantile(sorted, p) { const i = (sorted.length - 1) * p, lo = Math.floor(i), hi = Math.ceil(i); return sorted[lo] + (sorted[hi] - sorted[lo]) * (i - lo); }
+const BOX = (function () {
+  const s = DELIVERY.slice().sort(function (a, b) { return a - b; });
+  const q1 = quantile(s, 0.25), med = quantile(s, 0.5), q3 = quantile(s, 0.75), iqr = q3 - q1;
+  const lf = q1 - 1.5 * iqr, uf = q3 + 1.5 * iqr;
+  const inside = s.filter(function (x) { return x >= lf && x <= uf; });
+  return { q1: q1, med: med, q3: q3, iqr: iqr, lf: lf, uf: uf, wlo: inside[0], whi: inside[inside.length - 1],
+    out: s.filter(function (x) { return x < lf || x > uf; }), n: s.length };
+})();
+
+/* ======================= 版面 ======================= */
+const W = 320, H = 184, X0 = 34, X1 = 304, Y0 = 26, YB = 152;
+const CARDS = [
+  { id: "bar", color: C.cyan, cap: "類別數值", title: "長條圖 Bar chart", f: "height = value", use: "比較不同類別之間的數值大小。" },
+  { id: "pie", color: C.pink, cap: "占整體 100%", title: "圓餅圖 Pie chart", f: "share = x / total", use: "呈現各類別占「同一個整體」的比例。" },
+  { id: "line", color: C.gold, cap: "每月數值", title: "折線圖 Line chart", f: "point = (time, value)", use: "追蹤隨時間的變化與趨勢。" },
+  { id: "scatter", color: C.green, cap: "兩個變數", title: "散佈圖 Scatter plot", f: "point = (x, y)", use: "探索兩個變數的關係。相關 ≠ 因果。" },
+  { id: "hist", color: C.purple, cap: "90 筆外送時間", title: "直方圖 Histogram", f: "height = bin count", use: "看數值的分佈形狀：用等寬區間計數。" },
+  { id: "box", color: C.orange, cap: "同樣 90 筆觀測值", title: "盒鬚圖 Box plot", f: "IQR = Q₃ − Q₁", use: "一眼看中位數、離散程度與可能的離群值。" },
+];
+const grid = document.getElementById("grid");
+const SV = {};
+CARDS.forEach(function (c, i) {
+  const card = document.createElement("article"); card.className = "card";
+  const plot = document.createElement("div"); plot.className = "plot";
+  const svg = sv("svg", { viewBox: "0 0 " + W + " " + H, role: "img", "aria-label": c.title });
+  plot.appendChild(svg); card.appendChild(plot);
+  const info = document.createElement("div"); info.className = "info";
+  info.innerHTML = '<h2 style="color:' + c.color + '"></h2><span class="num">0' + (i + 1) + '</span><div class="formula"></div><p class="use"></p>';
+  info.querySelector("h2").textContent = c.title; info.querySelector(".formula").textContent = c.f; info.querySelector(".use").textContent = c.use;
+  card.appendChild(info); grid.appendChild(card);
+  txt(svg, 10, 15, c.cap, "cap", { fill: c.color });
+  SV[c.id] = svg;
+});
+function mkScan(svg, color, top, bottom) {
+  const g = sv("g", { class: "scan" }, svg);
+  sv("rect", { x: -7, y: top, width: 14, height: bottom - top, fill: color, opacity: .16, filter: "url(#soft)" }, g);
+  sv("line", { x1: 0, y1: top, x2: 0, y2: bottom, stroke: color }, g);
+  const ro = txt(svg, X1 - 8, 15, "", "ro", { fill: color, "text-anchor": "end" });
+  return { g: g, ro: ro };
+}
+function yAxis(svg, max, unitLabel) {
+  sv("line", { x1: X0, y1: Y0, x2: X0, y2: YB, class: "ax" }, svg);
+  sv("line", { x1: X0, y1: YB, x2: X1, y2: YB, class: "ax" }, svg);
+  sv("line", { x1: X0, y1: Y0, x2: X1, y2: Y0, class: "gl" }, svg);
+  sv("line", { x1: X0, y1: (Y0 + YB) / 2, x2: X1, y2: (Y0 + YB) / 2, class: "gl" }, svg);
+  txt(svg, X0 - 4, Y0 + 3, String(max), "tk", { "text-anchor": "end" });
+  txt(svg, X0 - 4, YB + 3, "0", "tk", { "text-anchor": "end" });
+}
+const sy = function (v, max) { return YB - (v / max) * (YB - Y0); };
+
+/* ---- 1 長條圖 ---- */
+const BAR = (function () {
+  const svg = SV.bar, max = 40; yAxis(svg, max);
+  const slot = (X1 - X0) / CATS.length, bw = 38, els = [];
+  CATS.forEach(function (c, i) {
+    const cx = X0 + slot * (i + 0.5);
+    const r = sv("rect", { x: cx - bw / 2, y: YB, width: bw, height: 0, rx: 3, fill: c[2], class: "bar" }, svg);
+    const v = txt(svg, cx, YB - 4, String(c[1]), "val");
+    txt(svg, cx, YB + 13, c[0], "tk", { "text-anchor": "middle" });
+    els.push({ r: r, v: v, cx: cx, val: c[1], lo: cx - slot / 2, hi: cx + slot / 2 });
+  });
+  return { els: els, max: max, scan: mkScan(svg, "#7FE9F7", Y0, YB) };
+})();
+
+/* ---- 2 圓餅圖 ---- */
+const PIE = (function () {
+  const svg = SV.pie, cx = 92, cy = 98, R = 64, els = [];
+  let a0 = -Math.PI / 2;
+  CATS.forEach(function (c, i) {
+    const a1 = a0 + (c[1] / CAT_TOTAL) * Math.PI * 2;
+    const p = sv("path", { fill: c[2], stroke: "#0B1230", "stroke-width": 1.5, class: "bar" }, svg);
+    els.push({ p: p, a0: a0, a1: a1, c: c });
+    a0 = a1;
+  });
+  const hand = sv("g", {}, svg);
+  sv("line", { x1: 0, y1: 0, x2: 0, y2: -R - 8, stroke: "#FFD1E6", "stroke-width": 1.6 }, hand);
+  sv("circle", { r: 3.2, fill: "#fff" }, hand);
+  const leg = sv("g", { class: "leg" }, svg), rows = [];
+  CATS.forEach(function (c, i) {
+    const y = 48 + i * 28, g = sv("g", {}, leg);
+    sv("rect", { x: 186, y: y - 11, width: 118, height: 22, rx: 5, class: "bgrow" }, g);
+    sv("rect", { x: 194, y: y - 5, width: 10, height: 10, rx: 2, fill: c[2] }, g);
+    txt(g, 212, y + 4, c[0], "", {});
+    txt(g, 296, y + 4, Math.round(c[1] / CAT_TOTAL * 100) + "%", "", { "text-anchor": "end", style: "font-weight:800" });
+    rows.push(g);
+  });
+  return { els: els, rows: rows, cx: cx, cy: cy, R: R, hand: hand };
+})();
+function arcPath(cx, cy, R, a0, a1) {
+  if (a1 - a0 < 1e-4) return "";
+  const large = a1 - a0 > Math.PI ? 1 : 0;
+  return "M" + cx + "," + cy + "L" + (cx + R * Math.cos(a0)).toFixed(2) + "," + (cy + R * Math.sin(a0)).toFixed(2) +
+    "A" + R + "," + R + " 0 " + large + " 1 " + (cx + R * Math.cos(a1)).toFixed(2) + "," + (cy + R * Math.sin(a1)).toFixed(2) + "Z";
+}
+
+/* ---- 3 折線圖 ---- */
+const LN = (function () {
+  const svg = SV.line, max = 50; yAxis(svg, max);
+  const pts = LINE.map(function (v, i) { return [X0 + 8 + i * (X1 - X0 - 16) / 11, sy(v, max)]; });
+  const d = pts.map(function (p, i) { return (i ? "L" : "M") + p[0].toFixed(1) + "," + p[1].toFixed(1); }).join("");
+  const area = sv("path", { d: d + "L" + pts[11][0] + "," + YB + "L" + pts[0][0] + "," + YB + "Z", fill: "url(#areaG)", opacity: 0 }, svg);
+  const path = sv("path", { d: d, fill: "none", stroke: C.gold, "stroke-width": 2.2, "stroke-linejoin": "round" }, svg);
+  const dots = pts.map(function (p) { return sv("circle", { cx: p[0], cy: p[1], r: 2.4, fill: C.gold }, svg); });
+  txt(svg, pts[0][0], YB + 13, "Jan", "tk", { "text-anchor": "middle" });
+  txt(svg, pts[11][0], YB + 13, "Dec", "tk", { "text-anchor": "middle" });
+  const halo = sv("circle", { r: 7, fill: "none", stroke: "#FFE29A", "stroke-width": 1.5, filter: "url(#glow)", opacity: 0 }, svg);
+  return { pts: pts, path: path, area: area, dots: dots, halo: halo, len: path.getTotalLength ? 0 : 0, max: max, scan: mkScan(svg, "#FFD36B", Y0, YB) };
+})();
+
+/* ---- 4 散佈圖 ---- */
+const SC = (function () {
+  const svg = SV.scatter, max = 45; yAxis(svg, max);
+  txt(svg, X1, YB + 13, "X", "tk", { "text-anchor": "end" });
+  const sx = function (x) { return X0 + (x / max) * (X1 - X0); };
+  const dots = SCATTER.map(function (p) { return { x: p[0], c: sv("circle", { cx: sx(p[0]), cy: sy(p[1], max), r: 2.8, fill: C.green, opacity: 0 }, svg) }; });
+  txt(svg, X0 + 6, Y0 + 10, "r = " + pearson(SCATTER).toFixed(2), "tk", { fill: "#8FE9C2" });
+  return { dots: dots, sx: sx, max: max, scan: mkScan(svg, "#8FF5C9", Y0, YB) };
+})();
+
+/* ---- 5 直方圖 ---- */
+const HI = (function () {
+  const svg = SV.hist, max = Math.ceil(Math.max.apply(null, BINS) / 10) * 10; yAxis(svg, max);
+  const sx = function (v) { return X0 + 6 + (v - BIN_LO) / (BIN_HI - BIN_LO) * (X1 - X0 - 12); };
+  const els = BINS.map(function (n, i) {
+    const x = sx(BIN_LO + i * BW), w = sx(BIN_LO + (i + 1) * BW) - x;
+    const r = sv("rect", { x: x + 0.5, y: YB, width: w - 1, height: 0, fill: "url(#histG)", stroke: "#C9BDFF", "stroke-opacity": .5, class: "hb" }, svg);
+    const v = txt(svg, x + w / 2, YB - 4, String(n), "val", { opacity: 0 });
+    return { r: r, v: v, n: n, lo: BIN_LO + i * BW, hi: BIN_LO + (i + 1) * BW };
+  });
+  [10, 40, 70].forEach(function (t) { txt(svg, sx(t), YB + 13, String(t), "tk", { "text-anchor": "middle" }); });
+  return { els: els, max: max, sx: sx, scan: mkScan(svg, "#CDBFFF", Y0, YB) };
+})();
+
+/* ---- 6 盒鬚圖 ---- */
+const BX = (function () {
+  const svg = SV.box, sx = function (v) { return X0 + 6 + (v - BIN_LO) / (BIN_HI - BIN_LO) * (X1 - X0 - 12); };
+  const g = sv("g", { opacity: 0 }, svg);
+  sv("line", { x1: X0, y1: YB, x2: X1, y2: YB, class: "ax" }, svg);
+  [10, 40, 70].forEach(function (t) { txt(svg, sx(t), YB + 13, String(t), "tk", { "text-anchor": "middle" }); });
+  const rug = DELIVERY.map(function (v) { return { v: v, l: sv("line", { x1: sx(v), x2: sx(v), y1: 30, y2: 42, stroke: C.orange, class: "rug" }, g) }; });
+  const by = 88, bh = 30, O = C.orange;
+  sv("line", { x1: sx(BOX.wlo), x2: sx(BOX.q1), y1: by, y2: by, stroke: O, "stroke-width": 1.6 }, g);
+  sv("line", { x1: sx(BOX.q3), x2: sx(BOX.whi), y1: by, y2: by, stroke: O, "stroke-width": 1.6 }, g);
+  sv("line", { x1: sx(BOX.wlo), x2: sx(BOX.wlo), y1: by - 9, y2: by + 9, stroke: O, "stroke-width": 1.6 }, g);
+  sv("line", { x1: sx(BOX.whi), x2: sx(BOX.whi), y1: by - 9, y2: by + 9, stroke: O, "stroke-width": 1.6 }, g);
+  sv("rect", { x: sx(BOX.q1), y: by - bh / 2, width: sx(BOX.q3) - sx(BOX.q1), height: bh, fill: "rgba(255,152,69,.22)", stroke: O, "stroke-width": 1.6, rx: 2 }, g);
+  sv("line", { x1: sx(BOX.med), x2: sx(BOX.med), y1: by - bh / 2, y2: by + bh / 2, stroke: "#FFE0C4", "stroke-width": 2.4 }, g);
+  const outs = BOX.out.map(function (v) {
+    const c = sv("g", {}, g);
+    sv("circle", { cx: sx(v), cy: by, r: 4.2, fill: "none", stroke: O, "stroke-width": 1.4 }, c);
+    sv("circle", { cx: sx(v), cy: by, r: 1.4, fill: O }, c);
+    return { v: v, c: c };
+  });
+  const lbls = [["Q₁ " + BOX.q1.toFixed(1), BOX.q1, "end", 2], ["中位數 " + BOX.med.toFixed(1), BOX.med, "middle", 24], ["Q₃ " + BOX.q3.toFixed(1), BOX.q3, "start", 2]].map(function (L) {
+    return { v: L[1], t: txt(g, sx(L[1]), L[3] === 24 ? by + bh / 2 + 12 : by - bh / 2 - 4, L[0], "qlbl", { "text-anchor": L[2] }) };
+  });
+  txt(g, X1 - 2, 122, "離群值 " + BOX.out.length + " 個", "tk", { "text-anchor": "end", fill: "#FFC08E" });
+  return { g: g, rug: rug, outs: outs, lbls: lbls, sx: sx, scan: mkScan(svg, "#FFC08E", 26, YB) };
+})();
+document.getElementById("foot").textContent = "合成資料（固定種子）· 直方圖：10–70 分鐘 6 個等寬區間 · 盒鬚圖：Q₁ " + BOX.q1.toFixed(1) +
+  "、中位數 " + BOX.med.toFixed(1) + "、Q₃ " + BOX.q3.toFixed(1) + "，1.5×IQR 外的離群值 " + BOX.out.length + " 個";
+LN.len = LN.path.getTotalLength();
+LN.path.style.strokeDasharray = LN.len;
+
+/* ======================= 動畫 ======================= */
+const LOOP = 10000, INTRO = 1400;
+const ease = function (t) { t = Math.max(0, Math.min(1, t)); return 1 - Math.pow(1 - t, 3); };
+const freezeT = params.get("t") !== null ? parseFloat(params.get("t")) * 1000 : null;
+let t0 = null;
+function setScan(s, x) { s.g.setAttribute("transform", "translate(" + x.toFixed(2) + ",0)"); }
+function frame(now) {
+  if (t0 === null) t0 = now;
+  const el = freezeT !== null ? Math.max(freezeT, INTRO) : now - t0;
+  const k = ease(el / INTRO);
+  const p = ((el % LOOP) + LOOP) % LOOP / LOOP;
+
+  // 長條圖
+  const bx = X0 + p * (X1 - X0);
+  setScan(BAR.scan, bx);
+  BAR.els.forEach(function (b, i) {
+    const kk = ease((el - i * 120) / INTRO), h = (b.val / BAR.max) * (YB - Y0) * kk;
+    b.r.setAttribute("y", YB - h); b.r.setAttribute("height", h);
+    b.v.setAttribute("y", YB - h - 4); b.v.textContent = Math.round(b.val * kk);
+    const on = bx >= b.lo && bx < b.hi; b.r.classList.toggle("hot", on); b.r.classList.toggle("dim", !on);
+  });
+  BAR.scan.ro.textContent = "";
+
+  // 圓餅圖（旋轉指針）
+  const ang = -Math.PI / 2 + p * Math.PI * 2;
+  PIE.hand.setAttribute("transform", "translate(" + PIE.cx + "," + PIE.cy + ") rotate(" + (p * 360).toFixed(2) + ")");
+  PIE.els.forEach(function (s, i) {
+    const a1 = -Math.PI / 2 + (s.a1 + Math.PI / 2) * k, a0 = -Math.PI / 2 + (s.a0 + Math.PI / 2) * k;
+    const on = ang >= s.a0 && ang < s.a1, mid = (s.a0 + s.a1) / 2, off = on ? 6 : 0;
+    s.p.setAttribute("d", arcPath(PIE.cx + Math.cos(mid) * off, PIE.cy + Math.sin(mid) * off, PIE.R, a0, a1));
+    s.p.classList.toggle("hot", on); s.p.classList.toggle("dim", !on);
+    PIE.rows[i].classList.toggle("on", on);
+  });
+
+  // 折線圖
+  const lx = X0 + p * (X1 - X0);
+  setScan(LN.scan, lx);
+  LN.path.style.strokeDashoffset = (LN.len * (1 - k)).toFixed(1);
+  LN.area.setAttribute("opacity", k);
+  let near = 0, best = 1e9;
+  LN.pts.forEach(function (q, i) { const d = Math.abs(q[0] - lx); if (d < best) { best = d; near = i; } LN.dots[i].setAttribute("opacity", k); });
+  const showL = best < 10 && k > 0.99;
+  LN.halo.setAttribute("opacity", showL ? 1 : 0);
+  LN.halo.setAttribute("cx", LN.pts[near][0]); LN.halo.setAttribute("cy", LN.pts[near][1]);
+  LN.dots.forEach(function (d, i) { d.setAttribute("r", showL && i === near ? 4 : 2.4); });
+  LN.scan.ro.textContent = showL ? MONTHS_ZH[near] + " · " + LINE[near] : "";
+
+  // 散佈圖
+  const scx = X0 + p * (X1 - X0), xv = (scx - X0) / (X1 - X0) * SC.max;
+  setScan(SC.scan, scx);
+  let cnt = 0;
+  SC.dots.forEach(function (d, i) {
+    const on = Math.abs(d.x - xv) < 1.6; if (on) cnt++;
+    d.c.setAttribute("opacity", Math.min(1, ease((el - i * 18) / 600)) * (on ? 1 : 0.7));
+    d.c.setAttribute("r", on ? 4.4 : 2.8);
+    d.c.classList.toggle("hot", on);
+  });
+  SC.scan.ro.textContent = "x ≈ " + xv.toFixed(0);
+
+  // 直方圖
+  const hx = HI.sx(BIN_LO) + p * (HI.sx(BIN_HI) - HI.sx(BIN_LO)), hv = BIN_LO + p * (BIN_HI - BIN_LO);
+  setScan(HI.scan, hx);
+  HI.els.forEach(function (b, i) {
+    const kk = ease((el - i * 90) / INTRO), h = (b.n / HI.max) * (YB - Y0) * kk;
+    b.r.setAttribute("y", YB - h); b.r.setAttribute("height", h);
+    b.v.setAttribute("y", YB - h - 4);
+    const on = hv >= b.lo && (hv < b.hi || (i === NBINS - 1 && hv <= b.hi));
+    b.r.classList.toggle("hot", on); b.r.classList.toggle("dim", !on);
+    b.v.setAttribute("opacity", on ? 1 : 0.35);
+  });
+  HI.scan.ro.textContent = hv.toFixed(0) + " 分";
+
+  // 盒鬚圖
+  const vx = BX.sx(BIN_LO) + p * (BX.sx(BIN_HI) - BX.sx(BIN_LO)), vv = BIN_LO + p * (BIN_HI - BIN_LO);
+  setScan(BX.scan, vx);
+  BX.g.setAttribute("opacity", k);
+  BX.rug.forEach(function (r) { r.l.classList.toggle("on", Math.abs(r.v - vv) < 1.2); });
+  BX.lbls.forEach(function (L) { L.t.classList.toggle("on", Math.abs(L.v - vv) < 2.5); });
+  BX.outs.forEach(function (o) { o.c.setAttribute("filter", Math.abs(o.v - vv) < 1.5 ? "url(#glow)" : ""); });
+  BX.scan.ro.textContent = vv.toFixed(1) + " 分";
+
+  if (freezeT === null) requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+window.__chartData = { DELIVERY: DELIVERY, BINS: BINS, BOX: BOX, LINE: LINE };
+</script>
+</body>
+</html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BFS 一圈一圈往外找 — 示範</title>
+<!--
+  BFS 廣度優先搜尋示範 — 單一檔案、無外部相依
+  重現 AI WIKI 影片 30：從「你」出發，一圈一圈往外檢查朋友，直到找到「暗戀對象」。
+  網址參數：?seed=123 固定隨機圖、?speed=2 起始速度、?clean=1 隱藏返回連結與出處（錄影用）
+  鍵盤：空白鍵 播放/暫停、→ 單步、R 重設、N 隨機新圖
+-->
+<style>
+  :root{--bg:#0B0E14;--card:#131722;--line:#2A2E39;--line2:#363A45;--text:#D1D4DC;--muted:#8E93A0;
+    --accent:#00BCD4;--gold:#FFC83D;--pink:#FF5C9A;}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Trebuchet MS",Roboto,"Segoe UI","PingFang TC","Noto Sans TC",Ubuntu,sans-serif;}
+  a{color:var(--accent)} a:hover{color:#fff}
+  .wrap{max-width:1180px;margin:0 auto;padding:14px 14px 28px}
+  header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 16px;margin-bottom:10px}
+  .back{color:var(--muted);text-decoration:none;font-size:14px}
+  .back:hover{color:var(--accent)}
+  h1{margin:4px 0 0;font-size:22px;color:#fff;letter-spacing:.02em}
+  h1 small{color:var(--accent);font-weight:500;font-size:14px;margin-left:8px}
+  .credit{font-size:12px;color:var(--muted)}
+  .main{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:12px}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:10px;position:relative}
+  #graphPanel{padding:6px;display:flex;flex-direction:column}
+  svg#g{width:100%;height:auto;display:block;max-height:72vh}
+  .stats{position:absolute;left:12px;top:10px;display:flex;gap:8px;z-index:2}
+  .stat{background:rgba(11,14,20,.8);border:1px solid var(--line2);border-radius:6px;padding:4px 9px;min-width:76px}
+  .stat b{display:block;font-size:10px;letter-spacing:.12em;color:var(--muted);font-weight:600}
+  .stat span{font-size:20px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
+  .stat.ring span{color:var(--accent)}
+  .legend{position:absolute;right:12px;top:10px;font-size:11px;color:var(--muted);line-height:1.7;text-align:right;
+    background:rgba(11,14,20,.75);padding:4px 8px;border-radius:6px}
+  .legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-left:6px;vertical-align:-1px}
+  #codePanel{padding:10px 0 10px;overflow:auto;display:flex;flex-direction:column}
+  #codePanel h2,.qhead h2{font-size:12px;letter-spacing:.12em;color:var(--muted);margin:0 14px 8px;font-weight:600}
+  pre{margin:0;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#C9D1D9}
+  pre .ln{display:block;padding:0 14px 0 0;white-space:pre;border-left:3px solid transparent;transition:background .15s}
+  pre .ln .no{display:inline-block;width:34px;text-align:right;color:#4B5263;margin-right:12px;user-select:none}
+  pre .ln.hl{background:rgba(0,188,212,.16);border-left-color:var(--accent)}
+  pre .ln.hl .no{color:var(--accent)}
+  pre .ln.fix{background:rgba(255,200,61,.07)}
+  pre .ln.fix.hl{background:rgba(255,200,61,.22);border-left-color:var(--gold)}
+  .kw{color:#FF7B72}.fn{color:#D2A8FF}.st{color:#A5D6FF}.cm{color:#8B949E;font-style:italic}.ok{color:var(--gold);font-style:normal}
+  #msg{margin:10px 14px 0;font-size:14px;min-height:42px;color:var(--text);border-top:1px solid var(--line);padding-top:10px}
+  #msg b{color:#fff}
+  .queue{margin-top:12px;padding:10px 12px 12px}
+  .qhead{display:flex;justify-content:space-between;align-items:center}
+  .qhead h2{margin:0 0 8px}
+  .qhint{font-size:11px;color:var(--muted)}
+  #q{display:flex;gap:6px;overflow-x:auto;min-height:44px;align-items:center;padding:4px 2px;scrollbar-width:thin}
+  .chip{flex:0 0 auto;min-width:40px;height:34px;padding:0 9px;border-radius:7px;border:1px solid;display:flex;
+    align-items:center;justify-content:center;font-size:13px;font-weight:600;animation:pop .35s ease}
+  .chip:first-child{box-shadow:0 0 0 2px rgba(255,255,255,.55)}
+  .qempty{color:var(--muted);font-size:13px}
+  @keyframes pop{from{transform:translateY(10px) scale(.6);opacity:0}to{transform:none;opacity:1}}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
+  .controls button,.controls select{background:#1E222D;color:var(--text);border:1px solid var(--line2);border-radius:6px;
+    font:inherit;font-size:14px;padding:7px 12px;cursor:pointer;min-height:36px}
+  .controls button:hover,.controls select:hover{border-color:var(--accent);color:#fff}
+  .controls button.primary{border-color:var(--accent);color:#fff;background:#17343a}
+  .controls .spacer{flex:1}
+  .controls label{font-size:13px;color:var(--muted);display:flex;gap:6px;align-items:center}
+  /* graph styles */
+  .ringc{fill:none;stroke:#1F2633;stroke-dasharray:3 6}
+  .ringlbl{fill:#3A4256;font-size:10px;letter-spacing:.1em}
+  .edge{stroke:#283042;stroke-width:1.2;transition:stroke .3s,stroke-width .3s,opacity .3s}
+  .edge.tree{stroke:rgba(0,188,212,.55);stroke-width:1.8}
+  .edge.scan{stroke:#fff;stroke-width:2.4}
+  .edge.path{stroke:var(--gold);stroke-width:4.5;filter:url(#glowGold)}
+  .node circle{fill:#1A2030;stroke:#3A4358;stroke-width:1.5;transition:fill .3s,stroke .3s}
+  .node text{fill:#7E869A;font-size:10px;text-anchor:middle;dominant-baseline:central;pointer-events:none;font-weight:600}
+  .node.queued circle{stroke:var(--accent);stroke-width:2;fill:#14303A}
+  .node.queued text{fill:#CFF7FC}
+  .node.checked circle{fill:#0A6F7E;stroke:#29D3EA}
+  .node.checked text{fill:#fff}
+  .node.current circle{fill:var(--accent);stroke:#fff;stroke-width:2.5;filter:url(#glow)}
+  .node.current text{fill:#002A30}
+  .node.path circle{fill:var(--gold);stroke:#fff;filter:url(#glowGold)}
+  .node.path text{fill:#2A1C00}
+  .node.me circle{fill:#263046;stroke:#fff;stroke-width:2}
+  .node.me text{fill:#fff;font-size:14px}
+  .node.target circle{stroke:var(--pink);stroke-width:2.5}
+  .node.target text{fill:#FFD0E2;font-size:11px}
+  .node.target.found circle{fill:var(--pink);filter:url(#glowPink)}
+  .node.target.found text{fill:#fff}
+  .tlabel{fill:var(--pink);font-size:12px;font-weight:700;text-anchor:middle}
+  .pulse{fill:none;stroke:var(--accent);stroke-width:2;opacity:0}
+  .pulse.on{animation:pulse .9s ease-out}
+  @keyframes pulse{from{r:14;opacity:.9}to{r:34;opacity:0}}
+  #banner{position:absolute;left:50%;bottom:16px;transform:translateX(-50%) scale(.9);opacity:0;pointer-events:none;
+    background:rgba(20,16,4,.92);border:1px solid var(--gold);color:var(--gold);border-radius:10px;padding:8px 16px;
+    text-align:center;transition:.4s;box-shadow:0 0 24px rgba(255,200,61,.35);max-width:92%}
+  #banner.on{opacity:1;transform:translateX(-50%) scale(1)}
+  #banner .big{font-size:22px;font-weight:800;letter-spacing:.04em}
+  #banner .route{font-size:13px;color:#FFE7A8;margin-top:2px}
+  @media (max-width:820px){
+    .wrap{display:flex;flex-direction:column}
+    .main{display:contents}
+    header{order:0}#graphPanel{order:1}.queue{order:2}.controls{order:3}
+    #codePanel{order:4;margin-top:12px}
+    pre{font-size:11px;overflow-x:auto}
+    .controls button,.controls select{padding:7px 10px}
+    .stat span{font-size:16px}.stat{min-width:62px}
+    .legend{display:none}
+    .qhint{display:none}
+  }
+  .clean .back,.clean .credit{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <a class="back" href="../index.html">← Demos 索引</a>
+      <h1>BFS：一圈一圈往外找<small>廣度優先搜尋</small></h1>
+    </div>
+    <div class="credit">出處：<a href="https://www.facebook.com/reel/1108544155324652" target="_blank" rel="noopener noreferrer">AI WIKI 影片 30</a>（重製示範）</div>
+  </header>
+
+  <div class="main">
+    <div class="panel" id="graphPanel">
+      <div class="stats">
+        <div class="stat"><b>CHECKED</b><span id="sChecked">0</span></div>
+        <div class="stat ring"><b>RING</b><span id="sRing">0</span></div>
+        <div class="stat"><b>QUEUE</b><span id="sQueue">0</span></div>
+      </div>
+      <div class="legend">待處理<i style="background:#14303A;border:2px solid #00BCD4"></i><br>已檢查<i style="background:#0A6F7E"></i><br>正在檢查<i style="background:#00BCD4"></i><br>最短路徑<i style="background:#FFC83D"></i></div>
+      <svg id="g" viewBox="0 0 640 640" role="img" aria-label="社交關係圖，以你為中心分成四圈">
+        <defs>
+          <filter id="glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="glowGold" filterUnits="userSpaceOnUse" x="0" y="0" width="640" height="640"><feGaussianBlur stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="glowPink" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <radialGradient id="bgGrad"><stop offset="0" stop-color="#14202B"/><stop offset="1" stop-color="#131722" stop-opacity="0"/></radialGradient>
+        </defs>
+        <circle cx="320" cy="320" r="310" fill="url(#bgGrad)"/>
+        <g id="rings"></g><g id="edges"></g><g id="nodes"></g>
+      </svg>
+      <div id="banner"><div class="big">找到了！4 次握手</div><div class="route" id="route"></div></div>
+    </div>
+
+    <div class="panel" id="codePanel">
+      <h2>PYTHON · 程式碼同步</h2>
+      <pre id="code"></pre>
+      <div id="msg">按「播放」開始：從「你」出發，用佇列（FIFO）一圈一圈往外檢查。</div>
+    </div>
+  </div>
+
+  <div class="panel queue">
+    <div class="qhead"><h2>佇列 QUEUE（先進先出 FIFO）</h2><span class="qhint">← 前端：下一個出隊 ｜ 後端：新朋友入隊 →</span></div>
+    <div id="q"></div>
+  </div>
+
+  <div class="controls">
+    <button id="bPlay" class="primary">▶ 播放</button>
+    <button id="bStep">⏭ 單步</button>
+    <button id="bReset">⟲ 重設</button>
+    <label>速度
+      <select id="sSpeed"><option value="0.5">0.5×</option><option value="1">1×</option><option value="2" selected>2×</option><option value="4">4×</option><option value="8">8×</option></select>
+    </label>
+    <span class="spacer"></span>
+    <button id="bRandom">🎲 隨機新圖</button>
+  </div>
+</div>
+
+<script>
+"use strict";
+/* ---------- 程式碼（已修正：加上 came = {}） ---------- */
+const CODE = [
+  ['<span class="kw">from</span> collections <span class="kw">import</span> deque'],
+  [''],
+  ['<span class="kw">def</span> <span class="fn">bfs</span>(graph, start, target):'],
+  ['    queue = deque([start])'],
+  ['    seen = {start}'],
+  ['    came = {}            <span class="cm"><span class="ok">✔ 修正：</span>原片漏了這行</span>', 'fix'],
+  ['    <span class="kw">while</span> queue:'],
+  ['        node = queue.popleft()      <span class="cm"># 最早入隊的先出來</span>'],
+  ['        <span class="kw">if</span> node == target:'],
+  ['            <span class="kw">return</span> build_path(came, start, target)'],
+  ['        <span class="kw">for</span> nb <span class="kw">in</span> graph[node]:'],
+  ['            <span class="kw">if</span> nb <span class="kw">not in</span> seen:'],
+  ['                seen.add(nb)'],
+  ['                came[nb] = node     <span class="cm"># 記住是誰介紹的</span>'],
+  ['                queue.append(nb)'],
+  ['    <span class="kw">return</span> <span class="kw">None</span>'],
+  [''],
+  ['<span class="kw">def</span> <span class="fn">build_path</span>(came, start, target):'],
+  ['    path = [target]'],
+  ['    <span class="kw">while</span> path[-1] != start:'],
+  ['        path.append(came[path[-1]])'],
+  ['    <span class="kw">return</span> path[::-1]'],
+];
+const codeEl = document.getElementById("code");
+const lineEls = CODE.map(function (c, i) {
+  const d = document.createElement("span");
+  d.className = "ln" + (c[1] ? " " + c[1] : "");
+  d.innerHTML = '<span class="no">' + (i + 1) + '</span>' + (c[0] || " ");
+  codeEl.appendChild(d);
+  return d;
+});
+function hl(lines) {
+  lineEls.forEach(function (el, i) { el.classList.toggle("hl", lines.indexOf(i + 1) >= 0); });
+  const first = lineEls[(lines[0] || 1) - 1];
+  if (first && codeEl.parentElement.scrollHeight > codeEl.parentElement.clientHeight) {
+    const p = codeEl.parentElement, top = first.offsetTop - p.offsetTop;
+    if (top < p.scrollTop || top > p.scrollTop + p.clientHeight - 40) p.scrollTop = top - 60;
+  }
+}
+
+/* ---------- 亂數與圖 ---------- */
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const CX = 320, CY = 320, RADII = [0, 78, 148, 218, 288], COUNTS = [1, 6, 9, 12, 15], PREFIX = ["", "A", "B", "C", "D"];
+const ME = "你", TARGET = "暗戀對象";
+
+function buildGraph(seed) {
+  const rnd = mulberry32(seed);
+  const nodes = [];
+  for (let r = 0; r <= 4; r++) {
+    const off = rnd() * Math.PI * 2;
+    for (let i = 0; i < COUNTS[r]; i++) {
+      const ang = r === 0 ? 0 : off + (i / COUNTS[r]) * Math.PI * 2 + (rnd() - 0.5) * 0.25;
+      const rad = RADII[r] + (r ? (rnd() - 0.5) * 16 : 0);
+      nodes.push({ id: r === 0 ? ME : PREFIX[r] + (i + 1), ring: r, idx: i, ang: ang,
+        x: CX + Math.cos(ang) * rad, y: CY + Math.sin(ang) * rad });
+    }
+  }
+  // 目標放在第 4 圈（右上方附近，隨機挑一個）
+  const ring4 = nodes.filter(function (n) { return n.ring === 4; });
+  const t = ring4[Math.floor(rnd() * ring4.length)];
+  t.id = TARGET; t.target = true;
+  const byRing = [0, 1, 2, 3, 4].map(function (r) { return nodes.filter(function (n) { return n.ring === r; }); });
+  const edges = [], key = {};
+  function addEdge(a, b) { const k = [a.id, b.id].sort().join("|"); if (key[k] || a === b) return; key[k] = 1; edges.push([a, b]); }
+  function angDist(a, b) { let d = Math.abs(a - b) % (Math.PI * 2); return d > Math.PI ? Math.PI * 2 - d : d; }
+  for (let r = 1; r <= 4; r++) {
+    byRing[r].forEach(function (n) {
+      const inner = byRing[r - 1].slice().sort(function (a, b) { return angDist(a.ang, n.ang) - angDist(b.ang, n.ang); });
+      addEdge(inner[0], n);
+      if (r > 1 && rnd() < 0.35) addEdge(inner[1], n);
+    });
+    // 同一圈的朋友互相認識
+    const ring = byRing[r];
+    for (let i = 0; i < ring.length; i++) if (rnd() < 0.3) addEdge(ring[i], ring[(i + 1) % ring.length]);
+  }
+  const adj = {};
+  nodes.forEach(function (n) { adj[n.id] = []; });
+  edges.forEach(function (e) { adj[e[0].id].push(e[1]); adj[e[1].id].push(e[0]); });
+  Object.keys(adj).forEach(function (k) {
+    adj[k].sort(function (a, b) { return a.ring - b.ring || a.ang - b.ang; });
+    adj[k] = adj[k].map(function (n) { return n.id; });
+  });
+  const map = {}; nodes.forEach(function (n) { map[n.id] = n; });
+  return { nodes: nodes, edges: edges, adj: adj, map: map };
+}
+
+/* ---------- 事件序列（照 Python 程式跑一次 BFS） ---------- */
+function buildEvents(G) {
+  const ev = [];
+  const queue = [ME], seen = new Set([ME]), came = {};
+  ev.push({ t: "init", lines: [4, 5, 6] });
+  while (queue.length) {
+    const node = queue.shift();
+    ev.push({ t: "pop", node: node, lines: [7, 8, 9] });
+    if (node === TARGET) {
+      ev.push({ t: "found", lines: [9, 10] });
+      const path = [TARGET];
+      ev.push({ t: "path", node: TARGET, lines: [18, 19] });
+      while (path[path.length - 1] !== ME) {
+        const prev = came[path[path.length - 1]];
+        ev.push({ t: "path", node: prev, from: path[path.length - 1], lines: [20, 21] });
+        path.push(prev);
+      }
+      ev.push({ t: "done", path: path.slice().reverse(), lines: [22] });
+      return ev;
+    }
+    G.adj[node].forEach(function (nb) {
+      if (!seen.has(nb)) {
+        seen.add(nb); came[nb] = node; queue.push(nb);
+        ev.push({ t: "enq", node: node, nb: nb, lines: [11, 12, 13, 14, 15] });
+      } else {
+        ev.push({ t: "skip", node: node, nb: nb, lines: [11, 12] });
+      }
+    });
+  }
+  ev.push({ t: "none", lines: [16] });
+  return ev;
+}
+
+/* ---------- 畫面 ---------- */
+const svgNS = "http://www.w3.org/2000/svg";
+const gRings = document.getElementById("rings"), gEdges = document.getElementById("edges"), gNodes = document.getElementById("nodes");
+function sv(tag, attrs, parent) { const e = document.createElementNS(svgNS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+let G, EV, S, nodeEls = {}, edgeEls = {};
+
+function drawGraph() {
+  gRings.replaceChildren(); gEdges.replaceChildren(); gNodes.replaceChildren(); nodeEls = {}; edgeEls = {};
+  for (let r = 1; r <= 4; r++) {
+    sv("circle", { cx: CX, cy: CY, r: RADII[r], class: "ringc" }, gRings);
+    const t = sv("text", { x: CX + 4, y: CY - RADII[r] - 4, class: "ringlbl" }, gRings); t.textContent = "第 " + r + " 圈";
+  }
+  G.edges.forEach(function (e) {
+    const el = sv("line", { x1: e[0].x, y1: e[0].y, x2: e[1].x, y2: e[1].y, class: "edge" }, gEdges);
+    edgeEls[[e[0].id, e[1].id].sort().join("|")] = el;
+  });
+  G.nodes.forEach(function (n) {
+    const g = sv("g", { class: "node" + (n.id === ME ? " me" : "") + (n.target ? " target" : ""), transform: "translate(" + n.x.toFixed(1) + "," + n.y.toFixed(1) + ")" }, gNodes);
+    const pulse = sv("circle", { r: 14, class: "pulse" }, g);
+    sv("circle", { r: n.id === ME ? 24 : n.target ? 20 : 14 }, g);
+    const t = sv("text", {}, g); t.textContent = n.target ? "♥" : n.id;
+    if (n.target) {
+      t.setAttribute("style", "font-size:16px");
+      const lbl = sv("text", { y: n.y > CY ? 34 : -28, class: "tlabel" }, g); lbl.textContent = TARGET;
+    }
+    nodeEls[n.id] = { g: g, pulse: pulse };
+  });
+}
+function edgeEl(a, b) { return edgeEls[[a, b].sort().join("|")]; }
+
+function freshState() { return { i: 0, queue: [], seen: new Set(), checked: new Set(), came: {}, cur: null, ring: 0, path: [], done: false, scan: null }; }
+
+function apply(e) {
+  S.scan = null;
+  if (e.t === "init") { S.queue = [ME]; S.seen = new Set([ME]); say("初始化：佇列放入「你」，<b>came = {}</b> 用來記錄「誰介紹誰」——原片漏了這行，回溯路徑時會出錯。"); }
+  else if (e.t === "pop") {
+    S.queue.shift(); S.cur = e.node; S.checked.add(e.node); S.ring = G.map[e.node].ring;
+    flash(e.node);
+    say(e.node === TARGET ? "從佇列前端取出 <b>" + TARGET + "</b>……" : "取出 <b>" + e.node + "</b>（第 " + S.ring + " 圈）——不是目標，把他的朋友加進佇列。");
+  }
+  else if (e.t === "enq") { S.seen.add(e.nb); S.came[e.nb] = e.node; S.queue.push(e.nb); S.scan = [e.node, e.nb]; say("<b>" + e.nb + "</b> 還沒見過 → 記下 came[" + e.nb + "] = " + e.node + "，排到佇列尾端。"); }
+  else if (e.t === "skip") { S.scan = [e.node, e.nb]; say("<b>" + e.nb + "</b> 已經在 seen 裡，跳過。"); }
+  else if (e.t === "found") { say("就是他！<b>" + TARGET + "</b> 在第 4 圈。用 came 往回追路徑。"); }
+  else if (e.t === "path") { S.path.push(e.node); say(e.from ? "came[" + e.from + "] = <b>" + e.node + "</b>" : "從目標開始回溯……"); }
+  else if (e.t === "done") { S.done = true; S.cur = null; say("最短路徑：" + e.path.join(" → ") + "。BFS 一圈一圈找，第一次碰到目標就保證是最短的。"); document.getElementById("route").textContent = e.path.join(" → "); }
+  else if (e.t === "none") { say("找不到目標。"); }
+  hl(e.lines);
+}
+
+const msgEl = document.getElementById("msg");
+function say(h) { msgEl.innerHTML = h; }
+function flash(id) { const p = nodeEls[id].pulse; p.classList.remove("on"); void p.getBBox(); p.classList.add("on"); }
+
+function render() {
+  G.nodes.forEach(function (n) {
+    const g = nodeEls[n.id].g, id = n.id;
+    g.classList.toggle("queued", S.seen.has(id) && !S.checked.has(id));
+    g.classList.toggle("checked", S.checked.has(id));
+    g.classList.toggle("current", S.cur === id && !S.done);
+    g.classList.toggle("path", S.path.indexOf(id) >= 0 && id !== TARGET);
+    if (n.target) g.classList.toggle("found", S.checked.has(id));
+  });
+  Object.keys(edgeEls).forEach(function (k) { edgeEls[k].setAttribute("class", "edge"); });
+  Object.keys(S.came).forEach(function (k) { const el = edgeEl(k, S.came[k]); if (el) el.classList.add("tree"); });
+  if (S.scan) { const el = edgeEl(S.scan[0], S.scan[1]); if (el) el.classList.add("scan"); }
+  for (let i = 1; i < S.path.length; i++) { const el = edgeEl(S.path[i - 1], S.path[i]); if (el) el.classList.add("path"); }
+  document.getElementById("sChecked").textContent = S.checked.size;
+  document.getElementById("sRing").textContent = S.ring;
+  document.getElementById("sQueue").textContent = S.queue.length;
+  document.getElementById("banner").classList.toggle("on", S.done);
+  renderQueue();
+}
+const COLORS = ["#ffffff", "#29D3EA", "#4FA3FF", "#9C7CFF", "#FF7AB6"];
+const qEl = document.getElementById("q");
+let lastQ = [];
+function renderQueue() {
+  // 增量更新：前端出隊就移除第一個，後端入隊才新增，讓入隊動畫自然
+  const empty = qEl.querySelector(".qempty"); if (empty) empty.remove();
+  let k = 0;
+  while (k <= lastQ.length && lastQ.slice(k).join() !== S.queue.slice(0, lastQ.length - k).join()) k++;
+  if (k > lastQ.length) { qEl.replaceChildren(); lastQ = []; k = 0; }
+  for (let i = 0; i < k; i++) { qEl.removeChild(qEl.firstChild); lastQ.shift(); }
+  S.queue.slice(lastQ.length).forEach(function (id) {
+    const n = G.map[id], c = document.createElement("div");
+    c.className = "chip"; c.textContent = n.target ? "♥ " + TARGET : id;
+    const col = n.target ? "#FF5C9A" : COLORS[n.ring];
+    c.style.color = col; c.style.borderColor = col; c.style.background = col + "1A";
+    qEl.appendChild(c); lastQ.push(id);
+  });
+  if (!S.queue.length) { const e = document.createElement("span"); e.className = "qempty"; e.textContent = S.done ? "（找到目標，停止）" : "（空）"; qEl.appendChild(e); }
+  if (lastQ.length) qEl.scrollLeft = 0;
+}
+
+/* ---------- 控制 ---------- */
+const params = new URLSearchParams(location.search);
+if (params.get("clean")) document.body.classList.add("clean");
+let seed = parseInt(params.get("seed") || "30", 10) || 30;
+let playing = false, timer = null;
+const speedSel = document.getElementById("sSpeed");
+if (params.get("speed")) speedSel.value = params.get("speed");
+const bPlay = document.getElementById("bPlay");
+
+function setup() {
+  G = buildGraph(seed); EV = buildEvents(G); S = freshState();
+  qEl.replaceChildren(); lastQ = [];
+  drawGraph(); hl([]); render();
+  say("按「播放」開始：從「你」出發，用佇列（FIFO）一圈一圈往外檢查。");
+}
+function step() {
+  if (S.i >= EV.length) { stop(); return false; }
+  apply(EV[S.i++]); render();
+  if (S.i >= EV.length) stop();
+  return true;
+}
+function delay() {
+  const e = EV[S.i - 1], base = !e ? 600 : e.t === "skip" ? 260 : e.t === "enq" ? 420 : e.t === "pop" ? 700 : 900;
+  return base / parseFloat(speedSel.value);
+}
+function tick() { if (!playing) return; if (step()) timer = setTimeout(tick, delay()); }
+function play() { if (S.i >= EV.length) setup(); playing = true; bPlay.textContent = "❚❚ 暫停"; tick(); }
+function stop() { playing = false; clearTimeout(timer); bPlay.textContent = S.i >= EV.length ? "⟲ 再播一次" : "▶ 播放"; }
+bPlay.onclick = function () { playing ? stop() : play(); };
+document.getElementById("bStep").onclick = function () { stop(); step(); };
+document.getElementById("bReset").onclick = function () { stop(); setup(); };
+document.getElementById("bRandom").onclick = function () { stop(); seed = Math.floor(Math.random() * 1e6); setup(); };
+document.addEventListener("keydown", function (e) {
+  if (e.target.tagName === "SELECT") return;
+  if (e.code === "Space") { e.preventDefault(); bPlay.click(); }
+  else if (e.key === "ArrowRight") { stop(); step(); }
+  else if (e.key === "r" || e.key === "R") { stop(); setup(); }
+  else if (e.key === "n" || e.key === "N") document.getElementById("bRandom").click();
+});
+setup();
+if (params.get("autoplay") !== "0") setTimeout(play, 600);
+</script>
+</body>
+</html>

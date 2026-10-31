@@ -35,3 +35,21 @@ ruvnet（Ruflo 作者）的開源專案：用約 9 美元的 ESP32-S3 讀 WiFi C
 | — | — | [影片 16](https://www.facebook.com/reel/1863665758475395) |
 
 Hà Bình（HB QuantFlow，越南語）整理：韓國 16 家金融機構約 10 萬筆資料外洩（大信證券 10/28 外洩 38,490 名客戶，多經第三方廠商／API）；Straiker 10/21 研究拉美「CyberCartel」的 CARLIY0S 系統把攻擊任務拆給 Claude、Grok、Kimi，鎖定 400+ 金融目標；義大利 Fideuram（Intesa Sanpaolo）遭假高層 WhatsApp＋AI 仿聲電話騙走約 9,500 萬歐元（追回約 5,300 萬）；印度小型 NBFC 損失約 300 億盧比（₹300 crore）；日本 GMO Onamae.com Desktop Cloud 遭惡意程式造成未授權交易並勒索 5,000 萬美元；Bitget 因錢包核准後台被入侵損失 3.875 億美元；IMF GFSR（10/13）把資安列為金融穩定風險；G7 規劃 2027 年跨境 AI 資安演練；ECB 要求 2026-10-31 前提交 AI 資安應變計畫。核心論點：AI 降低攻擊成本，小目標也值得打；技術上通過驗證的交易不等於真實意圖（密碼、裝置、核准人都對，但決策者被騙）；共用廠商讓失敗相互關聯；注資救不了資料完整性的問題。作者明說目前還不是系統性危機。面試：有效憑證不等於正確意圖，AI agent 流程對高風險動作除了身分驗證，還要做意圖驗證與帶外（out-of-band）核准
+
+![暗紅世界地圖動態圖：攻擊路徑弧線從來源國飛向目標、事件標籤彈出、整體紅色脈衝警報；可用 D3-geo 投影 + SVG path stroke-dashoffset 弧線動畫重現](../assets/gifs/v16-hackers-vs-banks-map.gif)
+
+暗紅世界地圖動態圖：攻擊路徑弧線從來源國飛向目標、事件標籤彈出、整體紅色脈衝警報；可用 D3-geo 投影 + SVG path stroke-dashoffset 弧線動畫重現
+
+### [5 個學駭客的 YouTube 頻道](https://www.facebook.com/reel/1045624941869807)
+
+五個入門到進階的資安／滲透測試 YouTube 頻道
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| — | — | [影片 28](https://www.facebook.com/reel/1045624941869807) |
+
+RedForged（@redforged）的霓虹樣板動畫，無旁白：#5 LiveOverflow，漏洞與 exploit 深入解析，打好基礎再看（https://www.youtube.com/@LiveOverflow ）；#4 IppSec，Hack The Box 解題實錄（https://www.youtube.com/@ippsec ）；#3 John Hammond，CTF 與惡意程式分析（https://www.youtube.com/@_JohnHammond ）；#2 NetworkChuck，網路與資安入門，從這裡開始（https://www.youtube.com/@NetworkChuck ）；#1 The Cyber Mentor，免費的實戰滲透測試課程（TCM Security 頻道 https://www.youtube.com/@TCMSecurityAcademy ）。畫面提醒：Learn on legal labs. Never test without permission.（只在合法靶場練習，未經授權絕不測試）。配樂：流行的拉丁／雷鬼動（reggaeton）夜店音樂，帶西班牙語人聲 hook。面試：AI 時代的工程師也要懂資安，prompt injection 與 agent 工具濫用都是新的攻擊面
+
+![霓虹發光大字 #5→#1 倒數、每段換主色、頂部分段進度條、標題逐字出現；可用 CSS text-shadow 發光 + 分段 progress bar + 打字效果重現](../assets/gifs/v28-neon-countdown-cards.gif)
+
+霓虹發光大字 #5→#1 倒數、每段換主色、頂部分段進度條、標題逐字出現；可用 CSS text-shadow 發光 + 分段 progress bar + 打字效果重現
