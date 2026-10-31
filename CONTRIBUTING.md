@@ -88,3 +88,55 @@
 | `added` | 加入日期，`YYYY-MM-DD` |
 
 `demos.json` 裡的順序就是同一分類裡卡片的順序。不要改既有項目的 `id` 或 `path`。索引要能讀到 JSON，請用本機伺服器或 GitHub Pages 開 `demos/index.html`，不要直接用檔案網址開。
+
+## 新增一天的新聞簡報
+
+新聞簡報不走上面的影片條目格式。每天一篇。不要改更早的日期檔，也不要改 `docs/`、`demos/` 或其他 wiki 頁。同一份步驟也在 [news/README.md](news/README.md)。
+
+公開網址：索引是 <https://wiki.singularityengine.dev/news/>，某一天是 `https://wiki.singularityengine.dev/news/YYYY-MM-DD.html`。
+
+### 1. 新增 `news/YYYY-MM-DD.md`
+
+`YYYY-MM-DD` 是簡報日期，例如 `news/2026-10-31.md`。這個檔已經存在就停：不要再開一頁，也不要在索引再加一列。
+
+檔案用這個開頭。標題列沿用簡報原文，含 emoji 與星期：
+
+```markdown
+---
+lang: zh-Hant
+---
+
+# 📰 Brian 每日新聞簡報｜YYYY/MM/DD（週）
+
+[每日新聞](index.md) · [回首頁](../README.md)
+```
+
+標題下面照原文分段。區塊標題是原文那一行，前面加 `## `。每一則維持原來的編號與文字，不要改寫、不要翻譯、不要增刪。網址單獨一行，行首空四個空格，包在 `<` 與 `>` 裡。一則若有第二行，那一行也空四格，放在網址上面，中間空一行。第十則以後同樣空四格，不要只空三格。
+
+```markdown
+## 🤖 AI 與科技
+
+1. 摘要原文，一個字都不要改。
+
+    <https://example.com/source>
+
+2. 標題原文 — 作者
+
+    第二行原文。
+
+    <https://example.com/source>
+```
+
+### 2. 更新 `news/index.md`
+
+在兩行註解中間維護清單，註解和清單之間留空行。新的一天插在第一列，清單維持新的在最上面：
+
+```markdown
+<!-- briefings:newest-first -->
+
+- [YYYY/MM/DD（週）](YYYY-MM-DD.md)
+
+<!-- /briefings -->
+```
+
+連結文字用該篇標題裡的日期與星期，例如 `2026/10/31（六）`。連結目標是檔名。同一天已經有一列就不要再加。不要把 `index.md` 或 `README.md` 寫進這個清單。

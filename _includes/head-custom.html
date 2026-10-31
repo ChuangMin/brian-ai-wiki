@@ -1,0 +1,53 @@
+<!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+{% include head-custom-google-analytics.html %}
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}" -->
+
+<style>
+  .wiki-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 20px;
+  }
+  .wiki-nav a {
+    display: inline-block;
+    padding: 10px 14px;
+    border: 1px solid #d1d5da;
+    border-radius: 6px;
+    line-height: 1.25;
+    text-decoration: none;
+  }
+  .wiki-nav a:hover,
+  .wiki-nav a:focus {
+    background: #f6f8fa;
+    text-decoration: none;
+  }
+  .wiki-nav a:focus-visible {
+    outline: 2px solid #0366d6;
+    outline-offset: 2px;
+  }
+  .wiki-nav a[aria-current="page"] {
+    border-color: #0366d6;
+    font-weight: 600;
+    background: #f1f8ff;
+  }
+  .markdown-body a {
+    overflow-wrap: anywhere;
+  }
+  .markdown-body li {
+    word-wrap: break-word;
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+  @media (max-width: 544px) {
+    .markdown-body .anchor {
+      display: none;
+    }
+  }
+</style>
+
+<!-- end custom head snippets -->
