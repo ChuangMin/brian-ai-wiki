@@ -4,13 +4,13 @@
 
 Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片、截圖與推薦清單整理 AI 工具與觀點，依主題分類收錄，並另外標示引流、概念動畫等可信度；之後的新影片會繼續加進來。
 
-星數為 2026-10-30 晚上（台北時間）查詢的數字；video-to-game 為 2026-10-31 上午查詢；截圖批次 2 為 2026-10-31 中午查詢；Brian 推薦清單、Filee、CLI-Anything、ai-pdf-chatbot-langchain、影片 32 的 5 個 repo、Paperclip、Spec Kit、archify 與 diagram-design 為 2026-10-31 晚上查詢。影片 16 的事件與數字取自影片文案，未逐一查證。
+星數為 2026-10-30 晚上（台北時間）查詢的數字；video-to-game 為 2026-10-31 上午查詢；截圖批次 2 為 2026-10-31 中午查詢；Brian 推薦清單、Filee、CLI-Anything、ai-pdf-chatbot-langchain、影片 32 的 5 個 repo、Paperclip、Spec Kit、archify 與 diagram-design 為 2026-10-31 晚上查詢。Edge0 為 2026-10-31 晚上（台北時間）查詢。影片 16 的事件與數字取自影片文案，未逐一查證。
 
 可信度標籤與分類分開標示：⚠️ 引流（導流、推薦碼、課程漏斗）、概念動畫／概念介面（設計好的畫面，不是真實產品或實測）、AI 生成、後製包裝、宣稱待驗證、商用・無 repo、付費模板、搞笑短劇。GitHub 項目的預覽圖取自 GitHub 的 Open Graph 卡片。
 
 標了引流的條目，連結和說明裡的網址旁邊都會加上 ⚠️。
 
-共 84 則。
+共 85 則。
 
 ## 分類
 
@@ -24,7 +24,7 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 - [自動化工作流](docs/automation-workflows.md)（2）— n8n 等流程自動化，規則優先與人工核准閘門
 - [金融與交易](docs/finance-trading.md)（5）— 交易圖表、財務 Claude 技巧，以及交易機器人導流片
 - [安全與治理](docs/security-governance.md)（4）— agent 對齊事故、隱私疑慮、AI 輔助金融資安
-- [實體 AI 與硬體](docs/physical-ai.md)（2）— ESP32、機器人等實體裝置
+- [實體 AI 與硬體](docs/physical-ai.md)（3）— ESP32、機器人等實體裝置
 - [成本與取捨](docs/cost-tradeoffs.md)（5）— token 成本、指令輸出壓縮、agent 與傳統工具的成本對比
 - [團隊與組織](docs/teams-org.md)（1）— 協作成本、決策結構、組織設計
 - [演講與 Talk](docs/talks.md)（1）— 演講、訪談、Podcast 片段：AI 領袖與從業者的第一手說法
@@ -78,6 +78,7 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 | 影片 35 | Kishan 平面設計作品集 | [reel/1670796030659910](https://www.facebook.com/reel/1670796030659910) | 2026-10-31 |
 | 影片 36 | 6 種圖表與使用時機（Statsmaniaofficial） | [reel/1742098810210214](https://www.facebook.com/reel/1742098810210214) | 2026-10-31 |
 | 影片 37 | Cinema back office dashboard（Code & Chill） | [reel/1473800611304190](https://www.facebook.com/reel/1473800611304190) | 2026-10-31 |
+| 影片 38 | Edge0（GitHunt） | [share/r/1CcD2Vgk2Y](https://www.facebook.com/share/r/1CcD2Vgk2Y/)（canonical watch?v=28409829592028769，經 LINE 傳來） | 2026-10-31 |
 | Brian 推薦清單 2026-10-31 | 圖表 skill 推薦：archify、diagram-design（無影片） | — | 2026-10-31 |
 
 沒有連結的來源，附上來源裡的待確認事項：
