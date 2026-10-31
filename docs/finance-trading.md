@@ -16,6 +16,10 @@
 
 這支的 canvas 重現在本倉庫：[K 線回放圖表演示](../demos/chart-replay/index.html)。
 
+![K 線逐根回放、Premium/Discount 半透明色帶、右側成交量分布直方圖與狀態面板即時更新；可用 Canvas 2D 逐幀畫蠟燭 + 疊加矩形區塊重現](../assets/gifs/v03-tradingview-bar-replay-chart.gif)
+
+K 線逐根回放、Premium/Discount 半透明色帶、右側成交量分布直方圖與狀態面板即時更新；可用 Canvas 2D 逐幀畫蠟燭 + 疊加矩形區塊重現
+
 ### [財務人員的 25 個 Claude 技巧](https://www.facebook.com/reel/1411775787706586)
 
 財務人員用 Claude 處理 Excel 與報表的 25 招
@@ -26,7 +30,7 @@
 
 Nicolas Boucher 整理，分五類：Claude in Excel（儲存格引用、解釋公式、找 #REF、預算差異、對帳、三表模型、PDF 抽表）、Dashboard（Styles、一客戶一 Project、Artifact 互動儀表板、KPI 追溯）、Claude Cowork（只開專用資料夾的最小權限、先列計畫等核准再動檔案、批次改名、截圖轉 Excel）、最佳實務（Opus／Sonnet／Haiku 分工、XML 標籤、防幻覺驗證、直接產出 XLSX／PPT、用 Claude Code 自動化報表）。配樂：女聲 EDM／House，無法辨識曲名
 
-### [⚠️ AI 交易機器人導流片（反面教材）](https://www.facebook.com/reel/1893910828071251)
+### [⚠️ AI 交易機器人導流片（反面教材）](https://www.facebook.com/reel/1893910828071251) ⚠️
 
 用假獲利畫面導流的 AI 交易影片，反面教材
 
@@ -36,7 +40,11 @@ Nicolas Boucher 整理，分五類：Claude in Excel（儲存格引用、解釋�
 
 Tauhid 2.0 宣稱「給 Grok Bot 53 美元自動調槓桿」，畫面從 $54.76 漲到 $3,874.56、勝率 68%、平均 67.5 倍槓桿。但沒有任何真實交易所或 Grok 介面、權益曲線完全沒回撤、平倉還會噴彩帶，幾乎確定是 AE 動畫；「私訊 GROK BOT」是典型課程／單子群導流。配樂：駭客風 synthwave
 
-### [ALGORY：「打造自動化避險基金第 289 天」](https://algory.app/)
+![暗綠玻璃擬態交易儀表板：權益曲線繪製、交易 log 捲動、底部角色卡輪流高亮，中途彩帶粒子爆發＋獲利彈窗；可用 Canvas 折線動畫 + canvas-confetti 重現（內容本身為假獲利，僅參考 UI）](../assets/gifs/v13-trading-dashboard-concept-ui.gif)
+
+暗綠玻璃擬態交易儀表板：權益曲線繪製、交易 log 捲動、底部角色卡輪流高亮，中途彩帶粒子爆發＋獲利彈窗；可用 Canvas 折線動畫 + canvas-confetti 重現（內容本身為假獲利，僅參考 UI）
+
+### [ALGORY：「打造自動化避險基金第 289 天」](https://algory.app/) ⚠️
 
 用基因演算法產生 MT5 交易機器人的付費軟體
 

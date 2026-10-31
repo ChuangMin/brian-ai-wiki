@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prim 最小生成樹 — 示範</title>
+<!--
+  Prim 最小生成樹示範 — 單一檔案、無外部相依
+  重現 AI WIKI 影片 31：從 A 出發，每次從 heap 取出最便宜的邊，把新節點接進樹裡。
+  heap 是照 Python heapq 的二元堆積實作（tuple 依序比較 w, u, v），所以取出順序和 Python 一模一樣。
+  網址參數：?speed=2、?clean=1（隱藏返回連結與出處）、?autoplay=0
+  鍵盤：空白鍵 播放/暫停、→ 單步、R 重設
+-->
+<style>
+  :root{--bg:#0B0E14;--card:#131722;--line:#2A2E39;--line2:#363A45;--text:#D1D4DC;--muted:#8E93A0;
+    --accent:#00BCD4;--blue:#4F8DFF;--green:#2BD67B;--red:#FF4D5E;--gold:#FFC83D;}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Trebuchet MS",Roboto,"Segoe UI","PingFang TC","Noto Sans TC",Ubuntu,sans-serif;}
+  a{color:var(--accent)} a:hover{color:#fff}
+  .wrap{max-width:1180px;margin:0 auto;padding:14px 14px 28px}
+  header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 16px;margin-bottom:10px}
+  .back{color:var(--muted);text-decoration:none;font-size:14px}
+  .back:hover{color:var(--accent)}
+  h1{margin:4px 0 0;font-size:22px;color:#fff}
+  h1 small{color:var(--accent);font-weight:500;font-size:14px;margin-left:8px}
+  .credit{font-size:12px;color:var(--muted)}
+  .main{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:12px}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:10px;position:relative}
+  .gp{padding:8px}
+  svg{width:100%;height:auto;display:block}
+  .stats{display:flex;gap:8px;flex-wrap:wrap;margin:4px 4px 0}
+  .stat{background:#0F131C;border:1px solid var(--line2);border-radius:6px;padding:4px 10px;min-width:84px}
+  .stat b{display:block;font-size:10px;letter-spacing:.12em;color:var(--muted);font-weight:600}
+  .stat span{font-size:22px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums;transition:color .3s}
+  .stat.total span{color:var(--accent)}
+  .stat.total.bump span{color:var(--gold)}
+  .legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--muted);margin:8px 6px 2px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend svg{width:26px;height:10px;display:inline}
+  .side{display:flex;flex-direction:column;gap:12px}
+  .side .panel{padding:10px 0}
+  h2{font-size:12px;letter-spacing:.12em;color:var(--muted);margin:0 14px 8px;font-weight:600}
+  pre{margin:0;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#C9D1D9;overflow-x:auto}
+  pre .ln{display:block;padding:0 14px 0 0;white-space:pre;border-left:3px solid transparent;transition:background .15s}
+  pre .ln .no{display:inline-block;width:30px;text-align:right;color:#4B5263;margin-right:12px;user-select:none}
+  pre .ln.hl{background:rgba(0,188,212,.16);border-left-color:var(--accent)}
+  pre .ln.hl .no{color:var(--accent)}
+  pre .ln.hlr{background:rgba(255,77,94,.18);border-left-color:var(--red)}
+  .kw{color:#FF7B72}.fn{color:#D2A8FF}.st{color:#A5D6FF}.cm{color:#8B949E;font-style:italic}.nu{color:#79C0FF}
+  #msg{margin:10px 14px 0;font-size:14px;min-height:42px;border-top:1px solid var(--line);padding-top:10px}
+  #msg b{color:#fff}
+  #heap,#mst{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px;min-height:34px;align-items:center}
+  .chip{font:600 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px dashed var(--blue);color:#BBD3FF;
+    background:rgba(79,141,255,.1);border-radius:6px;padding:5px 8px}
+  .chip.fresh{animation:pop .3s ease}
+  .chip.top{border-style:solid;box-shadow:0 0 0 2px rgba(79,141,255,.35);color:#fff}
+  .chip.m{border:1px solid var(--accent);color:#CFF7FC;background:rgba(0,188,212,.12)}
+  .empty{color:var(--muted);font-size:13px}
+  @keyframes pop{from{transform:scale(.6);opacity:0}to{transform:none;opacity:1}}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
+  .controls button,.controls select{background:#1E222D;color:var(--text);border:1px solid var(--line2);border-radius:6px;
+    font:inherit;font-size:14px;padding:7px 12px;cursor:pointer;min-height:36px}
+  .controls button:hover,.controls select:hover{border-color:var(--accent);color:#fff}
+  .controls button.primary{border-color:var(--accent);color:#fff;background:#17343a}
+  .controls label{font-size:13px;color:var(--muted);display:flex;gap:6px;align-items:center}
+  /* graph */
+  .e line{stroke:#2C3445;stroke-width:3;transition:stroke .25s,stroke-width .25s,opacity .25s}
+  .e.heap line{stroke:var(--blue);stroke-dasharray:9 7;stroke-width:3;animation:dash 1s linear infinite}
+  .e.pop line{stroke:#fff;stroke-width:5;stroke-dasharray:none;animation:none}
+  .e.mst line{stroke:var(--accent);stroke-width:6;stroke-dasharray:none;animation:none;filter:url(#glow)}
+  .e.skip line{stroke:var(--red);stroke-width:6;stroke-dasharray:none;animation:redflash .45s ease 3}
+  .e.left line{opacity:.35}
+  @keyframes dash{to{stroke-dashoffset:-16}}
+  @keyframes redflash{50%{opacity:.15}}
+  .e rect{fill:#131722;stroke:#2C3445;rx:6}
+  .e text{fill:#9AA3B5;font:700 14px ui-monospace,Menlo,Consolas,monospace;text-anchor:middle;dominant-baseline:central}
+  .e.heap text{fill:#BBD3FF}.e.heap rect{stroke:var(--blue)}
+  .e.mst text{fill:#fff}.e.mst rect{stroke:var(--accent);fill:#0D3940}
+  .e.skip text{fill:#fff}.e.skip rect{stroke:var(--red);fill:#4A1219}
+  .e.pop text{fill:#fff}.e.pop rect{stroke:#fff}
+  .n circle{fill:#1A2030;stroke:#4A5468;stroke-width:2.5;transition:fill .3s,stroke .3s}
+  .n text{fill:#C7CDD9;font-size:20px;font-weight:800;text-anchor:middle;dominant-baseline:central}
+  .n.in circle{fill:#11402A;stroke:var(--green);filter:url(#glowG)}
+  .n.in text{fill:#CFFFE3}
+  .n.new circle{fill:var(--green);stroke:#fff}
+  .n.new text{fill:#05301A}
+  #done{position:absolute;left:50%;bottom:52px;transform:translateX(-50%) scale(.9);opacity:0;transition:.4s;pointer-events:none;
+    background:rgba(4,30,34,.92);border:1px solid var(--accent);color:#CFF7FC;border-radius:10px;padding:6px 16px;
+    font-size:18px;font-weight:800;box-shadow:0 0 22px rgba(0,188,212,.35);white-space:nowrap}
+  #done.on{opacity:1;transform:translateX(-50%) scale(1)}
+  @media (max-width:820px){.main{grid-template-columns:1fr} pre{font-size:11px} .wrap{display:flex;flex-direction:column}
+    .main{display:contents} header{order:0} .gp{order:1} .controls{order:2} .side{order:3;margin-top:12px}}
+  .clean .back,.clean .credit{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <a class="back" href="../index.html">← Demos 索引</a>
+      <h1>Prim 最小生成樹<small>每次挑最便宜、能接上新節點的邊</small></h1>
+    </div>
+    <div class="credit">出處：<a href="https://www.facebook.com/reel/2132850694107274" target="_blank" rel="noopener noreferrer">AI WIKI 影片 31</a>（重製示範）</div>
+  </header>
+  <div class="main">
+    <div class="panel gp">
+      <div class="stats">
+        <div class="stat total" id="totBox"><b>TOTAL 總重</b><span id="sTotal">0</span></div>
+        <div class="stat"><b>樹中節點</b><span id="sSeen">0/7</span></div>
+        <div class="stat"><b>HEAP</b><span id="sHeap">0</span></div>
+      </div>
+      <div id="done">✔ 最小生成樹完成：總重 16</div>
+      <svg id="g" viewBox="0 0 680 420" role="img" aria-label="節點 A 到 G 的加權圖">
+        <defs>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="0" y="0" width="680" height="420"><feGaussianBlur stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="glowG" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <g id="edges"></g><g id="nodes"></g>
+      </svg>
+      <div class="legend">
+        <span><svg viewBox="0 0 26 10"><line x1="0" y1="5" x2="26" y2="5" stroke="#4F8DFF" stroke-width="3" stroke-dasharray="6 4"/></svg>在 heap 裡</span>
+        <span><svg viewBox="0 0 26 10"><line x1="0" y1="5" x2="26" y2="5" stroke="#00BCD4" stroke-width="4"/></svg>選進樹</span>
+        <span><svg viewBox="0 0 26 10"><line x1="0" y1="5" x2="26" y2="5" stroke="#FF4D5E" stroke-width="4"/></svg>跳過（會成環）</span>
+        <span><svg viewBox="0 0 26 10"><circle cx="13" cy="5" r="4.5" fill="#2BD67B"/></svg>已在樹中</span>
+      </div>
+    </div>
+    <div class="side">
+      <div class="panel">
+        <h2>PYTHON · heapq 程式碼同步</h2>
+        <pre id="code"></pre>
+        <div id="msg">從 A 出發。按「播放」或「單步」。</div>
+      </div>
+      <div class="panel">
+        <h2>HEAP（由小到大顯示，最左邊是下一個 heappop）</h2>
+        <div id="heap"></div>
+      </div>
+      <div class="panel">
+        <h2>已選的邊 MST</h2>
+        <div id="mst"></div>
+      </div>
+    </div>
+  </div>
+  <div class="controls">
+    <button id="bStep" class="primary">⏭ 單步</button>
+    <button id="bPlay">▶ 播放</button>
+    <button id="bReset">⟲ 重設</button>
+    <label>速度
+      <select id="sSpeed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option><option value="4">4×</option></select>
+    </label>
+  </div>
+</div>
+<script>
+"use strict";
+const POS = { A: [70, 210], B: [220, 80], C: [220, 340], D: [370, 210], E: [520, 80], F: [520, 340], G: [630, 210] };
+const EDGES = [["A","B",4],["A","C",2],["B","C",1],["B","D",5],["B","E",9],["C","D",8],["C","F",10],["D","E",3],["D","F",2],["E","F",4],["E","G",3],["F","G",3]];
+const GRAPH = {};
+Object.keys(POS).forEach(function (k) { GRAPH[k] = []; });
+EDGES.forEach(function (e) { GRAPH[e[0]].push([e[1], e[2]]); GRAPH[e[1]].push([e[0], e[2]]); });
+Object.keys(GRAPH).forEach(function (k) { GRAPH[k].sort(function (a, b) { return a[0] < b[0] ? -1 : 1; }); });
+
+const CODE = [
+  '<span class="kw">import</span> heapq',
+  '',
+  '<span class="kw">def</span> <span class="fn">prim</span>(graph, start=<span class="st">"A"</span>):',
+  '    seen = {start}',
+  '    heap = [(w, start, v) <span class="kw">for</span> v, w <span class="kw">in</span> graph[start]]',
+  '    heapq.heapify(heap)',
+  '    mst, total = [], <span class="nu">0</span>',
+  '    <span class="kw">while</span> heap <span class="kw">and</span> len(seen) &lt; len(graph):',
+  '        w, u, v = heapq.heappop(heap)   <span class="cm"># 最便宜的邊</span>',
+  '        <span class="kw">if</span> v <span class="kw">in</span> seen:',
+  '            <span class="kw">continue</span>                    <span class="cm"># 會成環 → 跳過</span>',
+  '        seen.add(v)',
+  '        mst.append((u, v, w))',
+  '        total += w',
+  '        <span class="kw">for</span> nxt, w2 <span class="kw">in</span> graph[v]:',
+  '            <span class="kw">if</span> nxt <span class="kw">not in</span> seen:',
+  '                heapq.heappush(heap, (w2, v, nxt))',
+  '    <span class="kw">return</span> mst, total',
+];
+const codeEl = document.getElementById("code");
+const lineEls = CODE.map(function (c, i) {
+  const d = document.createElement("span"); d.className = "ln";
+  d.innerHTML = '<span class="no">' + (i + 1) + '</span>' + (c || " ");
+  codeEl.appendChild(d); return d;
+});
+function hl(lines, red) { lineEls.forEach(function (el, i) { const on = lines.indexOf(i + 1) >= 0; el.classList.toggle("hl", on && !red); el.classList.toggle("hlr", on && !!red); }); }
+
+/* ---- 跟 Python heapq 一樣的二元堆積 ---- */
+function lt(a, b) { for (let i = 0; i < 3; i++) { if (a[i] < b[i]) return true; if (a[i] > b[i]) return false; } return false; }
+function siftdown(h, start, pos) { const item = h[pos]; while (pos > start) { const pp = (pos - 1) >> 1, p = h[pp]; if (lt(item, p)) { h[pos] = p; pos = pp; continue; } break; } h[pos] = item; }
+function siftup(h, pos) { const end = h.length, start = pos, item = h[pos]; let c = 2 * pos + 1; while (c < end) { const r = c + 1; if (r < end && !lt(h[c], h[r])) c = r; h[pos] = h[c]; pos = c; c = 2 * pos + 1; } h[pos] = item; siftdown(h, start, pos); }
+function heappush(h, x) { h.push(x); siftdown(h, 0, h.length - 1); }
+function heappop(h) { const last = h.pop(); if (h.length) { const r = h[0]; h[0] = last; siftup(h, 0); return r; } return last; }
+function heapify(h) { for (let i = (h.length >> 1) - 1; i >= 0; i--) siftup(h, i); }
+
+/* ---- 事件序列 ---- */
+function buildEvents() {
+  const ev = [], seen = new Set(["A"]);
+  const heap = GRAPH.A.map(function (p) { return [p[1], "A", p[0]]; });
+  heapify(heap);
+  let total = 0;
+  const snap = function () { return heap.map(function (x) { return x.slice(); }); };
+  ev.push({ t: "init", lines: [4, 5, 6, 7], heap: snap(), seen: ["A"], total: 0, msg: "從 <b>A</b> 出發：A 的邊 (4, A, B)、(2, A, C) 放進 heap。" });
+  while (heap.length && seen.size < 7) {
+    const e = heappop(heap);
+    ev.push({ t: "pop", lines: [8, 9], edge: e, heap: snap(), msg: "heappop 取出最便宜的 <b>(" + e.join(", ") + ")</b>：" + e[1] + "–" + e[2] + "，權重 " + e[0] + "。" });
+    if (seen.has(e[2])) {
+      ev.push({ t: "skip", lines: [10, 11], red: true, edge: e, msg: "<b>" + e[2] + "</b> 已經在樹裡，加這條邊會成環 → <b style=\"color:#FF4D5E\">跳過</b>。" });
+      continue;
+    }
+    seen.add(e[2]); total += e[0];
+    ev.push({ t: "add", lines: [10, 12, 13, 14], edge: e, node: e[2], total: total, msg: "<b>" + e[2] + "</b> 是新節點 → 選進樹，total += " + e[0] + " = <b>" + total + "</b>。" });
+    const pushed = [];
+    GRAPH[e[2]].forEach(function (p) { if (!seen.has(p[0])) { const x = [p[1], e[2], p[0]]; heappush(heap, x); pushed.push(x); } });
+    if (pushed.length) ev.push({ t: "push", lines: [15, 16, 17], heap: snap(), pushed: pushed, msg: "把 " + e[2] + " 通往樹外的邊推進 heap：" + pushed.map(function (x) { return "(" + x.join(", ") + ")"; }).join("、") + "。" });
+  }
+  ev.push({ t: "end", lines: [8, 18], total: total, msg: "7 個節點都接上了（heap 裡剩下的邊不用再看）。最小生成樹總重 = <b style=\"color:#FFC83D\">" + total + "</b>。" });
+  return ev;
+}
+const EV = buildEvents();
+
+/* ---- 畫面 ---- */
+const NS = "http://www.w3.org/2000/svg";
+function sv(tag, a, p) { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; }
+const edgeG = {}, nodeG = {};
+const gE = document.getElementById("edges"), gN = document.getElementById("nodes");
+function key(a, b) { return a < b ? a + b : b + a; }
+EDGES.forEach(function (e) {
+  const p = POS[e[0]], q = POS[e[1]], g = sv("g", { class: "e" }, gE);
+  sv("line", { x1: p[0], y1: p[1], x2: q[0], y2: q[1] }, g);
+  const mx = (p[0] + q[0]) / 2, my = (p[1] + q[1]) / 2;
+  sv("rect", { x: mx - 14, y: my - 12, width: 28, height: 24, rx: 6 }, g);
+  const t = sv("text", { x: mx, y: my }, g); t.textContent = e[2];
+  edgeG[key(e[0], e[1])] = g;
+});
+Object.keys(POS).forEach(function (k) {
+  const g = sv("g", { class: "n", transform: "translate(" + POS[k] + ")" }, gN);
+  sv("circle", { r: 26 }, g); const t = sv("text", {}, g); t.textContent = k; nodeG[k] = g;
+});
+
+let S;
+function fresh() { return { i: 0, heap: [], seen: [], mst: [], total: 0, pop: null, skip: null, newNode: null, done: false }; }
+function apply(e) {
+  S.pop = null; S.skip = null; S.newNode = null;
+  if (e.heap) S.heap = e.heap;
+  if (e.t === "init") S.seen = e.seen.slice();
+  if (e.t === "pop") S.pop = e.edge;
+  if (e.t === "skip") S.skip = e.edge;
+  if (e.t === "add") { S.seen.push(e.node); S.mst.push(e.edge); S.total = e.total; S.newNode = e.node; bump(); }
+  if (e.t === "end") S.done = true;
+  hl(e.lines, e.red); document.getElementById("msg").innerHTML = e.msg;
+}
+function bump() { const b = document.getElementById("totBox"); b.classList.add("bump"); setTimeout(function () { b.classList.remove("bump"); }, 700); }
+function fmt(x) { return "(" + x[0] + ", " + x[1] + ", " + x[2] + ")"; }
+function render() {
+  const inHeap = {}; S.heap.forEach(function (x) { inHeap[key(x[1], x[2])] = 1; });
+  const inMst = {}; S.mst.forEach(function (x) { inMst[key(x[1], x[2])] = 1; });
+  Object.keys(edgeG).forEach(function (k) {
+    let c = "e";
+    if (inMst[k]) c += " mst";
+    else if (S.skip && key(S.skip[1], S.skip[2]) === k) c += " skip";
+    else if (S.pop && key(S.pop[1], S.pop[2]) === k) c += " pop";
+    else if (inHeap[k]) c += " heap" + (S.done ? " left" : "");
+    edgeG[k].setAttribute("class", c);
+  });
+  Object.keys(nodeG).forEach(function (k) {
+    nodeG[k].setAttribute("class", "n" + (S.seen.indexOf(k) >= 0 ? " in" : "") + (S.newNode === k ? " new" : ""));
+  });
+  document.getElementById("sTotal").textContent = S.total;
+  document.getElementById("sSeen").textContent = S.seen.length + "/7";
+  document.getElementById("sHeap").textContent = S.heap.length;
+  const hEl = document.getElementById("heap"); const prev = {}; hEl.querySelectorAll(".chip").forEach(function (c) { prev[c.textContent] = 1; }); hEl.replaceChildren();
+  const sorted = S.heap.slice().sort(function (a, b) { return lt(a, b) ? -1 : 1; });
+  sorted.forEach(function (x, i) { const c = document.createElement("span"); c.className = "chip" + (i === 0 ? " top" : "") + (prev[fmt(x)] ? "" : " fresh"); c.textContent = fmt(x); hEl.appendChild(c); });
+  if (!sorted.length) hEl.innerHTML = '<span class="empty">（空）</span>';
+  const mEl = document.getElementById("mst"); const had = mEl.querySelectorAll(".chip").length; mEl.replaceChildren();
+  S.mst.forEach(function (x, i) { const c = document.createElement("span"); c.className = "chip m" + (i >= had ? " fresh" : ""); c.textContent = x[1] + "–" + x[2] + " " + x[0]; mEl.appendChild(c); });
+  if (S.mst.length) { const t = document.createElement("span"); t.className = "empty"; t.textContent = "＝ " + S.total; mEl.appendChild(t); }
+  else mEl.innerHTML = '<span class="empty">（還沒有）</span>';
+  document.getElementById("done").classList.toggle("on", S.done);
+}
+
+const params = new URLSearchParams(location.search);
+if (params.get("clean")) document.body.classList.add("clean");
+const speedSel = document.getElementById("sSpeed"); if (params.get("speed")) speedSel.value = params.get("speed");
+const bPlay = document.getElementById("bPlay");
+let playing = false, timer = null;
+function reset() { stop(); S = fresh(); hl([]); document.getElementById("msg").innerHTML = "從 A 出發。按「播放」或「單步」。"; render(); }
+function step() { if (S.i >= EV.length) { stop(); return false; } apply(EV[S.i++]); render(); if (S.i >= EV.length) stop(); return true; }
+function delay() { const e = EV[S.i - 1]; const b = e.t === "skip" ? 1700 : e.t === "add" ? 1400 : 1100; return b / parseFloat(speedSel.value); }
+function tick() { if (!playing) return; if (step()) timer = setTimeout(tick, delay()); }
+function play() { if (S.i >= EV.length) reset(); playing = true; bPlay.textContent = "❚❚ 暫停"; tick(); }
+function stop() { playing = false; clearTimeout(timer); bPlay.textContent = S && S.i >= EV.length ? "⟲ 再播一次" : "▶ 播放"; }
+bPlay.onclick = function () { playing ? stop() : play(); };
+document.getElementById("bStep").onclick = function () { stop(); step(); };
+document.getElementById("bReset").onclick = reset;
+document.addEventListener("keydown", function (e) {
+  if (e.target.tagName === "SELECT") return;
+  if (e.code === "Space") { e.preventDefault(); bPlay.click(); }
+  else if (e.key === "ArrowRight") { stop(); step(); }
+  else if (e.key === "r" || e.key === "R") reset();
+});
+reset();
+if (params.get("autoplay") !== "0") setTimeout(play, 700);
+</script>
+</body>
+</html>

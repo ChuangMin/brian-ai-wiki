@@ -28,13 +28,17 @@
 
 [n8n 工單流程](https://www.facebook.com/reel/3209079722631476)：能用明確規則判斷的就不丟給 AI，結果可預測、可測試；寫入用 idempotent（ON CONFLICT）處理重試，這也是控管 AI 產出流程的基本功。
 
+## Agent 也是分散式系統
+
+[影片 22](https://www.facebook.com/reel/3285768298275601)：工具呼叫會重試就要冪等，LLM API 外層加熔斷與限流，長時間的 agent 任務丟進佇列，每次 agent 執行都留 traces；傳統系統設計功夫直接決定 agent 平台的可靠度。
+
 ## 成本治理
 
 [TokenEconomizer](https://github.com/microsoft/TokenEconomizer)、[RTK](https://github.com/rtk-ai/rtk) 與 [Claude Code vs Blender 梗](https://www.facebook.com/reel/1867596277567322)：agent 不是萬用解，要量化成本與成效；先過濾上下文雜訊再談換模型。
 
 ## 先對齊、再寫碼
 
-[Superpowers](https://github.com/obra/superpowers)、[Matt Pocock Skills](https://github.com/mattpocock/skills)：開工前讓 agent 拷問需求、確認設計與計畫、建立共用詞彙，再用 TDD 與子 agent 審查實作，把方法論寫成團隊共用的 skill。
+[Superpowers](https://github.com/obra/superpowers)、[Matt Pocock Skills](https://github.com/mattpocock/skills)：開工前讓 agent 拷問需求、確認設計與計畫、建立共用詞彙，再用 TDD 與子 agent 審查實作，把方法論寫成團隊共用的 skill。[GitHub Spec Kit](https://github.com/github/spec-kit) 則把 spec→plan→tasks→實作做成固定流程。
 
 ## 最少必要程式
 

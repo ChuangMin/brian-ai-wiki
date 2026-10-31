@@ -8,5 +8,45 @@
     "source": "影片 3",
     "sourceUrl": "https://www.facebook.com/reel/1632204671708366",
     "added": "2026-10-31"
+  },
+  {
+    "id": "bfs",
+    "title": "BFS 六度分隔：找到暗戀對象",
+    "desc": "用廣度優先搜尋一圈一圈往外找，Python 程式碼逐行同步高亮、FIFO 佇列即時顯示，最後以金色路徑標出「4 次握手」。附原片漏掉的 came = {} 修正。",
+    "category": "演算法",
+    "path": "bfs/",
+    "source": "影片 30",
+    "sourceUrl": "https://www.facebook.com/reel/1108544155324652",
+    "added": "2026-10-31"
+  },
+  {
+    "id": "prim",
+    "title": "Prim 最小生成樹動畫",
+    "desc": "7 個節點、12 條邊，用最小堆逐步挑出最便宜的邊；跳過會成環的邊，堆、MST 清單與總重同步更新，最後總重 16。可單步、播放與調速。",
+    "category": "演算法",
+    "path": "prim/",
+    "source": "影片 31",
+    "sourceUrl": "https://www.facebook.com/reel/2132850694107274",
+    "added": "2026-10-31"
+  },
+  {
+    "id": "charts",
+    "title": "六種圖表，什麼時候用",
+    "desc": "長條圖、圓餅圖、折線圖、散佈圖、直方圖、盒鬚圖六張動態 SVG，掃描線 10 秒循環即時讀數；直方圖與盒鬚圖用同一組 90 筆種子資料。",
+    "category": "資料視覺化",
+    "path": "charts/",
+    "source": "影片 36",
+    "sourceUrl": "https://www.facebook.com/reel/1742098810210214",
+    "added": "2026-10-31"
+  },
+  {
+    "id": "portfolio-scroll",
+    "title": "2026 作品集自動捲動頁",
+    "desc": "黑金配色的平面設計作品集範本：8 個作品區塊（Logo、縮圖、社群、包裝、圍籬廣告…）自動往下捲，滑過卡片暫停，到底自動回頂循環。",
+    "category": "網頁設計",
+    "path": "portfolio-scroll/",
+    "source": "影片 35",
+    "sourceUrl": "https://www.facebook.com/reel/1670796030659910",
+    "added": "2026-10-31"
   }
 ]

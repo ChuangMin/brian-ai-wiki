@@ -8,7 +8,7 @@
 
 | 欄位 | 怎麼填 |
 | --- | --- |
-| 分類 | 下面十六個分類之一，對應一個 Markdown 檔 |
+| 分類 | 下面十七個分類之一，對應一個 Markdown 檔 |
 | 名稱 | 工具或主題名稱。有 URL 就做成連結；沒有就不要編一個 |
 | 摘要 | 一行白話，放在名稱正下方 |
 | 說明 | 這支影片或截圖在講什麼，沿用原意 |
@@ -38,6 +38,7 @@
 | 演講與 Talk | `docs/talks.md` |
 | 搞笑與迷因 | `docs/memes.md` |
 | 生產力與開源工具 | `docs/productivity-tools.md` |
+| 系統設計與工程基礎 | `docs/systems-design.md` |
 
 每一則長這樣。有 GitHub repo 時，摘要下面可以加 Open Graph 預覽，網址是 `https://opengraph.githubassets.com/1/OWNER/REPO`（只取 owner 與 repo，不要把 tree 路徑算進去）。
 
@@ -54,6 +55,8 @@
 
 說明。
 ```
+
+可信度含「引流」的條目，名稱上的連結，以及說明裡每個網址，旁邊都要加 ⚠️。
 
 `配樂` 和 `留言精華` 沒有就省略，不要為了填而發明內容。有的話寫進說明。影片 11 的 synthwave 純演奏、影片 12 的女聲 EDM／House、影片 13 的駭客風 synthwave、影片 14 的 synth-pop／chill house、OPZEN 的 Sayfalse – DARE、ALGORY 的 ayaibrahimx 原聲、影片 20 的免版稅 synth-pop，都已經寫在說明裡；曲名除了來源點名的以外都不要猜。影片 17–19 寫明沒有配樂。影片 21 無旁白，是免版稅輕快 synth-pop。RuView 的留言精華也寫在說明裡。
 
