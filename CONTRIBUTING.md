@@ -37,3 +37,25 @@
 2. 把從該片整理出的條目加進對應分類頁，出處用同一個編號。
 3. 若有適合面試引用的一句話，加到 `docs/interview-takeaways.md`，點出對應的工具名稱。
 4. 條目帶有 GitHub 星數時，在 `README.md` 的星數說明註明查詢日期與時區（台北時間）。
+
+## 新增一個 HTML 示範
+
+每個示範一個資料夾，不要把多個示範塞在同一個 `index.html`：
+
+- `demos/<slug>/index.html`：可單獨打開的頁面。
+- `demos/<slug>/README.md`：這個示範怎麼操作、怎麼改。
+
+然後在 `demos/demos.json` 陣列最後加一筆。索引頁用 `fetch` 讀這份檔，不用改 `demos/index.html`。分類按鈕只出現有示範的分類。
+
+| 欄位 | 怎麼填 |
+| --- | --- |
+| `id` | 與資料夾名稱相同，例如 `chart-replay` |
+| `title` | 繁體中文標題 |
+| `desc` | 一行說明 |
+| `category` | 分類標籤。目前的示範是「金融圖表」。之後可沿用，或在真的有該類示範時再用「資料視覺化」「動畫」「3D」這類名稱 |
+| `path` | 相對於 `demos/` 的路徑，資料夾請以 `/` 結尾，例如 `chart-replay/` |
+| `source` | `影片 N`，對應 README 的影片來源 |
+| `sourceUrl` | 該支 Reel 的網址 |
+| `added` | 加入日期，`YYYY-MM-DD` |
+
+`demos.json` 裡的順序就是同一分類裡卡片的順序。不要改既有項目的 `id` 或 `path`。索引要能讀到 JSON，請用本機伺服器或 GitHub Pages 開 `demos/index.html`，不要直接用檔案網址開。

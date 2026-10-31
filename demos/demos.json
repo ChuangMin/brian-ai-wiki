@@ -1,0 +1,12 @@
+[
+  {
+    "id": "chart-replay",
+    "title": "K 線回放圖表演示",
+    "desc": "用 canvas 重現 TradingView 的 Bar Replay，疊上 Premium／Discount 分區、成交量分布、Buy/Sell 與 TP 標籤。價格是模擬的示範資料。",
+    "category": "金融圖表",
+    "path": "chart-replay/",
+    "source": "影片 3",
+    "sourceUrl": "https://www.facebook.com/reel/1632204671708366",
+    "added": "2026-10-31"
+  }
+]
