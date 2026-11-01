@@ -68,5 +68,15 @@
     "source": "影片 41",
     "sourceUrl": "https://www.instagram.com/reel/DfKEVgNSL3l/",
     "added": "2026-11-01"
+  },
+  {
+    "id": "creatorverse-network",
+    "title": "Creatorverse：發光的創作者節點網路",
+    "desc": "重製影片 44 FounderOS／Content Lab 的 Creatorverse 分頁：44 個脈動的創作者節點、轉動的軌道環，可拖曳平移、滾輪縮放、滑過看鄰居、點節點開側欄看假數據。帳號與數字全是隨機假資料，不爬取、不連任何外部服務。",
+    "category": "資料視覺化",
+    "path": "creatorverse-network/",
+    "source": "影片 44",
+    "sourceUrl": "https://www.facebook.com/reel/1423421943269401",
+    "added": "2026-11-02"
   }
 ]

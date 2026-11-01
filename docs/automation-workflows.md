@@ -45,3 +45,19 @@ MD Abdullah Al Maruf（孟加拉 n8n／Make 接案者）的「留言 Email Agent
 GIF：影片 0:10.5–0:14，縮圖飛進分類的動畫（手機翻拍螢幕）。
 
 ▶ 互動 Demo：[開啟](../demos/photo-sort-fly/) ⚠️（https://wiki.singularityengine.dev/demos/photo-sort-fly/ ⚠️）
+
+### [FounderOS／Content Lab：創作者內容情報系統（Apify 爬取）](https://www.facebook.com/reel/1423421943269401) ⚠️
+
+宣稱完全開源的創作者情報 App：用 Apify 抓同領域創作者貼文、算爆紅倍數、執行前先顯示爬取成本；但找不到 repo，要留言才給
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| ⚠️ 引流・宣稱待驗證・可信度低 | — | [影片 44](https://www.facebook.com/reel/1423421943269401) ⚠️ |
+
+Brody 上傳的 1 分 53 秒 Facebook Reel，男聲英文旁白，配樂是安靜的氛圍合成器。畫面上下分割：上半部是 App 畫面，下半部是 Brody 在暗色攝影棚講解（前景有玻璃西洋棋，燒錄字幕）。App 標題列寫 glados / Lab，側欄有 Funnel、Brand Deals、Finances、Social、Creative Engine、Analytics、Content Lab、Editor、Agents、Tasks、Workflows、Skills、Brain、Settings。Content Lab 分頁：Today（你的貼文對自己常態的倍數 1.3x、同領域爆紅 17 則）、Breakouts（The Field 散佈圖，單篇細節顯示 8.6x）、Playbook（什麼讓貼文爆紅，附引用來源的腳本規則，例如 hook 要短）、Radar（Topic tide 上升話題）、Studio（寫腳本的 agent 對話）、Creatorverse（發光的創作者節點網路，上方篩選列 Your accounts 4／Tracked 25／Watch list 12／Suggested 3）、Ledger（預測校準）。按 Run now 會先跳估價視窗：4 accounts, 25 tracked creators, 15 posts each，約 $2.26（區間 $1.30 到 $3.12），寫明 Apify 每次執行到上限（最高 $3.00）就停、本月已用 $4.10／$46.00，並標示 Filming · no charges。之後切到真的瀏覽器錄影，畫面是 Apify Console 裡的 Instagram Scraper 頁面（[apify.com/apify/instagram-scraper](https://apify.com/apify/instagram-scraper) ⚠️，官方 Actor，按結果計費，頁面標價 $1.50／1,000 筆）。說明文宣稱「completely open source」，可以抓你領域的所有創作者、每次爬取都顯示成本、教 AI 什麼叫爆紅；但要留言「FOUNDER」才私訊平台和 Apify 設定教學，屬於留言導流。查證：GitHub API 搜尋 FounderOS、glados content lab、founderos apify 都是 0 筆（creatorverse 有 573 筆，但都是無關的學生作業），開源說法無法驗證。畫面判讀（逐格檢查）：App 段落有大量後製，傾斜鏡頭、景深模糊、光暈轉場、自動推近、平滑游標，看不到瀏覽器外框，帳號名稱看起來也像虛構的；但各分頁數字前後一致，估價視窗細節很具體，還有「Filming · no charges」這種拍攝模式標籤，也可能是用 Screen Studio 之類工具後製的真 App 錄影，不能斷定是純動態設計假畫面，所以標「宣稱待驗證」而不是「概念介面」。可信度：低，沒有可查的 repo，開源要留言才拿得到。配樂：氛圍合成器。面試：爆紅預測器一定要做校準與回測（Ledger 分頁有碰到這點），否則只是事後解釋；agent／爬蟲系統在執行前先顯示單次成本、設花費上限，是很好的做法；爬取社群平台有服務條款風險，資料來源與用途要先過法務
+
+![Creatorverse 分頁：發光的創作者節點網路，上方是 Your accounts／Tracked／Watch list／Suggested 篩選列](../assets/gifs/v44-creatorverse-network.gif)
+
+GIF：影片 1:14.5–1:17.5，Creatorverse 創作者節點網路（只裁上半部 App 畫面）。
+
+▶ 互動 Demo：[開啟](../demos/creatorverse-network/) ⚠️（https://wiki.singularityengine.dev/demos/creatorverse-network/ ⚠️）

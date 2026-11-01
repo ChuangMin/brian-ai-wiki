@@ -14,7 +14,7 @@ Credibility tags are separate from categories: ⚠️ engagement bait (traffic f
 
 Entries tagged engagement bait put ⚠️ beside the link and beside URLs in the description.
 
-90 entries.
+91 entries.
 
 ## Categories
 
@@ -25,7 +25,7 @@ Entries tagged engagement bait put ⚠️ beside the link and beside URLs in the
 - [Frontend and UI design](docs/frontend-ui.md) (12) — design systems, UI linters, design skills, interface templates, and concept interfaces
 - [3D / animation and DCC](docs/dcc-animation.md) (7) — Blender and other DCC add-ons, camera moves, procedural animation, game generation
 - [AI image and video](docs/ai-media.md) (4) — AI-generated video and images, prompts, AI rendering, programmatic video
-- [Automation workflows](docs/automation-workflows.md) (3) — n8n and similar automation: rules first, human approval gates
+- [Automation workflows](docs/automation-workflows.md) (4) — n8n and similar automation: rules first, human approval gates
 - [Finance and trading](docs/finance-trading.md) (5) — trading charts, Claude techniques for finance, and trading-bot engagement bait
 - [Security and governance](docs/security-governance.md) (4) — agent alignment incidents, privacy concerns, AI-assisted financial security
 - [Physical AI and hardware](docs/physical-ai.md) (3) — ESP32, robots, and other physical devices
@@ -88,6 +88,7 @@ Interview notes are in [Interview takeaways](docs/interview-takeaways.md).
 | Video 41 | Claude photo-sorting page (亨利溫 Henry Wen) | [reel/DfKEVgNSL3l](https://www.instagram.com/reel/DfKEVgNSL3l/) | 2026-11-01 |
 | Video 42 | Cindy (GitHunt) | [watch?v=2575196886290079](https://www.facebook.com/watch/?v=2575196886290079) | 2026-11-01 |
 | Video 43 | Android phone AI agent: wireless ADB debugging plus Claude Code MCP (Tauhid IQ) | ⚠️ [reel/1628595922149351](https://www.facebook.com/reel/1628595922149351) | 2026-11-01 |
+| Video 44 | FounderOS / Content Lab (Brody) | ⚠️ [reel/1423421943269401](https://www.facebook.com/reel/1423421943269401) | 2026-11-02 |
 | Brian's recommendation list 2026-10-31 | Diagram skills: archify and diagram-design (no video) | — | 2026-10-31 |
 
 Notes on sources that have no link:

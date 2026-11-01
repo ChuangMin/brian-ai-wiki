@@ -14,7 +14,7 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 
 標了引流的條目，連結和說明裡的網址旁邊都會加上 ⚠️。
 
-共 90 則。
+共 91 則。
 
 ## 分類
 
@@ -25,7 +25,7 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 - [前端與 UI 設計](docs/frontend-ui.md)（12）— 設計系統、UI linter、設計 skill、介面模板與概念介面
 - [3D／動畫與 DCC](docs/dcc-animation.md)（7）— Blender 等 DCC 外掛、運鏡、程序化動畫、遊戲生成
 - [AI 影像與影片](docs/ai-media.md)（4）— AI 生成影片與圖片、prompt、AI 渲染、程式化影片
-- [自動化工作流](docs/automation-workflows.md)（3）— n8n 等流程自動化，規則優先與人工核准閘門
+- [自動化工作流](docs/automation-workflows.md)（4）— n8n 等流程自動化，規則優先與人工核准閘門
 - [金融與交易](docs/finance-trading.md)（5）— 交易圖表、財務 Claude 技巧，以及交易機器人導流片
 - [安全與治理](docs/security-governance.md)（4）— agent 對齊事故、隱私疑慮、AI 輔助金融資安
 - [實體 AI 與硬體](docs/physical-ai.md)（3）— ESP32、機器人等實體裝置
@@ -88,6 +88,7 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 | 影片 41 | Claude 照片自動分類網頁（亨利溫 Henry Wen） | [reel/DfKEVgNSL3l](https://www.instagram.com/reel/DfKEVgNSL3l/) | 2026-11-01 |
 | 影片 42 | Cindy（GitHunt） | [watch?v=2575196886290079](https://www.facebook.com/watch/?v=2575196886290079) | 2026-11-01 |
 | 影片 43 | Android 手機 AI agent：ADB 無線偵錯＋Claude Code MCP（Tauhid IQ） | ⚠️ [reel/1628595922149351](https://www.facebook.com/reel/1628595922149351) | 2026-11-01 |
+| 影片 44 | FounderOS／Content Lab（Brody） | ⚠️ [reel/1423421943269401](https://www.facebook.com/reel/1423421943269401) | 2026-11-02 |
 | Brian 推薦清單 2026-10-31 | 圖表 skill 推薦：archify、diagram-design（無影片） | — | 2026-10-31 |
 
 沒有連結的來源，附上來源裡的待確認事項：

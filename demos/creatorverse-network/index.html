@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Creatorverse 創作者節點網路（重製 Demo）</title>
+<style>
+  :root{--bg:#0b1220;--panel:rgba(20,30,48,.86);--line:rgba(160,190,230,.18);--txt:#dfe8f5;--dim:#8ea3bf;--acc:#9cc8ff}
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--txt);font:14px/1.5 system-ui,-apple-system,"Segoe UI","Noto Sans TC",sans-serif;overflow:hidden}
+  canvas{position:fixed;inset:0;display:block;cursor:grab}
+  canvas.drag{cursor:grabbing}
+  header{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;gap:14px;padding:12px 18px;background:linear-gradient(#0b1220ee,#0b122000);pointer-events:none}
+  header *{pointer-events:auto}
+  h1{font-size:20px;font-weight:500;margin:0;letter-spacing:.3px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{border:1px solid var(--line);background:rgba(30,44,66,.7);color:var(--txt);border-radius:999px;padding:4px 12px;font-size:12px;cursor:pointer}
+  .chip.on{background:#dfe8f5;color:#0b1220}
+  .chip i{font-style:normal;opacity:.6;margin-left:4px}
+  .spacer{flex:1}
+  a.home,button.reset{color:var(--acc);text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:5px 10px;background:rgba(20,30,48,.7);font-size:12px;cursor:pointer}
+  #panel{position:fixed;right:16px;top:64px;width:280px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;backdrop-filter:blur(8px);transform:translateX(320px);transition:transform .25s ease}
+  #panel.open{transform:none}
+  #panel h2{margin:0 0 2px;font-size:17px}
+  #panel .sub{color:var(--dim);font-size:12px;margin-bottom:12px}
+  #panel table{width:100%;border-collapse:collapse;font-size:13px}
+  #panel td{padding:5px 0;border-bottom:1px solid var(--line)}
+  #panel td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+  #panel .close{position:absolute;right:10px;top:8px;background:none;border:0;color:var(--dim);font-size:18px;cursor:pointer}
+  #panel .tags{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap}
+  #panel .tags span{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:2px 8px;color:var(--dim)}
+  #legend{position:fixed;left:16px;bottom:16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:12px;color:var(--dim);max-width:360px}
+  #legend b{color:var(--txt);font-weight:500}
+  #note{position:fixed;right:16px;bottom:16px;font-size:11px;color:#f3c77a;background:rgba(40,30,10,.75);border:1px solid rgba(243,199,122,.35);border-radius:10px;padding:8px 12px;max-width:380px}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<header>
+  <h1>Creatorverse</h1>
+  <div class="chips" id="chips"></div>
+  <div class="spacer"></div>
+  <button class="reset" id="reset">重設視角</button>
+  <a class="home" href="../../">回 wiki 首頁</a>
+</header>
+<aside id="panel" aria-live="polite">
+  <button class="close" id="close" aria-label="關閉">×</button>
+  <h2 id="p-name"></h2>
+  <div class="sub" id="p-sub"></div>
+  <table id="p-stats"></table>
+  <div class="tags" id="p-tags"></div>
+</aside>
+<div id="legend"><b>操作：</b>拖曳平移、滾輪縮放、滑過節點看鄰居、點節點看假數據。<br>實心＝追蹤中；外圈＝你的帳號；空心環＝觀察名單；虛線環＝系統建議。</div>
+<div id="note">⚠️ 這是影片 44（FounderOS／Content Lab）畫面的重製示意，所有帳號與數字都是隨機產生的假資料，與任何真實創作者無關。</div>
+<script>
+(() => {
+  const cv = document.getElementById('c'), ctx = cv.getContext('2d');
+  let W, H, DPR;
+  function resize(){ DPR = window.devicePixelRatio||1; W = innerWidth; H = innerHeight; cv.width = W*DPR; cv.height = H*DPR; cv.style.width=W+'px'; cv.style.height=H+'px'; }
+  resize(); addEventListener('resize', resize);
+
+  // deterministic PRNG so screenshots are stable
+  let seed = 44; const rnd = () => (seed = (seed*16807) % 2147483647) / 2147483647;
+
+  const syll = ['ka','ri','no','vel','mi','sa','to','ren','lu','qi','dex','ora','fen','zu','pax','lio','mer','tav','ny','bo'];
+  const ends = ['.ai','.dev','.codes','.lab','_builds','.studio','.io','prompts','.ships',''];
+  const plats = ['Instagram','TikTok','YouTube'];
+  const groups = [
+    {id:'mine', label:'Your accounts', n:4},
+    {id:'tracked', label:'Tracked', n:25},
+    {id:'watch', label:'Watch list', n:12},
+    {id:'suggest', label:'Suggested', n:3},
+  ];
+  const used = new Set();
+  function handle(){ let h; do { h = '@' + syll[Math.floor(rnd()*20)] + syll[Math.floor(rnd()*20)] + ends[Math.floor(rnd()*ends.length)]; } while(used.has(h)); used.add(h); return h; }
+
+  const nodes = [];
+  groups.forEach(g => { for (let i=0;i<g.n;i++){
+    const r = g.id==='tracked' ? 60+rnd()*170 : g.id==='mine' ? 20+rnd()*50 : 220+rnd()*160;
+    const a = rnd()*Math.PI*2;
+    nodes.push({ id:nodes.length, h:handle(), g:g.id, x:Math.cos(a)*r, y:Math.sin(a)*r*0.8, vx:0, vy:0,
+      size: g.id==='tracked' ? 7+rnd()*10 : g.id==='mine' ? 11 : 6,
+      plat: plats[Math.floor(rnd()*3)], followers: Math.round(2000 + rnd()*rnd()*480000),
+      posts: 15, lift: (0.6 + rnd()*rnd()*9).toFixed(1), breakouts: Math.floor(rnd()*6),
+      cadence: (1+rnd()*6).toFixed(1), phase: rnd()*Math.PI*2, nb:new Set() });
+  }});
+  const links = [];
+  const link = (a,b) => { if (a===b || nodes[a].nb.has(b)) return; nodes[a].nb.add(b); nodes[b].nb.add(a); links.push([a,b]); };
+  nodes.forEach((n,i) => {
+    const k = n.g==='tracked' ? 2+Math.floor(rnd()*3) : n.g==='mine' ? 6 : 1+Math.floor(rnd()*2);
+    for (let j=0;j<k;j++){
+      let best=-1, bd=1e9;
+      for (let t=0;t<8;t++){ const c = Math.floor(rnd()*nodes.length); const d = Math.hypot(nodes[c].x-n.x, nodes[c].y-n.y); if (c!==i && d<bd){bd=d;best=c;} }
+      if (best>=0) link(i,best);
+    }
+  });
+
+  // short force layout, run up front
+  function relax(steps){ for (let s=0;s<steps;s++){
+    for (let i=0;i<nodes.length;i++) for (let j=i+1;j<nodes.length;j++){
+      const a=nodes[i], b=nodes[j]; let dx=a.x-b.x, dy=a.y-b.y; const d2=dx*dx+dy*dy+0.01, f=900/d2;
+      a.vx+=dx*f; a.vy+=dy*f; b.vx-=dx*f; b.vy-=dy*f; }
+    links.forEach(([i,j]) => { const a=nodes[i], b=nodes[j]; const dx=b.x-a.x, dy=b.y-a.y, d=Math.hypot(dx,dy)||1, f=(d-110)*0.004; a.vx+=dx/d*f*d*0.05; a.vy+=dy/d*f*d*0.05; b.vx-=dx/d*f*d*0.05; b.vy-=dy/d*f*d*0.05; });
+    nodes.forEach(n => { n.vx -= n.x*0.002; n.vy -= n.y*0.002; n.x+=n.vx; n.y+=n.vy; n.vx*=0.6; n.vy*=0.6; });
+  }}
+  // light de-overlap only: keep the ring-like initial placement
+  for (let s=0;s<60;s++){ for (let i=0;i<nodes.length;i++) for (let j=i+1;j<nodes.length;j++){
+    const a=nodes[i], b=nodes[j], dx=a.x-b.x, dy=a.y-b.y, d=Math.hypot(dx,dy)||1, min=a.size+b.size+34;
+    if (d<min){ const f=(min-d)/d*0.5; a.x+=dx*f; a.y+=dy*f; b.x-=dx*f; b.y-=dy*f; } } }
+  // normalise layout into a ~340px radius cloud
+  (() => { const cx=nodes.reduce((a,n)=>a+n.x,0)/nodes.length, cy=nodes.reduce((a,n)=>a+n.y,0)/nodes.length;
+    const ds=nodes.map(n=>Math.hypot(n.x-cx,n.y-cy)).sort((a,b)=>a-b), R=ds[Math.floor(ds.length*0.85)]||1;
+    nodes.forEach(n => { let dx=(n.x-cx)/R, dy=(n.y-cy)/R; const d=Math.hypot(dx,dy); if (d>1.15){ dx*=1.15/d; dy*=1.15/d; } n.x=dx*320; n.y=dy*270; }); })();
+
+  // decorative stars
+  const stars = Array.from({length:140}, () => ({x:(rnd()-.5)*2400, y:(rnd()-.5)*1600, r:rnd()*1.2+.2, p:rnd()*6}));
+
+  const view = {x:0, y:0, k:1};
+  function fit(){ view.k = Math.min(W,H)/900; view.x = W/2 - (document.getElementById('panel').classList.contains('open')?100:0); view.y = H/2 + 20; }
+  fit();
+  const toWorld = (sx,sy) => ({x:(sx-view.x)/view.k, y:(sy-view.y)/view.k});
+  let hover=null, sel=null, filter=null;
+
+  const chips = document.getElementById('chips');
+  [{id:null,label:'All',n:nodes.length}, ...groups].forEach(g => {
+    const b = document.createElement('button'); b.className='chip'+(g.id===null?' on':''); b.innerHTML = g.label+'<i>'+g.n+'</i>';
+    b.onclick = () => { filter=g.id; [...chips.children].forEach(c=>c.classList.remove('on')); b.classList.add('on'); };
+    chips.appendChild(b);
+  });
+
+  function hit(sx,sy){ const p=toWorld(sx,sy); let best=null, bd=1e9; nodes.forEach(n => { const d=Math.hypot(n.x-p.x,n.y-p.y); if (d < n.size+8/view.k && d<bd){bd=d;best=n;} }); return best; }
+
+  let drag=null;
+  cv.addEventListener('pointerdown', e => { drag={sx:e.clientX, sy:e.clientY, vx:view.x, vy:view.y, moved:false}; cv.classList.add('drag'); cv.setPointerCapture(e.pointerId); });
+  cv.addEventListener('pointermove', e => {
+    if (drag){ const dx=e.clientX-drag.sx, dy=e.clientY-drag.sy; if (Math.abs(dx)+Math.abs(dy)>3) drag.moved=true; view.x=drag.vx+dx; view.y=drag.vy+dy; }
+    else hover = hit(e.clientX, e.clientY);
+  });
+  cv.addEventListener('pointerup', e => { cv.classList.remove('drag'); if (drag && !drag.moved){ const n=hit(e.clientX,e.clientY); n ? openPanel(n) : closePanel(); } drag=null; });
+  cv.addEventListener('wheel', e => { e.preventDefault(); const f=Math.exp(-e.deltaY*0.0015), k=Math.max(0.3,Math.min(4,view.k*f)); const p=toWorld(e.clientX,e.clientY); view.k=k; view.x=e.clientX-p.x*k; view.y=e.clientY-p.y*k; }, {passive:false});
+  document.getElementById('reset').onclick = () => { closePanel(); fit(); };
+  document.getElementById('close').onclick = closePanel;
+
+  const groupName = {mine:'Your account',tracked:'Tracked',watch:'Watch list',suggest:'Suggested'};
+  function openPanel(n){
+    sel=n; const P=document.getElementById('panel'); P.classList.add('open');
+    document.getElementById('p-name').textContent = n.h;
+    document.getElementById('p-sub').textContent = groupName[n.g] + ' · ' + n.plat + ' · ' + n.nb.size + ' 條連線';
+    const rows = [['追蹤者（假）', n.followers.toLocaleString('en-US')],['近 30 天抓取貼文', n.posts],['最高爆紅倍數', n.lift+'x'],['突破貼文數', n.breakouts],['每週發文', n.cadence+' 篇'],['單次抓取估價（假）', '$'+(0.02+n.posts*0.0015).toFixed(3)]];
+    document.getElementById('p-stats').innerHTML = rows.map(r=>'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>').join('');
+    const t = ['hook 短','教學','Shorts','清單體','開箱'].filter((x,i)=>((n.id*7+i*3)%5)<2);
+    document.getElementById('p-tags').innerHTML = (t.length?t:['教學']).map(x=>'<span>'+x+'</span>').join('');
+  }
+  function closePanel(){ sel=null; document.getElementById('panel').classList.remove('open'); }
+
+  const colors = {mine:'#ffffff', tracked:'#a9cdfc', watch:'#c9d3e0', suggest:'#c9d3e0'};
+  let t0 = performance.now();
+  function frame(now){
+    const t=(now-t0)/1000;
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+    const g = ctx.createRadialGradient(W/2,H/2,50,W/2,H/2,Math.max(W,H)*.7); g.addColorStop(0,'#1a2840'); g.addColorStop(1,'#080d18');
+    ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+    ctx.setTransform(DPR*view.k,0,0,DPR*view.k,DPR*view.x,DPR*view.y);
+    stars.forEach(s => { ctx.globalAlpha = .25+.25*Math.sin(t*1.3+s.p); ctx.fillStyle='#9fb6d6'; ctx.beginPath(); ctx.arc(s.x,s.y,s.r/view.k*1.2,0,7); ctx.fill(); });
+    ctx.globalAlpha=1;
+    // orbital rings
+    [140,260,380].forEach((r,i) => { ctx.save(); ctx.rotate(t*0.05*(i%2?-1:1)); ctx.strokeStyle='rgba(150,190,240,'+(0.22-i*0.05)+')'; ctx.lineWidth=1/view.k; ctx.setLineDash([4/view.k,10/view.k]); ctx.beginPath(); ctx.ellipse(0,0,r,r*0.78,0,0,7); ctx.stroke();
+      const a=t*0.3*(i+1); ctx.setLineDash([]); ctx.fillStyle='rgba(180,215,255,.7)'; ctx.beginPath(); ctx.arc(Math.cos(a)*r, Math.sin(a)*r*0.78, 2.2/view.k+1,0,7); ctx.fill(); ctx.restore(); });
+    const focus = hover || sel;
+    const vis = n => !filter || n.g===filter || (filter==='mine' && n.g==='mine');
+    links.forEach(([i,j]) => { const a=nodes[i], b=nodes[j]; if (!vis(a)&&!vis(b)) return;
+      const hot = focus && (a===focus||b===focus);
+      ctx.strokeStyle = hot ? 'rgba(170,210,255,.85)' : focus ? 'rgba(150,180,220,.06)' : 'rgba(160,190,230,.20)';
+      ctx.lineWidth = (hot?1.6:0.8)/view.k; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); });
+    nodes.forEach(n => {
+      const on = vis(n), near = !focus || n===focus || focus.nb.has(n.id);
+      const alpha = !on ? .12 : near ? 1 : .18;
+      const pulse = 1 + 0.12*Math.sin(t*2 + n.phase);
+      const r = n.size*pulse;
+      ctx.globalAlpha = alpha;
+      if (n.g==='tracked' || n.g==='mine'){
+        const gl = ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,r*3); gl.addColorStop(0,'rgba(160,205,255,.55)'); gl.addColorStop(1,'rgba(160,205,255,0)');
+        ctx.fillStyle=gl; ctx.beginPath(); ctx.arc(n.x,n.y,r*3,0,7); ctx.fill();
+        ctx.fillStyle=colors[n.g]; ctx.beginPath(); ctx.arc(n.x,n.y,r,0,7); ctx.fill();
+        if (n.g==='mine'){ ctx.strokeStyle='rgba(255,255,255,.8)'; ctx.lineWidth=1.5/view.k; ctx.beginPath(); ctx.arc(n.x,n.y,r+5,0,7); ctx.stroke(); }
+      } else {
+        ctx.strokeStyle=colors[n.g]; ctx.lineWidth=1.6/view.k; if (n.g==='suggest') ctx.setLineDash([3/view.k,3/view.k]);
+        ctx.beginPath(); ctx.arc(n.x,n.y,r+2,0,7); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle=colors[n.g]; ctx.beginPath(); ctx.arc(n.x,n.y,2.4,0,7); ctx.fill();
+      }
+      if (on && near && (n.g!=='watch' || n===focus) && (n.size>11 || focus || view.k>1.3 || n.g==='mine')){
+        ctx.font = (12/view.k)+'px system-ui,sans-serif'; const w = ctx.measureText(n.h).width;
+        ctx.fillStyle='rgba(15,24,40,.8)'; ctx.fillRect(n.x-w/2-5/view.k, n.y+r+4/view.k, w+10/view.k, 17/view.k);
+        ctx.fillStyle='#e6eefa'; ctx.textAlign='center'; ctx.textBaseline='top'; ctx.fillText(n.h, n.x, n.y+r+6/view.k);
+      }
+      ctx.globalAlpha=1;
+      if (n===sel){ ctx.strokeStyle='#fff'; ctx.lineWidth=2/view.k; ctx.beginPath(); ctx.arc(n.x,n.y,r+9+2*Math.sin(t*4),0,7); ctx.stroke(); }
+    });
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  if (location.search.includes('auto')){
+    const big = nodes.filter(n=>n.g==='tracked').sort((a,b)=>b.nb.size-a.nb.size)[0];
+    document.getElementById('panel').style.transition='none'; hover = big; openPanel(big); fit();
+  }
+})();
+</script>
+</body>
+</html>
