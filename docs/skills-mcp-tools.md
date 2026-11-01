@@ -163,3 +163,21 @@ AI懶人報上傳的 59 秒影片，AI 語音國語旁白。重點：VibeVoice-A
 ![VibeVoice 官方 demo：Jimmy Fallon 訪談片段逐句標出講者 1／講者 0 與字幕](../assets/gifs/v40-vibevoice-diarization.gif)
 
 GIF：影片 0:22.5–0:26，說話者分離示範。
+
+### ⚠️ [Android 手機 AI agent（ADB 無線偵錯＋Claude Code MCP）｜預覽圖是替代方案 mobile-mcp，不是影片的 repo](https://www.facebook.com/reel/1628595922149351)
+
+宣稱「某 GitHub repo＋Opus 5.5」能讓任何 Android 手機變成免手動 agent，但影片裡的 repo 查無此帳號；底層手法只是 ADB 無線連線加截圖、點擊、打字
+
+替代方案預覽（不是影片裡的 repo）：⚠️ [mobile-next/mobile-mcp](https://github.com/mobile-next/mobile-mcp)
+
+![替代方案 mobile-next/mobile-mcp 的 GitHub 預覽（不是影片的 repo）](https://opengraph.githubassets.com/1/mobile-next/mobile-mcp)
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| ⚠️ 引流・宣稱待驗證・可信度低 | —（替代方案 mobile-mcp：10.2k） | ⚠️ [影片 43](https://www.facebook.com/reel/1628595922149351) |
+
+Tauhid IQ 上傳的 17 秒影片，沒有旁白。上半部是標題「dkrv-dev / Reverse Engineer Phone」的 GitHub 頁面（頁面顯示 17k 星、2.1k fork），About 寫「Turn any Android phone into an agent that uses its own apps over Wi-Fi. Say one sentence. Claude taps the rest.」，README 列出 tools/phone.py --probe、tools/agent.sh、claude mcp add phone tools/venv/bin/python tools/mcp.py；下半部是 Windows cmd.exe 的執行紀錄，加上一支真手機放在桌上加速播放，自己開 Telegram、再開到 Play 商店的 ChatGPT 頁面。英文說明文步驟：手機與筆電連同一個 Wi-Fi→開發人員選項開啟無線偵錯→把 repo 和手機「關於手機」截圖連同提示詞貼給 Claude Code→Opus「找到漏洞」（其實就是走網路的 ADB）→探測型號、版本、已安裝 App 並存還原點→寫出只有 3 個工具（看畫面、點擊、打字）的 agent→加進 Claude Code 當 MCP→按一次 Allow，說「open Telegram and install ChatGPT」。還宣稱支援 40 個品牌、300 多款機型、免 root；結尾寫「Find GitHub repo + full prompt below」卻沒給 repo。查證：⚠️ https://github.com/dkrv-dev 回 404（帳號不存在），GitHub API 搜尋也找不到這個 repo；而且 GitHub repo 名稱不能有空格，頁面很可能是做出來的假畫面或已刪除。Opus 5.5 只是說明文點名的模型，這裡不做判斷。可信度：低，repo 查無、數字無從驗證，加上「repo＋完整提示詞在下面」的導流寫法和誇張口吻。手法本身是真的也很普通：adb connect 走 Wi-Fi，再用截圖、點擊、輸入文字三個動作操作手機，就是標準做法。可用的替代方案（不是影片裡的 repo）：mobile-next/mobile-mcp（⚠️ https://github.com/mobile-next/mobile-mcp），10,198 星，Apache-2.0，MCP server，支援模擬器與實機，可接 Claude Code、Codex、Cursor。配樂：phonk／電子。面試：讓 agent 透過 ADB 完整控制裝置，權限面非常大，需要指令與 App 白名單、安裝與付款這類動作要人確認、限縮網路範圍（只在隔離網段開無線偵錯，用完就關）；另外，採用爆紅 repo 之前，先確認它真的存在、維護者是誰
+
+![影片下半部：cmd.exe 執行紀錄加上桌上的手機自己開 Telegram 與 Play 商店](../assets/gifs/v43-android-adb-agent.gif)
+
+GIF：影片 0:02–0:06，終端機紀錄與手機自動操作（加速播放）。
