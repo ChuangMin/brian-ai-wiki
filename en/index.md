@@ -4,6 +4,8 @@
 
 [Daily news](../news/index.md) — morning briefings (Chinese).
 
+[Relationship graph](../graph/index.html?lang=en) — an interactive map of every entry, category, source video and concept (247 nodes, 454 edges).
+
 Brian's public wiki. It collects AI tools and viewpoints from Facebook videos, screenshots, and recommendation lists, files them by topic, and marks credibility such as engagement bait and concept animation. New videos keep getting added.
 
 Star counts were checked on the evening of 2026-10-30 (Taipei time). video-to-game was checked on the morning of 2026-10-31. Screenshot batch 2 was checked at noon on 2026-10-31. Brian's recommendation list, Filee, CLI-Anything, ai-pdf-chatbot-langchain, the five repos in Video 32, Paperclip, Spec Kit, archify, and diagram-design were checked on the evening of 2026-10-31. Edge0 was checked on the evening of 2026-10-31 (Taipei time). PPT Master was checked in the early hours of 2026-11-01 (Taipei time). VibeVoice and Cindy were checked on the evening of 2026-11-01 (Taipei time). mobile-mcp was checked late at night on 2026-11-01 (Taipei time). The events and figures in Video 16 are taken from the video's copy and were not verified one by one.
