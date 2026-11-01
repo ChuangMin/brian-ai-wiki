@@ -1,5 +1,7 @@
 # Agent 系統與編排
 
+中文 | [English](../en/docs/agent-orchestration.md)
+
 [回首頁](../README.md)
 
 多 agent 指揮、swarm、中斷續跑、商用 agent OS 與 agent 平台全景

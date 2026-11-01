@@ -1,5 +1,7 @@
 # 金融與交易
 
+中文 | [English](../en/docs/finance-trading.md)
+
 [回首頁](../README.md)
 
 交易圖表、財務 Claude 技巧，以及交易機器人導流片

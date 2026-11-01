@@ -1,5 +1,7 @@
 # 搞笑與迷因
 
+中文 | [English](../en/docs/memes.md)
+
 [回首頁](../README.md)
 
 關於 AI 的職場迷因、搞笑短劇與梗圖

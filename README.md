@@ -1,5 +1,7 @@
 # AI 影片收藏 Wiki
 
+中文 | [English](en/index.md)
+
 [每日新聞](news/index.md) — 每天早上的新聞簡報。
 
 Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片、截圖與推薦清單整理 AI 工具與觀點，依主題分類收錄，並另外標示引流、概念動畫等可信度；之後的新影片會繼續加進來。

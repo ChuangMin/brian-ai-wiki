@@ -1,5 +1,7 @@
 # 安全與治理
 
+中文 | [English](../en/docs/security-governance.md)
+
 [回首頁](../README.md)
 
 agent 對齊事故、隱私疑慮、AI 輔助金融資安

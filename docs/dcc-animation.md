@@ -1,5 +1,7 @@
 # 3D／動畫與 DCC
 
+中文 | [English](../en/docs/dcc-animation.md)
+
 [回首頁](../README.md)
 
 Blender 等 DCC 外掛、運鏡、程序化動畫、遊戲生成

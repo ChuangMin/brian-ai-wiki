@@ -1,5 +1,7 @@
 # 團隊與組織
 
+中文 | [English](../en/docs/teams-org.md)
+
 [回首頁](../README.md)
 
 協作成本、決策結構、組織設計

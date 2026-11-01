@@ -1,5 +1,7 @@
 # AI 影像與影片
 
+中文 | [English](../en/docs/ai-media.md)
+
 [回首頁](../README.md)
 
 AI 生成影片與圖片、prompt、AI 渲染、程式化影片

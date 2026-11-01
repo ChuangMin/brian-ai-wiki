@@ -1,5 +1,7 @@
 # 自動化工作流
 
+中文 | [English](../en/docs/automation-workflows.md)
+
 [回首頁](../README.md)
 
 n8n 等流程自動化，規則優先與人工核准閘門

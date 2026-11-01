@@ -1,5 +1,7 @@
 # 生產力與開源工具
 
+中文 | [English](../en/docs/productivity-tools.md)
+
 [回首頁](../README.md)
 
 本身不是 AI 的實用工具：轉檔、桌面效率、開源小工具
