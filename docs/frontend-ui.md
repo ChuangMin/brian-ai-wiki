@@ -1,5 +1,7 @@
 # 前端與 UI 設計
 
+中文 | [English](../en/docs/frontend-ui.md)
+
 [回首頁](../README.md)
 
 設計系統、UI linter、設計 skill、介面模板與概念介面

@@ -1,5 +1,7 @@
 # AI 影片收藏 Wiki
 
+中文 | [English](en/index.md)
+
 [每日新聞](news/index.md) — 每天早上的新聞簡報。
 
 [關聯圖](graph/index.html) — 用互動圖看所有條目、分類、來源影片與概念之間的關係（247 個節點、454 條連線）。

@@ -1,5 +1,7 @@
 # 記憶與上下文
 
+中文 | [English](../en/docs/memory-context.md)
+
 [回首頁](../README.md)
 
 知識圖譜、程式碼圖譜、長期記憶、跨 agent 交接

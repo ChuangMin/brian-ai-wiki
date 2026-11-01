@@ -1,5 +1,7 @@
 # 實體 AI 與硬體
 
+中文 | [English](../en/docs/physical-ai.md)
+
 [回首頁](../README.md)
 
 ESP32、機器人等實體裝置

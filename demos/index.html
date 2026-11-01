@@ -31,6 +31,9 @@
     font-size: 14px;
   }
   .home:hover { color: var(--accent); }
+  .lang { margin: 0 0 0 12px; font-size: 14px; color: var(--muted); }
+  .lang a { color: var(--muted); text-decoration: none; }
+  .lang a:hover, .lang a.on { color: var(--accent); }
   h1 { margin: 14px 0 8px; font-size: 32px; letter-spacing: 0.02em; color: var(--bright); }
   .lead { margin: 0 0 22px; color: var(--muted); max-width: 42em; }
   #filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; }
@@ -110,9 +113,10 @@
 </head>
 <body>
 <div class="wrap">
-  <a class="home" href="../">回 wiki 首頁</a>
-  <h1>Demos</h1>
-  <p class="lead">可在瀏覽器打開的 HTML 示範，依分類排列。要加入新的示範，放一個資料夾，並在 demos.json 加一筆。</p>
+  <a class="home" id="homeLink" href="../">回 wiki 首頁</a>
+  <span class="lang"><a id="langZh" href="./">中文</a> | <a id="langEn" href="?lang=en">English</a></span>
+  <h1 id="pageTitle">Demos</h1>
+  <p class="lead" id="pageLead">可在瀏覽器打開的 HTML 示範，依分類排列。要加入新的示範，放一個資料夾，並在 demos.json 加一筆。</p>
   <nav id="filters" aria-label="分類"></nav>
   <div id="gallery"></div>
   <p id="status" hidden></p>
@@ -122,6 +126,49 @@
 const gallery = document.getElementById("gallery");
 const filters = document.getElementById("filters");
 const statusEl = document.getElementById("status");
+const EN = new URLSearchParams(location.search).get("lang") === "en";
+const UI = EN ? {
+  home: "Wiki home",
+  homeHref: "../en/",
+  title: "Demos",
+  lead: "HTML demos you can open in a browser, grouped by category. To add one, add a folder and one row in demos.json.",
+  all: "All",
+  uncategorized: "Uncategorized",
+  source: "Source",
+  open: "Open demo",
+  emptyCat: "This category has no demos yet.",
+  empty: "No demos yet.",
+  fail: "Could not load demos.json. Open this page from a local server or GitHub Pages (opening the file directly blocks fetch).",
+  video: "Video "
+} : {
+  home: "回 wiki 首頁",
+  homeHref: "../",
+  title: "Demos",
+  lead: "可在瀏覽器打開的 HTML 示範，依分類排列。要加入新的示範，放一個資料夾，並在 demos.json 加一筆。",
+  all: "全部",
+  uncategorized: "未分類",
+  source: "出處",
+  open: "開啟示範",
+  emptyCat: "這個分類還沒有示範。",
+  empty: "還沒有示範。",
+  fail: "讀不到 demos.json。請用本機伺服器或 GitHub Pages 開啟這個頁面（直接以檔案開啟時，瀏覽器會擋住 fetch）。",
+  video: "影片 "
+};
+const COPY = {
+  "chart-replay": { title: "Bar-replay chart demo", desc: "A canvas recreation of TradingView Bar Replay, with Premium/Discount zones, a volume profile, and Buy/Sell and TP labels. Prices are simulated demo data.", category: "Financial charts" },
+  bfs: { title: "BFS degrees of separation: find a crush", desc: "Breadth-first search expands ring by ring. Python highlights line by line, the FIFO queue updates live, and the shortest path is marked in gold as 4 handshakes. Includes the came = {} fix the original video left out.", category: "Algorithms" },
+  prim: { title: "Prim minimum-spanning-tree animation", desc: "7 nodes and 12 edges. A min-heap picks the cheapest edge, skips edges that would cycle, and the heap, the MST list, and the total stay in sync. The total ends at 16. Step, play, and change speed.", category: "Algorithms" },
+  charts: { title: "Six charts, and when to use them", desc: "Bar, pie, line, scatter, histogram, and box plot as six animated SVGs. A scan line loops for 10 seconds and reads values live. The histogram and the box plot share one seeded set of 90 points.", category: "Data visualization" },
+  "portfolio-scroll": { title: "2026 auto-scrolling portfolio page", desc: "A black-and-gold graphic-design portfolio template. Eight project sections (logos, thumbnails, social, packaging, billboards) scroll down on their own, pause when you hover a card, and return to the top at the end.", category: "Web design" },
+  "view-transition-dashboard": { title: "Kinlo back-office dashboard (View Transitions circular wipe)", desc: "A cinema back-office dashboard. Click the sidebar, a tab, or the theme button and the view wipes out in a circle from the click (document.startViewTransition + clip-path). Includes ticking gradient KPIs, an October calendar, a showtime seat map, and expandable setTheme() source.", category: "Web design" },
+  "photo-sort-fly": { title: "Auto-sort photos: thumbnails fly into category boxes", desc: "Press Start and 180 colored thumbnails (150 photos, 30 videos) fly from a pile into boxes for screenshots, travel, daily life, work, memes, and plain text. Counts tick live. Reset starts over. Blocks stand in for photos. Categories are random fake data. No files are read.", category: "Web design" }
+};
+document.documentElement.lang = EN ? "en" : "zh-Hant";
+document.title = EN ? "Demos index — AI Video Collection Wiki" : "Demos 索引 — AI 影片收藏 Wiki";
+document.getElementById("pageLead").textContent = UI.lead;
+document.getElementById("homeLink").textContent = UI.home;
+document.getElementById("homeLink").href = UI.homeHref;
+document.getElementById(EN ? "langEn" : "langZh").classList.add("on");
 
 function el(tag, attrs) {
   const node = document.createElement(tag);
@@ -149,8 +196,9 @@ function safePath(path) {
 }
 
 function categoryOf(demo) {
+  if (EN && demo && COPY[demo.id]) return COPY[demo.id].category;
   const name = demo && typeof demo.category === "string" ? demo.category.trim() : "";
-  return name || "未分類";
+  return name || UI.uncategorized;
 }
 
 function groupByCategory(demos) {
@@ -172,22 +220,27 @@ function card(demo) {
   const metaKids = [el("span", { class: "tag", text: cat })];
   if (demo.added) metaKids.push(el("time", { datetime: String(demo.added), text: String(demo.added) }));
   const sourceUrl = safeHttp(demo.sourceUrl);
+  const sourceLabel = EN && /^影片\s+\d+/.test(demo.source || "")
+    ? demo.source.replace(/^影片\s+/, UI.video)
+    : (demo.source || "");
   const sourceLink = el("a", {
     href: sourceUrl || "#",
-    text: demo.source || "",
+    text: sourceLabel,
     target: "_blank",
     rel: "noopener noreferrer"
   });
   if (!sourceUrl) sourceLink.removeAttribute("href");
   const href = safePath(demo.path);
-  const title = demo.title || demo.id || "";
-  const open = el("a", { class: "open", href: href || "#", text: "開啟示範" });
-  if (title) open.setAttribute("aria-label", "開啟示範：" + title);
+  const copy = EN && COPY[demo.id];
+  const title = (copy && copy.title) || demo.title || demo.id || "";
+  const desc = (copy && copy.desc) || demo.desc || "";
+  const open = el("a", { class: "open", href: href || "#", text: UI.open });
+  if (title) open.setAttribute("aria-label", UI.open + ": " + title);
   return el("article", { class: "card" },
     el("div", { class: "meta" }, metaKids[0], metaKids[1]),
     el("h3", { text: title }),
-    el("p", { class: "desc", text: demo.desc || "" }),
-    el("p", { class: "source" }, document.createTextNode("出處 "), sourceLink),
+    el("p", { class: "desc", text: desc }),
+    el("p", { class: "source" }, document.createTextNode(UI.source + " "), sourceLink),
     open
   );
 }
@@ -196,7 +249,7 @@ function render(groups, active) {
   gallery.replaceChildren();
   const shown = active === "全部" ? groups : groups.filter(function (g) { return g.cat === active; });
   if (!shown.length || shown.every(function (g) { return !g.items.length; })) {
-    gallery.append(el("p", { class: "empty", text: "這個分類還沒有示範。" }));
+    gallery.append(el("p", { class: "empty", text: UI.emptyCat }));
     return;
   }
   shown.forEach(function (group) {
@@ -211,13 +264,13 @@ function render(groups, active) {
 
 function renderFilters(groups, active, onPick) {
   const total = groups.reduce(function (n, g) { return n + g.items.length; }, 0);
-  const cats = [{ name: "全部", count: total }].concat(groups.map(function (g) {
-    return { name: g.cat, count: g.items.length };
+  const cats = [{ name: "全部", label: UI.all, count: total }].concat(groups.map(function (g) {
+    return { name: g.cat, label: g.cat, count: g.items.length };
   }));
   filters.replaceChildren();
   cats.forEach(function (cat) {
     const button = el("button", { type: "button", "aria-pressed": cat.name === active ? "true" : "false" },
-      el("span", { text: cat.name }),
+      el("span", { text: cat.label || cat.name }),
       el("span", { class: "count", text: String(cat.count) })
     );
     if (cat.name === active) button.classList.add("on");
@@ -245,12 +298,12 @@ fetch("demos.json").then(function (res) {
   }
   if (!data.length) {
     renderFilters(groups, active, pick);
-    gallery.append(el("p", { class: "empty", text: "還沒有示範。" }));
+    gallery.append(el("p", { class: "empty", text: UI.empty }));
     return;
   }
   pick("全部");
 }).catch(function () {
-  fail("讀不到 demos.json。請用本機伺服器或 GitHub Pages 開啟這個頁面（直接以檔案開啟時，瀏覽器會擋住 fetch）。");
+  fail(UI.fail);
 });
 </script>
 </body>

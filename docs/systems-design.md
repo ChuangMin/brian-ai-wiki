@@ -1,5 +1,7 @@
 # 系統設計與工程基礎
 
+中文 | [English](../en/docs/systems-design.md)
+
 [回首頁](../README.md)
 
 非 AI 的後端／分散式系統基礎與維運常識（如 TLS 健檢），主任工程師面試必備

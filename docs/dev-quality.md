@@ -1,5 +1,7 @@
 # 程式開發與品質
 
+中文 | [English](../en/docs/dev-quality.md)
+
 [回首頁](../README.md)
 
 版控、過程重播、瀏覽器自我驗收、verify＋gate 流程

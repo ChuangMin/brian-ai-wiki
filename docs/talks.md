@@ -1,5 +1,7 @@
 # 演講與 Talk
 
+中文 | [English](../en/docs/talks.md)
+
 [回首頁](../README.md)
 
 演講、訪談、Podcast 片段：AI 領袖與從業者的第一手說法

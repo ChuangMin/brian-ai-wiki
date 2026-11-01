@@ -1,5 +1,7 @@
 # Skills／MCP／工具
 
+中文 | [English](../en/docs/skills-mcp-tools.md)
+
 [回首頁](../README.md)
 
 通用的 agent 能力元件：MCP、skill、開發方法論 skill、語音、抽取模型

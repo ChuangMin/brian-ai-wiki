@@ -1,5 +1,7 @@
 # 成本與取捨
 
+中文 | [English](../en/docs/cost-tradeoffs.md)
+
 [回首頁](../README.md)
 
 token 成本、指令輸出壓縮、agent 與傳統工具的成本對比

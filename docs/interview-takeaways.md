@@ -1,5 +1,7 @@
 # 面試可用的重點
 
+中文 | [English](../en/docs/interview-takeaways.md)
+
 [回首頁](../README.md)
 
 從已收錄的影片整理、面試時可以拿來講的重點。
