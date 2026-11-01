@@ -2,6 +2,8 @@
 
 [每日新聞](news/index.md) — 每天早上的新聞簡報。
 
+[關聯圖](graph/index.html) — 用互動圖看所有條目、分類、來源影片與概念之間的關係（247 個節點、454 條連線）。
+
 Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片、截圖與推薦清單整理 AI 工具與觀點，依主題分類收錄，並另外標示引流、概念動畫等可信度；之後的新影片會繼續加進來。
 
 星數為 2026-10-30 晚上（台北時間）查詢的數字；video-to-game 為 2026-10-31 上午查詢；截圖批次 2 為 2026-10-31 中午查詢；Brian 推薦清單、Filee、CLI-Anything、ai-pdf-chatbot-langchain、影片 32 的 5 個 repo、Paperclip、Spec Kit、archify 與 diagram-design 為 2026-10-31 晚上查詢。Edge0 為 2026-10-31 晚上（台北時間）查詢。PPT Master 為 2026-11-01 凌晨（台北時間）查詢。VibeVoice、Cindy 為 2026-11-01 晚上（台北時間）查詢。mobile-mcp 為 2026-11-01 深夜（台北時間）查詢。影片 16 的事件與數字取自影片文案，未逐一查證。

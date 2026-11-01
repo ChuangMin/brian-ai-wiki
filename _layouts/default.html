@@ -20,6 +20,7 @@
         <a href="{{ "/" | relative_url }}"{% if url == "/" or url == "/index.html" %} aria-current="page"{% endif %}>首頁</a>
         <a href="{{ "/news/" | relative_url }}"{% if url contains "/news/" %} aria-current="page"{% endif %}>每日新聞</a>
         <a href="{{ "/demos/" | relative_url }}"{% if url contains "/demos/" %} aria-current="page"{% endif %}>圖表演示</a>
+        <a href="{{ "/graph/" | relative_url }}"{% if url contains "/graph/" %} aria-current="page"{% endif %}>關聯圖</a>
       </nav>
 
       {{ content }}
