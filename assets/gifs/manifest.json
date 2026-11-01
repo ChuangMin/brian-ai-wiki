@@ -259,5 +259,27 @@
     "what_it_shows": "淺色電影院後台（影片中 logo 拼作 Kinlo）：游標點 Finance 側欄的 Cards 分頁、再點 Calendar，每次換頁都從點擊處以圓形 clip-path 擴散蓋過舊畫面；下方同時顯示 src/App.tsx 的 setTheme() 原始碼（document.startViewTransition + animate clipPath on ::view-transition-new(root)）",
     "size_bytes": 957321,
     "rebuild_note": "來源檔 /workspace/fb/reel39.mp4（檔名是 39，內容是影片 37）。重製：ffmpeg -ss 2 -t 3 -i reel39.mp4 -vf \"crop=1040:1100:20:560,fps=12,scale=720:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=160:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=4:diff_mode=rectangle\" v37-view-transition-wipe.gif（裁切範圍含儀表板＋程式碼面板，720×762，36 格，約 0.96 MB）。可互動的重製版在 demos/view-transition-dashboard/。"
+  },
+  {
+    "file": "v40-vibevoice-diarization.gif",
+    "video_number": "影片 40",
+    "entry_name": "VibeVoice：微軟開源語音 AI（長音檔 ASR＋說話者分離＋即時 TTS）",
+    "reel_url": "https://www.facebook.com/watch/?v=2181912112534967",
+    "segment_start": 22.5,
+    "duration": 3.5,
+    "what_it_shows": "「誰講・幾秒」段落：VibeVoice 官方 demo 的 Jimmy Fallon 訪談片段（標題 Video subtitles from VibeVoice-ASR），下方逐句標出講者 1／講者 0 與中英字幕，示範說話者分離",
+    "size_bytes": 857138,
+    "rebuild_note": "來源檔 /workspace/fb/reel43.mp4（內容是影片 40）。重製：ffmpeg -ss 22.5 -t 3.5 -i reel43.mp4 -vf \"crop=1080:960:0:380,fps=10,scale=500:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=128:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=4:diff_mode=rectangle\" v40-vibevoice-diarization.gif"
+  },
+  {
+    "file": "v41-photo-sort-fly.gif",
+    "video_number": "影片 41",
+    "entry_name": "Claude 做的照片／影片自動分類網頁（單一 HTML）",
+    "reel_url": "https://www.instagram.com/reel/DfKEVgNSL3l/",
+    "segment_start": 10.5,
+    "duration": 3.5,
+    "what_it_shows": "手機拍筆電螢幕：按「開始整理」前縮圖堆成圓形一團，接著飛進「整理我的 Downloads 資料夾」頁面的各分類框，計數跟著跳動",
+    "size_bytes": 761297,
+    "rebuild_note": "來源檔 /workspace/fb/reel44.mp4（內容是影片 41）。手持翻拍畫面晃動、難壓縮，所以用較小尺寸：ffmpeg -ss 10.5 -t 3.5 -i reel44.mp4 -vf \"crop=1080:1300:0:150,fps=7,scale=300:-1:flags=lanczos,hqdn3d=4:4:6:6,split[a][b];[a]palettegen=max_colors=48:stats_mode=full[p];[b][p]paletteuse=dither=none\" v41-photo-sort-fly.gif。可互動的重製版在 demos/photo-sort-fly/。"
   }
 ]

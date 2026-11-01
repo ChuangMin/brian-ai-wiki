@@ -147,3 +147,19 @@ DietrichGebert 的「懶惰資深工程師」skill：只寫任務需要的程式
 | 可信度高 | 71.6k | [影片 39](https://www.facebook.com/reel/1051071164608370) |
 
 小礦工挖挖礦上傳的 1:28 影片，畫面是官方範例網站的錄影，沒有現場生成示範。給 Claude Code、Cursor、Codex CLI 用的技能包。功能：生成前先確認模板、比例、頁數等規格（要求快速模式才跳過）；圖表預設是可編輯的形狀，加參數可改成原生圖表；會加轉場與動畫，並把旁白稿寫進備忘稿；圖片來自 AI 生成或開放圖庫，並在投影片上標註來源；也能套用公司模板並保留原設計。官方範例站有 72 份簡報、1012 頁，涵蓋中、日、韓、德文；範例 repo：https://github.com/hugohe3/ppt-master-examples （22 ⭐）。需求：Python 3.10–3.14 加一個 AI 程式助理。作者提醒別期待第一次就完美，仍要自己再修。值得一看的 fork：academic-ppt-master（論文轉 PPTX）、ppt-master-plus。MIT，2025-12-10 建立，最近推送 2026-10-30。可信度：高，星數與 GitHub API 一致；片尾只問你最想先做哪份簡報，是輕微的留言引導，不算引流。配樂：輕快、俏皮的電子配樂（休閒遊戲風）。無 GIF 片段。面試：AI 產出要能「再編輯」，而不是一次定稿；human-in-the-loop 的設計，跟控管 AI 程式碼品質同一個道理
+
+### [VibeVoice：微軟開源語音 AI（長音檔 ASR＋說話者分離＋即時 TTS）](https://github.com/microsoft/VibeVoice)
+
+一次吃進最長約 1 小時錄音，直接輸出「誰講・幾秒・講什麼」的逐字稿，另有可在 Colab 跑的即時語音合成
+
+![microsoft/VibeVoice 的 GitHub 預覽](https://opengraph.githubassets.com/1/microsoft/VibeVoice)
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 可信度高 | 55.1k | [影片 40](https://www.facebook.com/watch/?v=2181912112534967) |
+
+AI懶人報上傳的 59 秒影片，AI 語音國語旁白。重點：VibeVoice-ASR 不用先把長錄音切段，單次處理最長約 1 小時，同時做說話者分離與時間戳（誰講、幾秒到幾秒、講什麼），支援 50 多種語言，可給熱詞（hotwords）提高專有名詞辨識率（旁白念成 WhyVoice，正確是 VibeVoice）；另有即時 TTS，附 Colab T4 快速上手筆記本。示範片段是官方 demo 的 Jimmy Fallon 訪談 Lady Gaga，字幕標出講者 0／講者 1。以前要 ASR 加 diarization 兩個工具接起來，現在一個模型搞定。MIT 授權，2025-08-25 建立，最後推送 2026-10-08；影片顯示 54.9k 星。可信度：高，微軟官方 repo，影片內容與 README 一致；片尾只叫人追蹤，沒有導流。配樂：烏克麗麗加輕打擊樂。面試：會議紀錄、客服錄音這類需求，先問「要不要分講者、要不要時間戳」，一個端到端模型能省掉多工具串接的對齊與錯誤累積，但上線前要用自己的錄音抽樣驗準確率
+
+![VibeVoice 官方 demo：Jimmy Fallon 訪談片段逐句標出講者 1／講者 0 與字幕](../assets/gifs/v40-vibevoice-diarization.gif)
+
+GIF：影片 0:22.5–0:26，說話者分離示範。

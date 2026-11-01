@@ -58,5 +58,15 @@
     "source": "影片 37",
     "sourceUrl": "https://www.facebook.com/reel/1473800611304190",
     "added": "2026-10-31"
+  },
+  {
+    "id": "photo-sort-fly",
+    "title": "照片自動分類：縮圖飛進分類框",
+    "desc": "按「開始整理」，中間一團 180 個彩色縮圖（150 張照片、30 支影片）依序飛進網頁截圖、旅行與景點、生活日常、工作日常、迷因圖、純文字等分類框，計數即時跳動；「重設」可重來。色塊代替照片，分類是隨機假資料，不讀取任何檔案。",
+    "category": "網頁設計",
+    "path": "photo-sort-fly/",
+    "source": "影片 41",
+    "sourceUrl": "https://www.instagram.com/reel/DfKEVgNSL3l/",
+    "added": "2026-11-01"
   }
 ]

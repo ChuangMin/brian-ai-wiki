@@ -4,24 +4,24 @@
 
 Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片、截圖與推薦清單整理 AI 工具與觀點，依主題分類收錄，並另外標示引流、概念動畫等可信度；之後的新影片會繼續加進來。
 
-星數為 2026-10-30 晚上（台北時間）查詢的數字；video-to-game 為 2026-10-31 上午查詢；截圖批次 2 為 2026-10-31 中午查詢；Brian 推薦清單、Filee、CLI-Anything、ai-pdf-chatbot-langchain、影片 32 的 5 個 repo、Paperclip、Spec Kit、archify 與 diagram-design 為 2026-10-31 晚上查詢。Edge0 為 2026-10-31 晚上（台北時間）查詢。PPT Master 為 2026-11-01 凌晨（台北時間）查詢。影片 16 的事件與數字取自影片文案，未逐一查證。
+星數為 2026-10-30 晚上（台北時間）查詢的數字；video-to-game 為 2026-10-31 上午查詢；截圖批次 2 為 2026-10-31 中午查詢；Brian 推薦清單、Filee、CLI-Anything、ai-pdf-chatbot-langchain、影片 32 的 5 個 repo、Paperclip、Spec Kit、archify 與 diagram-design 為 2026-10-31 晚上查詢。Edge0 為 2026-10-31 晚上（台北時間）查詢。PPT Master 為 2026-11-01 凌晨（台北時間）查詢。VibeVoice、Cindy 為 2026-11-01 晚上（台北時間）查詢。影片 16 的事件與數字取自影片文案，未逐一查證。
 
 可信度標籤與分類分開標示：⚠️ 引流（導流、推薦碼、課程漏斗）、概念動畫／概念介面（設計好的畫面，不是真實產品或實測）、AI 生成、後製包裝、宣稱待驗證、商用・無 repo、付費模板、搞笑短劇。GitHub 項目的預覽圖取自 GitHub 的 Open Graph 卡片。
 
 標了引流的條目，連結和說明裡的網址旁邊都會加上 ⚠️。
 
-共 86 則。
+共 89 則。
 
 ## 分類
 
-- [Agent 系統與編排](docs/agent-orchestration.md)（9）— 多 agent 指揮、swarm、中斷續跑、商用 agent OS 與 agent 平台全景
+- [Agent 系統與編排](docs/agent-orchestration.md)（10）— 多 agent 指揮、swarm、中斷續跑、商用 agent OS 與 agent 平台全景
 - [記憶與上下文](docs/memory-context.md)（7）— 知識圖譜、程式碼圖譜、長期記憶、跨 agent 交接
-- [Skills／MCP／工具](docs/skills-mcp-tools.md)（12）— 通用的 agent 能力元件：MCP、skill、開發方法論 skill、語音、抽取模型
+- [Skills／MCP／工具](docs/skills-mcp-tools.md)（13）— 通用的 agent 能力元件：MCP、skill、開發方法論 skill、語音、抽取模型
 - [程式開發與品質](docs/dev-quality.md)（5）— 版控、過程重播、瀏覽器自我驗收、verify＋gate 流程
 - [前端與 UI 設計](docs/frontend-ui.md)（12）— 設計系統、UI linter、設計 skill、介面模板與概念介面
 - [3D／動畫與 DCC](docs/dcc-animation.md)（7）— Blender 等 DCC 外掛、運鏡、程序化動畫、遊戲生成
 - [AI 影像與影片](docs/ai-media.md)（4）— AI 生成影片與圖片、prompt、AI 渲染、程式化影片
-- [自動化工作流](docs/automation-workflows.md)（2）— n8n 等流程自動化，規則優先與人工核准閘門
+- [自動化工作流](docs/automation-workflows.md)（3）— n8n 等流程自動化，規則優先與人工核准閘門
 - [金融與交易](docs/finance-trading.md)（5）— 交易圖表、財務 Claude 技巧，以及交易機器人導流片
 - [安全與治理](docs/security-governance.md)（4）— agent 對齊事故、隱私疑慮、AI 輔助金融資安
 - [實體 AI 與硬體](docs/physical-ai.md)（3）— ESP32、機器人等實體裝置
@@ -80,6 +80,9 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 | 影片 37 | Cinema back office dashboard（Code & Chill） | [reel/1473800611304190](https://www.facebook.com/reel/1473800611304190) | 2026-10-31 |
 | 影片 38 | Edge0（GitHunt） | [share/r/1CcD2Vgk2Y](https://www.facebook.com/share/r/1CcD2Vgk2Y/)（canonical watch?v=28409829592028769，經 LINE 傳來） | 2026-10-31 |
 | 影片 39 | PPT Master（小礦工挖挖礦） | [reel/1051071164608370](https://www.facebook.com/reel/1051071164608370) | 2026-11-01 |
+| 影片 40 | VibeVoice（AI懶人報） | [watch?v=2181912112534967](https://www.facebook.com/watch/?v=2181912112534967) | 2026-11-01 |
+| 影片 41 | Claude 照片自動分類網頁（亨利溫 Henry Wen） | [reel/DfKEVgNSL3l](https://www.instagram.com/reel/DfKEVgNSL3l/) | 2026-11-01 |
+| 影片 42 | Cindy（GitHunt） | [watch?v=2575196886290079](https://www.facebook.com/watch/?v=2575196886290079) | 2026-11-01 |
 | Brian 推薦清單 2026-10-31 | 圖表 skill 推薦：archify、diagram-design（無影片） | — | 2026-10-31 |
 
 沒有連結的來源，附上來源裡的待確認事項：
