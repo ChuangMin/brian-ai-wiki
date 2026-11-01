@@ -111,3 +111,15 @@ Lập Trình Web AI（越南語文案）介紹 Claude Code 的實驗功能 Agent
 ![Paperclip 暗色 SaaS 介面導覽：代理儀表板（統計卡片＋Issues by Priority/Status 長條圖）→ Issue 清單（IN PROGRESS / BLOCKED 分組）→ CEO→CTO→工程師 組織圖節點卡片與連線，游標移動點選；可用 CSS grid 卡片 + 小型長條圖 + SVG 樹狀連線重現（已裁掉底部字幕，畫面中央綠色大字幕疊在 UI 上無法裁除）](../assets/gifs/v33-paperclip-dashboard-orgchart.gif)
 
 Paperclip 暗色 SaaS 介面導覽：代理儀表板（統計卡片＋Issues by Priority/Status 長條圖）→ Issue 清單（IN PROGRESS / BLOCKED 分組）→ CEO→CTO→工程師 組織圖節點卡片與連線，游標移動點選；可用 CSS grid 卡片 + 小型長條圖 + SVG 樹狀連線重現（已裁掉底部字幕，畫面中央綠色大字幕疊在 UI 上無法裁除）
+
+### [Cindy：開源 AI Agent 外殼（整合 Claude Code、Codex、Pi，跨電腦與手機接力）](https://github.com/makecindy/cindy) ⚠️
+
+不是新模型，而是把你已有的 Claude Code、Codex 或 Pi 包進同一個桌面／手機 App，讓工作在不同裝置間接力
+
+![makecindy/cindy 的 GitHub 預覽](https://opengraph.githubassets.com/1/makecindy/cindy)
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| ⚠️ 引流・可信度中 | 8.9k | [影片 42](https://www.facebook.com/watch/?v=2575196886290079) ⚠️ |
+
+GitHunt 上傳的 28 秒影片，只有捲動 README 加英文 AI 語音，沒有實機示範；片尾要人留言「AGENT」拿連結。標題說是「免費的 Claude Code 替代品」，但 README 寫的是 harness：選 Claude Code、Codex 或 Pi（開源、可接多家模型）其一來跑，還是要用你自己的訂閱、API key 或本機模型。功能：筆電／桌機／手機串起來（手機可遠端桌面）、automations 排程例行工作、透過 Slack、Telegram 交辦，可裝外掛。程式在 apps/desktop（Electron）和 apps/mobile（Expo／React Native）。Apache-2.0，2026-07-22 建立，最後推送 2026-11-01。可信度：中，repo 是真的，但「替代 Claude Code」說法誤導；README 的 CI 徽章 2026-11-01 查看時顯示 failing（最近幾次 main 執行被取消）；官方發行版預設含 TapDB 使用分析並綁帳號 ID，可在設定關閉。配樂：無。無 GIF 片段（只是捲動 README）。面試：評估 agent 工具先分清「模型」和「外殼」，外殼的價值在工作流、權限與跨裝置交接，品質仍取決於底下的模型；導入前也要查遙測與資料流向

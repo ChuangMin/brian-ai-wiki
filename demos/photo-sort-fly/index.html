@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>照片自動分類：縮圖飛進分類框（影片 41 重製）</title>
+<style>
+:root{--bg:#f6f4ef;--ink:#1f2328;--muted:#6b7280;--card:#fff;--line:#e5e1d8;--accent:#2563eb}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--bg);color:var(--ink)}
+header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:16px 22px;border-bottom:1px solid var(--line);background:var(--card)}
+h1{font-size:18px;margin:0}
+h1 small{font-weight:400;color:var(--muted);font-size:13px;margin-left:8px}
+.stats{display:flex;gap:18px;font-size:12px;color:var(--muted)}
+.stats b{display:block;font-size:22px;color:var(--ink);font-variant-numeric:tabular-nums}
+.btns{display:flex;gap:8px}
+button{font:inherit;border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 14px;cursor:pointer}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+button:disabled{opacity:.5;cursor:default}
+main{position:relative;padding:18px 22px 28px}
+.section-title{font-size:13px;color:var(--muted);margin:6px 0 8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:14px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px;min-height:96px}
+.box h3{margin:0 0 6px;font-size:13px;display:flex;justify-content:space-between}
+.box h3 span{color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.slots{display:flex;flex-wrap:wrap;gap:3px;min-height:40px}
+.slot{width:16px;height:16px}
+#stage{position:fixed;inset:0;pointer-events:none;z-index:5}
+.tile{position:fixed;width:16px;height:16px;border-radius:3px;box-shadow:0 1px 2px rgba(0,0,0,.25);will-change:transform}
+.tile.video::after{content:"";position:absolute;left:5px;top:4px;border-left:7px solid rgba(255,255,255,.9);border-top:4px solid transparent;border-bottom:4px solid transparent}
+#cluster{position:relative;height:260px;display:flex;align-items:center;justify-content:center}
+#hint{position:absolute;bottom:4px;width:100%;text-align:center;font-size:12px;color:var(--muted)}
+footer{padding:0 22px 22px;font-size:12px;color:var(--muted);line-height:1.6}
+@media (prefers-reduced-motion:reduce){.tile{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <h1>整理我的 Downloads 資料夾<small>示意重製：色塊代替照片，分類結果是隨機假資料</small></h1>
+  <div class="stats"><div><b id="sTotal">0</b>總數</div><div><b id="sDone">0</b>已歸位</div><div><b id="sVid">0</b>影片</div></div>
+  <div class="btns"><button id="go" class="primary">開始整理</button><button id="reset">重設</button></div>
+</header>
+<main>
+  <div id="cluster"><div id="hint">按「開始整理」，縮圖會從中間飛進各分類</div></div>
+  <div class="section-title">照片 Photos</div>
+  <div class="grid" id="gPhotos"></div>
+  <div class="section-title">影片 Videos</div>
+  <div class="grid" id="gVideos"></div>
+</main>
+<div id="stage"></div>
+<footer>影片 41（亨利溫 Henry Wen）裡的工具是用 Claude 做的單一 HTML 檔：選資料夾 → 複製資料給 Claude 分類 → 下載結果 → 按開始整理 → 縮圖飛進分類。這裡只重現「飛進分類框」的動畫，沒有讀取任何檔案，也沒有 AI 分類。</footer>
+<script>
+const CATS=[["網頁截圖","#60a5fa"],["旅行與景點","#34d399"],["生活日常","#fbbf24"],["工作日常","#a78bfa"],["迷因圖","#f472b6"],["純文字","#94a3b8"]];
+const N_PHOTO=150,N_VIDEO=30;
+const stage=document.getElementById('stage'),cluster=document.getElementById('cluster');
+let items=[],running=false,timers=[];
+function rng(seed){return()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296}}
+function buildBoxes(){
+  for(const [gid,kind] of [["gPhotos","p"],["gVideos","v"]]){
+    const g=document.getElementById(gid);g.innerHTML="";
+    CATS.forEach(([name],i)=>{const b=document.createElement('div');b.className='box';b.innerHTML=`<h3>${name}<span id="c${kind}${i}">0</span></h3><div class="slots" id="s${kind}${i}"></div>`;g.appendChild(b)});
+  }
+}
+function shade(hex,amt){const n=parseInt(hex.slice(1),16);let r=(n>>16)+amt,g=((n>>8)&255)+amt,b=(n&255)+amt;const c=v=>Math.max(0,Math.min(255,v));return`rgb(${c(r)},${c(g)},${c(b)})`}
+function setup(){
+  timers.forEach(clearTimeout);timers=[];running=false;stage.innerHTML="";buildBoxes();document.getElementById('hint').style.visibility='';items=[];
+  const r=rng(41),rect=cluster.getBoundingClientRect(),cx=rect.left+rect.width/2,cy=rect.top+rect.height/2,R=Math.min(rect.height/2-18,120);
+  const total=N_PHOTO+N_VIDEO;
+  for(let i=0;i<total;i++){
+    const video=i>=N_PHOTO,cat=Math.floor(r()*CATS.length);
+    const t=document.createElement('div');t.className='tile'+(video?' video':'');
+    t.style.background=shade(CATS[cat][1],Math.round((r()-.5)*90));
+    const a=r()*Math.PI*2,d=Math.sqrt(r())*R,x=cx+Math.cos(a)*d-8,y=cy+Math.sin(a)*d-8;
+    t.style.left='0px';t.style.top='0px';t.style.transform=`translate(${x}px,${y}px) rotate(${(r()-.5)*30}deg)`;
+    stage.appendChild(t);items.push({t,video,cat});
+  }
+  document.getElementById('sTotal').textContent=total;
+  document.getElementById('sDone').textContent=0;
+  document.getElementById('sVid').textContent=N_VIDEO;
+  document.getElementById('go').disabled=false;
+}
+function go(){
+  if(running)return;running=true;document.getElementById('hint').style.visibility='hidden';document.getElementById('go').disabled=true;
+  const order=items.map((_,i)=>i).sort(()=>Math.random()-.5);let done=0;
+  order.forEach((idx,k)=>{timers.push(setTimeout(()=>{
+    const it=items[idx],kind=it.video?'v':'p',slots=document.getElementById(`s${kind}${it.cat}`);
+    const ph=document.createElement('div');ph.className='slot';slots.appendChild(ph);
+    const pr=ph.getBoundingClientRect();
+    it.t.style.transition='transform .9s cubic-bezier(.2,.8,.2,1)';
+    it.t.style.transform=`translate(${pr.left}px,${pr.top}px) rotate(0deg)`;
+    timers.push(setTimeout(()=>{
+      it.t.style.transition='none';it.t.style.position='static';it.t.style.transform='none';ph.replaceWith(it.t);
+      const c=document.getElementById(`c${kind}${it.cat}`);c.textContent=+c.textContent+1;
+      document.getElementById('sDone').textContent=++done;
+    },950));
+  },k*12))});
+}
+document.getElementById('go').onclick=go;
+document.getElementById('reset').onclick=setup;
+addEventListener('resize',()=>{if(!running)setup()});
+setup();
+if(/[?&]auto/.test(location.search))setTimeout(go,300);
+</script>
+</body>
+</html>
