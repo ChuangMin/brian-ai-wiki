@@ -281,5 +281,16 @@
     "what_it_shows": "手機拍筆電螢幕：按「開始整理」前縮圖堆成圓形一團，接著飛進「整理我的 Downloads 資料夾」頁面的各分類框，計數跟著跳動",
     "size_bytes": 761297,
     "rebuild_note": "來源檔 /workspace/fb/reel44.mp4（內容是影片 41）。手持翻拍畫面晃動、難壓縮，所以用較小尺寸：ffmpeg -ss 10.5 -t 3.5 -i reel44.mp4 -vf \"crop=1080:1300:0:150,fps=7,scale=300:-1:flags=lanczos,hqdn3d=4:4:6:6,split[a][b];[a]palettegen=max_colors=48:stats_mode=full[p];[b][p]paletteuse=dither=none\" v41-photo-sort-fly.gif。可互動的重製版在 demos/photo-sort-fly/。"
+  },
+  {
+    "file": "v43-android-adb-agent.gif",
+    "video_number": "影片 43",
+    "entry_name": "Android 手機 AI agent（ADB 無線偵錯＋Claude Code MCP）",
+    "reel_url": "https://www.facebook.com/reel/1628595922149351",
+    "segment_start": 2,
+    "duration": 4.0,
+    "what_it_shows": "影片下半部：左下 Windows cmd.exe 的執行紀錄捲動，桌上的真手機（加速播放）自己切換畫面、開 Telegram 與 Play 商店頁面；不含上半部那個查無此帳號的 GitHub 頁面",
+    "size_bytes": 833456,
+    "rebuild_note": "來源檔 /workspace/fb/reel46.mp4（內容是影片 43）。重製：ffmpeg -ss 2 -t 4 -i reel46.mp4 -vf \"crop=1000:570:40:1058,fps=10,scale=600:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=128:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=4:diff_mode=rectangle\" v43-android-adb-agent.gif"
   }
 ]
