@@ -34,9 +34,7 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 - [演講與 Talk](docs/talks.md)（1）— 演講、訪談、Podcast 片段：AI 領袖與從業者的第一手說法
 - [搞笑與迷因](docs/memes.md)（2）— 關於 AI 的職場迷因、搞笑短劇與梗圖
 - [生產力與開源工具](docs/productivity-tools.md)（1）— 本身不是 AI 的實用工具：轉檔、桌面效率、開源小工具
-- [系統設計與工程基礎](docs/systems-design.md)（6）— 非 AI 的後端／分散式系統基礎與維運常識（如 TLS 健檢），主任工程師面試必備
-
-面試時可以拿來講的整理見 [面試可用的重點](docs/interview-takeaways.md)。
+- [系統設計與工程基礎](docs/systems-design.md)（6）— 非 AI 的後端／分散式系統基礎與維運常識（如 TLS 健檢）
 
 ## 影片來源
 

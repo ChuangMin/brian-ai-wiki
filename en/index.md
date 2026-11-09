@@ -31,12 +31,10 @@ Entries tagged engagement bait put ⚠️ beside the link and beside URLs in the
 - [Physical AI and hardware](docs/physical-ai.md) (3) — ESP32, robots, and other physical devices
 - [Cost and tradeoffs](docs/cost-tradeoffs.md) (5) — token cost, command-output compression, agents versus traditional tools
 - [Teams and organization](docs/teams-org.md) (1) — collaboration cost, decision structure, organization design
-- [Talks](docs/talks.md) (1) — talks, interviews, and podcast clips: first-hand comments from AI leaders and practitioners
+- [Talks](docs/talks.md) (1) — talks and podcast clips: first-hand comments from AI leaders and practitioners
 - [Comedy and memes](docs/memes.md) (2) — workplace memes, comedy sketches, and jokes about AI
 - [Productivity and open-source tools](docs/productivity-tools.md) (1) — useful tools that are not themselves AI: conversion, desktop efficiency, small open-source utilities
-- [Systems design and engineering fundamentals](docs/systems-design.md) (6) — non-AI backend and distributed-systems basics and operations (such as a TLS checkup), expected in a staff-engineer interview
-
-Interview notes are in [Interview takeaways](docs/interview-takeaways.md).
+- [Systems design and engineering fundamentals](docs/systems-design.md) (6) — non-AI backend and distributed-systems basics and operations (such as a TLS checkup)
 
 ## Sources
 
