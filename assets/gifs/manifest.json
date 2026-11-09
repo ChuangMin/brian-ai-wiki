@@ -303,5 +303,27 @@
     "what_it_shows": "影片上半部的 App 畫面：Content Lab 的 Creatorverse 分頁，發光的創作者節點網路（@ines.calloway、@felixdanvers 等帳號標籤），上方 Your accounts 4／Tracked 25／Watch list 12／Suggested 3 篩選列與「Filming · no charges」標籤，鏡頭緩慢推移；不含下半部的真人講解畫面",
     "size_bytes": 578981,
     "rebuild_note": "來源檔 /workspace/fb/reel47.mp4（內容是影片 44）。重製：ffmpeg -ss 74.5 -t 3.0 -i reel47.mp4 -vf \"crop=1080:860:0:0,fps=10,scale=500:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=96:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle\" v44-creatorverse-network.gif"
+  },
+  {
+    "file": "v46-gbrain-network.gif",
+    "video_number": "影片 46",
+    "entry_name": "gbrain：YC CEO Garry Tan 開源的 agent 第二大腦",
+    "reel_url": "https://x.com/imryven/status/2119433356584604119",
+    "segment_start": 0.0,
+    "duration": 2.5,
+    "what_it_shows": "動態設計：GBRAIN／GARRY TAN 字樣與發光節點網路動畫（非真實錄屏）",
+    "size_bytes": 978308,
+    "rebuild_note": "來源 /workspace/fb/prep-20261109-2119433356584604119-2119431899001057280-720p.mp4。ffmpeg -ss 0 -t 2.5 -i … -vf \"fps=8,scale=480:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=64:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle\""
+  },
+  {
+    "file": "v47-altair-skill-board.gif",
+    "video_number": "影片 47",
+    "entry_name": "Altair AI：五個公開 agent skill／設定清單",
+    "reel_url": "https://www.facebook.com/reel/1815732602882824",
+    "segment_start": 0.0,
+    "duration": 2.0,
+    "what_it_shows": "動態設計 skill 看板：列出 mattpocock/skills、addyosmani/agent-skills 等 repo 與星數（非真實錄屏）",
+    "size_bytes": 755194,
+    "rebuild_note": "來源 /workspace/fb/prep-20261109-1Dm3wukMTU-1815732602882824.mp4。ffmpeg -ss 0 -t 2.0 -i … -vf \"fps=7,scale=420:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=48:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle\""
   }
 ]

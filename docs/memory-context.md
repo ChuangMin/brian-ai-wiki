@@ -91,3 +91,49 @@ mayooear 的 monorepo 範本（也是 O'Reilly《Learning LangChain》的配套�
 ![Stack / Workflow / Delivery 三區塊依序點亮，邊框描邊動畫、節點流程圖逐步連線、底部字幕切換；可用 SVG stroke 描邊 + 分段 reveal 重現](../assets/gifs/v27-pdf-chatbot-motion-graphic.gif)
 
 Stack / Workflow / Delivery 三區塊依序點亮，邊框描邊動畫、節點流程圖逐步連線、底部字幕切換；可用 SVG stroke 描邊 + 分段 reveal 重現
+
+### [gbrain：YC CEO Garry Tan 開源的 agent 第二大腦](https://github.com/garrytan/gbrain)
+
+Garry Tan 開源的 OpenClaw／Hermes agent 大腦，強調每筆事實保留來源
+
+![garrytan/gbrain 的 GitHub 預覽](https://opengraph.githubassets.com/1/garrytan/gbrain)
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 概念動畫・可信度高 | 31.9k | [影片 46](https://x.com/imryven/status/2119433356584604119) |
+
+Ryven（@imryven）上傳的 27 秒 X 影片，畫面是 GBRAIN／GARRY TAN 字樣與發光節點網路的動態設計（非真實錄屏），沒有在畫面上打出完整 URL；說明文寫「YC CEO 開源自己的 second brain」並點名 gbrain (by garrytan)。查證：https://github.com/garrytan/gbrain 存在，MIT，簡介「Garry's Opinionated OpenClaw/Hermes Agent Brain」，GitHub API 2026-11-09 為 31.9k 星／4.7k fork，未封存、最近推送 2026-11-09（台北時間）。配樂：未標。GIF 片段：0:00–0:02.5（https://wiki.singularityengine.dev/assets/gifs/v46-gbrain-network.gif）。SkillSpector 掃描待補（本批不 clone）。面試：第二大腦要能追溯來源（每筆事實附出處），才經得起審計與覆核
+
+![gbrain 節點網路](../assets/gifs/v46-gbrain-network.gif)
+
+GIF：影片 0:00–0:02.5，gbrain 節點網路動態設計。
+
+### ⚠️ [Altair AI：Claude＋Obsidian Second Brain 十個 repo 清單](https://github.com/kepano/obsidian-skills) ⚠️
+
+動態片整理用 Claude 與 Obsidian 組第二大腦的開源 repo；畫面多半看不清，依說明文核對可確認者
+
+![kepano/obsidian-skills 的 GitHub 預覽](https://opengraph.githubassets.com/1/kepano/obsidian-skills)
+
+![AgriciDaniel/claude-obsidian 的 GitHub 預覽](https://opengraph.githubassets.com/1/AgriciDaniel/claude-obsidian)
+
+![Astro-Han/karpathy-llm-wiki 的 GitHub 預覽](https://opengraph.githubassets.com/1/Astro-Han/karpathy-llm-wiki)
+
+![undefined-ui/second-brain-os 的 GitHub 預覽](https://opengraph.githubassets.com/1/undefined-ui/second-brain-os)
+
+![vouchdev/vouch 的 GitHub 預覽](https://opengraph.githubassets.com/1/vouchdev/vouch)
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| ⚠️ 引流・概念動畫・可信度中 | — | ⚠️ [影片 48](https://www.facebook.com/reel/1666945238466731) ⚠️ |
+
+Altair AI 上傳的 22 秒 Facebook Reel，動態設計「10 AI REPOS」看板（非真實錄屏），畫面字太小多半無法辨識；說明文點名並描述流程（sources→raw→ingest→link→check→wiki→ask）。依說明文核對 GitHub（只取名稱清楚對得上的）：⚠️ [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills) ⚠️（51.2k，與影片 47 同一 repo）；⚠️ [AgriciDaniel/claude-obsidian](https://github.com/AgriciDaniel/claude-obsidian) ⚠️（16.3k，MIT，最近推送 2026-10-25）；⚠️ [Astro-Han/karpathy-llm-wiki](https://github.com/Astro-Han/karpathy-llm-wiki) ⚠️（2.7k，MIT，Karpathy 風格 LLM wiki，最近推送 2026-07-23）；⚠️ [undefined-ui/second-brain-os](https://github.com/undefined-ui/second-brain-os) ⚠️（1.5k，MIT，最近推送 2026-11-03）；⚠️ [vouchdev/vouch](https://github.com/vouchdev/vouch) ⚠️（66，MIT，「no source means error／你核准才寫入」與文案相符）。其餘名稱（obsidian-second-brain、second-brain、llm-wiki、ai-second-brain、LLM_Wiki_SecondBrain 等）有多個同名或對不上，標為未確認、不猜測 owner。片尾要留言編號，屬引流。配樂：未標。SkillSpector 掃描待補（本批不 clone）。面試：第二大腦要 raw 唯讀、無來源就報錯、變更需人核准，並採 progressive disclosure（規則每場載入、頁面按需載入）
+
+### [Lamis Mukta（Anthropic）：從 CLAUDE.md 到 Dreaming 的 agent 記憶演進](https://x.com/David_eficaz/status/2118745007628726684)
+
+Anthropic 工程師談 agent 記憶：CLAUDE.md→tool memory→skills→memory/ 目錄，再到非同步 Dreaming 整併
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 可信度高・宣稱待驗證（說明文框架） | — | [影片 49](https://x.com/David_eficaz/status/2118745007628726684) |
+
+David（@David_eficaz）轉貼的約 31 分鐘英文會議演講：Lamis Mukta（Member of Technical Staff, Anthropic）在 AI DevCon by Tessl 講 agent 記憶。重點時間碼：記憶演進 CLAUDE.md→tool memory→skills→由 agent 管理的 memory/ 目錄（03:16）；skills 的 progressive disclosure（05:30）；編輯記憶檔前後用 hashing 做 concurrency control（10:05）；記憶權限——組織知識唯讀 vs scratchpad 可讀寫（11:45）；in-band 記憶更新的限制（14:59）；Dreaming：非同步、out-of-band 批次從 transcript 整併記憶（17:49）；Dreaming 架構——orchestrator＋子 agent 找重複錯誤（21:27）。演講中的量化宣稱（例如「97% fewer first pass errors」）屬宣稱待驗證。X 說明文提到「Opus 5.5」「不要 prompt、要建自 prompt 系統」等框架，演講本身未出現 Opus 5.5——說明文框架標宣稱待驗證。配樂：會議現場。無 GIF。面試：把記憶分成唯讀組織知識與可寫 scratchpad，再用非同步 Dreaming 整併，比讓模型在對話中邊做邊改長期記憶更可控；concurrency 用 hash 偵測衝突是實務細節

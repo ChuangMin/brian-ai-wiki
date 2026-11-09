@@ -14,13 +14,13 @@ Credibility tags are separate from categories: ⚠️ engagement bait (traffic f
 
 Entries tagged engagement bait put ⚠️ beside the link and beside URLs in the description.
 
-91 entries.
+96 entries.
 
 ## Categories
 
 - [Agent systems and orchestration](docs/agent-orchestration.md) (10) — multi-agent command, swarms, resume-after-interrupt, commercial agent OSes, and the agent-platform landscape
-- [Memory and context](docs/memory-context.md) (7) — knowledge graphs, code graphs, long-term memory, handoff across agents
-- [Skills / MCP / tools](docs/skills-mcp-tools.md) (14) — shared agent building blocks: MCP, skills, methodology skills, speech, extraction models
+- [Memory and context](docs/memory-context.md) (10) — knowledge graphs, code graphs, long-term memory, handoff across agents
+- [Skills / MCP / tools](docs/skills-mcp-tools.md) (16) — shared agent building blocks: MCP, skills, methodology skills, speech, extraction models
 - [Software development and quality](docs/dev-quality.md) (5) — version control, process replay, browser self-check, verify-then-gate
 - [Frontend and UI design](docs/frontend-ui.md) (12) — design systems, UI linters, design skills, interface templates, and concept interfaces
 - [3D / animation and DCC](docs/dcc-animation.md) (7) — Blender and other DCC add-ons, camera moves, procedural animation, game generation
@@ -89,6 +89,11 @@ Interview notes are in [Interview takeaways](docs/interview-takeaways.md).
 | Video 42 | Cindy (GitHunt) | [watch?v=2575196886290079](https://www.facebook.com/watch/?v=2575196886290079) | 2026-11-01 |
 | Video 43 | Android phone AI agent: wireless ADB debugging plus Claude Code MCP (Tauhid IQ) | ⚠️ [reel/1628595922149351](https://www.facebook.com/reel/1628595922149351) | 2026-11-01 |
 | Video 44 | FounderOS / Content Lab (Brody) | ⚠️ [reel/1423421943269401](https://www.facebook.com/reel/1423421943269401) | 2026-11-02 |
+| Video 45 | Scrapling (小礦工挖挖礦) | ⚠️ [reel/2088263658998884](https://www.facebook.com/reel/2088263658998884) | 2026-11-09 |
+| Video 46 | gbrain / Garry Tan second brain (Ryven) | [status/2119433356584604119](https://x.com/imryven/status/2119433356584604119) | 2026-11-09 |
+| Video 47 | Altair AI: five public agent skill / config repos | [reel/1815732602882824](https://www.facebook.com/reel/1815732602882824) | 2026-11-09 |
+| Video 48 | Altair AI: Claude + Obsidian Second Brain 10-repo list | ⚠️ [reel/1666945238466731](https://www.facebook.com/reel/1666945238466731) | 2026-11-09 |
+| Video 49 | Lamis Mukta (Anthropic) on agent memory / Dreaming (via David) | [status/2118745007628726684](https://x.com/David_eficaz/status/2118745007628726684) | 2026-11-09 |
 | Brian's recommendation list 2026-10-31 | Diagram skills: archify and diagram-design (no video) | — | 2026-10-31 |
 
 Notes on sources that have no link:
