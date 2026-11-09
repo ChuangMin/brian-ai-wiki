@@ -137,3 +137,25 @@ An Anthropic engineer on agent memory: CLAUDE.md → tool memory → skills → 
 | high credibility · caption framing unverified | — | [Video 49](https://x.com/David_eficaz/status/2118745007628726684) |
 
 ~31-minute English conference talk by Lamis Mukta (Member of Technical Staff, Anthropic) at AI DevCon by Tessl, shared by David (@David_eficaz). Timecodes: memory evolution CLAUDE.md → tool memory → skills → agent-managed memory/ (03:16); progressive disclosure skills (05:30); concurrency via hashing the memory file before/after edits (10:05); memory permissioning — read-only org knowledge vs read/write scratchpad (11:45); limits of in-band memory updates (14:59); Dreaming — async out-of-band batch consolidation from transcripts (17:49); Dreaming architecture — orchestrator + subagents finding recurring errors (21:27). Quantitative claims (e.g. "97% fewer first pass errors") unverified. The X caption's "Opus 5.5" framing does not appear in the talk — mark caption framing unverified. Interview takeaway: split read-only org knowledge from a writable scratchpad, then consolidate with async Dreaming; hash-based concurrency is a practical detail.
+
+### [Altair AI: Obsidian CEO's open-source Claude + Obsidian tools](https://github.com/kepano/defuddle)
+
+A motion-design board of kepano / official Obsidian open-source Claude + Obsidian tools: skills, Defuddle, Clipper, Help, Importer
+
+![GitHub preview for kepano/defuddle](https://opengraph.githubassets.com/1/kepano/defuddle)
+
+![GitHub preview for obsidianmd/obsidian-clipper](https://opengraph.githubassets.com/1/obsidianmd/obsidian-clipper)
+
+![GitHub preview for obsidianmd/obsidian-help](https://opengraph.githubassets.com/1/obsidianmd/obsidian-help)
+
+![GitHub preview for obsidianmd/obsidian-importer](https://opengraph.githubassets.com/1/obsidianmd/obsidian-importer)
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| concept animation · high credibility | — (per-repo in body) | [Video 50](https://www.facebook.com/reel/1895633831459873) |
+
+A 25s Facebook Reel by Altair AI (uploaded 2026-11-08): motion graphics (not a real recording), banner "Follow Altair AI". Caption says Obsidian CEO (kepano) open-sourced Claude + Obsidian tools. OPEN SOURCE panel (on-screen / API 2026-11-09): ① [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills) (58.0k / API 51.2k) → already in SEQ 0094/0095, cross-link only; ② [kepano/defuddle](https://github.com/kepano/defuddle) (9.0k / API 9.9k, MIT, page → Markdown); ③ [obsidianmd/obsidian-clipper](https://github.com/obsidianmd/obsidian-clipper) (5.5k / API 5.5k, MIT, official Web Clipper); ④ [obsidianmd/obsidian-help](https://github.com/obsidianmd/obsidian-help) (1.9k / API 2.0k, official help docs); ⑤ [obsidianmd/obsidian-importer](https://github.com/obsidianmd/obsidian-importer) (1.7k / API 1.7k, MIT, Apple Notes/OneNote → Markdown). SkillSpector scan pending. Interview takeaway: prefer official or maintainer-published capture/import tools for a second brain; check stars, license, and last push first.
+
+![Motion-design OPEN SOURCE panel listing obsidian-skills, defuddle, clipper, help, importer](../../assets/gifs/v50-altair-obsidian-open-source.gif)
+
+GIF: 0:01–0:03.5 of the video, OPEN SOURCE tools board (motion graphics).
