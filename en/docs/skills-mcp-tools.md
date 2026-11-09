@@ -78,15 +78,15 @@ Jesse Vincent's (obra) agentic skills framework. When an agent starts, it brains
 
 ### [Matt Pocock Skills (Skills For Real Engineers)](https://github.com/mattpocock/skills)
 
-Small engineering skills Matt Pocock uses every day. Align first, then write code.
+Small engineering skills Matt Pocock uses every day, built around aligning first then coding
 
-![Matt Pocock Skills (Skills For Real Engineers) GitHub preview](https://opengraph.githubassets.com/1/mattpocock/skills)
+![GitHub preview for Matt Pocock Skills (Skills For Real Engineers)](https://opengraph.githubassets.com/1/mattpocock/skills)
 
 | Credibility | Stars | Source |
 | --- | --- | --- |
-| — | 307.9k | Brian's recommendation list 2026-10-31 |
+| — | 319.2k | Brian recommendation list 2026-10-31; [Video 47](https://www.facebook.com/reel/1815732602882824) |
 
-TypeScript teacher Matt Pocock published the skills from his own .agents directory. They are deliberately small, composable, and not a locked process (unlike GSD, BMAD, and Spec-Kit, which take over the whole flow). The signature commands are /grill-me and /grill-with-docs: before work starts, the agent interrogates your requirements, builds a shared project vocabulary (ubiquitous language), and writes hard-to-explain decisions as ADRs, so the agent stays concise and names things consistently. Install on Claude Code with `claude plugin install mattpocock-skills@claude-plugins-official`. Other agents use `npx skills@latest add mattpocock/skills`. MIT. Interview takeaway: the most common failure of AI code is a requirement that was never aligned. Grilling, a shared vocabulary, and ADRs cut rework at the source.
+TypeScript educator Matt Pocock published the skill set from his own `.agents` directory: small, composable, and not a full process takeover (unlike GSD, BMAD, Spec-Kit). Signature skills `/grill-me` and `/grill-with-docs` make the agent interrogate your requirements first, build a shared ubiquitous language, and write hard decisions as ADRs. Install: Claude Code `claude plugin install mattpocock-skills@claude-plugins-official`; other agents `npx skills@latest add mattpocock/skills`; MIT. Interview takeaway: the most common AI-code failure is misaligned requirements; grilling + shared vocabulary + ADRs cuts rework at the source. Also referenced in Video 47 Altair AI skill board (on-screen 295.8K / caption 318K; GitHub API 2026-11-09 = 319.2k). SkillSpector scan pending (this batch did not clone).
 
 ### [Ponytail](https://github.com/DietrichGebert/ponytail)
 
@@ -183,3 +183,37 @@ A 17-second video uploaded by Tauhid IQ, with no narration. The top half is a Gi
 ![The bottom half of the video: a cmd.exe log plus a phone on the desk opening Telegram and the Play Store by itself](../../assets/gifs/v43-android-adb-agent.gif)
 
 GIF: 0:02–0:06 of the video, the terminal log and the phone operating itself (sped up).
+
+### ⚠️ [Scrapling: a Python web-scraping framework (stealth browser + MCP)](https://github.com/D4Vinci/Scrapling) ⚠️
+
+A Python scraping framework with stealth browser, proxy rotation, CSS/XPath, Markdown output for AI agents, and MCP
+
+![GitHub preview for D4Vinci/Scrapling](https://opengraph.githubassets.com/1/D4Vinci/Scrapling)
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| ⚠️ engagement bait · medium credibility | 100.2k | ⚠️ [Video 45](https://www.facebook.com/reel/2088263658998884) ⚠️ |
+
+A 1:26 Traditional Chinese Facebook Reel by 小礦工挖挖礦. Footage is slide/motion-design styled as a GitHub UI (not a real screen recording), showing about 97.1k stars and 10.2k forks. Introduces Scrapling: fast requests, stealth browser, CSS/XPath, whole-site crawls (throttling, pause/resume, proxy rotation), JSON/CSV export, one-line Markdown for AI, and an MCP server for Claude/Cursor-class agents. Cloudflare-bypass claim unverified. Verified repo: ⚠️ [https://github.com/D4Vinci/Scrapling](https://github.com/D4Vinci/Scrapling) ⚠️ , BSD-3-Clause, created 2024-10-13, GitHub API 2026-11-09: 100.2k stars / 10.5k forks, not archived, last push 2026-11-09 (Asia/Taipei). Docs: ⚠️ [https://scrapling.readthedocs.io/en/latest/](https://scrapling.readthedocs.io/en/latest/) ⚠️ . CTA asks viewers to comment 「爬蟲」 for a DM link (engagement bait); the repo itself is public. SkillSpector scan pending (no clone; URL mode blocked by SSRF). Interview takeaway: agent scrapers need ToS and PII checks plus throttling/spend caps; verify the real repo and license before adopting a viral tool.
+
+### [Altair AI: five public agent skill / config repos](https://github.com/addyosmani/agent-skills)
+
+Motion-design board of five public skill/config repos: Matt Pocock, Addy Osmani, Cloudflare, Obsidian CEO, Google
+
+![GitHub preview for addyosmani/agent-skills](https://opengraph.githubassets.com/1/addyosmani/agent-skills)
+
+![GitHub preview for cloudflare/security-audit-skill](https://opengraph.githubassets.com/1/cloudflare/security-audit-skill)
+
+![GitHub preview for kepano/obsidian-skills](https://opengraph.githubassets.com/1/kepano/obsidian-skills)
+
+![GitHub preview for google/elephant-goldfish-model](https://opengraph.githubassets.com/1/google/elephant-goldfish-model)
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| concept animation · high credibility | — | [Video 47](https://www.facebook.com/reel/1815732602882824) |
+
+A 21s Facebook Reel by Altair AI: motion-design skill board (not a real recording), banner "Follow Altair AI". Five repos (on-screen / caption vs API 2026-11-09): ① [mattpocock/skills](https://github.com/mattpocock/skills) (295.8K / 318K / API 319.2k) → already SEQ 0058, source only; ② [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) (86.9K / 92K / API 114.3k, MIT); ③ [cloudflare/security-audit-skill](https://github.com/cloudflare/security-audit-skill) (63.9K / API 67.5k, MIT); ④ [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills) (58.0K / 51K / API 51.2k, MIT; cross-ref Video 48); ⑤ [google/elephant-goldfish-model](https://github.com/google/elephant-goldfish-model) (13.4K / 14.8K / API 15.9k, Apache-2.0). SkillSpector scan pending. Interview takeaway: reuse public skills/configs from known maintainers before writing prompts from scratch; check stars, license, and last push first.
+
+![Altair AI skill board](../../assets/gifs/v47-altair-skill-board.gif)
+
+GIF: 0:00–0:02 of the video, Altair AI skill board (motion graphics).

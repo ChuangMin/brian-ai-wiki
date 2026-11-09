@@ -84,9 +84,9 @@ Matt Pocock 每天用的小型工程 skill，主打先對齊再寫碼
 
 | 可信度 | 星數 | 出處 |
 | --- | --- | --- |
-| — | 307.9k | Brian 推薦清單 2026-10-31 |
+| — | 319.2k | Brian 推薦清單 2026-10-31；[影片 47](https://www.facebook.com/reel/1815732602882824) |
 
-TypeScript 講師 Matt Pocock 從自己 .agents 目錄公開的 skill 集，刻意做得小、可組合、不綁流程（相對 GSD、BMAD、Spec-Kit 那種接管整個流程的做法）。招牌是 /grill-me、/grill-with-docs：開工前讓 agent 反過來拷問你需求，順便建立專案共用詞彙表（ubiquitous language）並把難解釋的決策寫成 ADR，讓 agent 用詞精簡、命名一致。安裝：Claude Code 用 `claude plugin install mattpocock-skills@claude-plugins-official`，其他 agent 用 `npx skills@latest add mattpocock/skills`；MIT。面試：AI 程式碼最常見的失敗是需求沒對齊，用 grilling＋共用詞彙＋ADR 從源頭降低重工
+TypeScript 講師 Matt Pocock 從自己 .agents 目錄公開的 skill 集，刻意做得小、可組合、不綁流程（相對 GSD、BMAD、Spec-Kit 那種接管整個流程的做法）。招牌是 /grill-me、/grill-with-docs：開工前讓 agent 反過來拷問你需求，順便建立專案共用詞彙表（ubiquitous language）並把難解釋的決策寫成 ADR，讓 agent 用詞精簡、命名一致。安裝：Claude Code 用 `claude plugin install mattpocock-skills@claude-plugins-official`，其他 agent 用 `npx skills@latest add mattpocock/skills`；MIT。面試：AI 程式碼最常見的失敗是需求沒對齊，用 grilling＋共用詞彙＋ADR 從源頭降低重工。另見影片 47 Altair AI skill 看板（畫面星數 295.8K／說明文 318K；GitHub API 2026-11-09 為 319.2k）。SkillSpector 掃描待補（本批不 clone）
 
 ### [Ponytail](https://github.com/DietrichGebert/ponytail)
 
@@ -183,3 +183,37 @@ Tauhid IQ 上傳的 17 秒影片，沒有旁白。上半部是標題「dkrv-dev 
 ![影片下半部：cmd.exe 執行紀錄加上桌上的手機自己開 Telegram 與 Play 商店](../assets/gifs/v43-android-adb-agent.gif)
 
 GIF：影片 0:02–0:06，終端機紀錄與手機自動操作（加速播放）。
+
+### ⚠️ [Scrapling：Python 網頁爬取框架（隱形瀏覽器＋MCP）](https://github.com/D4Vinci/Scrapling) ⚠️
+
+整合隱形瀏覽器、代理輪替、CSS／XPath 與 Markdown 輸出的 Python 爬蟲框架，並附 MCP
+
+![D4Vinci/Scrapling 的 GitHub 預覽](https://opengraph.githubassets.com/1/D4Vinci/Scrapling)
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| ⚠️ 引流・可信度中 | 100.2k | ⚠️ [影片 45](https://www.facebook.com/reel/2088263658998884) ⚠️ |
+
+小礦工挖挖礦上傳的 1:26 繁中影片，畫面是做成 GitHub UI 的投影片／動態設計（非真實錄屏），顯示約 97.1k 星、10.2k fork。介紹 Scrapling：Python 框架，整合快速請求、隱形瀏覽器、解析（CSS／XPath）、整站爬取（節流、暫停續爬、代理輪替）、輸出 JSON／CSV，並可把網頁轉成 Markdown 餵給 AI；也有 MCP server 讓 Claude、Cursor 這類代理直接用。影片宣稱可自動處理 Cloudflare 驗證頁（宣稱待驗證）。查證：真實 repo 為 ⚠️ [https://github.com/D4Vinci/Scrapling](https://github.com/D4Vinci/Scrapling) ⚠️ ，BSD-3-Clause，2024-10-13 建立，GitHub API 2026-11-09 為 100.2k 星／10.5k fork（與畫面接近）、未封存、最近推送 2026-11-09（台北時間）。官網 ⚠️ [https://scrapling.readthedocs.io/en/latest/](https://scrapling.readthedocs.io/en/latest/) ⚠️ 。片尾要留言「爬蟲」才私訊連結，屬引流；repo 本身可直接開啟。配樂：未標。SkillSpector 掃描待補（本批不 clone；URL 模式被 SSRF 擋下）。面試：給 agent 用的爬蟲要先過服務條款與個資邊界，並設節流／花費上限；採用爆紅工具前先核對真實 repo 與授權
+
+### [Altair AI：五個公開 agent skill／設定清單](https://github.com/addyosmani/agent-skills)
+
+動態看板整理五個公開 skill／設定 repo：Matt Pocock、Addy Osmani、Cloudflare、Obsidian CEO、Google
+
+![addyosmani/agent-skills 的 GitHub 預覽](https://opengraph.githubassets.com/1/addyosmani/agent-skills)
+
+![cloudflare/security-audit-skill 的 GitHub 預覽](https://opengraph.githubassets.com/1/cloudflare/security-audit-skill)
+
+![kepano/obsidian-skills 的 GitHub 預覽](https://opengraph.githubassets.com/1/kepano/obsidian-skills)
+
+![google/elephant-goldfish-model 的 GitHub 預覽](https://opengraph.githubassets.com/1/google/elephant-goldfish-model)
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 概念動畫・可信度高 | — | [影片 47](https://www.facebook.com/reel/1815732602882824) |
+
+Altair AI 上傳的 21 秒 Facebook Reel，動態設計 skill 看板（非真實錄屏），橫幅 Follow Altair AI。畫面列出五個 repo（畫面星數／說明文星數與 API 2026-11-09 對照）：① mattpocock/skills（畫面 295.8K、文案 318K、API 319.2k）→ 已有條目 SEQ 0058，本則只加來源、不重複建檔；② addyosmani/agent-skills（畫面 86.9K、文案 92K、API 114.3k，MIT，最近推送 2026-11-01）；③ cloudflare/security-audit-skill（畫面／文案 63.9K、API 67.5k，MIT，最近推送 2026-09-14）；④ kepano/obsidian-skills（畫面 58.0K、文案 51K、API 51.2k，MIT，最近推送 2026-09-15；與影片 48 交叉）；⑤ google/elephant-goldfish-model（畫面 13.4K、文案 14.8K、API 15.9k，Apache-2.0，最近推送 2026-11-09）。五個帳號與 repo 皆可直接開啟。配樂：未標。GIF 片段：0:00–0:02（https://wiki.singularityengine.dev/assets/gifs/v47-altair-skill-board.gif）。SkillSpector 掃描待補（本批不 clone）。面試：先重用大廠／維護者公開的 skill 與設定，再自己從零寫 prompt；採用前核對星數、授權與最近推送
+
+![Altair AI skill 看板](../assets/gifs/v47-altair-skill-board.gif)
+
+GIF：影片 0:00–0:02，Altair AI skill 看板（動態設計，非錄屏）。

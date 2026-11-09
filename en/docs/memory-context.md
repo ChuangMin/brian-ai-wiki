@@ -91,3 +91,49 @@ mayooear's monorepo template, also the companion example for O'Reilly's Learning
 ![Stack, Workflow, and Delivery light up in order, borders draw on, a node diagram connects step by step, and the bottom caption changes. Recreate it with SVG stroke drawing and staged reveal.](../../assets/gifs/v27-pdf-chatbot-motion-graphic.gif)
 
 Stack, Workflow, and Delivery light up in order, borders draw on, a node diagram connects step by step, and the bottom caption changes. Recreate it with SVG stroke drawing and staged reveal.
+
+### [gbrain: YC CEO Garry Tan's open-source agent second brain](https://github.com/garrytan/gbrain)
+
+Garry Tan's opinionated OpenClaw/Hermes agent brain; every fact keeps its source
+
+![GitHub preview for garrytan/gbrain](https://opengraph.githubassets.com/1/garrytan/gbrain)
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| concept animation · high credibility | 31.9k | [Video 46](https://x.com/imryven/status/2119433356584604119) |
+
+A 27s X video by Ryven (@imryven): motion graphics with GBRAIN / GARRY TAN and a glowing node network (not a screen recording); no full URL on screen. Caption names gbrain (by garrytan). Verified: https://github.com/garrytan/gbrain exists, MIT, "Garry's Opinionated OpenClaw/Hermes Agent Brain", GitHub API 2026-11-09: 31.9k stars / 4.7k forks, not archived, last push 2026-11-09 (Asia/Taipei). SkillSpector scan pending. Interview takeaway: a second brain must keep provenance on every fact to stay auditable.
+
+![gbrain network](../../assets/gifs/v46-gbrain-network.gif)
+
+GIF: 0:00–0:02.5, gbrain network animation.
+
+### ⚠️ [Altair AI: Claude + Obsidian Second Brain — 10-repo list](https://github.com/kepano/obsidian-skills) ⚠️
+
+Motion graphics listing open-source repos for a Claude + Obsidian second brain; most on-screen text is unreadable, so only caption-named matches were verified
+
+![GitHub preview for kepano/obsidian-skills](https://opengraph.githubassets.com/1/kepano/obsidian-skills)
+
+![GitHub preview for AgriciDaniel/claude-obsidian](https://opengraph.githubassets.com/1/AgriciDaniel/claude-obsidian)
+
+![GitHub preview for Astro-Han/karpathy-llm-wiki](https://opengraph.githubassets.com/1/Astro-Han/karpathy-llm-wiki)
+
+![GitHub preview for undefined-ui/second-brain-os](https://opengraph.githubassets.com/1/undefined-ui/second-brain-os)
+
+![GitHub preview for vouchdev/vouch](https://opengraph.githubassets.com/1/vouchdev/vouch)
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| ⚠️ engagement bait · concept animation · medium credibility | — | ⚠️ [Video 48](https://www.facebook.com/reel/1666945238466731) ⚠️ |
+
+A 22s Facebook Reel by Altair AI. Confirmed from the caption: ⚠️ [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills) ⚠️ (51.2k; same as Video 47); ⚠️ [AgriciDaniel/claude-obsidian](https://github.com/AgriciDaniel/claude-obsidian) ⚠️ (16.3k); ⚠️ [Astro-Han/karpathy-llm-wiki](https://github.com/Astro-Han/karpathy-llm-wiki) ⚠️ (2.7k); ⚠️ [undefined-ui/second-brain-os](https://github.com/undefined-ui/second-brain-os) ⚠️ (1.5k); ⚠️ [vouchdev/vouch](https://github.com/vouchdev/vouch) ⚠️ (66; matches "no source means error / you approve writes"). Other names left unverified. Comment-the-number CTA = engagement bait. SkillSpector scan pending. Interview takeaway: keep raw sources read-only, error when there is no source, require human approval for writes, and use progressive disclosure.
+
+### [Lamis Mukta (Anthropic): agent memory from CLAUDE.md to Dreaming](https://x.com/David_eficaz/status/2118745007628726684)
+
+An Anthropic engineer on agent memory: CLAUDE.md → tool memory → skills → a memory/ directory, then async Dreaming consolidation
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| high credibility · caption framing unverified | — | [Video 49](https://x.com/David_eficaz/status/2118745007628726684) |
+
+~31-minute English conference talk by Lamis Mukta (Member of Technical Staff, Anthropic) at AI DevCon by Tessl, shared by David (@David_eficaz). Timecodes: memory evolution CLAUDE.md → tool memory → skills → agent-managed memory/ (03:16); progressive disclosure skills (05:30); concurrency via hashing the memory file before/after edits (10:05); memory permissioning — read-only org knowledge vs read/write scratchpad (11:45); limits of in-band memory updates (14:59); Dreaming — async out-of-band batch consolidation from transcripts (17:49); Dreaming architecture — orchestrator + subagents finding recurring errors (21:27). Quantitative claims (e.g. "97% fewer first pass errors") unverified. The X caption's "Opus 5.5" framing does not appear in the talk — mark caption framing unverified. Interview takeaway: split read-only org knowledge from a writable scratchpad, then consolidate with async Dreaming; hash-based concurrency is a practical detail.

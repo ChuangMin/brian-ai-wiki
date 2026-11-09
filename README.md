@@ -14,13 +14,13 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 
 標了引流的條目，連結和說明裡的網址旁邊都會加上 ⚠️。
 
-共 91 則。
+共 96 則。
 
 ## 分類
 
 - [Agent 系統與編排](docs/agent-orchestration.md)（10）— 多 agent 指揮、swarm、中斷續跑、商用 agent OS 與 agent 平台全景
-- [記憶與上下文](docs/memory-context.md)（7）— 知識圖譜、程式碼圖譜、長期記憶、跨 agent 交接
-- [Skills／MCP／工具](docs/skills-mcp-tools.md)（14）— 通用的 agent 能力元件：MCP、skill、開發方法論 skill、語音、抽取模型
+- [記憶與上下文](docs/memory-context.md)（10）— 知識圖譜、程式碼圖譜、長期記憶、跨 agent 交接
+- [Skills／MCP／工具](docs/skills-mcp-tools.md)（16）— 通用的 agent 能力元件：MCP、skill、開發方法論 skill、語音、抽取模型
 - [程式開發與品質](docs/dev-quality.md)（5）— 版控、過程重播、瀏覽器自我驗收、verify＋gate 流程
 - [前端與 UI 設計](docs/frontend-ui.md)（12）— 設計系統、UI linter、設計 skill、介面模板與概念介面
 - [3D／動畫與 DCC](docs/dcc-animation.md)（7）— Blender 等 DCC 外掛、運鏡、程序化動畫、遊戲生成
@@ -89,6 +89,11 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 | 影片 42 | Cindy（GitHunt） | [watch?v=2575196886290079](https://www.facebook.com/watch/?v=2575196886290079) | 2026-11-01 |
 | 影片 43 | Android 手機 AI agent：ADB 無線偵錯＋Claude Code MCP（Tauhid IQ） | ⚠️ [reel/1628595922149351](https://www.facebook.com/reel/1628595922149351) | 2026-11-01 |
 | 影片 44 | FounderOS／Content Lab（Brody） | ⚠️ [reel/1423421943269401](https://www.facebook.com/reel/1423421943269401) | 2026-11-02 |
+| 影片 45 | Scrapling（小礦工挖挖礦） | ⚠️ [reel/2088263658998884](https://www.facebook.com/reel/2088263658998884) | 2026-11-09 |
+| 影片 46 | gbrain／Garry Tan second brain（Ryven） | [status/2119433356584604119](https://x.com/imryven/status/2119433356584604119) | 2026-11-09 |
+| 影片 47 | Altair AI：五個公開 agent skill／設定清單 | [reel/1815732602882824](https://www.facebook.com/reel/1815732602882824) | 2026-11-09 |
+| 影片 48 | Altair AI：Claude＋Obsidian Second Brain 十 repo 清單 | ⚠️ [reel/1666945238466731](https://www.facebook.com/reel/1666945238466731) | 2026-11-09 |
+| 影片 49 | Lamis Mukta（Anthropic）agent 記憶／Dreaming（David 轉貼） | [status/2118745007628726684](https://x.com/David_eficaz/status/2118745007628726684) | 2026-11-09 |
 | Brian 推薦清單 2026-10-31 | 圖表 skill 推薦：archify、diagram-design（無影片） | — | 2026-10-31 |
 
 沒有連結的來源，附上來源裡的待確認事項：
