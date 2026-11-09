@@ -110,7 +110,7 @@ VS Code 擴充把 270+ 設計 skill、150+ 品牌設計系統、160+ 範例做�
 | --- | --- | --- |
 | ⚠️ 引流 | — | [影片 29](https://www.facebook.com/reel/1834273334429297) ⚠️ |
 
-wearebrand 的「Websites in 2026 🤩」，文案「Comment “WEBSITE” and let’s make your brand stand out」是留言關鍵字招攬接案的導流，片中的網站不一定是他們做的。真實拍攝在 Mac 上捲動兩個 WebGL 很重的網站：① Aethelburg（⚠️ https://aethelburg.network ⚠️），粒子群、扭曲字型、捲動時的 3D 平面，片中是某工作室的職缺頁；網域存在，但網頁標題是「AETHELNET // Sovereign Mesh Observer & Neural Manifold」，是否就是片中那頁未確認；② Montfort（⚠️ https://mont-fort.com ⚠️，不是 montfortgroup.com，那是一家磚石公司），能源與大宗商品貿易公司（據點在阿聯、新加坡、瑞士），捲動視差從雲中山峰到海上貨輪再到旋轉 3D 地球；mesh3d.gallery 記載是 Immersive Garden 用 Three.js、自訂 shader 與 Lenis 製作。片中沒有任何 AI 工具。配樂：聽起來是 Tyla《Water》（未確認）。面試：重度 WebGL 會拖累效能與無障礙，上線前要量 Core Web Vitals，並支援 prefers-reduced-motion
+wearebrand 的「Websites in 2026 🤩」，文案「Comment “WEBSITE” and let’s make your brand stand out」是留言關鍵字招攬接案的導流，片中的網站不一定是他們做的。真實拍攝在 Mac 上捲動兩個 WebGL 很重的網站：① Aethelburg（⚠️ https://aethelburg.network ⚠️），粒子群、扭曲字型、捲動時的 3D 平面，片中是某工作室的職缺頁；網域存在，但網頁標題是「AETHELNET // Sovereign Mesh Observer & Neural Manifold」，是否就是片中那頁未確認；② Montfort（⚠️ https://mont-fort.com ⚠️，不是 montfortgroup.com，那是一家磚石公司），能源與大宗商品貿易公司（據點在阿聯、新加坡、瑞士），捲動視差從雲中山峰到海上貨輪再到旋轉 3D 地球；mesh3d.gallery 記載是 Immersive Garden 用 Three.js、自訂 shader 與 Lenis 製作。片中沒有任何 AI 工具。配樂：聽起來是 Tyla《Water》（未確認）。
 
 ![WebGL 作品集網站：捲動時 3D 卡片／面板在空間中飛過，彩色粒子與故障（glitch）RGB 分離文字 'DISCOVER YOUR PATRONUS'；可用 Three.js 捲動驅動相機 + 粒子 + RGB shift 後處理重現](../assets/gifs/v29-aethelburg-webgl.gif)
 
@@ -144,7 +144,7 @@ WebGL 作品集網站：捲動時 3D 卡片／面板在空間中飛過，彩色�
 | --- | --- | --- |
 | 可信度高・資料視覺化 | — | [影片 36](https://www.facebook.com/reel/1742098810210214) |
 
-Statsmaniaofficial 的「Different visualizations — 6 charts · when to use them」，10 秒循環、用合成資料。深藍點陣背景＋2×3 卡片：長條圖（A18、B32、C24、D26，「height = value」）；圓餅圖（同樣 A–D 的比例與顏色）；折線圖（Jan–Dec，黃線加面積漸層）；散佈圖（綠點、正向趨勢，「Association ≠ causation」）；直方圖（90 筆配送時間、等寬分組 10–70、右偏）；箱型圖（同樣 90 筆，標出中位數、IQR = Q3−Q1、離群值）。一條垂直掃描線掃過各圖並高亮底下的資料。文案指南：比較類別用長條、看部分佔整體用圓餅、看時間變化用折線、兩個數值變數用散佈、看分佈形狀用直方、精簡摘要用箱型，並提醒相關不等於因果。可信度：高，抓幀檢查過統計數字前後一致。配樂：未確認。備註：計畫做一個 6 圖動態 SVG 的 HTML demo。面試：依問題選圖；工程指標（如延遲分佈）用直方圖、箱型圖或 p50／p95／p99，不要只看平均值
+Statsmaniaofficial 的「Different visualizations — 6 charts · when to use them」，10 秒循環、用合成資料。深藍點陣背景＋2×3 卡片：長條圖（A18、B32、C24、D26，「height = value」）；圓餅圖（同樣 A–D 的比例與顏色）；折線圖（Jan–Dec，黃線加面積漸層）；散佈圖（綠點、正向趨勢，「Association ≠ causation」）；直方圖（90 筆配送時間、等寬分組 10–70、右偏）；箱型圖（同樣 90 筆，標出中位數、IQR = Q3−Q1、離群值）。一條垂直掃描線掃過各圖並高亮底下的資料。文案指南：比較類別用長條、看部分佔整體用圓餅、看時間變化用折線、兩個數值變數用散佈、看分佈形狀用直方、精簡摘要用箱型，並提醒相關不等於因果。可信度：高，抓幀檢查過統計數字前後一致。配樂：未確認。備註：計畫做一個 6 圖動態 SVG 的 HTML demo。
 
 ![深色背景 2×3 圖表卡（長條、圓餅、折線、散佈、直方圖、箱形圖），一條發光掃描線橫向掃過各圖並逐一高亮資料點；可用 SVG/Canvas 畫圖表 + 移動的漸層遮罩線（mix-blend-mode）重現，整段 10 秒可無縫循環](../assets/gifs/v36-six-charts-scanline.gif)
 
@@ -160,7 +160,7 @@ Statsmaniaofficial 的「Different visualizations — 6 charts · when to use th
 | --- | --- | --- |
 | 可信度高 | — | [影片 37](https://www.facebook.com/reel/1473800611304190) |
 
-Code & Chill 的 Reel，示範電影院後台儀表板（側欄、Finance › Cards、Calendar）。做法是呼叫 `document.startViewTransition`，再對 `::view-transition-new(root)` 的 `clipPath` 做動畫：從 `circle(0px at x y)` 放到 `circle(d px at x y)`，其中 `d = Math.hypot(Math.max(x, innerWidth-x), Math.max(y, innerHeight-y))`，大約 400 ms。API 不支援，或使用者設定 `prefers-reduced-motion` 時，改成立即切換。配樂：未確認。面試：小細節的動效能提升產品質感，且要做 progressive enhancement。
+Code & Chill 的 Reel，示範電影院後台儀表板（側欄、Finance › Cards、Calendar）。做法是呼叫 `document.startViewTransition`，再對 `::view-transition-new(root)` 的 `clipPath` 做動畫：從 `circle(0px at x y)` 放到 `circle(d px at x y)`，其中 `d = Math.hypot(Math.max(x, innerWidth-x), Math.max(y, innerHeight-y))`，大約 400 ms。API 不支援，或使用者設定 `prefers-reduced-motion` 時，改成立即切換。配樂：未確認。
 
 ![Kinlo 儀表板圓形擦除轉場](../assets/gifs/v37-view-transition-wipe.gif)
 

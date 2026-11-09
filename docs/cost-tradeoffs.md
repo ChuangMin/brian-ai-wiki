@@ -66,4 +66,4 @@ token 成本、指令輸出壓縮、agent 與傳統工具的成本對比
 | --- | --- | --- |
 | — | 85.1k | Brian 推薦清單 2026-10-31 |
 
-rtk-ai 的單一 Rust 執行檔：攔截 agent 執行的 shell 指令（ls、grep、git status／diff／log、cargo test、pytest、docker ps 等 100+ 種），把輸出壓縮後才進 LLM 上下文，例如測試只留失敗、git log 只留雜湊與標題，宣稱常見開發指令省 60–90% token、額外延遲 < 10 ms。README 自己說明省的是 bash 輸出，不等於帳單同比例下降，token 數是 bytes/4 估算。安裝：`brew install rtk`（或官方 install.sh），再 `rtk init -g` 接上 Claude Code（`--codex`、`--agent cursor` 等）；`rtk gain` 看節省統計。授權：GitHub 標 Apache-2.0，README 寫完整版是 Apache-2.0＋BUSL-1.1，純 Apache 版叫 rtk-oss；crates.io 上另有同名的不相干套件。面試：成本治理要量化，先量測哪些上下文是雜訊，再用工具過濾，同時保留失敗資訊不影響品質
+rtk-ai 的單一 Rust 執行檔：攔截 agent 執行的 shell 指令（ls、grep、git status／diff／log、cargo test、pytest、docker ps 等 100+ 種），把輸出壓縮後才進 LLM 上下文，例如測試只留失敗、git log 只留雜湊與標題，宣稱常見開發指令省 60–90% token、額外延遲 < 10 ms。README 自己說明省的是 bash 輸出，不等於帳單同比例下降，token 數是 bytes/4 估算。安裝：`brew install rtk`（或官方 install.sh），再 `rtk init -g` 接上 Claude Code（`--codex`、`--agent cursor` 等）；`rtk gain` 看節省統計。授權：GitHub 標 Apache-2.0，README 寫完整版是 Apache-2.0＋BUSL-1.1，純 Apache 版叫 rtk-oss；crates.io 上另有同名的不相干套件。
