@@ -14,12 +14,12 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 
 標了引流的條目，連結和說明裡的網址旁邊都會加上 ⚠️。
 
-共 96 則。
+共 97 則。
 
 ## 分類
 
 - [Agent 系統與編排](docs/agent-orchestration.md)（10）— 多 agent 指揮、swarm、中斷續跑、商用 agent OS 與 agent 平台全景
-- [記憶與上下文](docs/memory-context.md)（10）— 知識圖譜、程式碼圖譜、長期記憶、跨 agent 交接
+- [記憶與上下文](docs/memory-context.md)（11）— 知識圖譜、程式碼圖譜、長期記憶、跨 agent 交接
 - [Skills／MCP／工具](docs/skills-mcp-tools.md)（16）— 通用的 agent 能力元件：MCP、skill、開發方法論 skill、語音、抽取模型
 - [程式開發與品質](docs/dev-quality.md)（5）— 版控、過程重播、瀏覽器自我驗收、verify＋gate 流程
 - [前端與 UI 設計](docs/frontend-ui.md)（12）— 設計系統、UI linter、設計 skill、介面模板與概念介面
@@ -94,6 +94,7 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 | 影片 47 | Altair AI：五個公開 agent skill／設定清單 | [reel/1815732602882824](https://www.facebook.com/reel/1815732602882824) | 2026-11-09 |
 | 影片 48 | Altair AI：Claude＋Obsidian Second Brain 十 repo 清單 | ⚠️ [reel/1666945238466731](https://www.facebook.com/reel/1666945238466731) | 2026-11-09 |
 | 影片 49 | Lamis Mukta（Anthropic）agent 記憶／Dreaming（David 轉貼） | [status/2118745007628726684](https://x.com/David_eficaz/status/2118745007628726684) | 2026-11-09 |
+| 影片 50 | Altair AI：Obsidian CEO 開源的 Claude＋Obsidian 工具清單 | [reel/1895633831459873](https://www.facebook.com/reel/1895633831459873) | 2026-11-09 |
 | Brian 推薦清單 2026-10-31 | 圖表 skill 推薦：archify、diagram-design（無影片） | — | 2026-10-31 |
 
 沒有連結的來源，附上來源裡的待確認事項：

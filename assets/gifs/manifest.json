@@ -325,5 +325,16 @@
     "what_it_shows": "動態設計 skill 看板：列出 mattpocock/skills、addyosmani/agent-skills 等 repo 與星數（非真實錄屏）",
     "size_bytes": 755194,
     "rebuild_note": "來源 /workspace/fb/prep-20261109-1Dm3wukMTU-1815732602882824.mp4。ffmpeg -ss 0 -t 2.0 -i … -vf \"fps=7,scale=420:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=48:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle\""
+  },
+  {
+    "file": "v50-altair-obsidian-open-source.gif",
+    "video_number": "影片 50",
+    "entry_name": "Altair AI：Obsidian CEO 開源的 Claude＋Obsidian 工具清單",
+    "reel_url": "https://www.facebook.com/reel/1895633831459873",
+    "segment_start": 1.0,
+    "duration": 2.5,
+    "what_it_shows": "動態設計 OPEN SOURCE 面板：列出 obsidian-skills、defuddle、obsidian-clipper、obsidian-help、obsidian-importer 與星數（非真實錄屏）",
+    "size_bytes": 663435,
+    "rebuild_note": "來源 /workspace/fb/prep-20261109-1895633831459873.mp4。ffmpeg -ss 1 -t 2.5 -i … -vf \"fps=7,scale=420:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=48:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle\""
   }
 ]

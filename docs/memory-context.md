@@ -137,3 +137,25 @@ Anthropic 工程師談 agent 記憶：CLAUDE.md→tool memory→skills→memory/
 | 可信度高・宣稱待驗證（說明文框架） | — | [影片 49](https://x.com/David_eficaz/status/2118745007628726684) |
 
 David（@David_eficaz）轉貼的約 31 分鐘英文會議演講：Lamis Mukta（Member of Technical Staff, Anthropic）在 AI DevCon by Tessl 講 agent 記憶。重點時間碼：記憶演進 CLAUDE.md→tool memory→skills→由 agent 管理的 memory/ 目錄（03:16）；skills 的 progressive disclosure（05:30）；編輯記憶檔前後用 hashing 做 concurrency control（10:05）；記憶權限——組織知識唯讀 vs scratchpad 可讀寫（11:45）；in-band 記憶更新的限制（14:59）；Dreaming：非同步、out-of-band 批次從 transcript 整併記憶（17:49）；Dreaming 架構——orchestrator＋子 agent 找重複錯誤（21:27）。演講中的量化宣稱（例如「97% fewer first pass errors」）屬宣稱待驗證。X 說明文提到「Opus 5.5」「不要 prompt、要建自 prompt 系統」等框架，演講本身未出現 Opus 5.5——說明文框架標宣稱待驗證。配樂：會議現場。無 GIF。面試：把記憶分成唯讀組織知識與可寫 scratchpad，再用非同步 Dreaming 整併，比讓模型在對話中邊做邊改長期記憶更可控；concurrency 用 hash 偵測衝突是實務細節
+
+### [Altair AI：Obsidian CEO 開源的 Claude＋Obsidian 工具清單](https://github.com/kepano/defuddle)
+
+動態看板整理 kepano／Obsidian 官方開源的 Claude＋Obsidian 工具：skills、Defuddle、Clipper、Help、Importer
+
+![kepano/defuddle 的 GitHub 預覽](https://opengraph.githubassets.com/1/kepano/defuddle)
+
+![obsidianmd/obsidian-clipper 的 GitHub 預覽](https://opengraph.githubassets.com/1/obsidianmd/obsidian-clipper)
+
+![obsidianmd/obsidian-help 的 GitHub 預覽](https://opengraph.githubassets.com/1/obsidianmd/obsidian-help)
+
+![obsidianmd/obsidian-importer 的 GitHub 預覽](https://opengraph.githubassets.com/1/obsidianmd/obsidian-importer)
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 概念動畫・可信度高 | —（各 repo 見內文） | [影片 50](https://www.facebook.com/reel/1895633831459873) |
+
+Altair AI 上傳的 25 秒 Facebook Reel（2026-11-08），動態設計（非真實錄屏），橫幅 Follow Altair AI；說明文稱 Obsidian CEO（kepano）開源 Claude＋Obsidian 工具。OPEN SOURCE 面板列出五個項目（畫面星數／API 2026-11-09）：① [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills)（畫面 58.0k、API 51.2k）→ 已見 SEQ 0094／0095，本則只交叉引用、不重複建檔；② [kepano/defuddle](https://github.com/kepano/defuddle)（畫面 9.0k、API 9.9k，MIT，把網頁主內容轉成 Markdown，最近推送 2026-10-25）；③ [obsidianmd/obsidian-clipper](https://github.com/obsidianmd/obsidian-clipper)（畫面 5.5k、API 5.5k，MIT，官方 Web Clipper 擴充功能，最近推送 2026-09-22）；④ [obsidianmd/obsidian-help](https://github.com/obsidianmd/obsidian-help)（畫面 1.9k、API 2.0k，官方說明文件 repo，最近推送 2026-11-07）；⑤ [obsidianmd/obsidian-importer](https://github.com/obsidianmd/obsidian-importer)（畫面 1.7k、API 1.7k，MIT，把 Apple Notes／OneNote 等轉成 Markdown，最近推送 2026-10-21）。五個帳號與 repo 皆可直接開啟。配樂：未標。SkillSpector 掃描待補（本批不 clone）。面試：第二大腦／筆記系統優先接官方或維護者開源的擷取與匯入工具，採用前核對星數、授權與最近推送
+
+![動態設計 OPEN SOURCE 面板：obsidian-skills、defuddle、clipper、help、importer](../assets/gifs/v50-altair-obsidian-open-source.gif)
+
+GIF：影片 0:01–0:03.5，OPEN SOURCE 工具清單看板（動態設計，非錄屏）。
