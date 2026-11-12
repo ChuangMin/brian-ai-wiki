@@ -108,9 +108,9 @@ Ryven（@imryven）上傳的 27 秒 X 影片，畫面是 GBRAIN／GARRY TAN 字�
 
 GIF：影片 0:00–0:02.5，gbrain 節點網路動態設計。
 
-### ⚠️ [Altair AI：Claude＋Obsidian Second Brain 十個 repo 清單](https://github.com/kepano/obsidian-skills) ⚠️
+### ⚠️ [Altair AI：Claude Second Brain（Obsidian repo 清單＋純 Markdown 變體）](https://github.com/kepano/obsidian-skills) ⚠️
 
-動態片整理用 Claude 與 Obsidian 組第二大腦的開源 repo；畫面多半看不清，依說明文核對可確認者
+Altair AI 多支動態片與概念動畫：Obsidian repo 清單、純 .md＋CLAUDE.md 地圖，以及隔夜一指令整理筆記進第二大腦的概念示範（畫面皆非真實運作軟體）
 
 ![kepano/obsidian-skills 的 GitHub 預覽](https://opengraph.githubassets.com/1/kepano/obsidian-skills)
 
@@ -124,9 +124,15 @@ GIF：影片 0:00–0:02.5，gbrain 節點網路動態設計。
 
 | 可信度 | 星數 | 出處 |
 | --- | --- | --- |
-| ⚠️ 引流・概念動畫・可信度中 | — | ⚠️ [影片 48](https://www.facebook.com/reel/1666945238466731) ⚠️ |
+| ⚠️ 引流・概念動畫・可信度中 | — | ⚠️ [影片 48](https://www.facebook.com/reel/1666945238466731) ⚠️；[影片 51](https://www.facebook.com/reel/2062559707739569)；[X @Flinzu](https://x.com/Flinzu/status/2119892851387769273)；[影片 61](https://www.facebook.com/reel/3503498356478626)；[影片 77](https://www.facebook.com/reel/1473932208004781) |
 
-Altair AI 上傳的 22 秒 Facebook Reel，動態設計「10 AI REPOS」看板（非真實錄屏），畫面字太小多半無法辨識；說明文點名並描述流程（sources→raw→ingest→link→check→wiki→ask）。依說明文核對 GitHub（只取名稱清楚對得上的）：⚠️ [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills) ⚠️（51.2k，與影片 47 同一 repo）；⚠️ [AgriciDaniel/claude-obsidian](https://github.com/AgriciDaniel/claude-obsidian) ⚠️（16.3k，MIT，最近推送 2026-10-25）；⚠️ [Astro-Han/karpathy-llm-wiki](https://github.com/Astro-Han/karpathy-llm-wiki) ⚠️（2.7k，MIT，Karpathy 風格 LLM wiki，最近推送 2026-07-23）；⚠️ [undefined-ui/second-brain-os](https://github.com/undefined-ui/second-brain-os) ⚠️（1.5k，MIT，最近推送 2026-11-03）；⚠️ [vouchdev/vouch](https://github.com/vouchdev/vouch) ⚠️（66，MIT，「no source means error／你核准才寫入」與文案相符）。其餘名稱（obsidian-second-brain、second-brain、llm-wiki、ai-second-brain、LLM_Wiki_SecondBrain 等）有多個同名或對不上，標為未確認、不猜測 owner。片尾要留言編號，屬引流。配樂：未標。SkillSpector 掃描待補（本批不 clone）。
+Altair AI 動態設計短片（非真實錄屏）。【影片 48】22 秒「10 AI REPOS」看板，畫面字太小多半無法辨識；說明文點名並描述流程（sources→raw→ingest→link→check→wiki→ask）。依說明文核對 GitHub（只取名稱清楚對得上的）：kepano/obsidian-skills（51.2k，與影片 47 同一 repo）；AgriciDaniel/claude-obsidian（16.3k，MIT，最近推送 2026-10-25）；Astro-Han/karpathy-llm-wiki（2.7k，MIT，Karpathy 風格 LLM wiki，最近推送 2026-07-23）；undefined-ui/second-brain-os（1.5k，MIT，最近推送 2026-11-03）；vouchdev/vouch（66，MIT，「no source means error／你核准才寫入」與文案相符）。其餘名稱（obsidian-second-brain、second-brain、llm-wiki、ai-second-brain、LLM_Wiki_SecondBrain 等）有多個同名或對不上，標為未確認、不猜測 owner。片尾要留言編號，屬引流。【影片 51】25 秒變體：不用 Obsidian／Notion／資料庫，改以純 .md 檔＋根目錄一份 CLAUDE.md 當索引地圖；三個資料夾 notes／people／projects／；規則是回答必須引用來源檔，否則回 NOT FOUND。畫面是動畫模擬儀表板，沒有真實操作步驟，也未展示 CLAUDE.md 內容；畫面上「247 files／0 hallucinations」只是模擬 UI 計數（未驗證）；「OPUS 5.5」標籤同 SEQ 0096，屬宣稱待驗證。本支無留言換連結。【X @Flinzu／影片 60】25 秒概念動畫（無實際運作軟體）。稱一堆純文字檔繞一份地圖：notes／people／projects，以及 MEMORY／LEARNINGS／decisions；先載入地圖；回答要引用檔案；Claude 不會編造你沒寫下的理由。說明文指向 @Bober_smart 的指南 https://x.com/Bober_smart/status/2078784709253841039。畫面「OPUS 5.5」標籤同 SEQ 0096，屬宣稱待驗證。無留言換連結。【影片 61】Lê Quốc Nghĩa 上傳的 Facebook Reel，同樣是概念動畫（無實際運作軟體）：raw/→wiki/，根目錄 CLAUDE.md 當地圖；說明文附完整設置提示詞。動畫出現讀取 people 檔、weekly-review skill、remember、／doctor 提示詞健檢。本支無留言換連結。【影片 77】Altair AI 上傳的約 30 秒直式 Facebook Reel（2026-11-06；Brian 於 2026-11-12 21:28 Asia/Taipei 在對話直接傳來 [這則分享連結](https://www.facebook.com/share/v/1A4xaosai3/)）。說明文自稱為 concept demo（概念示範），不是真實運作軟體。一句指令「I'm going to bed. Sort my notes into the brain」；管線角色 Intake／Split／Mapper／Dedupe／Learnings／Citer／Honest（畫面另有 Namer、Pinner、Morning 等卡片）。資料夾 notes／people／projects／decisions（帶日期的決策紀錄）。Mapper 寫 CLAUDE.md 地圖，下次 session 開始時載入。說明文列五則當天就能用的作法：一題一檔、用內容命名；用 CLAUDE.md 當資料夾地圖；回答要引用來源檔；允許說 not in the files；只釘兩個檔（例如 memory 與 decisions log）。說明文也寫 /brain-mode、/map、/pin 是這則概念裡的自訂捷徑，不是 Claude Code 內建指令，可用 skills／自訂指令自做（畫面可見 /brain-mode）。結尾數字 143 files、37 cited answers、0 guesses（畫面另寫 3 folders · 1 CLAUDE.md；與列出的四個資料夾名稱不完全一致）為概念示範計數、未驗證。說明文問 Comment 1, 2 or 3（排序、地圖或引用何者最省時間），只是互動提問、沒有換連結，不另標引流；既有 ⚠️ 仍因影片 48 留言編號而保留。片尾 Follow Altair AI 為普通追蹤呼籲。無私人資訊。配樂：未標。GIF（影片 51）：0:03–0:06。GIF（影片 77）：0:24–0:29。SkillSpector 掃描待補（本批不 clone）
+
+![純 .md 第二大腦模擬儀表板](../assets/gifs/v51-altair-plain-md-second-brain.gif)
+
+![隔夜一指令整理筆記進第二大腦的概念示範收尾](../assets/gifs/v74-altair-overnight-brain-sort.gif)
+
+此則的影片 48 為引流：標題與影片 48 連結旁保留 ⚠️；影片 51／60／61／77 與 Bober_smart 指南無留言換連結，不加 ⚠️。
 
 ### [Lamis Mukta（Anthropic）：從 CLAUDE.md 到 Dreaming 的 agent 記憶演進](https://x.com/David_eficaz/status/2118745007628726684)
 

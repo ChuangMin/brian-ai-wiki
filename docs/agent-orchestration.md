@@ -129,3 +129,120 @@ Paperclip 暗色 SaaS 介面導覽：代理儀表板（統計卡片＋Issues by 
 | ⚠️ 引流・可信度中 | 8.9k | [影片 42](https://www.facebook.com/watch/?v=2575196886290079) ⚠️ |
 
 GitHunt 上傳的 28 秒影片，只有捲動 README 加英文 AI 語音，沒有實機示範；片尾要人留言「AGENT」拿連結。標題說是「免費的 Claude Code 替代品」，但 README 寫的是 harness：選 Claude Code、Codex 或 Pi（開源、可接多家模型）其一來跑，還是要用你自己的訂閱、API key 或本機模型。功能：筆電／桌機／手機串起來（手機可遠端桌面）、automations 排程例行工作、透過 Slack、Telegram 交辦，可裝外掛。程式在 apps/desktop（Electron）和 apps/mobile（Expo／React Native）。Apache-2.0，2026-07-22 建立，最後推送 2026-11-01。可信度：中，repo 是真的，但「替代 Claude Code」說法誤導；README 的 CI 徽章 2026-11-01 查看時顯示 failing（最近幾次 main 執行被取消）；官方發行版預設含 TapDB 使用分析並綁帳號 ID，可在設定關閉。配樂：無。無 GIF 片段（只是捲動 README）。
+
+### [Altair AI：Claude Code 一場 session 三模型分工（Sonnet／Haiku／Opus）](https://code.claude.com/docs/en/sub-agents)
+
+同一場 Claude Code：Sonnet 寫碼、Haiku 做便宜唯讀搜尋與測試、Opus 只在三個關卡做是／否審查
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 概念動畫・可信度中 | — | [影片 52](https://www.facebook.com/reel/2504853660346325) |
+
+Altair AI 上傳的 22 秒 Facebook Reel，純動態設計（非真實錄屏／未展示實際設定步驟）。構想：一場 Claude Code session 分三角色——Sonnet 當主 session 寫與改碼（`claude --model sonnet`）；Haiku 當便宜唯讀助手，負責搜 repo、grep 呼叫點、跑測試（構想是在 CLAUDE.md 規定：每次 repo 搜尋與測試都交給 haiku）；Opus 當審查者、從不寫碼，只回 yes／no，且只在三個時機醒來：計畫鎖定前、同一錯誤重複超過兩次（打斷迴圈）、宣告「完成」前（agent 最常在此誤報成功）。可對照 SEQ 0069（Agent Teams 多 agent 協作）、0054（多 agent 看板＋verify／gate）、0095（第二大腦記憶分工）。畫面數字（432 runs、0.91→0.74、diff +12 -3）為示意，標未驗證；「Sonnet／Haiku／Opus 5.5」型號標籤屬宣稱待驗證。實際設定（對照官方文件 https://code.claude.com/docs/en/sub-agents ）：主 session 用 `claude --model sonnet`（或 opus／haiku）；subagent 在 frontmatter 設 `model: sonnet|haiku|opus|inherit`（與 `--model` 接受的別名相同），也可在 Agent 呼叫時指定 model 參數，或以 `CLAUDE_CODE_SUBAGENT_MODEL` 統一覆寫。配樂：未標。GIF：0:05–0:08（https://wiki.singularityengine.dev/assets/gifs/v52-altair-multi-model-claude-code.gif）
+
+![三模型分工動態示意](../assets/gifs/v52-altair-multi-model-claude-code.gif)
+
+GIF：0:05–0:08。
+
+### [15 個給 AI agent team 的 GitHub repo（含交易相關庫）](https://github.com/serenakeyitan/agent-org-chart)
+
+說明文列出 15 個 repo：10 個 agent 組隊／角色範本，5 個行情與回測庫；畫面是模擬 Grok Bot Teams 儀表板，不是真實操作
+
+![serenakeyitan/agent-org-chart 的 GitHub 預覽](https://opengraph.githubassets.com/1/serenakeyitan/agent-org-chart)
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 概念動畫・可信度中 | — | [影片 64](https://www.facebook.com/reel/1827893618429238) |
+
+Lê Quốc Nghĩa 上傳的約 22 秒 Facebook Reel（2026-11-11），無留言換連結。畫面是模擬「Grok Bot Teams」儀表板概念動畫。說明文 15 個 repo 查證（GitHub API 2026-11-11 台北時間）全部存在。agent 組隊類多為小型專案（星數約 46–174，hypergrok-trading-desk 490）：[serenakeyitan/agent-org-chart](https://github.com/serenakeyitan/agent-org-chart)（174，MIT）、[jaredtrichard/grok-factory](https://github.com/jaredtrichard/grok-factory)（73，無 license 欄）、[simo255/multiBot](https://github.com/simo255/multiBot)（67，MIT）、[mKay00/grok-bot-second-brain](https://github.com/mKay00/grok-bot-second-brain)（69，無 license 欄）、[Archive228/foreman](https://github.com/Archive228/foreman)（60，MIT）、[YannisKiefer/grokbot-x](https://github.com/YannisKiefer/grokbot-x)（76，MIT）、[function1st/PhoneZero](https://github.com/function1st/PhoneZero)（47，MIT）、[mandarwagh9/botroster](https://github.com/mandarwagh9/botroster)（46，Apache-2.0）、[HAEGONG/grok-bot-profiles](https://github.com/HAEGONG/grok-bot-profiles)（61，CC-BY-4.0）、[galleonlabs/hypergrok-trading-desk](https://github.com/galleonlabs/hypergrok-trading-desk)（490，MIT；README 稱研究優先、執行需確認）。行情／回測庫較大：[bmoscon/cryptofeed](https://github.com/bmoscon/cryptofeed)（3,020，license 欄 NOASSERTION）、[ccxt/ccxt](https://github.com/ccxt/ccxt)（44,857，MIT）、[freqtrade/freqtrade](https://github.com/freqtrade/freqtrade)（56,763，GPL-3.0）、[polakowo/vectorbt](https://github.com/polakowo/vectorbt)（9,813，NOASSERTION）、[ranaroussi/quantstats](https://github.com/ranaroussi/quantstats)（7,851，Apache-2.0）。涉及真金或下單的工具（尤其交易桌與 freqtrade／ccxt）應加人人核准閘門，不要直接讓 agent 動用資金。可對照 SEQ 0069（Agent Teams）與站內「Agent 分工模式」頁。SkillSpector 掃描待補（本批不 clone）。配樂：未標。GIF：0:05–0:15。
+
+![模擬 Grok Bot Teams 儀表板](../assets/gifs/v62-agent-team-repos.gif)
+
+### [Fable 5.2 當 CEO：過夜帳單稽核（多模型分工）](https://www.facebook.com/reel/1071773105932698)
+
+說明文稱 Fable 指揮、Haiku 讀帳、Opus 核實、Sonnet 寫信，一夜找出每月 11,640 美元漏洞；畫面是模擬儀表板，數字未驗證
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 概念動畫・宣稱待驗證・可信度低 | — | [影片 65](https://www.facebook.com/reel/1071773105932698) |
+
+Prakhar Saxena 上傳的約 41 秒 Facebook Reel（2026-11-10）。畫面是「CLAUDE CODE／FABLE 5.2」動態設計儀表板（非真實錄屏）。說明文編排：Fable 5.2 當 CEO 下指令；約 40 個 Haiku 5.5 讀完 41,806 筆交易；Opus 核對每項發現（需交易代號）；Sonnet 5.5 寫催收信；寄出前要人核准。宣稱一夜找出客戶隱漏三年、每月 11,640 美元（顧問超收 7,420、失敗扣款未重試 2,980、離職員工座位 1,240，另有 214 小時未請款 20,330），並稱客戶按首年追回的 20% 付了 27,936 美元——以上金額、筆數、「3 年」與「40 個 Haiku」皆未驗證。Sonnet 5.5 在畫面未出現。Fable 5.2 本身是 Anthropic 於 2026-11-09 發布的 Claude 模型（見 SEQ 0106）。可對照 SEQ 0098（Sonnet 寫／Haiku 搜／Opus 審的分工）。說明文附提示詞；無留言換連結。配樂：未標。GIF：0:15–0:25。
+
+![模擬 Fable 5.2 對帳儀表板](../assets/gifs/v63-fable-ceo-audit.gif)
+
+### ⚠️ [每間公司該建的 10 種 AI Employees（角色清單，無實作）](https://www.facebook.com/reel/2226812394848085) ⚠️
+
+素材片上疊十張模擬角色卡，沒有真實軟體、網址或價格；片尾要留言 Community 換教學
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| ⚠️ 引流・概念動畫・可信度低 | — | ⚠️ [影片 68](https://www.facebook.com/reel/2226812394848085) ⚠️ |
+
+Taki Wong - AI For Business 上傳的約 21 秒 Facebook Reel（2026-10-25）。說明文要留言 Community 才寄 10 種 AI Employees 的逐步指南，屬引流。畫面是素材片加上模擬卡片，沒有真實軟體、網址或價格，「10x」業績宣稱未驗證。角色清單（僅供核對、未示範）：① 幕僚長（調度其他 agent、每日簡報）；② 行銷（發文、剪片、看數據）；③ 銷售（回線索、資格篩選、約通話）；④ 客服（全通路 24/7）；⑤ 總機（接聽、預約）；⑥ 收件匣（分信、草擬回覆、約會議）；⑦ 財務（費用歸類、催帳、現金流）；⑧ 研究（對手、趨勢、客戶）；⑨ 評價（邀請與回覆評論）；⑩ 招聘（刊登職缺、篩選應徵、安排應徵者約見）。點名工具：Stripe、CRM、Instagram、TikTok、LinkedIn、YouTube、help desk、WhatsApp、SMS、Gmail、Outlook、Slack、QuickBooks、Xero、Google、Yelp、Facebook、Indeed。可對照 SEQ 0069（Agent Teams）、0078（Paperclip 公司化 agent）、0109（組隊 repo）。配樂：未標。GIF：0:00–0:10。
+
+![十張模擬角色卡片段](../assets/gifs/v66-10-ai-employees.gif)
+
+### [騰訊混元 Hy4：首次加入視覺與 computer use（說明文有把 preview 規格算進正式版）](https://www.tencent.com/tencent-launches-hy4-joining-the-ranks-of-the-worlds-leading-open-source-ai-models/)
+
+官方 2026-11-04 發布 Hy4，確認首次支援視覺理解與 CLI／GUI computer use；說明文的 770B／49B 與 100 萬 token，官方只寫在較早的 Hy4 preview。畫面是通用科幻 CGI，沒有型號或操作介面
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 宣稱待驗證・可信度中 | — | [影片 71](https://www.facebook.com/reel/2350688215687462) |
+
+Marc.AI 上傳的 10 秒 Facebook Reel（2026-11-05）。畫面只有通用科幻 CGI（發光大腦、機械手、全息儀表），無文字、標誌或產品介面，所有資訊在說明文；片尾只問「會不會讓 AI 直接操作你的電腦」，不是留言換連結，故不標引流。因畫面是庫存式 CGI、沒有可核對的產品畫面，本則未截 GIF。
+
+查證（2026-11-11 台北時間）對照[騰訊官方英文稿](https://www.tencent.com/tencent-launches-hy4-joining-the-ranks-of-the-worlds-leading-open-source-ai-models/)、[中文稿](https://www.tencent.com/zh-cn/tencent-launches-hy4-joining-the-ranks-of-the-worlds-leading-open-source-ai-models/)與研究頁 [hy.tencent.ai/research/hy4](https://hy.tencent.ai/research/hy4)：
+
+1. 發布日 2026-11-04 已核到。
+2. 首次加入視覺理解，以及 CLI 與 GUI 的 computer use（官方寫 command-line interfaces 與 graphical user interfaces，與說明文「螢幕和命令列」相符）已核到。
+3. 說明文把「7700 億總參數、每次只啟動 490 億、100 萬 token 上下文、已經開放」都寫成 11 月 4 日這次發布的規格。770B／49B MoE 與 1M 上下文，官方寫在 2026-08-28 的 Hy4 preview（[preview 公告](https://www.tencent.com/tencent-releases-and-open-sources-tencent-hy4-preview/)、[GitHub](https://github.com/Tencent-Hunyuan/Hy4-preview)、[Hugging Face](https://huggingface.co/tencent/Hy4-preview)）；README 標 Apache License 2.0（查證當日 438 星，GitHub license 欄為 NOASSERTION）。11 月 4 日正式版官方稿只說相對 preview 加大預訓練與後訓練、長上下文理解有提升，並未重述 770B／49B 或 1M，這三項套在正式版上標未驗證。
+4. 「開放」：官方寫「將於近期開源權重並發布 system card／plans to release model weights and system cards in the coming days」。查證當日 GitHub 無 Tencent-Hunyuan/Hy4（404），Hugging Face 公開清單只有 tencent/Hy4-preview 與 tencent/Hy4-preview-FP8，正式版權重是否已釋出標未驗證。
+
+可對照 SEQ 0009（同一騰訊混元體系的 Hy-Memory，不是同一個產品）。配樂：未標。無 GIF。
+
+### ⚠️ [SkillTree：宣稱 47 個 agent 跑一家公司（共享 Company Brain＋Council）](https://skilltree.altari.ai/) ⚠️
+
+Ahmed Alassafi／Altari 的 SkillTree 操作畫面：公司記憶、分部門 agent、排程與多模型 Council。說明文要留言 47 才寄拆解與系統權限；「47 個 agent」未在畫面上點數，儀表板標明是虛構公司樣本資料
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| ⚠️ 引流・宣稱待驗證・可信度中 | — | ⚠️ [影片 72](https://www.facebook.com/reel/1329619602540541) ⚠️ |
+
+Alassafi AI（Ahmed Alassafi）上傳的約 41 秒 Facebook Reel（2026-11-09）。說明文開頭要留言 47 才寄完整拆解，結尾要留言 47 才給系統權限，屬引流。畫面是看起來像真實產品的自製介面，品牌為 SkillTree，導覽有 Map、Chats、Dashboards、Files。Company Brain 來源列 Uploads 5,887、Gmail 1,840、Fireflies 412（數字未驗證）。地圖部門節點：Intelligence、Operations、Customer、Marketing、Back office、Deals、Sales、Finance。儀表板總覽寫明「Sample data for a fictional agency, Brightline」，可見來源包括 HubSpot（Open Pipeline 277,500 美元）、Xero（應收 55,700 美元，不是 MRR）、Instagram＋TikTok、Instantly＋HeyReach 等，以上金額皆為示範數字、標未驗證。另示範 LinkedIn 輪播、外聯研究提示詞（德州 20 家 10–50 人會計事務所）、把通話做成提案 PDF、紐約時間排程（Daily Brief 平日 7:30、Overnight lead research、Repurpose the best reels、Competitor watch），以及手機 Slack 機器人 Atlas。
+
+模型挑選器（經 OpenRouter，標價為每百萬 token 輸入／輸出）列出 Claude Fable 5.1（10／50 美元）、Opus 5.5（4／20）、Sonnet 5.5（2／10）、GPT-6 Astra（10／50）、Grok 4.7（2／6）、Gemini 4 Argon（2／10）。名稱查證：GPT-6 Astra 已見 SEQ 0039；Opus 5.5、Sonnet 5.5、Fable 5.1 為 Anthropic 正式型號，但現行旗艦是 Fable 5.2（見 SEQ 0106，2026-11-09 發布，本片同日上傳，挑選器仍列 5.1）；Grok 4.7、Gemini 4 Argon 亦為當時已發布的型號。Ask the Council：Opus 作答、GPT 盲評、Grok 裁決（畫面按鈕為 Answer alone／Critique blind／Chair decides）。本則抽到的 Council 畫面寫的是 GPT-6 Astra，未在抽幀中看到「GPT-4 Astra」。說明文稱 47 個 agent，畫面從未點數，標未驗證。
+
+公開網站 ⚠️ [skilltree.altari.ai](https://skilltree.altari.ai/) ⚠️ 存在（Altari／Ahmed Alassafi 的產品頁，宣傳 137 個 agent、7 個部門、可加入 waitlist；亦提供客製建置），與片中「47」數字不一致。可帶走的編排：共享公司記憶、分部門 agent、排程、聊天入口、重大決策用多模型 Council。可對照 SEQ 0069（Agent Teams）、0078（Paperclip 公司化 agent）、0109（組隊 repo）、0110（多模型對帳）、0113（十種 AI 角色清單）。配樂：未標。GIF：0:27–0:37。
+
+![Slack Atlas、模型選擇器與 Council](../assets/gifs/v69-skilltree-council.gif)
+
+### [Claude Code（Fable 5.2）＋Herdr：四個本機 Pi agent 並行分窗](https://herdr.dev)
+
+主窗 Claude Code 當監看編排，用 Herdr skill 在同一 tab 開四個本機 Pi pane（前端／後端／資料庫／review），工人跑本機 Nemotron 3.5 Super VL。真實錄屏，無引流
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 可信度中 | 50,210 | [影片 74](https://www.facebook.com/reel/1609258920348255) |
+
+胡嘉璽上傳的約 20 秒 Facebook Reel（2026-11-10；Brian 於 2026-11-12 00:01 Asia/Taipei 從 LINE 轉來裸連結 [這則分享連結](https://www.facebook.com/share/v/1CTf2CKEmi/)）。無留言換連結。畫面是真實操作錄屏：Herdr 桌面裡的 Claude Code 主窗（本機 repo 名稱 4panes），狀態列可見 Fable 5.2；提示詞請用 Herdr skill 在同一 tab 開四個 pi pane，工人模型為 nemotron-3.5-super-vl，經本機區網的 OpenAI 相容端點（畫面出現內網位址，本則不公開）。約 0:07 介面分成 1＋4：左側主窗監看，右側四個 Pi pane 分別擔任 frontend、backend、database、review，對同一個 4panes repo 工作（畫面可見 SPEC.md、README.md、docker-compose.yml；工人 pane 標 nemotron-super）。說明文寫需要 Herdr App、Herdr Skill、Herdr CLI、Claude Code CLI。
+
+查證（2026-11-12 台北時間）：Herdr 是公開產品，官網 [herdr.dev](https://herdr.dev)，定位為給 coding agent 用的終端／工作區（spaces、tabs、panes，關窗後終端仍可跑）。GitHub：[herdrdev/herdr](https://github.com/herdrdev/herdr)（「the runtime your coding agents live on」，Apache-2.0，50,210 星，最近推送 2026-11-07 20:32 台北時間）；[herdrdev/herdr-app](https://github.com/herdrdev/herdr-app) 桌面應用（Apache-2.0，2,713 星，最近推送 2026-11-11 23:59）；另有 herdr-core（Apache-2.0）。官方文件有 agent skill，可讓 Claude Code 等在 Herdr pane 內檢查並開鄰近 pane。Pi 即 Pi coding agent（[badlogic/pi-mono](https://github.com/badlogic/pi-mono)，與 earendil-works/pi-mono 為同一庫，MIT，121,421 星，最近推送 2026-11-12 00:00；Herdr 官方文件有 Pi integration）。NVIDIA Nemotron 3.5 Super VL 是正式型號：2026-10-15 發布的開源多模態模型，120B 總參數／12B 啟動的 MoE，權重授權 OpenMDW-1.1（[官方部落格](https://developer.nvidia.com/blog/nvidia-nemotron-3-5-super-vl-powers-specialized-agents-with-multimodal-reasoning/)，Hugging Face [nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16](https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16)）。Fable 5.2 為正式型號（見 SEQ 0106）。本則示範用的 4panes repo 不是公開專案。SkillSpector 掃描待補（本批不 clone）。可帶走的編排：主窗用較強模型當監看／編排，旁邊用本機較便宜模型分角色並行，而且工人 pane 看得到、可介入。可對照 SEQ 0089（Cindy 可接 Claude Code、Codex、Pi）、0069（Agent Teams）、0098（一場 session 三模型分工）、0110（Fable 當 CEO 過夜對帳）。配樂：未標。GIF：約 0:07–0:17（略避開稍早畫面中的內網端點）。
+
+![Herdr 裡 1＋4 分窗：主窗監看、四個本機 Pi pane 並行](../assets/gifs/v71-herdr-pi-panes.gif)
+
+### [Altair AI：Fable 5.2 讀完筆電，告訴我為什麼專案都開了不完（概念動畫）](https://www.facebook.com/reel/1980204536698183)
+
+風格化 3D 科幻 HUD，不是 Claude／Claude Code 真實錄屏。說明文與畫面列出筆記、session 與未完成專案的自述數字，皆為上傳者宣稱、未驗證；不是產品示範
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 概念動畫・宣稱待驗證・可信度中 | — | [影片 76](https://www.facebook.com/reel/1980204536698183) |
+
+Altair AI 上傳的約 24 秒直式 Facebook Reel（2026-11-11；Brian 於 2026-11-12 20:36 Asia/Taipei 在 LINE 寫 To wiki，轉來裸連結 [這則分享連結](https://www.facebook.com/share/v/1UH72zNprk/)）。同一上傳者已見 SEQ 0094、0095、0097、0098。畫面是風格化 3D 科幻 HUD 動態設計（標題 FABLE 5.2 READ MY ENTIRE LAPTOP／IT TOLD ME WHY NOTHING I START SHIPS），不是 Claude 或 Claude Code 的真實操作錄屏，也未出現提示詞或產品設定步驟。片尾橫幅「Altair AI | Follow Altair AI for more AI tips and tricks」是普通追蹤呼籲，與 SEQ 0094、0097 的 Follow 橫幅相同，不是留言換連結，故不標引流。
+
+畫面數字與說明文大致相符，皆為上傳者的個人自述、標未驗證：notes 2,400（說明文寫 2,400 notes）、claude code 11 months、31 個專案開始／2 個交貨、把「make it better」計為 147 次。說明文寫沒說 better 是什麼；畫面上「better defined」的計數並不一致（抽幀見過 0 與 8）。ideas_final_v3 在說明文是資料夾（稱三月後沒開過），畫面也作 ideas_final_v3／資料夾（可見 ideas_final.md 等檔名），不是已核到的真實檔案。最有效率時段寫 6–9 am；landing.html 寫重寫約 40 次、花在這段時間（畫面有 landing.html · v40、rewritten 40 times、40 layers；重寫面板的版本號在跳動，抽幀見過 v1、v11、v21、v31、v40）。VERDICT：「You treat starting as the achievement. You drop every project at the exact moment it needs a decision only you can make.」Fable 5.2 是 Anthropic 正式型號（見 SEQ 0106）。
+
+可帶走的作法：把長上下文模型對準筆記庫與 Claude Code session 紀錄，直問已開始對已交貨、統計含糊提示詞（例如 make it better）、找出自己的高產出時段；寫提示詞時先定義 better 是什麼。數字與「昨晚讀完整台筆電」的情節未驗證，不當產品示範。可對照 SEQ 0110（同樣是 Fable 5.2 的模擬稽核儀表板）、0104、0106、0111、0119（其他 Fable 5.2 條目）。配樂：未標。GIF：0:03–0:08。
+
+![Fable 5.2 讀筆電的風格化 3D HUD 與 VERDICT](../assets/gifs/v73-fable-laptop-verdict.gif)

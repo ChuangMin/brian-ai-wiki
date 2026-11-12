@@ -95,3 +95,26 @@ Five classic GitHub repos: rebuild tools yourself, learning roadmaps, systems de
 | ⚠️ engagement bait · high credibility | — | [Video 32](https://www.facebook.com/reel/1849291249414632) ⚠️ |
 
 A real talking-head video by James Mcquay (the post says Comment "AI", and in the video he also asks viewers to comment "Github" so a private message can send the links; that is comment-driven engagement bait. Nothing is actually hidden: every repo name is spoken and subtitled). The on-screen line "10/10 GitHub repositories to make you an elite developer" is marketing exaggeration. (1) build-your-own-x (⚠️ https://github.com/codecrafters-io/build-your-own-x ⚠️): rebuild Git, Docker, databases, and so on from scratch, 557.8k stars (the video says 485k, which is out of date). (2) roadmap.sh (⚠️ https://github.com/nilbuild/developer-roadmap ⚠️, formerly kamranahmedse/developer-roadmap, renamed): learning roadmaps for backend, frontend, DevOps, and AI, 370.9k stars. (3) system-design-primer (⚠️ https://github.com/donnemartin/system-design-primer ⚠️): caching, load balancing, scalability, 376.3k stars. (4) free-programming-books (⚠️ https://github.com/EbookFoundation/free-programming-books ⚠️): free books and courses, 400.6k stars. (5) TheAlgorithms/Python (⚠️ https://github.com/TheAlgorithms/Python ⚠️): algorithm implementations, 225.7k stars. Stars checked 2026-10-31. Credibility: high. The repos are real classics. Only the "elite developer" line is inflated. Music: soft lo-fi background. A static talking head, no GIF clip.
+
+### [Altair AI: Karpathy’s six free GitHub projects (including the LLM Wiki gist)](https://www.facebook.com/reel/1655634979372088)
+
+A motion-graphic dashboard of six public Karpathy projects. The five GitHub repos exist and their star counts roughly match the caption; LLM Wiki is a gist whose full URL was found, but the caption’s 50K stars do not match the on-screen figure or the gist page
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| concept animation · high credibility | — | [Video 78](https://www.facebook.com/reel/1655634979372088) |
+
+~22s vertical Facebook Reel by Altair AI (2026-11-12; Brian sent [this reel](https://www.facebook.com/reel/1655634979372088) in chat at 22:00 Asia/Taipei on 2026-11-12). The clip is a stylized sci-fi HUD titled KARPATHY / REPO SWARM, not a real walkthrough, and it contains no private information. The caption lists six projects (original links used http; this entry uses https) and claims a combined total of over 300,000 stars. “Save these 6 repositories” is an ordinary save prompt, not comment-for-link bait, so no ⚠️. The footer Follow Altair AI banner is an ordinary follow CTA.
+
+Verification (2026-11-12, Asia/Taipei, GitHub API; all under the karpathy account):
+
+1. [karpathy/autoresearch](https://github.com/karpathy/autoresearch): caption 92.7K, API 99,902, license field empty
+2. [karpathy/nanoGPT](https://github.com/karpathy/nanoGPT): caption 64.4K, API 64,676, MIT
+3. [karpathy/nanochat](https://github.com/karpathy/nanochat): caption 60.2K, API 60,508, MIT
+4. LLM Wiki: caption 50K, URL truncated as gist.github.com/karpathy/442a6. The full gist is [gist.github.com/karpathy/442a6bf555914893e9891c11519de94f](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) (file `llm-wiki.md`). The gist page that day showed only 5,000+ stars (GitHub’s display cap for gists); the API returned 502, so no exact live count was obtained. The on-screen card and footer chart say 5.8K gist, which does not match the caption’s 50K
+5. [karpathy/llm.c](https://github.com/karpathy/llm.c): caption 31.4K, API 31,452, MIT
+6. [karpathy/micrograd](https://github.com/karpathy/micrograd): caption 18.7K, API 18,881, MIT
+
+The five repos total 275,419 API stars, plus at least 5,000+ for the gist, which is close to the on-screen header 277.6K. The caption’s “over 300,000 stars” treats the gist as 50K and is high. The graphic labels all six MIT, but neither autoresearch nor the gist had a visible SPDX license that day, so the on-screen MIT label is not used as a source. Cross-links: SEQ 0095 (Astro-Han/karpathy-llm-wiki is a derivative of this gist idea) and 0077 (another “repos engineers should know” list). SkillSpector scan pending (not cloned in this batch; routines are paused). GIF: 0:10–0:15.
+
+![Karpathy REPO SWARM stylized dashboard](../../assets/gifs/v75-karpathy-six-repos.gif)

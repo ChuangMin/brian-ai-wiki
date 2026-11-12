@@ -336,5 +336,257 @@
     "what_it_shows": "動態設計 OPEN SOURCE 面板：列出 obsidian-skills、defuddle、obsidian-clipper、obsidian-help、obsidian-importer 與星數（非真實錄屏）",
     "size_bytes": 663435,
     "rebuild_note": "來源 /workspace/fb/prep-20261109-1895633831459873.mp4。ffmpeg -ss 1 -t 2.5 -i … -vf \"fps=7,scale=420:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=48:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle\""
+  },
+  {
+    "file": "v51-altair-plain-md-second-brain.gif",
+    "video_number": "影片 51",
+    "entry_name": "Altair AI：Claude＋Obsidian Second Brain 十個 repo 清單（純 Markdown 變體）",
+    "reel_url": "https://www.facebook.com/reel/2062559707739569",
+    "segment_start": 3.0,
+    "duration": 3.0,
+    "what_it_shows": "動態設計模擬儀表板：純 .md 第二大腦（無 Obsidian／Notion），顯示檔案數等 UI 計數（非真實操作、CLAUDE.md 內容未展示）",
+    "size_bytes": 932451,
+    "rebuild_note": "來源 /workspace/fb/prep-20261109-2062559707739569.mp4。ffmpeg -ss 3 -t 3 -i … -vf \"fps=8,scale=480:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=64:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle\""
+  },
+  {
+    "file": "v52-altair-multi-model-claude-code.gif",
+    "video_number": "影片 52",
+    "entry_name": "Altair AI：Claude Code 一場 session 三模型分工（Sonnet／Haiku／Opus）",
+    "reel_url": "https://www.facebook.com/reel/2504853660346325",
+    "segment_start": 5.0,
+    "duration": 3.0,
+    "what_it_shows": "動態設計：Sonnet／Haiku／Opus 三角色編排示意與模擬儀表板數字（非真實錄屏）",
+    "size_bytes": 471066,
+    "rebuild_note": "來源 /workspace/fb/prep-20261109-2504853660346325.mp4。ffmpeg -ss 5 -t 3 -i … -vf \"fps=8,scale=480:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=64:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle\""
+  },
+  {
+    "file": "v53-cangjie-skill-distill.gif",
+    "video_number": "影片 53",
+    "entry_name": "倉頡 SKILL 2.0（cangjie-skill）：長內容蒸餾成 Agent Skills",
+    "reel_url": "https://www.facebook.com/reel/1308612614774010",
+    "segment_start": 33.0,
+    "duration": 5,
+    "size_bytes": 2115626,
+    "what_it_shows": "倉頡／cangjie-skill 流程示意：影片連結→下載→抽音訊→語音轉文字→把文字蒸餾成可重用 Agent Skills（步驟／框架／安全邊界）；畫面為演示素材非實測數字"
+  },
+  {
+    "file": "v54-hacking-practice-sites.gif",
+    "video_number": "影片 54",
+    "entry_name": "四個合法資安練習平台（Hack The Box／TryHackMe／PortSwigger Academy／VulnHub）",
+    "reel_url": "https://www.facebook.com/reel/1445350007024379",
+    "segment_start": 4.0,
+    "duration": 10,
+    "size_bytes": 345498,
+    "what_it_shows": "黑底輪播四個平台 logo 與名稱：Hack The Box、TryHackMe、PortSwigger、VulnHub；無旁白"
+  },
+  {
+    "file": "v55-hallmark-design-skill.gif",
+    "video_number": "影片 55",
+    "entry_name": "Hallmark：Together AI 的反 AI 味設計 skill",
+    "reel_url": "https://www.facebook.com/reel/1745279943247041",
+    "segment_start": 22.0,
+    "duration": 10,
+    "size_bytes": 3810808,
+    "what_it_shows": "簡報式畫面介紹 Hallmark 50 種主題（紙張／字型／配色／元件／質感），並稱每套都有完成頁面當參考；非真實操作錄屏"
+  },
+  {
+    "file": "v56-osiris-osint.gif",
+    "video_number": "影片 56",
+    "entry_name": "OSIRIS：開源 OSINT 儀表板（osirisai.live）",
+    "reel_url": "https://www.facebook.com/reel/847344248401222",
+    "segment_start": 3.0,
+    "duration": 10,
+    "size_bytes": 1976677,
+    "what_it_shows": "OSIRIS 風格地圖儀表板：船隻／航班等圖層；此片段需與條目警告一併看（影片另有 Liveuamap 與代幣圖表誤用）"
+  },
+  {
+    "file": "v57-higgsfield-fable-game.gif",
+    "video_number": "影片 57",
+    "entry_name": "Higgsfield＋Fable 5.2：宣稱 3.5 小時做出射擊遊戲模型",
+    "reel_url": "https://www.facebook.com/reel/1610065000234607",
+    "segment_start": 2.0,
+    "duration": 10,
+    "size_bytes": 2446886,
+    "what_it_shows": "上半帶 HIGGSFIELD／FABLE 5.2 浮水印的第一人稱射擊畫面；下半標 Blender，介面靜止、模型在變形"
+  },
+  {
+    "file": "v58-text-to-cad.gif",
+    "video_number": "影片 58",
+    "entry_name": "text-to-cad：用文字讓 agent 做 3D／CAD 模型",
+    "reel_url": "https://www.facebook.com/reel/1051298501315719",
+    "segment_start": 8.0,
+    "duration": 10,
+    "size_bytes": 2218614,
+    "what_it_shows": "text-to-cad 畫面展示 3D 零件／折疊機構模型（非完整實測流程）"
+  },
+  {
+    "file": "v59-water-keeps.gif",
+    "video_number": "影片 59",
+    "entry_name": "What the water keeps：繪本風泛舟網頁",
+    "reel_url": "https://www.facebook.com/reel/1465699568821932",
+    "segment_start": 21.0,
+    "duration": 10,
+    "size_bytes": 2612767,
+    "what_it_shows": "循環的變形划船／水面動畫，無操作介面或提示詞"
+  },
+  {
+    "file": "v60-claude-scorpion-binders.gif",
+    "video_number": "影片 62",
+    "entry_name": "Claude Science：蠍毒蛋白結合劑設計",
+    "reel_url": "https://www.facebook.com/reel/1119597340441398",
+    "segment_start": 23.0,
+    "duration": 10,
+    "size_bytes": 251596,
+    "what_it_shows": "小礦工解說 Anthropic 蠍毒結合劑實驗數據的簡報畫面"
+  },
+  {
+    "file": "v61-broch-10-skills.gif",
+    "video_number": "影片 63",
+    "entry_name": "Broch Builds：10 個新 Claude Code／Codex skill",
+    "reel_url": "https://www.facebook.com/reel/1439815074924674",
+    "segment_start": 0.0,
+    "duration": 10,
+    "size_bytes": 2568370,
+    "what_it_shows": "技能清單／repo 看板輪播（片尾有留言換清單）"
+  },
+  {
+    "file": "v62-agent-team-repos.gif",
+    "video_number": "影片 64",
+    "entry_name": "15 個 AI agent team GitHub repo",
+    "reel_url": "https://www.facebook.com/reel/1827893618429238",
+    "segment_start": 5.0,
+    "duration": 10,
+    "size_bytes": 1732199,
+    "what_it_shows": "模擬 Grok Bot Teams 儀表板概念動畫"
+  },
+  {
+    "file": "v63-fable-ceo-audit.gif",
+    "video_number": "影片 65",
+    "entry_name": "Fable 5.2 當 CEO 過夜對帳",
+    "reel_url": "https://www.facebook.com/reel/1071773105932698",
+    "segment_start": 15.0,
+    "duration": 10,
+    "size_bytes": 3011506,
+    "what_it_shows": "模擬 CLAUDE CODE／FABLE 5.2 動態儀表板，數字未實測"
+  },
+  {
+    "file": "v64-higgsfield-x-fable.gif",
+    "video_number": "影片 66",
+    "entry_name": "Higgsfield X Fable 剪輯廣告",
+    "reel_url": "https://www.facebook.com/reel/1461806646088320",
+    "segment_start": 2.0,
+    "duration": 10,
+    "size_bytes": 1605569,
+    "what_it_shows": "筆電上的剪輯軟體擺拍，無操作步驟；畫面有 Comment SHORTS"
+  },
+  {
+    "file": "v65-astra-architecture.gif",
+    "video_number": "影片 67",
+    "entry_name": "Claude＋ChatGPT Astra 6 互動建築簡報",
+    "reel_url": "https://www.facebook.com/reel/1485883914602760",
+    "segment_start": 9.0,
+    "duration": 10,
+    "size_bytes": 1879874,
+    "what_it_shows": "完成的互動 3D 建築網頁（Verdant Residences），無 AI 操作畫面"
+  },
+  {
+    "file": "v66-10-ai-employees.gif",
+    "video_number": "影片 68",
+    "entry_name": "每間公司該建的 10 種 AI Employees",
+    "reel_url": "https://www.facebook.com/reel/2226812394848085",
+    "segment_start": 0.0,
+    "duration": 10,
+    "size_bytes": 2198740,
+    "what_it_shows": "素材片上疊模擬角色卡片，無真實軟體"
+  },
+  {
+    "file": "v67-ui-details-beat-slop.gif",
+    "video_number": "影片 69",
+    "entry_name": "9 個打敗 AI slop 的 UI 細節",
+    "reel_url": "https://www.facebook.com/reel/1690133082855724",
+    "segment_start": 0.0,
+    "duration": 9,
+    "size_bytes": 1508087,
+    "what_it_shows": "AI Slop→Premium 前後對照清單動畫"
+  },
+  {
+    "file": "v68-light-and-line.gif",
+    "video_number": "影片 70",
+    "entry_name": "光與線：視覺構成短片（設計靈感）",
+    "reel_url": "https://www.facebook.com/reel/1782325196375171",
+    "segment_start": 2.0,
+    "duration": 10,
+    "size_bytes": 1262506,
+    "what_it_shows": "極簡線條與光的動態構成（複製、位移成錐位線／柱廊）"
+  },
+  {
+    "file": "v69-skilltree-council.gif",
+    "video_number": "影片 72",
+    "entry_name": "SkillTree：宣稱 47 個 agent 跑一家公司（Ask the Council）",
+    "reel_url": "https://www.facebook.com/reel/1329619602540541",
+    "segment_start": 27.0,
+    "duration": 10,
+    "size_bytes": 2905470,
+    "what_it_shows": "Slack 機器人 Atlas、模型選擇器與 Ask the Council 辯論畫面"
+  },
+  {
+    "file": "v70-gilt-foundry-comic.gif",
+    "video_number": "影片 73",
+    "entry_name": "Gilt Foundry：互動漫畫網站（只展示完成品）",
+    "reel_url": "https://www.facebook.com/reel/1436171255368046",
+    "segment_start": 0.0,
+    "duration": 10,
+    "size_bytes": 3364420,
+    "what_it_shows": "MacBook 上操作黑白點綴色彩的卷軸互動漫畫網站，疊 GPT-6.1 Terra 文案"
+  },
+  {
+    "file": "v71-herdr-pi-panes.gif",
+    "video_number": "影片 74",
+    "entry_name": "Claude Code（Fable 5.2）＋Herdr：四個本機 Pi agent 並行分窗",
+    "reel_url": "https://www.facebook.com/reel/1609258920348255",
+    "segment_start": 7.0,
+    "duration": 10,
+    "size_bytes": 293931,
+    "what_it_shows": "Herdr 裡 1＋4 分窗：主窗 Claude Code 監看，四個本機 Pi pane（frontend／backend／database／review）並行"
+  },
+  {
+    "file": "v72-jev-engineering-fui.gif",
+    "video_number": "影片 75",
+    "entry_name": "JEV Engineering：多 agent 管線監控的科幻 FUI 儀表板（概念動畫，非產品錄屏）",
+    "reel_url": "https://www.facebook.com/reel/1773060590589981",
+    "segment_start": 8.0,
+    "duration": 5,
+    "size_bytes": 1913988,
+    "what_it_shows": "暗色科幻 FUI 儀表板 JEV ENGINEERING：多 agent 管線面板、機械水母與跳動的示範成本數字"
+  },
+  {
+    "file": "v73-fable-laptop-verdict.gif",
+    "video_number": "影片 76",
+    "entry_name": "Altair AI：Fable 5.2 讀完筆電，告訴我為什麼專案都開了不完（概念動畫）",
+    "reel_url": "https://www.facebook.com/reel/1980204536698183",
+    "segment_start": 3.0,
+    "duration": 5,
+    "size_bytes": 2026346,
+    "what_it_shows": "風格化 3D HUD：Fable 5.2 讀筆電的模擬儀表板、專案開始／交貨數字與 VERDICT"
+  },
+  {
+    "file": "v74-altair-overnight-brain-sort.gif",
+    "video_number": "影片 77",
+    "entry_name": "Altair AI：隔夜一指令整理筆記進第二大腦（併入 SEQ 0095）",
+    "reel_url": "https://www.facebook.com/reel/1473932208004781",
+    "segment_start": 24.0,
+    "duration": 5,
+    "size_bytes": 594611,
+    "what_it_shows": "概念示範收尾：143 files、37 cited、0 guesses，地圖在 session 開始時載入"
+  },
+  {
+    "file": "v75-karpathy-six-repos.gif",
+    "video_number": "影片 78",
+    "entry_name": "Altair AI：Karpathy 的六個免費 GitHub 專案（含 LLM Wiki gist）",
+    "reel_url": "https://www.facebook.com/reel/1655634979372088",
+    "segment_start": 10.0,
+    "duration": 5,
+    "size_bytes": 2881780,
+    "what_it_shows": "Karpathy／REPO SWARM 風格化儀表板，可見 LLM Wiki gist 等專案卡片"
   }
 ]

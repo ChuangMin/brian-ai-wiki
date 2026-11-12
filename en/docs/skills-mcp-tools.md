@@ -217,3 +217,33 @@ A 21s Facebook Reel by Altair AI: motion-design skill board (not a real recordin
 ![Altair AI skill board](../../assets/gifs/v47-altair-skill-board.gif)
 
 GIF: 0:00–0:02 of the video, Altair AI skill board (motion graphics).
+
+### [Cangjie Skill 2.0 (cangjie-skill): distill long videos/courses/podcasts into Agent Skills](https://github.com/kangarooking/cangjie-skill)
+
+Distills text from long videos, courses, podcasts, and books into callable Agent Skills (steps, frameworks, safety boundaries); pair with the video-downloader skill for download + transcription first
+
+![GitHub preview for kangarooking/cangjie-skill](https://opengraph.githubassets.com/1/kangarooking/cangjie-skill)
+
+![GitHub preview for kangarooking/kangarooking-skills](https://opengraph.githubassets.com/1/kangarooking/kangarooking-skills)
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| claim unverified · medium credibility | 12.5k | [Video 53](https://www.facebook.com/reel/1308612614774010) |
+
+3:15 Facebook Reel by 一人公司研究所 (source: Bilibili AI袋鼠帝 / kangarooking). Tool: kangarooking/cangjie-skill (on-screen “倉頡 SKILL 2.0”; README badge 2.5.0) plus companion [video-downloader](https://github.com/kangarooking/kangarooking-skills/tree/main/video-downloader). Pipeline: video link → download → extract audio → speech-to-text → cangjie-skill distills **text** into reusable Agent Skills. This is text distillation, **not** multimodal frame/visual analysis — the Facebook caption’s multimodal claim is wrong. Demo stack: Longcat-2.0 + Claude Code. Claims (stock footage only, **unverified**): Andrew Ng 2026 course 26 videos / 4h+ → ~25 skills in ~1h; 4 YouTube videos 80+ min → 8 skills. No engagement bait; no install commands shown. GitHub API 2026-11-10 (Asia/Taipei): MIT, 12,523 stars / 1,481 forks, created 2026-04-16, last push 2026-10-02 11:17 Asia/Taipei; parent kangarooking-skills 715 stars, no license field, last push 2026-11-04. Cross-links: SEQ 0095, 0057, 0058, 0094. SkillSpector pending (no clone this batch).
+
+![Cangjie skill distillation board](../../assets/gifs/v53-cangjie-skill-distill.gif)
+
+### ⚠️ [Broch Builds: 10 new Claude Code / Codex skills](https://github.com/heydamir/unslop) ⚠️
+
+A short list of design/animation skill repos; the end asks you to comment SKILLS for a 320-item list
+
+![GitHub preview for heydamir/unslop](https://opengraph.githubassets.com/1/heydamir/unslop)
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| ⚠️ engagement bait · medium credibility | 14.2k | ⚠️ [Video 63](https://www.facebook.com/reel/1439815074924674) ⚠️ |
+
+~12s Facebook Reel by Broch Builds (2026-11-11). Caption: comment SKILLS to receive a “320-item list ranked by GitHub stars, with install commands” — engagement bait. Repos named on screen, checked via GitHub API 2026-11-11 (Asia/Taipei): present — ⚠️ [caru-ini/stack-diagram](https://github.com/caru-ini/stack-diagram) ⚠️ (2,345★, MIT, last push 2026-11-09 14:00 Asia/Taipei); ⚠️ [elvarofficial/teardown](https://github.com/elvarofficial/teardown) ⚠️ (3,076, MIT, 2026-10-31 22:01); ⚠️ [t3dotgg/tstack](https://github.com/t3dotgg/tstack) ⚠️ (3,469, MIT, 2026-11-11 19:33); ⚠️ [heydamir/unslop](https://github.com/heydamir/unslop) ⚠️ (14,232, CC-BY-4.0, 2026-11-09 05:18; on-screen “#1, +13,630” delta **unverified**). On-screen path mromdev/claude-animated-shorts is 404; the one-letter typo that exists is ⚠️ [mromidev/claude-animated-shorts](https://github.com/mromidev/claude-animated-shorts) ⚠️ (2,867, MIT, 2026-11-01 13:57). benjitaylor/stageshow and haydenchetty/floorplan are 404; no substitutes guessed. #4 Earshot, #3 Rea-Video, #2 PixelFX had no repo path (Earshot is already SEQ 0011; owners not guessed). SkillSpector pending. GIF: 0:00–0:10.
+
+![Skill-list / repo-board clip](../../assets/gifs/v61-broch-10-skills.gif)

@@ -108,9 +108,9 @@ A 27s X video by Ryven (@imryven): motion graphics with GBRAIN / GARRY TAN and a
 
 GIF: 0:00–0:02.5, gbrain network animation.
 
-### ⚠️ [Altair AI: Claude + Obsidian Second Brain — 10-repo list](https://github.com/kepano/obsidian-skills) ⚠️
+### ⚠️ [Altair AI: Claude Second Brain (Obsidian repo list + plain-Markdown variant)](https://github.com/kepano/obsidian-skills) ⚠️
 
-Motion graphics listing open-source repos for a Claude + Obsidian second brain; most on-screen text is unreadable, so only caption-named matches were verified
+Several Altair AI motion-graphics / concept-animation clips: an Obsidian repo list, a plain-.md + CLAUDE.md map, and a concept demo that sorts notes into a second brain with one overnight command (none of the clips show working software)
 
 ![GitHub preview for kepano/obsidian-skills](https://opengraph.githubassets.com/1/kepano/obsidian-skills)
 
@@ -124,9 +124,17 @@ Motion graphics listing open-source repos for a Claude + Obsidian second brain; 
 
 | Credibility | Stars | Source |
 | --- | --- | --- |
-| ⚠️ engagement bait · concept animation · medium credibility | — | ⚠️ [Video 48](https://www.facebook.com/reel/1666945238466731) ⚠️ |
+| ⚠️ engagement bait · concept animation · medium credibility | — | ⚠️ [Video 48](https://www.facebook.com/reel/1666945238466731) ⚠️; [Video 51](https://www.facebook.com/reel/2062559707739569); [X @Flinzu](https://x.com/Flinzu/status/2119892851387769273); [Video 61](https://www.facebook.com/reel/3503498356478626); [Video 77](https://www.facebook.com/reel/1473932208004781) |
 
-A 22s Facebook Reel by Altair AI. Confirmed from the caption: ⚠️ [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills) ⚠️ (51.2k; same as Video 47); ⚠️ [AgriciDaniel/claude-obsidian](https://github.com/AgriciDaniel/claude-obsidian) ⚠️ (16.3k); ⚠️ [Astro-Han/karpathy-llm-wiki](https://github.com/Astro-Han/karpathy-llm-wiki) ⚠️ (2.7k); ⚠️ [undefined-ui/second-brain-os](https://github.com/undefined-ui/second-brain-os) ⚠️ (1.5k); ⚠️ [vouchdev/vouch](https://github.com/vouchdev/vouch) ⚠️ (66; matches "no source means error / you approve writes"). Other names left unverified. Comment-the-number CTA = engagement bait. SkillSpector scan pending.
+Motion graphics (not real recordings). **Video 48**: verified caption matches include kepano/obsidian-skills, AgriciDaniel/claude-obsidian, Astro-Han/karpathy-llm-wiki, undefined-ui/second-brain-os, vouchdev/vouch; other names unverified; comment-the-number CTA. **Video 51** variant: plain `.md` + root `CLAUDE.md` index; folders notes/ people/ projects/; cite source or NOT FOUND. Simulated dashboard only; "247 files / 0 hallucinations" unverified; "OPUS 5.5" unverified (same caution as SEQ 0096). No comment-for-link on Video 51. **X @Flinzu / Video 60**: 25s concept animation (no working software). Plain text files around a map: notes / people / projects, plus MEMORY / LEARNINGS / decisions; load the map first; answers should cite files; Claude will not invent reasons you did not write down. Caption points to @Bober_smart’s guide https://x.com/Bober_smart/status/2078784709253841039. On-screen “OPUS 5.5” unverified (same as SEQ 0096). No comment-for-link. **Video 61**: Facebook Reel by Lê Quốc Nghĩa; also concept animation (no working software): raw/→wiki/, root CLAUDE.md as the map; caption includes a setup prompt. Animation shows reading a people file, a weekly-review skill, remember, and a /doctor prompt audit. No comment-for-link.
+
+**Video 77**: ~30s vertical Facebook Reel by Altair AI (2026-11-06; Brian sent [this share link](https://www.facebook.com/share/v/1A4xaosai3/) directly in chat at 21:28 Asia/Taipei on 2026-11-12). The caption calls it a concept demo, not working software. One command: “I'm going to bed. Sort my notes into the brain.” Pipeline roles: Intake / Split / Mapper / Dedupe / Learnings / Citer / Honest (the UI also shows cards for Namer, Pinner, and Morning). Folders: notes / people / projects / decisions (a dated decision log). Mapper writes a CLAUDE.md map that loads at the start of the next session. Five tips from the caption you can use today: one topic per file, named by content; a CLAUDE.md folder map; cite the source file; allow “not in the files”; pin only two files (for example a memory file and a decisions log). The caption also says /brain-mode, /map, and /pin are custom shortcuts in this concept, not built-in Claude Code commands; you can build your own with skills or custom commands (/brain-mode is visible on screen). End figures — 143 files, 37 cited answers, 0 guesses (the UI also says 3 folders · 1 CLAUDE.md, which does not exactly match the four folder names) — are concept-demo numbers, unverified. “Comment 1, 2 or 3” (which helps most: sorting, the map, or citations) is an interaction question with no link reward, so no new ⚠️; the existing ⚠️ stays because of Video 48’s comment-the-number CTA. The footer Follow Altair AI is an ordinary follow CTA. No private information. GIF (Video 51): 0:03–0:06. GIF (Video 77): 0:24–0:29.
+
+![Simulated plain-Markdown second-brain dashboard](../../assets/gifs/v51-altair-plain-md-second-brain.gif)
+
+![Concept-demo ending: notes sorted into the brain overnight](../../assets/gifs/v74-altair-overnight-brain-sort.gif)
+
+Keep ⚠️ on the title and the Video 48 link only.
 
 ### [Lamis Mukta (Anthropic): agent memory from CLAUDE.md to Dreaming](https://x.com/David_eficaz/status/2118745007628726684)
 

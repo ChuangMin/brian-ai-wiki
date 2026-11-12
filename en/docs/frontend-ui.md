@@ -165,3 +165,91 @@ A Code & Chill reel of a cinema back-office dashboard (sidebar, Finance › Card
 ![Kinlo dashboard circular wipe](../../assets/gifs/v37-view-transition-wipe.gif)
 
 ▶ Interactive demo: [Open](../../demos/view-transition-dashboard/) (https://wiki.singularityengine.dev/demos/view-transition-dashboard/)
+
+### [Details.so: real-site design-detail library + MCP (Claude Code / Cursor)](https://www.details.so)
+
+A hand-picked library of details from live production websites, searchable from Claude Code, Cursor, and similar tools via the official remote MCP
+
+![Threads post preview (Details.so UI screenshot)](../../assets/img/details-so-threads.jpg)
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| claim unverified · medium credibility | — | [Threads @ethansavemoneydairy](https://www.threads.com/@ethansavemoneydairy/post/DfgeXIwAIzH) |
+
+Image/text Threads post (no video), 2026-11-10. Claim: 3,400+ real website design examples, usable via MCP from Claude Code / Cursor. Verified 2026-11-10 (Asia/Taipei) from [pricing](https://www.details.so/pricing) and [mcp.md](https://www.details.so/mcp.md): hosted MCP at https://api.details.so/mcp (browser OAuth). MCP is included on every paid plan — Pro $9/mo (full Inspo + 300 MCP credits/mo), Max $19/mo (adds Vault, 1,000 credits), Team $22/seat/mo (2,000 credits/seat), Lifetime one-time (price not shown on the page fetched; 2,000 credits/mo). Starter (free) can browse recent Inspo, category/Vault previews, and selected free resources. Official MCP docs also say free accounts get a one-time 20 credits while “free access” is enabled (may be turned off; no refill; does not unlock the paid site or Vault). The **3,400+** library-wide count was **not** found on the official pages opened this turn (**unverified**). No public MCP GitHub repo found, so no SkillSpector scan. Cross-links: SEQ 0028–0031. No engagement bait.
+
+### ⚠️ [Hallmark: Together AI’s anti-AI-look design skill (Claude Code / Codex / Cursor / OpenCode)](https://github.com/Nutlope/hallmark) ⚠️
+
+A design skill that avoids common AI-looking webpage patterns: 50 themes, reads the project then asks once for real photos and numbers, and can check the page in a real browser at 8 widths
+
+![GitHub preview for Nutlope/hallmark](https://opengraph.githubassets.com/1/Nutlope/hallmark)
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| ⚠️ engagement bait · concept animation · medium credibility | 52.0k | ⚠️ [Video 55](https://www.facebook.com/reel/1745279943247041) ⚠️ |
+
+1:20 Facebook Reel by 小礦工挖挖礦 (2026-11-07): narration plus motion/slide graphics (no live demo, no real GitHub page). Ends with “comment 網頁質感 for the link” — engagement bait; the real repo is public. Claims: made by Together AI for Claude Code / Codex / Cursor / OpenCode; 48.2k stars / 2.6k forks, MIT; 50 themes each with a reference page; reads project fonts/colors/framework; asks once for real photos and numbers, no fabricated content; picks among 3 suitable themes, layout by page purpose; custom mode; 755 openly licensed photos with attribution; redesign (keep content, change style) and audit (report only); checks the page in a real browser at 8 widths (contrast, focus, mobile), with a fresh-eyes reviewer for the final verdict; browser check needs Chrome. Avoids AI-look patterns (eyebrow labels above headings, all-caps tags, newsletter footer). Verified GitHub API 2026-11-10 (Asia/Taipei): real repo is ⚠️ [Nutlope/hallmark](https://github.com/Nutlope/hallmark) ⚠️ (owner Nutlope / Hassan El Mghari, not the togethercomputer org; README says “Made by Together AI”), MIT, 52,023 stars / 2,771 forks (the video’s 48.2k is stale; forks are close to the claimed 2.6k), not archived, created 2026-04-27, last push 2026-11-05 21:16 Asia/Taipei; site ⚠️ [usehallmark.com](https://www.usehallmark.com/) ⚠️. README largely matches the feature list and notes static checks still run without Chrome / puppeteer-core. No live demo in this video, so effectiveness is unverified here. Cross-links: SEQ 0028, 0029, 0030, 0100. SkillSpector pending (no clone this batch).
+
+![Hallmark 50-theme slide](../../assets/gifs/v55-hallmark-design-skill.gif)
+
+### ⚠️ [Claude + ChatGPT Astra 6: interactive architecture presentation (Verdant Residences)](https://www.facebook.com/reel/1485883914602760) ⚠️
+
+Only the finished interactive 3D project site is shown (facade sliders, floor plans, an INR mortgage calculator), overlaid with “Client paid $2450”; no AI UI or workflow appears
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| ⚠️ engagement bait · claim unverified · low credibility | — | ⚠️ [Video 67](https://www.facebook.com/reel/1485883914602760) ⚠️ |
+
+~24s Facebook Reel by Presentation Palette (2026-11-11). Caption: comment ASTRA for the full AI workflow and prompts — engagement bait. The video only shows a finished interactive site, “Verdant Residences”: facade-material sliders, floor plans, a mortgage calculator in Indian rupees, plus an overlay “Client paid $2450.” The fee and whether Claude + Astra actually made it are **unverified**; no AI UI appears. The caption’s “ChatGPT Astra 6” is informal / the wrong order: the official name is GPT-6 Astra (⚠️ [openai.com/index/gpt-6-astra](https://openai.com/index/gpt-6-astra/) ⚠️, API id gpt-6-astra), the model behind GPT-6 Pro in ChatGPT. SEQ 0039 already uses the GPT-6 Astra name in the OpenAI incident write-up. Cross-link SEQ 0045 (OPZEN AI architectural rendering). GIF: 0:09–0:19.
+
+![Verdant Residences interactive clip](../../assets/gifs/v65-astra-architecture.gif)
+
+### ⚠️ [9 UI details that beat AI slop (David Mráz / Atheros Learning)](https://www.facebook.com/reel/1690133082855724) ⚠️
+
+A ~9s before/after animation toggling AI Slop→Premium, with nine interface details and some CSS; comment Learn for paid course access
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| ⚠️ engagement bait · concept animation · medium credibility | — | ⚠️ [Video 69](https://www.facebook.com/reel/1690133082855724) ⚠️ |
+
+~9s Facebook Reel by David Mráz (@davidm_ai) (2026-11-09). Caption: comment Learn to get these ideas on Atheros Learning (paid Pass members only, ⚠️ [learning.atheros.ai](https://learning.atheros.ai) ⚠️) — engagement bait. Animated checklist, not a real project recording. The nine details: (1) concentric radii (inner = outer minus padding: R32, p16, r16); (2) optical centre (nudge the play triangle slightly right); (3) tabular digits; (4) balanced text (no orphan word on the last line); (5) hairlines (5% border plus two soft shadows, not one harsh shadow); (6) icon strokes (1.75 outline, not a fill); (7) empty states need a title, subtitle, and CTA, not just “No data”; (8) one primary action (demote Cancel); (9) a visible 2px focus ring. CSS called out: `font-variant-numeric: tabular-nums`; `text-wrap: balance`; `:focus-visible` outline. Cross-links: SEQ 0029 (Impeccable), 0100 (Details.so), 0102 (Hallmark). GIF: 0:00–0:09.
+
+![AI Slop→Premium checklist clip](../../assets/gifs/v67-ui-details-beat-slop.gif)
+
+### [Light and Line: a visual-composition short (not an AI-tool demo)](https://www.facebook.com/reel/1782325196375171)
+
+Minimal motion design: one line plus light becomes a story-cover poster; copy and offset grow a colonnade. No AI tool, prompt, or URL appears; filed as composition inspiration for posters / UI heroes
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| design inspiration · concept animation | — | [Video 70](https://www.facebook.com/reel/1782325196375171) |
+
+~19s Facebook Reel by 家變美統包工程 (2026-11-08); no comment-for-link. 2D plus stylized-3D motion graphics, not a tool walkthrough, and no prompts or product URLs. Mandarin VO, in outline: a single line plus light becomes a story cover (typography poster); copy and offset turn it into six tapering lines, then a 3D colonnade with small figures that suggest a scene; a line-drawn profile gets a touch of red. Closing line: simple design, different combinations — that is visual composition. Takeaway: few elements, repetition and offset, light and contrast, one accent color — useful when writing prompts for posters or UI hero visuals. Light cross-link to SEQ 0114 (nine UI details): both are about composition, but this is not a component tutorial. GIF: 0:02–0:12.
+
+![Minimal line-and-light motion composition](../../assets/gifs/v68-light-and-line.gif)
+
+### ⚠️ [Gilt Foundry: interactive comic-book site (finished site only; comment HOW)](https://giltfoundry.com) ⚠️
+
+Only the finished scrollytelling comic is shown (a person on a MacBook pressing the spacebar); no tools, prompts, or build process. Comment HOW for the workflow. The overlay “GPT-6.1 Terra can’t do this” uses a real model name; the capability claim is unverified
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| ⚠️ engagement bait · claim unverified · medium credibility | — | ⚠️ [Video 73](https://www.facebook.com/reel/1436171255368046) ⚠️ |
+
+~13s Facebook Reel by Gilt Foundry (2026-11-06; Brian forwarded ⚠️ [this share link](https://www.facebook.com/share/r/19nawPHdLe/) ⚠️ via LINE at 23:54 Asia/Taipei on 2026-11-11). Caption: comment HOW for “the exact workflow behind sites like this” — engagement bait. The recording shows only the finished site in Safari on a MacBook, advanced with the spacebar: a black-and-white ink comic with spot color (a tan jacket, red); step- or scroll-triggered panels; parallax; a 3D wireframe sphere morphing into a red sun; a hand reaching across red; a jagged red curtain wipe revealing a gothic structure. Nav includes CERVANTES. Captions narrate a man being followed at night. No tools, prompts, or workflow appear, so how it was built is **unverified**.
+
+The overlay “POV: GPT-6.1 Terra can’t do this”: GPT-6.1 Terra is a real OpenAI model announced 2026-10-26 (⚠️ [official post](https://openai.com/index/introducing-gpt-6-1-terra/) ⚠️, API id `gpt-6.1-terra`), distinct from GPT-6 Astra in SEQ 0039. The claim that it “can’t do this” is **unverified**. A studio site was found at ⚠️ [giltfoundry.com](https://giltfoundry.com) ⚠️ (“Premium digital craftsmanship”; the /work page features a scroll experience called The Temple). A public URL for this CERVANTES comic was not found in a quick search. Takeaway: scrollytelling / step-triggered narrative web techniques (GSAP ScrollTrigger-style steps, parallax layers, canvas/WebGL-style morphs) as ideas, not a how-to. Cross-links: SEQ 0074 (2026 scrollytelling sites), 0100 (Details.so), 0102 (Hallmark), 0114 (UI details). GIF: 0:00–0:10.
+
+![Interactive comic site on a MacBook](../../assets/gifs/v70-gilt-foundry-comic.gif)
+
+### [JEV Engineering: a stylized multi-agent pipeline FUI dashboard (motion graphic, not a product recording)](https://www.facebook.com/reel/1773060590589981)
+
+A dark sci-fi monitoring dashboard that lays out planner, workers, quality / policy / release gates, and a cost ticker on one screen. This is stylized motion graphics / mock UI, not a real product recording; the tool used to make it is not stated, and the numbers are fake
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| design inspiration · concept animation | — | [Video 75](https://www.facebook.com/reel/1773060590589981) |
+
+~20s vertical Facebook Reel by Moh Moh (2026-11-11; Brian forwarded [this bare share link](https://www.facebook.com/share/v/19SorEAJS6/) via LINE at 20:07 Asia/Taipei on 2026-11-12). The caption is only the line “学了别人看不懂的东西，比Ai还要强” — no tool, product, or URL, and no comment-for-link bait. The clip is a looping dark sci-fi FUI dashboard titled JEV ENGINEERING (subtitle BUILD FABRIC / ENGINEERING SYSTEM), not a recording of a real product. No authoring tool, prompt, or product URL appears. The top stage row is INGEST→PLAN→EXECUTE→VERIFY→GATE→COMMIT (ROUTE / BUILD / VERIFY / RELEASE). Visible panels include AGENT PLANNER, CODE/WORKER, SIMULATION/WORKER, SOURCE/WORKER, QUALITY/EVIDENCE, POLICY/APPROVAL, PACKET MATRIX, RELEASE/GATE, TEST/EXECUTOR, CACHE/MEMORY, BUILD TRACE, and RESOURCE/BUDGET, among others (also REQUEST/INTAKE, INTEGRITY SCAN, AGENT SWARM). Mechanical jellyfish move across the panels (labeled 5 MEDUSA AGENTS), with pixel-style handoff tags. BUILD TRACE scrolls quality/gate-style log lines; the RESOURCE/BUDGET cost figure keeps ticking (sampled frames show roughly $18–$22). The panel itself is labeled USD/DEMO and “simulation demo cost,” so the numbers are fake demo values. A watermark “Xi @Klonzu” appears at the top right; it was not verified as a public product and is not treated as a brand. Takeaway: a layout idea for a multi-agent pipeline monitoring dashboard — planner → workers → quality / policy / release gates, plus a cost tracker. Cross-link: SEQ 0115 (also design-inspiration concept animation, not a tool demo). GIF: 0:08–0:13.
+
+![JEV Engineering sci-fi FUI multi-agent dashboard](../../assets/gifs/v72-jev-engineering-fui.gif)

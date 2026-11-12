@@ -4,7 +4,7 @@
 
 [Daily news](../news/index.md) — morning briefings (Chinese).
 
-[Relationship graph](../graph/index.html?lang=en) — an interactive map of every entry, category, source video and concept (247 nodes, 454 edges).
+[Relationship graph](../graph/index.html?lang=en) — an interactive map of every entry, category, source video and concept (285 nodes, 555 edges).
 
 Brian's public wiki. It collects AI tools and viewpoints from Facebook videos, screenshots, and recommendation lists, files them by topic, and marks credibility such as engagement bait and concept animation. New videos keep getting added.
 
@@ -14,27 +14,29 @@ Credibility tags are separate from categories: ⚠️ engagement bait (traffic f
 
 Entries tagged engagement bait put ⚠️ beside the link and beside URLs in the description.
 
-97 entries.
+122 entries.
+
+Division-of-labor patterns from existing entries: [Agent Division-of-Labor Patterns](docs/agent-patterns.md).
 
 ## Categories
 
-- [Agent systems and orchestration](docs/agent-orchestration.md) (10) — multi-agent command, swarms, resume-after-interrupt, commercial agent OSes, and the agent-platform landscape
+- [Agent systems and orchestration](docs/agent-orchestration.md) (18) — multi-agent command, swarms, resume-after-interrupt, commercial agent OSes, and the agent-platform landscape
 - [Memory and context](docs/memory-context.md) (11) — knowledge graphs, code graphs, long-term memory, handoff across agents
-- [Skills / MCP / tools](docs/skills-mcp-tools.md) (16) — shared agent building blocks: MCP, skills, methodology skills, speech, extraction models
+- [Skills / MCP / tools](docs/skills-mcp-tools.md) (18) — shared agent building blocks: MCP, skills, methodology skills, speech, extraction models
 - [Software development and quality](docs/dev-quality.md) (5) — version control, process replay, browser self-check, verify-then-gate
-- [Frontend and UI design](docs/frontend-ui.md) (12) — design systems, UI linters, design skills, interface templates, and concept interfaces
-- [3D / animation and DCC](docs/dcc-animation.md) (7) — Blender and other DCC add-ons, camera moves, procedural animation, game generation
-- [AI image and video](docs/ai-media.md) (4) — AI-generated video and images, prompts, AI rendering, programmatic video
+- [Frontend and UI design](docs/frontend-ui.md) (19) — design systems, UI linters, design skills, interface templates, and concept interfaces
+- [3D / animation and DCC](docs/dcc-animation.md) (9) — Blender and other DCC add-ons, camera moves, procedural animation, game generation
+- [AI image and video](docs/ai-media.md) (6) — AI-generated video and images, prompts, AI rendering, programmatic video
 - [Automation workflows](docs/automation-workflows.md) (4) — n8n and similar automation: rules first, human approval gates
 - [Finance and trading](docs/finance-trading.md) (5) — trading charts, Claude techniques for finance, and trading-bot engagement bait
-- [Security and governance](docs/security-governance.md) (4) — agent alignment incidents, privacy concerns, AI-assisted financial security
+- [Security and governance](docs/security-governance.md) (6) — agent alignment incidents, privacy concerns, AI-assisted financial security
 - [Physical AI and hardware](docs/physical-ai.md) (3) — ESP32, robots, and other physical devices
 - [Cost and tradeoffs](docs/cost-tradeoffs.md) (5) — token cost, command-output compression, agents versus traditional tools
 - [Teams and organization](docs/teams-org.md) (1) — collaboration cost, decision structure, organization design
-- [Talks](docs/talks.md) (1) — talks and podcast clips: first-hand comments from AI leaders and practitioners
+- [Talks](docs/talks.md) (2) — talks and podcast clips: first-hand comments from AI leaders and practitioners
 - [Comedy and memes](docs/memes.md) (2) — workplace memes, comedy sketches, and jokes about AI
 - [Productivity and open-source tools](docs/productivity-tools.md) (1) — useful tools that are not themselves AI: conversion, desktop efficiency, small open-source utilities
-- [Systems design and engineering fundamentals](docs/systems-design.md) (6) — non-AI backend and distributed-systems basics and operations (such as a TLS checkup)
+- [Systems design and engineering fundamentals](docs/systems-design.md) (7) — non-AI backend and distributed-systems basics and operations (such as a TLS checkup)
 
 ## Sources
 
@@ -93,19 +95,46 @@ Entries tagged engagement bait put ⚠️ beside the link and beside URLs in the
 | Video 48 | Altair AI: Claude + Obsidian Second Brain 10-repo list | ⚠️ [reel/1666945238466731](https://www.facebook.com/reel/1666945238466731) | 2026-11-09 |
 | Video 49 | Lamis Mukta (Anthropic) on agent memory / Dreaming (via David) | [status/2118745007628726684](https://x.com/David_eficaz/status/2118745007628726684) | 2026-11-09 |
 | Video 50 | Altair AI: Obsidian CEO's open-source Claude + Obsidian tools | [reel/1895633831459873](https://www.facebook.com/reel/1895633831459873) | 2026-11-09 |
+| Video 51 | Altair AI: plain Markdown + CLAUDE.md second brain (no Obsidian/Notion) | [reel/2062559707739569](https://www.facebook.com/reel/2062559707739569) | 2026-11-09 |
+| Video 52 | Altair AI: three-model Claude Code session (Sonnet / Haiku / Opus) | [reel/2504853660346325](https://www.facebook.com/reel/2504853660346325) | 2026-11-09 |
+| Video 53 | Cangjie Skill 2.0 (cangjie-skill): distill long videos/courses/podcasts into Agent Skills | [reel/1308612614774010](https://www.facebook.com/reel/1308612614774010) | 2026-11-12 |
+| Threads @ethansavemoneydairy | Details.so: real-site design-detail library + MCP | [post/DfgeXIwAIzH](https://www.threads.com/@ethansavemoneydairy/post/DfgeXIwAIzH) | 2026-11-10 |
+| Video 54 | Four legal security-practice platforms (Hack The Box / TryHackMe / PortSwigger Academy / VulnHub) | [reel/1445350007024379](https://www.facebook.com/reel/1445350007024379) | 2026-11-12 |
+| Video 55 | Hallmark: Together AI’s anti-AI-look design skill (Claude Code / Codex / Cursor / OpenCode) | ⚠️ [reel/1745279943247041](https://www.facebook.com/reel/1745279943247041) | 2026-11-12 |
+| Video 56 | OSIRIS: open-source OSINT dashboard (osirisai.live; token-promo risk) | ⚠️ [reel/847344248401222](https://www.facebook.com/reel/847344248401222) | 2026-11-12 |
+| Video 57 | Higgsfield + Fable 5.2: claimed 3.5-hour one-shot shooter model (Blender / UE5) | [reel/1610065000234607](https://www.facebook.com/reel/1610065000234607) | 2026-11-12 |
+| Video 58 | text-to-cad: text-to-3D CAD for agents (earthtojake) | [reel/1051298501315719](https://www.facebook.com/reel/1051298501315719) | 2026-11-12 |
+| Video 59 | What the water keeps: Kevin Ngo’s storybook rafting web piece (said to be made with Claude Fable 5.2) | [reel/1465699568821932](https://www.facebook.com/reel/1465699568821932) | 2026-11-12 |
+| Video 60 | Flinzu: plain-text files and a CLAUDE.md map | [status/2119892851387769273](https://x.com/Flinzu/status/2119892851387769273) | 2026-11-12 |
+| Video 61 | Lê Quốc Nghĩa: raw to wiki with a CLAUDE.md map | [reel/3503498356478626](https://www.facebook.com/reel/3503498356478626) | 2026-11-12 |
+| Video 62 | Claude Science: scorpion-toxin protein binders (318,484 designs, 211 lab-tested) | [reel/1119597340441398](https://www.facebook.com/reel/1119597340441398) | 2026-11-12 |
+| Video 63 | Broch Builds: 10 new Claude Code / Codex skills | ⚠️ [reel/1439815074924674](https://www.facebook.com/reel/1439815074924674) | 2026-11-12 |
+| Video 64 | 15 GitHub repos for AI agent teams (including trading libraries) | [reel/1827893618429238](https://www.facebook.com/reel/1827893618429238) | 2026-11-12 |
+| Video 65 | Fable 5.2 as CEO: overnight billing audit (multi-model split) | [reel/1071773105932698](https://www.facebook.com/reel/1071773105932698) | 2026-11-12 |
+| Video 66 | Higgsfield X Fable editing ad (paid partnership) | ⚠️ [reel/1461806646088320](https://www.facebook.com/reel/1461806646088320) | 2026-11-12 |
+| Video 67 | Claude + ChatGPT Astra 6: interactive architecture presentation (Verdant Residences) | ⚠️ [reel/1485883914602760](https://www.facebook.com/reel/1485883914602760) | 2026-11-12 |
+| Video 68 | 10 AI Employees every business should build (role list only, nothing demonstrated) | ⚠️ [reel/2226812394848085](https://www.facebook.com/reel/2226812394848085) | 2026-11-12 |
+| Video 69 | 9 UI details that beat AI slop (David Mráz / Atheros Learning) | ⚠️ [reel/1690133082855724](https://www.facebook.com/reel/1690133082855724) | 2026-11-12 |
+| Video 70 | Light and Line: a visual-composition short (not an AI-tool demo) | [reel/1782325196375171](https://www.facebook.com/reel/1782325196375171) | 2026-11-12 |
+| Video 71 | Tencent Hy4: vision and computer use for the first time (the caption applies preview specs to the GA release) | [reel/2350688215687462](https://www.facebook.com/reel/2350688215687462) | 2026-11-12 |
+| Video 72 | SkillTree: claims 47 AI agents run one company (shared Company Brain + Council) | ⚠️ [reel/1329619602540541](https://www.facebook.com/reel/1329619602540541) | 2026-11-12 |
+| Video 73 | Gilt Foundry: interactive comic-book site (finished site only; comment HOW) | ⚠️ [reel/1436171255368046](https://www.facebook.com/reel/1436171255368046) | 2026-11-12 |
+| Video 74 | Claude Code (Fable 5.2) + Herdr: four local Pi agents in parallel panes | [reel/1609258920348255](https://www.facebook.com/reel/1609258920348255) | 2026-11-12 |
+| Video 75 | JEV Engineering: a stylized multi-agent pipeline FUI dashboard (motion graphic, not a product recording) | [reel/1773060590589981](https://www.facebook.com/reel/1773060590589981) | 2026-11-12 |
+| Video 76 | Altair AI: Fable 5.2 reads the laptop and says why nothing ships (motion graphic) | [reel/1980204536698183](https://www.facebook.com/reel/1980204536698183) | 2026-11-12 |
+| Video 77 | Altair AI: sort notes into a second brain overnight | [reel/1473932208004781](https://www.facebook.com/reel/1473932208004781) | 2026-11-12 |
+| Video 78 | Altair AI: Karpathy’s six free GitHub projects (including the LLM Wiki gist) | [reel/1655634979372088](https://www.facebook.com/reel/1655634979372088) | 2026-11-12 |
+<!-- Counts (after sync-v46 / prior 97 entries): -->
+- README.md：「共 97 則。」→「共 98 則。」；`- [Agent 系統與編排](docs/agent-orchestration.md)（10）` → `（11）`
+- en/index.md：「97 entries.」→「98 entries.」；Agent systems count 10 → 11
 | Brian's recommendation list 2026-10-31 | Diagram skills: archify and diagram-design (no video) | — | 2026-10-31 |
-
 Notes on sources that have no link:
-
 - **Screenshot batch**: the mex training-curve repo is still unconfirmed
 - **Screenshot batch 2**: still unconfirmed: whether Tommy Vaga is Tomas Edgar of VagaFX, whether the Opus 5.5 board author is @Klonzu, how Microduck relates to Open Duck Mini, the body of the Grok Desk post (X blocked the fetch), and OPZEN feature details taken from search snippets. The REA star count of about 410k looks high but is what the API returned. The rocket, the mind map, and the illustration prompt have no original link
 - **Brian's recommendation list 2026-10-31**: matched by name to the highest-star GitHub repos: obra/superpowers, mattpocock/skills, DietrichGebert/ponytail, colbymchenry/codegraph, rtk-ai/rtk. ponytail and codegraph have several same-name or derivative projects. Ponytail's performance numbers are the author's own test
 - **Brian's recommendation list 2026-10-31**: tt-a1i/archify, cathrynlavery/diagram-design; Chinese fork patrick-xin/diagram-design-zh
-
 An extra note on a source that does have a link:
-
 - **Video 21**: another reel, 1110027721743729, failed to download and was not included
-
 ## Chart demos
 
 Browsable HTML demos: [Demos index](../demos/index.html?lang=en). Live: <https://wiki.singularityengine.dev/demos/?lang=en>

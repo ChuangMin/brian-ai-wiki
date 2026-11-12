@@ -55,3 +55,36 @@ A neon template animation from RedForged (@redforged), with no narration. #5 Liv
 ![Neon numbers count down from #5 to #1, each segment changes the main color, a segmented progress bar runs along the top, and titles type on. Recreate it with CSS text-shadow glow, a segmented progress bar, and a typewriter effect.](../../assets/gifs/v28-neon-countdown-cards.gif)
 
 Neon numbers count down from #5 to #1, each segment changes the main color, a segmented progress bar runs along the top, and titles type on. Recreate it with CSS text-shadow glow, a segmented progress bar, and a typewriter effect.
+
+### Four legal security-practice platforms (Hack The Box / TryHackMe / PortSwigger Academy / VulnHub)
+
+Four platforms for practicing web/system security on authorized labs: a live range, guided rooms, a free academy, and downloadable vulnerable VMs
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| — | — | [Video 54](https://www.facebook.com/reel/1445350007024379) |
+
+~14s Facebook Reel by Aamir Pervez Tech (2026-11-09). No narration; names and logos only; no engagement bait.
+
+1. [Hack The Box](https://www.hackthebox.com) — online pentest labs. The official /pricing page opened this turn is team pricing; a free tier was not verified there, so it is not claimed.
+2. [TryHackMe](https://tryhackme.com) — browser-based guided rooms. Official site shows “Join for FREE”.
+3. [PortSwigger Web Security Academy](https://portswigger.net/web-security) — official site labels it free online web-security training and labs.
+4. [VulnHub](https://www.vulnhub.com) — downloadable vulnerable VMs; the homepage showed Download and no paywall in this check.
+
+Cross-link: SEQ 0073. Practice only on legal labs; never test without permission. GIF: 0:04–0:14.
+
+![Logo carousel of the four platforms](../../assets/gifs/v54-hacking-practice-sites.gif)
+
+### ⚠️ [OSIRIS: open-source OSINT dashboard (osirisai.live; token-promo risk)](https://github.com/simplifaisoul/osiris) ⚠️
+
+Claims a live map of ships, flights, CCTV and satellites, but the video presents a Liveuamap war-news map as an OSIRIS feature and a DexScreener Osiris/SOL PumpSwap chart as “stock prices”
+
+![GitHub preview for simplifaisoul/osiris](https://opengraph.githubassets.com/1/simplifaisoul/osiris)
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| ⚠️ engagement bait · claim unverified · low credibility | 11.6k | ⚠️ [Video 56](https://www.facebook.com/reel/847344248401222) ⚠️ |
+
+~44s Facebook Reel by Piyushikaamriti (2026-09-04). Passes off ⚠️ [Liveuamap](https://www.liveuamap.com) ⚠️ as an OSIRIS feature; labels an Osiris/SOL PumpSwap chart “stock prices” (token-promo risk). Comment-your-name CTA. Verified 2026-11-10 (Asia/Taipei): ⚠️ [osirisai.live](https://osirisai.live) ⚠️ exists and shows $OSIRIS; ⚠️ [simplifaisoul/osiris](https://github.com/simplifaisoul/osiris) ⚠️ is MIT, 11,643 stars / 2,427 forks, last push 2026-11-09 14:02 Asia/Taipei; repo description includes Solana mint 2nZNHm3Lr9umG3DVrzYwHgktwkuKuJRXqqRqs3ewpump. Layer freshness unverified. Cross-links: SEQ 0101, 0073. SkillSpector pending.
+
+![OSIRIS map dashboard clip](../../assets/gifs/v56-osiris-osint.gif)
