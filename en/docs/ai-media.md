@@ -47,3 +47,27 @@ Turn a photo into a Japanese-style hand-drawn illustration with a ChatGPT prompt
 | — | — | Screenshot (徐國隆) |
 
 徐國隆 drops a couple's photo into ChatGPT and generates an illustration. The prompt: 「根據上方照片生成一張的插畫，日系插畫風格、角色特徵鮮明、情緒自然表情、半身構圖、動態姿態、服裝細節精緻、手繪塗鴉風、潑墨筆觸、隨行線條、粉彩與墨色混合、漫畫草稿質感、白色簡約背景、周圍符號元素點綴、氛圍感強、高細節、高品質。」
+
+### [What the water keeps: Kevin Ngo’s storybook rafting web piece (said to be made with Claude Fable 5.2)](https://what-the-water-keeps.vercel.app)
+
+The site loads; this reel only loops a morphing boat-rowing animation, with no gameplay or prompts
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| claim unverified · medium credibility | — | [Video 59](https://www.facebook.com/reel/1465699568821932) |
+
+~57s Facebook Reel by Aifocus (2026-11-10). Verified 2026-11-10 (Asia/Taipei): Anthropic did announce Claude Fable 5.2 and Mythos 5.2 on 2026-11-09 ([official post](https://www.anthropic.com/claude-fable-and-mythos-5-2)); same underlying model, Fable public, Mythos via verification programs. Official claims — a prototype OS in eight days with 1,000+ subagents, Fermat formalization in 30 hours, two open black-hole physics problems — are Anthropic’s own and **not independently verified here**. [what-the-water-keeps.vercel.app](https://what-the-water-keeps.vercel.app) loads (“A slow boat ride by lantern light, drawn live in your browser”). Kevin Ngo (@kevin_t_ngo) posted on X that Fable 5.2 made the demo (not named on Anthropic’s page). The reel does not show playable gameplay. Cross-link SEQ 0104: both name Fable 5.2; Fable 5.2 is Anthropic’s Claude model, not a Higgsfield product. No engagement bait.
+
+![Looping boat-rowing clip](../../assets/gifs/v59-water-keeps.gif)
+
+### ⚠️ [Higgsfield X Fable editing ad (paid partnership)](https://higgsfield.ai) ⚠️
+
+A staged laptop editing shot, tagged #higgsfieldpartner; the end asks you to comment SHORTS for the link, with no steps shown
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| ⚠️ engagement bait · post-produced · low credibility | — | ⚠️ [Video 66](https://www.facebook.com/reel/1461806646088320) ⚠️ |
+
+~14s Facebook Reel by Ecomlee (2026-11-11). Caption has #higgsfieldpartner (paid/partner promo). Staged laptop, no editing steps. On-screen “HIGGSFIELD X FABLE IS INSANE” and end card “Comment SHORTS for the link” (that CTA is not in the Facebook caption) — engagement bait. This is not a separate app named X Fable. Higgsfield’s own wording is Claude Fable 5.2 × Higgsfield MCP, and a Supercomputer agent powered by Fable 5.2 — i.e. Anthropic’s Fable model driving Higgsfield image/video tools (see SEQ 0104). No real workflow is shown; results **unverified**. GIF: 0:02–0:12.
+
+![Staged laptop editing clip](../../assets/gifs/v64-higgsfield-x-fable.gif)

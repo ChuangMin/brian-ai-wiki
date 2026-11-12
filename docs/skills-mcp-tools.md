@@ -217,3 +217,33 @@ Altair AI 上傳的 21 秒 Facebook Reel，動態設計 skill 看板（非真實
 ![Altair AI skill 看板](../assets/gifs/v47-altair-skill-board.gif)
 
 GIF：影片 0:00–0:02，Altair AI skill 看板（動態設計，非錄屏）。
+
+### [倉頡 SKILL 2.0（cangjie-skill）：長影片／課程／播客蒸餾成 Agent Skills](https://github.com/kangarooking/cangjie-skill)
+
+把長影片、課程、播客、書的文字內容蒸餾成可呼叫的 Agent Skills（步驟、框架、安全邊界）；搭配 video-downloader skill 先下載與轉寫
+
+![kangarooking/cangjie-skill 的 GitHub 預覽](https://opengraph.githubassets.com/1/kangarooking/cangjie-skill)
+
+![kangarooking/kangarooking-skills 的 GitHub 預覽](https://opengraph.githubassets.com/1/kangarooking/kangarooking-skills)
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 宣稱待驗證・可信度中 | 12.5k | [影片 53](https://www.facebook.com/reel/1308612614774010) |
+
+一人公司研究所上傳的 3:15 Facebook Reel（來源標 B 站 AI袋鼠帝／kangarooking）。工具：kangarooking/cangjie-skill（畫面稱倉頡 SKILL 2.0；README 版本徽章 2.5.0），並搭配同作者的 [video-downloader](https://github.com/kangarooking/kangarooking-skills/tree/main/video-downloader) skill。流程：影片連結→下載→抽音訊→語音轉文字→cangjie-skill 把文字蒸餾成可重用 Agent Skills（步驟、框架、安全邊界）。這是**文字蒸餾**，不是畫面／多模態視覺分析——Facebook 說明文寫「多模態、同時理解畫面和聲音」與實際流程不符，已更正。輸入可為長影片、課程、播客、書；作者示範搭配 Longcat-2.0 與 Claude Code。宣稱（畫面僅素材片、**未驗證**）：Andrew Ng 2026 課程 26 支／4 小時以上→約 1 小時產出 25 個 skills；4 支 YouTube（80+ 分鐘）→ 8 個 skills。無留言換連結、無安裝指令畫面。查證（GitHub API 2026-11-10 台北時間）：repo 存在，MIT，12,523 星／1,481 fork，未封存，建立 2026-04-16，最近推送 2026-10-02 11:17 Asia/Taipei；母 repo kangarooking-skills 715 星、無 license 欄、最近推送 2026-11-04。可對照 SEQ 0095、0057、0058、0094。配樂：未標。GIF：0:33–0:38（https://wiki.singularityengine.dev/assets/gifs/v53-cangjie-skill-distill.gif）。SkillSpector 掃描待補（本批不 clone）
+
+![倉頡 skill 蒸餾流程示意](../assets/gifs/v53-cangjie-skill-distill.gif)
+
+### ⚠️ [Broch Builds：10 個新 Claude Code／Codex skill 清單](https://github.com/heydamir/unslop) ⚠️
+
+短片列出多個設計／動畫 skill repo，片尾要留言 SKILLS 才寄 320 份清單
+
+![heydamir/unslop 的 GitHub 預覽](https://opengraph.githubassets.com/1/heydamir/unslop)
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| ⚠️ 引流・可信度中 | 14.2k | ⚠️ [影片 63](https://www.facebook.com/reel/1439815074924674) ⚠️ |
+
+Broch Builds 上傳的約 12 秒 Facebook Reel（2026-11-11）。說明文要留言 SKILLS 才寄「依 GitHub 星數排序、附安裝指令的 320 份清單」，屬引流。畫面點名的 repo 查證（GitHub API 2026-11-11 台北時間）：存在——⚠️ [caru-ini/stack-diagram](https://github.com/caru-ini/stack-diagram) ⚠️（2,345 星，MIT，最近推送 2026-11-09 14:00 Asia/Taipei）；⚠️ [elvarofficial/teardown](https://github.com/elvarofficial/teardown) ⚠️（3,076，MIT，2026-10-31 22:01）；⚠️ [t3dotgg/tstack](https://github.com/t3dotgg/tstack) ⚠️（3,469，MIT，2026-11-11 19:33）；⚠️ [heydamir/unslop](https://github.com/heydamir/unslop) ⚠️（14,232，CC-BY-4.0，2026-11-09 05:18；畫面稱 #1、＋13,630，增幅未核對）。畫面路徑 mromdev/claude-animated-shorts 回 404；名稱只差一字母、確實存在的是 ⚠️ [mromidev/claude-animated-shorts](https://github.com/mromidev/claude-animated-shorts) ⚠️（2,867，MIT，2026-11-01 13:57）。benjitaylor/stageshow、haydenchetty/floorplan 皆 404，未猜測替代。#4 Earshot、#3 Rea-Video、#2 PixelFX 未給 repo（Earshot 已有條目 SEQ 0011，本則不另猜路徑）。已核到的 repo SkillSpector 掃描待補（本批不 clone）。配樂：未標。GIF：0:00–0:10。
+
+![技能清單／repo 看板輪播](../assets/gifs/v61-broch-10-skills.gif)

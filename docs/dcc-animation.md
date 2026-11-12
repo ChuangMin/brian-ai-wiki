@@ -103,3 +103,29 @@ AI 生成的 Three.js 遊戲實機畫面（第三人稱飛行／跑酷場景）�
 ![Blender 機械蜘蛛移動身體時各腳依步態順序 IK 自動抬腳落地、貼合地形；可用 Three.js CCDIKSolver 或 2D 兩節 IK + 步態相位重現](../assets/gifs/v11-spider-walker-procedural.gif)
 
 Blender 機械蜘蛛移動身體時各腳依步態順序 IK 自動抬腳落地、貼合地形；可用 Three.js CCDIKSolver 或 2D 兩節 IK + 步態相位重現
+
+### [Higgsfield＋Fable 5.2：宣稱 3.5 小時做出射擊遊戲模型（Blender／UE5）](https://x.com/higgsfield_ai/status/2119890046748938248)
+
+宣稱 Fable 5.2 搭配 Higgsfield，用 Blender 與 UE5 約 3.5 小時幾乎一次完成射擊遊戲模型；畫面證據不足
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 宣稱待驗證・後製包裝・可信度低 | — | [影片 57](https://www.facebook.com/reel/1610065000234607) |
+
+류내원 上傳的 25 秒 Facebook Reel（2026-11-10），轉貼來源 [X @higgsfield_ai](https://x.com/higgsfield_ai/status/2119890046748938248)（本次抓取 X 回 403，貼文本文未核到）。上半是帶 HIGGSFIELD／FABLE 5.2 浮水印的第一人稱射擊畫面；下半標「Blender」，但介面完全靜止、只有模型在變形，較像把 AI 變形疊在 Blender 截圖上；未出現 UE5、提示詞或 3.5 小時證據。Fable 5.2 是 Anthropic 於 2026-11-09 發布的 Claude 模型（見 SEQ 0106、[官方公告](https://www.anthropic.com/claude-fable-and-mythos-5-2)），不是 Higgsfield 自家 3D 生成模型；Higgsfield 是影像／影片／音訊平台，可經 MCP 接到 Claude。3.5 小時一次完成與 Blender／UE5 工作流標**未驗證**。
+
+![上半射擊、下半靜止 Blender 介面](../assets/gifs/v57-higgsfield-fable-game.gif)
+
+### [text-to-cad：用文字讓 agent 做 3D／CAD 模型（earthtojake）](https://github.com/earthtojake/text-to-cad)
+
+開源 skill／外掛，讓 AI agent 用文字做 3D CAD 模型並可接工程圖、DFM、切片與印表機；畫面星數與 repo 路徑有誤
+
+![earthtojake/text-to-cad 的 GitHub 預覽](https://opengraph.githubassets.com/1/earthtojake/text-to-cad)
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 宣稱待驗證・可信度中 | 25.9k | [影片 58](https://www.facebook.com/reel/1051298501315719) |
+
+YuNo老師 上傳的約 43 秒 Facebook Reel（2026-11-08），無留言換連結。畫面寫 earthtejake/text-to-cad、22,499 星、MIT。查證（GitHub API 2026-11-10 台北時間）：earthtejake 不存在；真實 repo 為 [earthtojake/text-to-cad](https://github.com/earthtojake/text-to-cad)，MIT，25,948 星／2,467 fork，最近推送 2026-11-10 16:46 Asia/Taipei；官網 [texttocad.dev](https://www.texttocad.dev)。README 確認工程圖、DFM、G-code、Bambu、螺絲／軸承／馬達、URDF／SDF 等 skill；鉸鏈與「10 分鐘做出支架」未實測，標未驗證。SkillSpector 掃描待補。
+
+![text-to-cad 3D 零件畫面](../assets/gifs/v58-text-to-cad.gif)

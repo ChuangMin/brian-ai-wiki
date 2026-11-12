@@ -95,3 +95,26 @@ Prim 演算法：從 A 起逐步把最小邊加入樹（青色實線）、候選
 | ⚠️ 引流・可信度高 | — | [影片 32](https://www.facebook.com/reel/1849291249414632) ⚠️ |
 
 James Mcquay 的真人口述片（貼文文案「Comment “AI”」，片中又要觀眾留言「Github」由私訊送連結，是留言導流；不過沒藏私，每個 repo 名稱都有念出來也有上字幕）。畫面字幕「10/10 GitHub repositories to make you an elite developer」屬誇大行銷。① build-your-own-x（⚠️ https://github.com/codecrafters-io/build-your-own-x ⚠️）：從零重做 Git、Docker、資料庫等，557.8k ⭐（影片說 485k，已過時）；② roadmap.sh（⚠️ https://github.com/nilbuild/developer-roadmap ⚠️，原 kamranahmedse/developer-roadmap，已改名）：後端、前端、DevOps、AI 學習路線圖，370.9k ⭐；③ system-design-primer（⚠️ https://github.com/donnemartin/system-design-primer ⚠️）：快取、負載平衡、可擴展性，376.3k ⭐；④ free-programming-books（⚠️ https://github.com/EbookFoundation/free-programming-books ⚠️）：免費書與課程，400.6k ⭐；⑤ TheAlgorithms/Python（⚠️ https://github.com/TheAlgorithms/Python ⚠️）：各種演算法實作，225.7k ⭐。星數為 2026-10-31 查詢。可信度：高，repo 都是真的經典專案，只有「elite developer」說法誇大。配樂：輕柔 lo-fi 背景音樂。靜態口述，無 GIF 片段。
+
+### [Altair AI：Karpathy 的六個免費 GitHub 專案（含 LLM Wiki gist）](https://www.facebook.com/reel/1655634979372088)
+
+動態儀表板介紹 Karpathy 六個公開專案。五個 GitHub repo 都在、星數與說明文大致相符；LLM Wiki 是 gist，完整網址已找到，說明文寫 50K 星與畫面／gist 頁面不符
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 概念動畫・可信度高 | — | [影片 78](https://www.facebook.com/reel/1655634979372088) |
+
+Altair AI 上傳的約 22 秒直式 Facebook Reel（2026-11-12；Brian 於 2026-11-12 22:00 Asia/Taipei 在對話傳來 [這則 Reel](https://www.facebook.com/reel/1655634979372088)）。畫面是風格化科幻 HUD（標題 KARPATHY／REPO SWARM），不是真實操作錄屏，無私人資訊。說明文列出六個項目（原連結寫 http，本則改用 https），並稱合計超過 30 萬星；片尾要人 Save these 六個 repo，只是普通收藏呼籲，不是留言換連結，不標引流。片尾另有 Follow Altair AI 橫幅，同屬普通追蹤呼籲。
+
+查證（2026-11-12 台北時間，GitHub API，皆為 karpathy 帳號下的公開專案）：
+
+1. [karpathy/autoresearch](https://github.com/karpathy/autoresearch)：說明文 92.7K，API 99,902，license 欄為空
+2. [karpathy/nanoGPT](https://github.com/karpathy/nanoGPT)：說明文 64.4K，API 64,676，MIT
+3. [karpathy/nanochat](https://github.com/karpathy/nanochat)：說明文 60.2K，API 60,508，MIT
+4. LLM Wiki：說明文寫 50K，連結被截成 gist.github.com/karpathy/442a6。完整 gist 已找到 [gist.github.com/karpathy/442a6bf555914893e9891c11519de94f](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)（檔名 llm-wiki.md）。查證當日 gist 頁面星數只顯示 5,000+（GitHub 對 gist 的顯示上限），API 回 502 未取到精確數字；畫面卡片與底欄寫 5.8K gist，與說明文 50K 不符
+5. [karpathy/llm.c](https://github.com/karpathy/llm.c)：說明文 31.4K，API 31,452，MIT
+6. [karpathy/micrograd](https://github.com/karpathy/micrograd)：說明文 18.7K，API 18,881，MIT
+
+前五個 repo 的 API 星數合計 275,419，再加上 gist 至少 5,000+，接近畫面標題列的 277.6K；說明文「超過 30 萬星」把 gist 算成 50K，偏高。畫面總覽把六個都標 MIT，但 autoresearch 與該 gist 在查證當日看不到 SPDX 授權，不以畫面為準。可對照 SEQ 0095（其中 Astro-Han/karpathy-llm-wiki 是這個 gist 構想的衍生實作）、0077（另一則工程師該看的 GitHub repo 清單）。SkillSpector 掃描待補（本批不 clone；routines 暫停中）。配樂：未標。GIF：0:10–0:15。
+
+![Karpathy REPO SWARM 風格化儀表板](../assets/gifs/v75-karpathy-six-repos.gif)

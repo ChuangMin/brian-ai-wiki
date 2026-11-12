@@ -165,3 +165,91 @@ Code & Chill 的 Reel，示範電影院後台儀表板（側欄、Finance › Ca
 ![Kinlo 儀表板圓形擦除轉場](../assets/gifs/v37-view-transition-wipe.gif)
 
 ▶ 互動 Demo：[開啟](../demos/view-transition-dashboard/)（https://wiki.singularityengine.dev/demos/view-transition-dashboard/）
+
+### [Details.so：真實網站設計細節庫＋MCP（Claude Code／Cursor）](https://www.details.so)
+
+手選的真實上線網站設計細節庫，可用官方遠端 MCP 從 Claude Code、Cursor 等工具找靈感
+
+![Threads 貼文預覽（Details.so 介面截圖）](../assets/img/details-so-threads.jpg)
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 宣稱待驗證・可信度中 | — | [Threads @ethansavemoneydairy](https://www.threads.com/@ethansavemoneydairy/post/DfgeXIwAIzH) |
+
+Ethan（@ethansavemoneydairy）2026-11-10 Threads 圖文（無影片）。宣稱 Details.so 收集超過 3,400 個真實網站設計案例，並可經 MCP 讓 Claude Code、Cursor 找設計靈感。查證（官網 [pricing](https://www.details.so/pricing)、[mcp.md](https://www.details.so/mcp.md)，2026-11-10 台北時間）：確實有官方遠端 MCP（https://api.details.so/mcp，瀏覽器 OAuth），付費方案皆含 MCP；Pro 每月 9 美元（完整 Inspo 庫＋每月 300 MCP 點數）、Max 每月 19 美元（加 Vault、1,000 點）、Team 每席每月 22 美元（每席 2,000 點）、Lifetime 一次付清（頁面未標金額，每月 2,000 點）。免費 Starter 可瀏覽近期 Inspo、分類與 Vault 預覽及部分免費資源；官方 MCP 文件另寫免費帳號在 free access 開啟期間有一次性 20 點（可能關閉、不補發，也不解鎖付費網站或 Vault）。「3,400+」案例總數未在本次開啟的官網頁面核到，標**未驗證**。未找到公開 MCP GitHub repo，故無 SkillSpector 掃描。可對照 SEQ 0028、0029、0030、0031。無留言導流。
+
+### ⚠️ [Hallmark：Together AI 的反 AI 味設計 skill（Claude Code／Codex／Cursor／OpenCode）](https://github.com/Nutlope/hallmark) ⚠️
+
+避開常見 AI 網頁版型的設計 skill：50 種主題、先讀專案再要真實照片與數字，並可在真實瀏覽器以 8 種寬度檢查
+
+![Nutlope/hallmark 的 GitHub 預覽](https://opengraph.githubassets.com/1/Nutlope/hallmark)
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| ⚠️ 引流・概念動畫・可信度中 | 52.0k | ⚠️ [影片 55](https://www.facebook.com/reel/1745279943247041) ⚠️ |
+
+小礦工挖挖礦上傳的 1:20 Facebook Reel（2026-11-07），旁白加簡報／概念畫面（無真實操作錄屏、未展示真實 GitHub 頁）。片尾要留言「網頁質感」才私訊連結，屬引流；正式 repo 可直接開啟。宣稱：Together AI 做的 Hallmark，給 Claude Code／Codex／Cursor／OpenCode；48.2k 星／2.6k fork、MIT；50 種主題各有參考頁；會讀專案字型、配色、框架；只問一次真實照片與數字、不編造內容；從 3 個合適主題中選、依頁面目的排版；有 custom 模式；755 張開放授權照片並標出處；redesign（保留內容改風格）與 audit（只出報告）；用真實瀏覽器檢查 8 種寬度（對比、焦點、手機）並由 fresh-eyes 審查者做最後判定；瀏覽器檢查需要 Chrome。刻意避開 AI 味手法（標題上方小標、全大寫標籤、頁尾電子報欄）。查證（GitHub API 2026-11-10 台北時間）：真實 repo 為 ⚠️ [Nutlope/hallmark](https://github.com/Nutlope/hallmark) ⚠️（擁有者 Nutlope／Hassan El Mghari，不是 togethercomputer org；README 寫 Made by Together AI），MIT，52,023 星／2,771 fork（影片 48.2k 星已過時，fork 與宣稱 2.6k 接近），未封存，建立 2026-04-27，最近推送 2026-11-05 21:16 Asia/Taipei；官網 ⚠️ [usehallmark.com](https://www.usehallmark.com/) ⚠️。README 與上述功能描述大致相符，並註明沒有 Chrome／puppeteer-core 時靜態檢查仍可跑；本影片無實測畫面，功能成效未在此驗證。可對照 SEQ 0028、0029、0030、0100。配樂：未標。GIF：0:22–0:32。SkillSpector 掃描待補（本批不 clone）
+
+![Hallmark 50 主題簡報畫面](../assets/gifs/v55-hallmark-design-skill.gif)
+
+### ⚠️ [Claude＋ChatGPT Astra 6：互動建築簡報（Verdant Residences）](https://www.facebook.com/reel/1485883914602760) ⚠️
+
+只展示完成的互動 3D 建案網頁（立面滑桿、平面、印度盧比房貸計算機），疊「客戶付 2,450 美元」；未出現任何 AI 介面或流程
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| ⚠️ 引流・宣稱待驗證・可信度低 | — | ⚠️ [影片 67](https://www.facebook.com/reel/1485883914602760) ⚠️ |
+
+Presentation Palette 上傳的約 24 秒 Facebook Reel（2026-11-11）。說明文要留言 ASTRA 才分享完整 AI 工作流與提示詞，屬引流。畫面只有完成的互動網頁「Verdant Residences」：立面材質滑桿、平面圖、以印度盧比計的房貸計算機，並疊「Client paid $2450」——金額與是否真由 Claude＋Astra 做出，標未驗證；未出現 AI 操作介面。說明文寫「ChatGPT Astra 6」名稱不準：官方是 GPT-6 Astra（⚠️ [openai.com/index/gpt-6-astra](https://openai.com/index/gpt-6-astra/) ⚠️ ，API 識別名 gpt-6-astra），在 ChatGPT 裡作為 GPT-6 Pro 的底模；SEQ 0039 的 OpenAI 事故報告亦已用 GPT-6 Astra 這個名稱。可對照 SEQ 0045（OPZEN AI 建築渲染）。配樂：未標。GIF：0:09–0:19。
+
+![Verdant Residences 互動建築網頁片段](../assets/gifs/v65-astra-architecture.gif)
+
+### ⚠️ [9 個打敗 AI slop 的 UI 細節（David Mráz／Atheros Learning）](https://www.facebook.com/reel/1690133082855724) ⚠️
+
+約 9 秒前後對照動畫：切換 AI Slop→Premium，列出九項介面細節與部分 CSS 寫法；要留言 Learn 才進付費教材
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| ⚠️ 引流・概念動畫・可信度中 | — | ⚠️ [影片 69](https://www.facebook.com/reel/1690133082855724) ⚠️ |
+
+David Mráz（@davidm_ai）上傳的約 9 秒 Facebook Reel（2026-11-09）。說明文要留言 Learn，才能在 Atheros Learning 取得這些概念（僅限付費 Pass 會員，⚠️ [learning.atheros.ai](https://learning.atheros.ai) ⚠️），屬引流。畫面是動畫清單，不是真實專案錄屏。九項：① 同心圓角（內圓角＝外圓角減 padding：R32、p16、r16）；② 視覺光學中心（播放鍵三角形略往右移）；③ 等寬數字；④ 文本平衡（避免最後一行單字孤兒）；⑤ 髮絲線（5% 邊框加兩道柔和陰影，而非一道生硬陰影）；⑥ 圖示筆畫（1.75 描邊而非填滿）；⑦ 空狀態要有標題、副標與行動按鈕，不要只寫 No data；⑧ 只留一個主按鈕（把 Cancel 降級）；⑨ 可見焦點環 2px。片中／可對照的 CSS：`font-variant-numeric: tabular-nums`；`text-wrap: balance`；`:focus-visible` outline。可對照 SEQ 0029（Impeccable）、0100（Details.so）、0102（Hallmark）。配樂：未標。GIF：0:00–0:09。
+
+![AI Slop→Premium 前後對照清單](../assets/gifs/v67-ui-details-beat-slop.gif)
+
+### [光與線：視覺構成短片（非 AI 工具介紹）](https://www.facebook.com/reel/1782325196375171)
+
+極簡動態設計：一根線加上光變成故事封面；複製、位移長成柱廊。片中沒有 AI 工具、提示詞或網址，收作海報／主視覺構圖靈感
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 設計靈感・概念動畫 | — | [影片 70](https://www.facebook.com/reel/1782325196375171) |
+
+家變美統包工程上傳的約 19 秒 Facebook Reel（2026-11-08），無留言換連結。畫面是 2D 加風格化 3D 的動態設計，不是 AI 工具或操作示範，也未出現提示詞或產品網址。國語旁白大意：一根線加上光，變成故事封面（字排海報）；再複製、位移，變成六條錐位線，3D 柱廊與小人影有了劇情；線條側臉再加一點紅。收句：「簡單的設計、不同的組合，這就是視覺的構成。」可帶走的構圖手法：少元素、重複與位移、光與對比、單一強調色——寫海報或介面主視覺提示詞時可當參考。可對照 SEQ 0114（九個 UI 細節），兩則都談構成，但本則不是介面元件教學。配樂：未標。GIF：0:02–0:12。
+
+![極簡線條與光的動態構成](../assets/gifs/v68-light-and-line.gif)
+
+### ⚠️ [Gilt Foundry：互動漫畫網站（只展示完成品，留言 HOW）](https://giltfoundry.com) ⚠️
+
+只拍到完成的卷軸漫畫網站（MacBook 按空白鍵翻頁），沒有工具、提示詞或製作流程；要留言 HOW 才寄 workflow。疊文「GPT-6.1 Terra can't do this」——型號是真的，做不到的宣稱未驗證
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| ⚠️ 引流・宣稱待驗證・可信度中 | — | ⚠️ [影片 73](https://www.facebook.com/reel/1436171255368046) ⚠️ |
+
+Gilt Foundry 上傳的約 13 秒 Facebook Reel（2026-11-06；Brian 於 2026-11-11 23:54 Asia/Taipei 從 LINE 轉來 ⚠️ [這則分享連結](https://www.facebook.com/share/r/19nawPHdLe/) ⚠️）。說明文要留言 HOW 才寄「sites like this」的 workflow，屬引流。畫面只有完成網站：有人在 MacBook（Safari）按空白鍵；黑白墨線漫畫加局部色彩（棕褐外套、紅色），依步驟／捲動出現分鏡、視差、3D 線框球變成紅日、手伸進紅色、鋸齒紅幕拉開露出哥德式建築；導覽可見 CERVANTES；字幕敘述夜裡有人被跟上。未出現任何製作工具、提示詞或流程，如何做成標未驗證。
+
+疊文「POV: GPT-6.1 Terra can't do this」：GPT-6.1 Terra 是 OpenAI 於 2026-10-26 發布的正式型號（⚠️ [官方介紹](https://openai.com/index/introducing-gpt-6-1-terra/) ⚠️，API 識別名 gpt-6.1-terra），與 SEQ 0039 的 GPT-6 Astra 不是同一款；「做不到這種網站」的能力宣稱未驗證。工作室官網找到 ⚠️ [giltfoundry.com](https://giltfoundry.com) ⚠️（「Premium digital craftsmanship」，作品頁 /work 主打 The Temple 卷軸體驗）；本則這座 CERVANTES 漫畫站的公開網址，快速查找未找到。可帶走的是卷軸敘事網頁手法（逐步觸發分鏡、視差層、canvas／WebGL 變形一類），不當操作教學。可對照 SEQ 0074（2026 網站捲動敘事）、0100（Details.so）、0102（Hallmark）、0114（UI 細節）。配樂：未標。GIF：0:00–0:10。
+
+![MacBook 上的互動漫畫網站](../assets/gifs/v70-gilt-foundry-comic.gif)
+
+### [JEV Engineering：多 agent 管線監控的科幻 FUI 儀表板（概念動畫，非產品錄屏）](https://www.facebook.com/reel/1773060590589981)
+
+暗色科幻監控儀表板，把規劃、工人、品質／政策／發布閘門和成本列排在同一畫面。這是風格化動態設計／模擬 UI，不是真實產品錄屏；製作工具未說明，數字是假的
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 設計靈感・概念動畫 | — | [影片 75](https://www.facebook.com/reel/1773060590589981) |
+
+Moh Moh 上傳的約 20 秒直式 Facebook Reel（2026-11-11；Brian 於 2026-11-12 20:07 Asia/Taipei 從 LINE 轉來裸連結 [這則分享連結](https://www.facebook.com/share/v/19SorEAJS6/)）。說明文只有一句「学了别人看不懂的东西，比Ai还要强」，沒有工具、產品或網址，也不是留言換連結。畫面是循環的暗色科幻 FUI 儀表板（標題 JEV ENGINEERING，副標 BUILD FABRIC／ENGINEERING SYSTEM），不是真實產品操作錄屏；未出現製作工具、提示詞或產品網址。頂列階段為 INGEST→PLAN→EXECUTE→VERIFY→GATE→COMMIT（ROUTE／BUILD／VERIFY／RELEASE）。可見區塊包括 AGENT PLANNER、CODE／WORKER、SIMULATION／WORKER、SOURCE／WORKER、QUALITY／EVIDENCE、POLICY／APPROVAL、PACKET MATRIX、RELEASE／GATE、TEST／EXECUTOR、CACHE／MEMORY、BUILD TRACE、RESOURCE／BUDGET 等（另有 REQUEST／INTAKE、INTEGRITY SCAN、AGENT SWARM 等）。立體機械水母在面板上移動（標 5 MEDUSA AGENTS），並有像素風格的交接標籤。BUILD TRACE 持續捲動品質／閘門一類日誌；RESOURCE／BUDGET 的成本數字持續跳動（抽幀見過約 18–22 美元），面板本身標 USD／DEMO、simulation demo cost，屬示範假數。畫面右上有浮水印「Xi @Klonzu」，未核到對應公開產品，不當作品牌。可帶走的是多 agent 管線監控儀表板的編排構想：規劃→工人→品質／政策／發布閘門，加上成本追蹤。可對照 SEQ 0115（同為設計靈感的概念動畫，不是工具介紹）。配樂：未標。GIF：0:08–0:13。
+
+![JEV Engineering 科幻 FUI 多 agent 監控儀表板](../assets/gifs/v72-jev-engineering-fui.gif)

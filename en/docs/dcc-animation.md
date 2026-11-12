@@ -103,3 +103,29 @@ A free Blender add-on (Blender 3.2). Set up the armature, the center bone, and e
 ![In Blender, a mechanical spider moves its body and each foot lifts and lands in gait order with IK, sticking to the terrain. Recreate it with Three.js CCDIKSolver, or 2D two-bone IK plus a gait phase.](../../assets/gifs/v11-spider-walker-procedural.gif)
 
 In Blender, a mechanical spider moves its body and each foot lifts and lands in gait order with IK, sticking to the terrain. Recreate it with Three.js CCDIKSolver, or 2D two-bone IK plus a gait phase.
+
+### [Higgsfield + Fable 5.2: claimed 3.5-hour one-shot shooter model (Blender / UE5)](https://x.com/higgsfield_ai/status/2119890046748938248)
+
+Claims Fable 5.2 + Higgsfield built a shooter-game model in Blender and UE5 in about 3.5 hours, almost in one shot; the video does not show that
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| claim unverified · post-produced · low credibility | — | [Video 57](https://www.facebook.com/reel/1610065000234607) |
+
+25s Facebook Reel by 류내원 (2026-11-10), citing [X @higgsfield_ai](https://x.com/higgsfield_ai/status/2119890046748938248) (fetch returned 403; post text not verified). Top half: FPS footage with a HIGGSFIELD / FABLE 5.2 watermark. Bottom half is labeled “Blender”, but the UI is fully static while the model morphs — likely an AI morph over a Blender screenshot. No UE5, prompts, or 3.5-hour evidence. Fable 5.2 is Anthropic’s Claude model announced 2026-11-09 (see SEQ 0106 and the [official post](https://www.anthropic.com/claude-fable-and-mythos-5-2)), not a Higgsfield 3D generator. Higgsfield is an image/video/audio platform that can connect to Claude via MCP. The 3.5-hour one-shot and Blender/UE5 workflow are **unverified**.
+
+![FPS footage over a static Blender UI](../../assets/gifs/v57-higgsfield-fable-game.gif)
+
+### [text-to-cad: text-to-3D CAD for agents (earthtojake)](https://github.com/earthtojake/text-to-cad)
+
+An open-source skill/plugin for AI agents to build 3D CAD from text, with drawings, DFM, slicing and printer hooks; the on-screen owner path and star count were wrong
+
+![GitHub preview for earthtojake/text-to-cad](https://opengraph.githubassets.com/1/earthtojake/text-to-cad)
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| claim unverified · medium credibility | 25.9k | [Video 58](https://www.facebook.com/reel/1051298501315719) |
+
+~43s Facebook Reel by YuNo老師 (2026-11-08); no engagement bait. On-screen path github.com/earthtejake/text-to-cad and 22,499★, MIT. GitHub API 2026-11-10 (Asia/Taipei): earthtejake does not exist; real repo is [earthtojake/text-to-cad](https://github.com/earthtojake/text-to-cad), MIT, 25,948 stars / 2,467 forks, last push 2026-11-10 16:46 Asia/Taipei; site [texttocad.dev](https://www.texttocad.dev). README confirms engineering drawings, DFM, G-code (OrcaSlicer), Bambu, off-the-shelf screws/bearings/motors, URDF/SDF. The hinge demo and “~10 min printable stand” are **unverified** here. SkillSpector pending.
+
+![text-to-cad 3D part clip](../../assets/gifs/v58-text-to-cad.gif)

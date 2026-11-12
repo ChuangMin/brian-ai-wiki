@@ -47,3 +47,27 @@ AI 生成的虛擬網紅健身短片，可練習辨識破綻
 | — | — | 截圖（徐國隆） |
 
 徐國隆示範把情侶照丟進 ChatGPT 生成插畫，prompt：「根據上方照片生成一張的插畫，日系插畫風格、角色特徵鮮明、情緒自然表情、半身構圖、動態姿態、服裝細節精緻、手繪塗鴉風、潑墨筆觸、隨行線條、粉彩與墨色混合、漫畫草稿質感、白色簡約背景、周圍符號元素點綴、氛圍感強、高細節、高品質。」
+
+### [What the water keeps：Kevin Ngo 的繪本風泛舟網頁（稱以 Claude Fable 5.2 製作）](https://what-the-water-keeps.vercel.app)
+
+網頁作品確實可開啟；本則影片只循環播放變形划船動畫，沒有遊戲操作或提示詞
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 宣稱待驗證・可信度中 | — | [影片 59](https://www.facebook.com/reel/1465699568821932) |
+
+Aifocus 上傳的約 57 秒 Facebook Reel（2026-11-10）。查證（2026-11-10 台北時間）：Anthropic 確實於 2026-11-09 發布 Claude Fable 5.2 與 Mythos 5.2（[官方公告](https://www.anthropic.com/claude-fable-and-mythos-5-2)）；兩者為同一底模，Fable 公開、Mythos 需經驗證計畫。官網所寫「八天、1,000+ 子代理做出原型作業系統」「30 小時 formalize 費馬大定理」「兩道黑洞物理開放問題」皆為 Anthropic 官方宣稱，本則**未獨立驗證**。[what-the-water-keeps.vercel.app](https://what-the-water-keeps.vercel.app) 可開啟；Kevin Ngo（@kevin_t_ngo）在 X 稱此 demo 由 Fable 5.2 做成（非官方頁具名）。影片未展示可玩過程。可對照 SEQ 0104：兩則都寫 Fable 5.2，但 Fable 5.2 本身是 Anthropic 的 Claude 模型。無留言換連結。
+
+![循環划船動畫片段](../assets/gifs/v59-water-keeps.gif)
+
+### ⚠️ [Higgsfield X Fable 剪輯廣告（付費合作）](https://higgsfield.ai) ⚠️
+
+擺拍筆電上的剪輯畫面，標 #higgsfieldpartner；片尾要留言 SHORTS 換連結，沒示範步驟
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| ⚠️ 引流・後製包裝・可信度低 | — | ⚠️ [影片 66](https://www.facebook.com/reel/1461806646088320) ⚠️ |
+
+Ecomlee 上傳的約 14 秒 Facebook Reel（2026-11-11），說明文標 #higgsfieldpartner，屬付費／合作宣傳。畫面是筆電上的剪輯軟體擺拍，沒有操作步驟。畫面上寫「HIGGSFIELD X FABLE IS INSANE」，片尾「Comment SHORTS for the link」（說明文本身沒寫這句），屬引流。查證：不是另一套名叫 X Fable 的獨立 App；Higgsfield 官網與更新寫的是 Claude Fable 5.2 × Higgsfield MCP，以及 Supercomputer agent powered by Fable 5.2——亦即用 Anthropic 的 Fable 模型去調 Higgsfield 的影像／影片工具（見 SEQ 0104）。本則未示範實際剪輯流程，成效未驗證。配樂：未標。GIF：0:02–0:12。
+
+![筆電剪輯擺拍片段](../assets/gifs/v64-higgsfield-x-fable.gif)

@@ -55,3 +55,36 @@ RedForged（@redforged）的霓虹樣板動畫，無旁白：#5 LiveOverflow，�
 ![霓虹發光大字 #5→#1 倒數、每段換主色、頂部分段進度條、標題逐字出現；可用 CSS text-shadow 發光 + 分段 progress bar + 打字效果重現](../assets/gifs/v28-neon-countdown-cards.gif)
 
 霓虹發光大字 #5→#1 倒數、每段換主色、頂部分段進度條、標題逐字出現；可用 CSS text-shadow 發光 + 分段 progress bar + 打字效果重現
+
+### 四個合法資安練習平台（Hack The Box／TryHackMe／PortSwigger Academy／VulnHub）
+
+四個可合法練習網頁／系統資安的平台：靶場、闖關課、免費學院、可下載漏洞機
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| — | — | [影片 54](https://www.facebook.com/reel/1445350007024379) |
+
+Aamir Pervez Tech 上傳的約 14 秒 Facebook Reel（2026-11-09），無旁白，只輪播名稱與 logo，無留言換連結。
+
+1. [Hack The Box](https://www.hackthebox.com) — 線上滲透測試靶場。官方 /pricing 本次為團隊方案頁，免費層級未在該頁核到，不寫。
+2. [TryHackMe](https://tryhackme.com) — 瀏覽器闖關式資安練習。官網有「Join for FREE」。
+3. [PortSwigger Web Security Academy](https://portswigger.net/web-security) — 官網標示免費線上網頁資安課程與實驗。
+4. [VulnHub](https://www.vulnhub.com) — 提供可下載的漏洞練習虛擬機；本次首頁可見 Download、未見付費牆。
+
+可對照 SEQ 0073。只在合法靶場練習，未經授權絕不測試。配樂：未標。GIF：0:04–0:14。
+
+![四個平台 logo 輪播](../assets/gifs/v54-hacking-practice-sites.gif)
+
+### ⚠️ [OSIRIS：開源 OSINT 儀表板（osirisai.live；含代幣導流風險）](https://github.com/simplifaisoul/osiris) ⚠️
+
+號稱即時地圖追蹤船隻、航班、監視器與衛星等，但影片把 Liveuamap 戰事圖當成自家功能，並把 Osiris/SOL 迷因幣圖表說成股價
+
+![simplifaisoul/osiris 的 GitHub 預覽](https://opengraph.githubassets.com/1/simplifaisoul/osiris)
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| ⚠️ 引流・宣稱待驗證・可信度低 | 11.6k | ⚠️ [影片 56](https://www.facebook.com/reel/847344248401222) ⚠️ |
+
+Piyushikaamriti 上傳的約 44 秒 Facebook Reel（2026-09-04）。畫面為 ⚠️ [osirisai.live](https://osirisai.live) ⚠️ 風格儀表板。片中把 ⚠️ [Liveuamap](https://www.liveuamap.com) ⚠️ 的戰事新聞地圖當成 OSIRIS 功能；又把 DexScreener 上的 Osiris/SOL PumpSwap 迷因幣圖表稱為「股價」，有加密代幣導流風險。片尾要在留言寫名字，屬引流。查證（2026-11-10 台北時間）：官網存在且可見 $OSIRIS；⚠️ [simplifaisoul/osiris](https://github.com/simplifaisoul/osiris) ⚠️ MIT，11,643 星／2,427 fork，最近推送 2026-11-09 14:02 Asia/Taipei；repo 簡介附上 Solana 合約 2nZNHm3Lr9umG3DVrzYwHgktwkuKuJRXqqRqs3ewpump，代幣綁定已核到。圖層即時性未實測，標未驗證。可對照 SEQ 0101、0073。SkillSpector 掃描待補。
+
+![OSIRIS 地圖儀表板片段](../assets/gifs/v56-osiris-osint.gif)
