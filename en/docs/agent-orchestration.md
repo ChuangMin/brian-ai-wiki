@@ -245,3 +245,69 @@ The on-screen figures largely match the caption and are the poster’s personal 
 Practical takeaway: point a long-context model at a notes vault plus Claude Code session logs, and ask it bluntly to list started vs shipped projects, count vague prompts such as “make it better,” and find your productive hours; when writing prompts, define what “better” means. The numbers and the “it read my entire laptop last night” story are unverified; this is not a product demo. Cross-links: SEQ 0110 (another Fable 5.2 mock-audit dashboard), 0104, 0106, 0111, 0119 (other Fable 5.2 entries). GIF: 0:03–0:08.
 
 ![Stylized 3D HUD of Fable 5.2 reading a laptop, with the VERDICT](../../assets/gifs/v73-fable-laptop-verdict.gif)
+
+### [Altair AI: Fable 5.2 runs social media with five agents (motion graphic, not a product recording)](https://www.facebook.com/reel/40885633571023865)
+
+A stylized SOCIAL HQ dashboard titled FABLE 5.2 / 5 AI AGENTS RUN MY SOCIAL MEDIA. The caption names no product or repo, and no URL appears on screen; figures such as “one day, five platforms, zero manual posting” are animation claims and unverified
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| concept animation · claims unverified · medium credibility | — | [Video 81](https://www.facebook.com/reel/40885633571023865) |
+
+~24s vertical Facebook Reel by Altair AI (2026-11-12; Brian sent the bare LINE link https://www.facebook.com/share/v/1Dtd5T4uCo/ at 12:59 Asia/Taipei on 2026-11-13, which resolves to [this reel](https://www.facebook.com/reel/40885633571023865)). The same uploader already appears in SEQ 0094, 0095, 0097, 0098, 0121, and 0122. The caption is a generic pitch for a multi-agent social media workflow (content creation, planning, agent automation, performance tracking) and names no product, repo, or URL. The footer is only “Follow Altair AI for more AI tips and tricks,” the same ordinary follow CTA as SEQ 0094, 0097, and 0121, not comment-for-link bait, so no ⚠️.
+
+The clip is a stylized dark sci-fi HUD in the same series as SEQ 0121, not a recording of a real product, and it shows no private IPs or local paths. The header reads FABLE 5.2 AGENT MODE, 5 AI AGENTS RUN MY SOCIAL MEDIA, and “one day, 5 platforms, zero manual posting.” The main panel is labeled 01 SOCIAL HQ · agents on duty · 5 platforms, with roles for research/trends, content/drafts, scheduler/queued, engage/replies, and analytics/lift (plus platforms · live). An orbital map puts FABLE 5.2 in the center, surrounded by LinkedIn, YouTube, Instagram, X/Twitter, and TikTok; agent mode moves through listening, writing, planning, replying, learning, and reporting, while a clock walks through a “day.” Lower cards cover trending research, drafts, a weekly scheduler, linked platforms, replies, an approval queue, ranked hashtags, reach analytics, a weekly report, and a growth score, plus an on-screen prompt at lower right: “Run my social media like a team of agents. Research trends, draft posts in my voice, schedule at the best times, reply to comments, then report weekly. Ask me before anything sensitive.” (effort: high · tools: browser, scheduler). The approval row says “nothing sensitive goes out alone.”
+
+Late titles include “2 hrs saved / day,” “I only approve anything sensitive,” and “Fable 5.2 sends me one weekly report. My job is to approve and post less.” A report card in sampled frames says “This week: 14 posts, 38 replies, reach up 212%. Best post: prompt templates.” Header counters climb to TRENDS 12, POSTS 14, REPLIES 38, REACH 184K, SAVED 2.0h. Those figures, and the “zero manual posting / two hours saved a day / +212% reach” claims, are unverified animation copy. SOCIAL HQ and FABLE 5.2 are titles on this concept dashboard; Fable 5.2 is an official Anthropic model (see SEQ 0106, 0121), but no official product or repo named SOCIAL HQ was found, so this is not treated as a demo of a shipping tool. Cross-links: SEQ 0078 (Paperclip: managing an agent team with org charts and approvals), 0113 (a list of 10 AI Employee roles, nothing implemented), 0091 (FounderOS / Content Lab creator-intel system), and 0121 (the same uploader’s Fable 5.2 concept HUD). GIF: 0:16–0:21.
+
+![Fable 5.2 SOCIAL HQ concept dashboard moving from reach stats to two hours saved a day and a weekly report](../../assets/gifs/v78-fable-social-hq.gif)
+
+### [Machine Learning & AI: a so-called Google 9-page Agent Harness Engineering PDF (not an official Google document)](https://www.facebook.com/reel/1669067301263733)
+
+The caption says Google published a 9-page Agent Harness Engineering PDF (Agent = Model + Harness, with six steps). The clip shows page 1 of an independent technical note, footered “made by @Mr_Buzzoni.” This entry did not find an official Google PDF of that title.
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| claim unverified · medium credibility | — | [Video 88](https://www.facebook.com/reel/1669067301263733) |
+
+~22.5s vertical Facebook Reel by Machine Learning & AI (2026-11-12; 1440×1920; Brian sent [this reel](https://www.facebook.com/reel/1669067301263733) in chat on 2026-11-13). The Vietnamese caption says Google has just published a 9-page PDF on Agent Harness Engineering, with the formula Agent = Model + Harness, and lists six steps: turn past failures into rules; add checks such as linters and tests; build a plan-execute-verify-fix loop; keep memory and state across sessions; control permissions and approvals; and monitor tools, cost, retries, and anomalies. The point is that each failure should become a rule so it does not repeat. There is no comment-for-link gate, so this entry is not marked as engagement bait.
+
+The clip is an animation of a single page and never turns to later pages. The header reads Production Agent Engineering Practice 2026; the title is Harness Engineering, with the subtitle Agent = Model + Harness: The 6-Layer Production Playbook; the footer says “made by @Mr_Buzzoni” and shows page 1. The six layers are GUIDES, SENSORS, AGENTIC LOOP (Plan / Execute / Verify / Fix), MEMORY, PERMISSIONS, and OBSERVABILITY, which roughly match the caption’s six steps. A Google-style G sits in the title, but the credit line says the note is based on Mitchell Hashimoto’s method, OpenAI’s Codex field report, Martin Fowler’s guides-and-sensors taxonomy, and materials from Anthropic, LangChain, and Cursor.
+
+Verification (2026-11-13, Asia/Taipei):
+
+- This entry did not find a 9-page PDF officially published by Google under the title Agent Harness Engineering, so “Google published this 9-page document” is not treated as fact
+- The on-screen note is not an official Google document. No hosted file was obtained this turn to count pages independently; several independent write-ups describe it as an unofficial August 2026 technical note of about nine pages, not a conference paper and not any company’s official document, so “9 pages” is not a count made here
+- On-page figures such as 95% of enterprise agents never reaching production, +44 on the same model, +25 Terminal Bench ranks, and 1 million lines with none written by hand were not verified here
+- Google has other public writing on harnesses, but the titles and genre differ, and they should not be treated as the same document as this six-layer playbook: for example the 2026-09-09 Google Developers Blog post [The Anatomy of Harness Engineering: How to Evaluate, Iterate, and Guard AI Coding Agents](https://developers.googleblog.com/en/the-anatomy-of-harness-engineering-how-to-evaluate-iterate-and-guard-ai-coding-agents/), and Google Research’s [Industrial Agentic Engineering](https://research.google/pubs/industrial-agentic-engineering/)
+- The formula Agent = Model + Harness also appears in other public essays; this entry does not treat it as a Google-only publication
+
+Cross-links: SEQ 0004, 0069, and 0078. Music: not labeled.
+
+![Page 1 of the independent six-layer Harness Engineering note, with layers lighting in turn](../../assets/gifs/v83-harness-engineering.gif)
+
+### [Altair AI: a six-department company from an empty Claude Code folder (concept animation; caption from @birmeya)](https://www.facebook.com/reel/1152801101050169)
+
+A stylized Claude Code “company folder” HUD that walks seven steps from an empty folder to six departments and an 8:00 Telegram approval. The caption is nearly verbatim from a @birmeya post and is uncredited. The 37-minute setup, the 20 leads, and the daily briefing are animation claims, unverified.
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| concept animation · claim unverified · medium credibility | — | [Video 90](https://www.facebook.com/reel/1152801101050169) |
+
+~24s vertical Facebook Reel by Altair AI (2026-11-13; 1080×1350; Brian sent [this reel](https://www.facebook.com/reel/1152801101050169) in chat on 2026-11-13). The same uploader already appears in SEQ 0094, 0095, 0097, 0098, 0121, 0122, and 0125. The caption says that after dinner a folder was dropped into Claude Code, and 37 minutes later six departments woke the author at 8 AM with one Telegram message. It then lists seven steps: install Claude Code, point it at the empty folder, and log in through the browser; a first prompt asks 5 questions and writes a company handbook of 150 lines max, with hard rules at the top; one prompt builds six departments — sales, marketing, support, finance, ops, and research — each with a README of inputs and outputs; lead-finder writes 20 leads to a file with a reason for each and never contacts anyone; three agents (lead-finder, post-writer, inbox) run at once, each locked to its own folder, and return one short summary; Make is attached over MCP, lists runnable scenarios, drafts a follow-up, “sends” it from Gmail, and logs it in a sheet; then an 8:00 trigger has inbox draft replies, analyst read yesterday, and planner build the day, with one Telegram message of every item that needs a yes. The closing “Subscribe to the exclusive content today” Facebook link, plus the end-card “Follow Altair AI for more AI tips and tricks,” are ordinary subscribe / follow CTAs, not a comment-for-link gate, so this entry is not marked as engagement bait.
+
+The caption is nearly verbatim from [this @birmeya post](https://x.com/birmeya/status/2120904800871096798) and does not credit the original author; Altair AI only adds the subscribe CTA at the end. The clip is a stylized dark Claude Code company-folder concept HUD, not a recording of a real product, and there is no repo or spoken transcript (music only, no voice-over). The top chips already show QUESTIONS 5, LINES MAX 150, DEPTS 6, and LEADS 20 from the first step, and the counter walks 1/7 to 7/7. The center wheel labels the steps as claude · empty folder, 5 questions · CLAUDE.md, 6 departments · READMEs, lead-finder · 20 leads, 3 agents · 1 summary, Make · Gmail · sheet, and inbox · analyst · planner. The handbook card shows CLAUDE.md with the hard rules “no email without approval” and “finance only when asked.” The six department tiles grow README placeholders at step 3; lead-finder, post-writer, and inbox then attach to sales, marketing, and support; step 7 adds analyst and planner, with SUPPORT marked DRAFTS, FINANCE YESTERDAY, and OPS DAY PLAN.
+
+The STAGES list marks Install 5 min, CLAUDE.md 10 min, Departments 2 min, lead-finder 5 min, Parallel run x3 (no minutes), Make MCP 15 min, and Autopilot daily (no minutes). The five stages that do have minute badges add up to 37, but all seven steps do not have minute figures, so “37 minutes end to end” is not a verified timing. The MIN. SETUP cumulative reads 5 → 15 → 17 → 22 (still 22 at step 5) → 37 → 37, which matches those five badges and is likewise an animation claim.
+
+Verification (2026-11-13, Asia/Taipei):
+
+- No matching public repo was found
+- [Make MCP](https://help.make.com/get-started-with-make-mcp-server) is a real product and can attach Make scenarios to MCP clients including Claude. This entry did not verify that the on-screen “list runnable scenarios, send from Gmail, and log to a sheet” was a real run
+- The 20 leads, the 37-minute setup, and a daily 8:00 Telegram briefing are claims in the caption and the animation, unverified
+
+Cross-links: SEQ 0121 and 0125 (concept HUDs by the same uploader), 0098 (the same uploader on Claude Code role split), 0078 (managing an agent team with org charts and approvals), and 0117 (a claimed company system with departmental agents and scheduling).
+
+Interactive recreation: [company-folder-autopilot demo](https://wiki.singularityengine.dev/demos/company-folder-autopilot/) (step through all 7 stages; leads and mail are fictional and nothing is sent on the network). Music: music only, no voice-over.
+
+![Step 6’s Make chain moving into step 7 Autopilot and the 8:00 Telegram approval card](../../assets/gifs/v85-company-folder-autopilot.gif)

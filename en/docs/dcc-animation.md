@@ -129,3 +129,21 @@ An open-source skill/plugin for AI agents to build 3D CAD from text, with drawin
 ~43s Facebook Reel by YuNo老師 (2026-11-08); no engagement bait. On-screen path github.com/earthtejake/text-to-cad and 22,499★, MIT. GitHub API 2026-11-10 (Asia/Taipei): earthtejake does not exist; real repo is [earthtojake/text-to-cad](https://github.com/earthtojake/text-to-cad), MIT, 25,948 stars / 2,467 forks, last push 2026-11-10 16:46 Asia/Taipei; site [texttocad.dev](https://www.texttocad.dev). README confirms engineering drawings, DFM, G-code (OrcaSlicer), Bambu, off-the-shelf screws/bearings/motors, URDF/SDF. The hinge demo and “~10 min printable stand” are **unverified** here. SkillSpector pending.
 
 ![text-to-cad 3D part clip](../../assets/gifs/v58-text-to-cad.gif)
+
+### [Ming Cheng Ho (indiehack in): a Shibuya 3D scene said to be coded with Fable 5.2 (process not public yet)](https://www.facebook.com/reel/2190397408553774)
+
+The short shows a stylized 3D Shibuya crossing that behaves like a camera move through a solid scene, not like a typical video-model morph. The caption says it was made with Fable 5.2 plus an unnamed new process, and that a longer video will explain how; a public search has not found that longer video yet.
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| claims unverified · medium credibility | — | [Video 83](https://www.facebook.com/reel/2190397408553774) |
+
+~40.5s vertical Facebook Reel by Ming Cheng Ho (2026-11-10; Brian sent [this reel](https://www.facebook.com/reel/2190397408553774) in chat on 2026-11-13). The caption is thin: the Short is about the process, the Shibuya scene was made with Fable 5.2 plus a new process, and anyone who wants the how-to should subscribe to the YouTube channel indiehack in for a later long video. The end card (indiehack.in, YouTube @indiehackin) is an ordinary subscribe CTA, not a comment-for-link gate, so this entry is not marked as engagement bait.
+
+The picture is a stylized, cel-shaded / outlined 3D Shibuya crossing with the watermark “indiehack in 程式寫出來的 3D,” a compass, and pins 1–5. The camera pushes in from a flattened long-lens view; motion blur appears while buildings keep stable silhouettes, pedestrians are blocky simplified figures, and signage stays readable. It looks like a movable 3D scene, not like a video model whose shapes melt and signs break apart. No code editor, three.js, Blender, or other library / tool name appears on screen, and there is no process footage or prompt; besides indiehack.in and @indiehackin at the end, there is no other URL.
+
+On-screen claims (unverified here): no 3D software and no hand drawing; 344 buildings at real scale, written line by line; buildings from government open data; music and sound also synthesized in code; modeling through audio all done by AI agents. Five shop cards appear (渋谷西村水果店, STARBUCKS 渋谷 TSUTAYA 2F, ロクシタンカフェ, USHIHACHI 極, MAG8 rooftop bar); the end list notes that shop info was checked from official sites in November 2026. This entry did not verify each contact line and does not copy phone numbers onto the public site.
+
+Verification (2026-11-13, Asia/Taipei): Fable 5.2 is the official Anthropic Claude model announced on 2026-11-09 (see SEQ 0106, https://www.anthropic.com/claude-fable-and-mythos-5-2). The author’s site https://indiehack.in and its contact page name YouTube as @indiehackin. Searches of indiehack.in/videos and the public web found no process long video, no named write-up, and no repo; the process is not public yet. See also SEQ 0106 and 0104. No private IPs or local paths. Music: source not labeled (the video claims it is synthesized; unverified).
+
+![A push-in through a stylized 3D Shibuya crossing](../../assets/gifs/v80-shibuya-fable.gif)

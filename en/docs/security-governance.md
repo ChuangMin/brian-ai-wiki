@@ -88,3 +88,25 @@ Claims a live map of ships, flights, CCTV and satellites, but the video presents
 ~44s Facebook Reel by Piyushikaamriti (2026-09-04). Passes off ⚠️ [Liveuamap](https://www.liveuamap.com) ⚠️ as an OSIRIS feature; labels an Osiris/SOL PumpSwap chart “stock prices” (token-promo risk). Comment-your-name CTA. Verified 2026-11-10 (Asia/Taipei): ⚠️ [osirisai.live](https://osirisai.live) ⚠️ exists and shows $OSIRIS; ⚠️ [simplifaisoul/osiris](https://github.com/simplifaisoul/osiris) ⚠️ is MIT, 11,643 stars / 2,427 forks, last push 2026-11-09 14:02 Asia/Taipei; repo description includes Solana mint 2nZNHm3Lr9umG3DVrzYwHgktwkuKuJRXqqRqs3ewpump. Layer freshness unverified. Cross-links: SEQ 0101, 0073. SkillSpector pending.
 
 ![OSIRIS map dashboard clip](../../assets/gifs/v56-osiris-osint.gif)
+
+### [Hacking Tutorials Daily: three free live threat maps (Kaspersky / Check Point / NETSCOUT)](https://www.facebook.com/reel/29346549524942796)
+
+The reel shows three freely viewable threat maps from Kaspersky, Check Point, and NETSCOUT; all three official pages opened in this check. Each map shows that vendor’s own product detections or traffic observations, not a complete real-time picture of every attack worldwide.
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| high credibility | — | [Video 87](https://www.facebook.com/reel/29346549524942796) |
+
+~30s vertical Facebook Reel by Hacking Tutorials Daily (2026-10-15; 1080×1920; Brian sent [this reel](https://www.facebook.com/reel/29346549524942796) in chat on 2026-11-13). The caption is only one line: “Free Websites That Show Cyberattacks Happening In Real Time”. There is no comment-for-link gate, so this entry is not marked as engagement bait.
+
+The clip records the three official maps in turn, then a motion graphic made by the uploader, not a fourth website. On-screen text says “the catch is each map” / “what one company’s own tools caught,” labeled “own sensors only,” and ends with “it’s a real view, just never the whole picture.” The illustrated live feed and auth log in that graphic are mockups (they use documentation-reserved IP addresses and fictional login rows); this entry does not copy those addresses or names.
+
+Verification (2026-11-13, Asia/Taipei): all three sites returned HTTP 200, the maps themselves are free to view, and none was dead.
+
+1. [Kaspersky Cyberthreat Live Map](https://cybermap.kaspersky.com/) — operated by AO Kaspersky Lab. The footer says “Based on data from Kaspersky.” The official [DATA SOURCES](https://cybermap.kaspersky.com/subsystems) page describes detection streams from Kaspersky products: OAS, ODS, MAV, WAV, IDS, VUL, KAS, and RMW — what that vendor’s antivirus / security software sees, not every attack worldwide. The recording shows a DEMO ON control on the right rail, so that segment may be the site’s demo mode rather than a live feed at the time it was taped. The map opens without a login; “Protect Yourself” is only a trial prompt.
+2. [Check Point Live Cyber Threat Map](https://threatmap.checkpoint.com/) — operated by Check Point Software, branded ThreatCloud AI on screen, with Malware, Phishing, and Exploit categories. The map opens without a login. Check Point’s official [ThreatCloud AI](https://www.checkpoint.com/ai/threatcloud/) page says the intelligence database is fed from 150,000 connected networks and millions of endpoint devices, plus Check Point Research and dozens of external feeds, so this map is also that company’s telemetry, not a complete global picture. [www.checkpoint.com/threatmap](https://www.checkpoint.com/threatmap/) also opened in this check, but it is a marketing page; the live map is at threatmap.checkpoint.com.
+3. [NETSCOUT Cyber Threat Horizon: Real-Time DDoS Attack Map](https://horizon.netscout.com/) — operated by NETSCOUT. The map was visible as a guest in this check; the header shows “Want more? Login | Sign Up.” Official page [netscout.com/horizon](https://www.netscout.com/horizon) calls it a free tool; [global-threat-intelligence](https://www.netscout.com/global-threat-intelligence) calls it a free portal showing real-time and historical global DDoS activity. A free account unlocks filters, Neighborhoods, and history back to 2003. This map shows DDoS only, not every kind of cyberattack; the data comes from NETSCOUT ATLAS observations of traffic at ISPs and enterprise sites. The on-screen map date is 2026-10-09, close to the 2026-10-15 upload, and is not the view from this verification.
+
+The caption oversells these as cyberattacks happening in real time; the second half of the video itself says each map only reflects one company’s tools / sensors. Cross-links: SEQ 0101, 0073, and 0103. Music: not labeled.
+
+![Kaspersky Cyberthreat Live Map spinning globe](../../assets/gifs/v82-live-threat-maps.gif)

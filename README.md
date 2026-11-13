@@ -4,7 +4,7 @@
 
 [每日新聞](news/index.md) — 每天早上的新聞簡報。
 
-[關聯圖](graph/index.html) — 用互動圖看所有條目、分類、來源影片與概念之間的關係（285 個節點、555 條連線）。
+[關聯圖](graph/index.html) — 用互動圖看所有條目、分類、來源影片與概念之間的關係（304 個節點、597 條連線）。
 
 Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片、截圖與推薦清單整理 AI 工具與觀點，依主題分類收錄，並另外標示引流、概念動畫等可信度；之後的新影片會繼續加進來。
 
@@ -14,24 +14,24 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 
 標了引流的條目，連結和說明裡的網址旁邊都會加上 ⚠️。
 
-共 122 則。
+共 132 則。
 
 從既有條目歸納的分工類型見 [Agent 分工模式](docs/agent-patterns.md)。
 
 ## 分類
 
-- [Agent 系統與編排](docs/agent-orchestration.md)（18）— 多 agent 指揮、swarm、中斷續跑、商用 agent OS 與 agent 平台全景
+- [Agent 系統與編排](docs/agent-orchestration.md)（21）— 多 agent 指揮、swarm、中斷續跑、商用 agent OS 與 agent 平台全景
 - [記憶與上下文](docs/memory-context.md)（11）— 知識圖譜、程式碼圖譜、長期記憶、跨 agent 交接
-- [Skills／MCP／工具](docs/skills-mcp-tools.md)（18）— 通用的 agent 能力元件：MCP、skill、開發方法論 skill、語音、抽取模型
+- [Skills／MCP／工具](docs/skills-mcp-tools.md)（19）— 通用的 agent 能力元件：MCP、skill、開發方法論 skill、語音、抽取模型
 - [程式開發與品質](docs/dev-quality.md)（5）— 版控、過程重播、瀏覽器自我驗收、verify＋gate 流程
-- [前端與 UI 設計](docs/frontend-ui.md)（19）— 設計系統、UI linter、設計 skill、介面模板與概念介面
-- [3D／動畫與 DCC](docs/dcc-animation.md)（9）— Blender 等 DCC 外掛、運鏡、程序化動畫、遊戲生成
+- [前端與 UI 設計](docs/frontend-ui.md)（22）— 設計系統、UI linter、設計 skill、介面模板與概念介面
+- [3D／動畫與 DCC](docs/dcc-animation.md)（10）— Blender 等 DCC 外掛、運鏡、程序化動畫、遊戲生成
 - [AI 影像與影片](docs/ai-media.md)（6）— AI 生成影片與圖片、prompt、AI 渲染、程式化影片
 - [自動化工作流](docs/automation-workflows.md)（4）— n8n 等流程自動化，規則優先與人工核准閘門
 - [金融與交易](docs/finance-trading.md)（5）— 交易圖表、財務 Claude 技巧，以及交易機器人導流片
-- [安全與治理](docs/security-governance.md)（6）— agent 對齊事故、隱私疑慮、AI 輔助金融資安
+- [安全與治理](docs/security-governance.md)（7）— agent 對齊事故、隱私疑慮、AI 輔助金融資安
 - [實體 AI 與硬體](docs/physical-ai.md)（3）— ESP32、機器人等實體裝置
-- [成本與取捨](docs/cost-tradeoffs.md)（5）— token 成本、指令輸出壓縮、agent 與傳統工具的成本對比
+- [成本與取捨](docs/cost-tradeoffs.md)（6）— token 成本、指令輸出壓縮、agent 與傳統工具的成本對比
 - [團隊與組織](docs/teams-org.md)（1）— 協作成本、決策結構、組織設計
 - [演講與 Talk](docs/talks.md)（2）— 演講、訪談、Podcast 片段：AI 領袖與從業者的第一手說法
 - [搞笑與迷因](docs/memes.md)（2）— 關於 AI 的職場迷因、搞笑短劇與梗圖
@@ -60,6 +60,18 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 | 截圖批次 | 舊影片截圖：OpenAI 監控事件、Clairic、Apex、ZOEY OS、Vessa／Cadra（無原始連結） | — | 2026-10-31 |
 | 截圖批次 2 | n8n Email Agent、OPZEN AI、ORBITAL X-02 火箭、Microduck、Agentic AI 心智圖、ALGORY、RuView、Grok Desk、chief-night-01（Viktor）、Open Design Agent Kit、Opus 5.5 逆向工程看板、日系插畫 prompt；@beamnxw 的 20 HOT REPOS 是影片 1 的轉貼，不重複收錄（無原始連結） | — | 2026-10-31 |
 | 影片 16 | AI 會引發新的金融危機嗎？（Hà Bình／HB QuantFlow，越南語） | [reel/1863665758475395](https://www.facebook.com/reel/1863665758475395) | 2026-10-31 |
+| 影片 79 | Code with Bhurtel：Space-Time Curve（JavaScript 軟化重力網格動畫，非 AI 工具） | [reel/1140316585123225](https://www.facebook.com/reel/1140316585123225) | 2026-11-13 |
+| 影片 80 | 一人公司研究所：10 款專精小模型與三個挑選原則 | [reel/1761537521611500](https://www.facebook.com/reel/1761537521611500) | 2026-11-13 |
+| 影片 81 | Altair AI：Fable 5.2 用五個 agent 管社群（概念動畫，非產品錄屏） | [reel/40885633571023865](https://www.facebook.com/reel/40885633571023865) | 2026-11-13 |
+| 影片 82 | 產品經理的背後靈 Philo：Pixel Plays（Amir Mushich 的五款零圖片像素網頁遊戲） | [reel/1927405395307821](https://www.facebook.com/reel/1927405395307821) | 2026-11-13 |
+| 影片 83 | Ming Cheng Ho（indiehack in）：Fable 5.2 寫程式蓋出渋谷 3D（製程尚未公開） | [reel/2190397408553774](https://www.facebook.com/reel/2190397408553774) | 2026-11-13 |
+| 影片 84 | HA Bridge：可視化畫 3D 戶型並綁定 Home Assistant 實體（官方付費中控） | [reel/1885203799120310](https://www.facebook.com/reel/1885203799120310) | 2026-11-13 |
+| 影片 85 | What the water keeps：Kevin Ngo 的繪本風泛舟網頁（稱以 Claude Fable 5.2 製作） | [reel/1682717900077017](https://www.facebook.com/reel/1682717900077017) | 2026-11-13 |
+| 影片 86 | Altair AI：Claude Second Brain（Obsidian repo 清單＋純 Markdown 變體） | ⚠️ [reel/3002409066786760](https://www.facebook.com/reel/3002409066786760) | 2026-11-13 |
+| 影片 87 | Hacking Tutorials Daily：三個免費網路威脅即時地圖（Kaspersky／Check Point／NETSCOUT） | [reel/29346549524942796](https://www.facebook.com/reel/29346549524942796) | 2026-11-13 |
+| 影片 88 | Machine Learning & AI：所謂 Google 9 頁 Agent Harness Engineering 文件（並非官方 Google PDF） | [reel/1669067301263733](https://www.facebook.com/reel/1669067301263733) | 2026-11-13 |
+| 影片 89 | AI懶人報：Anthropic 官方法務外掛（triage-nda／review-contract／legal-risk-assessment／claude-for-legal） | [reel/2280311616036852](https://www.facebook.com/reel/2280311616036852) | 2026-11-13 |
+| 影片 90 | Altair AI：Claude Code 空資料夾建六部門公司（概念動畫；說明文來自 @birmeya） | [reel/1152801101050169](https://www.facebook.com/reel/1152801101050169) | 2026-11-13 |
 | Brian 推薦清單 2026-10-31 | Agent skills 推薦：Superpowers、Matt Pocock Skills、Ponytail、CodeGraph、RTK（無影片） | — | 2026-10-31 |
 | 影片 17 | Sam Altman 談新模型與失落感（Cheeky Pint 片段，大叔美股筆記 Uncle Investment Note） | [reel/1167964102224005](https://www.facebook.com/reel/1167964102224005) | 2026-10-31 |
 | 影片 18 | Every meeting in 2026（Champagnecruz，The new gold rush） | [reel/1778931116724534](https://www.facebook.com/reel/1778931116724534) | 2026-10-31 |

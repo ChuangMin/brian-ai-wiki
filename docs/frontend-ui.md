@@ -253,3 +253,72 @@ Gilt Foundry 上傳的約 13 秒 Facebook Reel（2026-11-06；Brian 於 2026-11-
 Moh Moh 上傳的約 20 秒直式 Facebook Reel（2026-11-11；Brian 於 2026-11-12 20:07 Asia/Taipei 從 LINE 轉來裸連結 [這則分享連結](https://www.facebook.com/share/v/19SorEAJS6/)）。說明文只有一句「学了别人看不懂的东西，比Ai还要强」，沒有工具、產品或網址，也不是留言換連結。畫面是循環的暗色科幻 FUI 儀表板（標題 JEV ENGINEERING，副標 BUILD FABRIC／ENGINEERING SYSTEM），不是真實產品操作錄屏；未出現製作工具、提示詞或產品網址。頂列階段為 INGEST→PLAN→EXECUTE→VERIFY→GATE→COMMIT（ROUTE／BUILD／VERIFY／RELEASE）。可見區塊包括 AGENT PLANNER、CODE／WORKER、SIMULATION／WORKER、SOURCE／WORKER、QUALITY／EVIDENCE、POLICY／APPROVAL、PACKET MATRIX、RELEASE／GATE、TEST／EXECUTOR、CACHE／MEMORY、BUILD TRACE、RESOURCE／BUDGET 等（另有 REQUEST／INTAKE、INTEGRITY SCAN、AGENT SWARM 等）。立體機械水母在面板上移動（標 5 MEDUSA AGENTS），並有像素風格的交接標籤。BUILD TRACE 持續捲動品質／閘門一類日誌；RESOURCE／BUDGET 的成本數字持續跳動（抽幀見過約 18–22 美元），面板本身標 USD／DEMO、simulation demo cost，屬示範假數。畫面右上有浮水印「Xi @Klonzu」，未核到對應公開產品，不當作品牌。可帶走的是多 agent 管線監控儀表板的編排構想：規劃→工人→品質／政策／發布閘門，加上成本追蹤。可對照 SEQ 0115（同為設計靈感的概念動畫，不是工具介紹）。配樂：未標。GIF：0:08–0:13。
 
 ![JEV Engineering 科幻 FUI 多 agent 監控儀表板](../assets/gifs/v72-jev-engineering-fui.gif)
+
+### [Code with Bhurtel：Space-Time Curve（JavaScript 軟化重力網格動畫，非 AI 工具）](https://www.facebook.com/reel/1140316585123225)
+
+3D 發光線框網格被恆星與繞行行星彎曲，黑洞隨後吞沒兩者；底部是靜態 Carbon 風格的 gravityAt 軟化牛頓加速度片段。這是概念動畫／創意程式設計靈感，不是 AI 工具，也不像該片段的即時輸出
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 設計靈感・概念動畫 | — | [影片 79](https://www.facebook.com/reel/1140316585123225) |
+
+Code with Bhurtel 上傳的約 15 秒直式 Facebook Reel（2026-11-11；Brian 於 2026-11-13 08:06 Asia/Taipei 從 LINE 轉來裸連結 https://www.facebook.com/share/r/1MDedB26No/，對應 [這則 Reel](https://www.facebook.com/reel/1140316585123225)）。說明文只有「Space Time Curve Using JavaScript!」加上 hashtag，沒有函式庫、工具或產品網址，也不是留言換連結。畫面標題為 Space-Time Curve：上方是發光線框的 3D 空間網格，被一顆恆星與繞行行星拉彎；約 0:04 黑洞掃入，約 0:10 把兩者吞沒。底部是靜態 Carbon 風格（圓點視窗鈕）的 JavaScript 片段 gravityAt(bodies, x, z, skip)，以軟化牛頓加速度計算平面力：d2 = dx² + dz² + soften²，f = G * mass / (d2 * sqrt(d2))。這段程式碼全程沒有改動，動畫看起來是預先算好的渲染，不像該片段的即時輸出；片中也沒有點名任何繪圖函式庫。這不是 AI 工具介紹，收錄是作為視覺／創意程式設計靈感（可對照 SEQ 0115、0120）。可帶走的是軟化重力公式，以及用重力位勢位移網格的構想；若要自己做，three.js 是一種可能做法，但影片並沒有示範。畫面無私人資訊。配樂：未標。GIF：0:08–0:13。
+
+![Space-Time Curve 黑洞吞沒恆星與行星，底部為靜態 gravityAt 片段](../assets/gifs/v76-spacetime-curve.gif)
+
+### [產品經理的背後靈 Philo：Pixel Plays（Amir Mushich 的五款零圖片像素網頁遊戲）](https://github.com/amirmushichge/pixel-plays)
+
+開源專案 Pixel Plays：五款等角像素網頁遊戲，畫面由程式碼繪製。行數、零圖片、零依賴與程式碼 MIT 已核到；音樂不在 MIT 內。Claude Opus 5.5 是作者自述加上提交共同作者標記
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 可信度高 | 463 | [影片 82](https://www.facebook.com/reel/1927405395307821) |
+
+產品經理的背後靈 Philo（AI郵報）上傳的約 124 秒直式 Facebook Reel（2026-11-11；Brian 於 2026-11-13 在對話傳來 [這則 Reel](https://www.facebook.com/reel/1927405395307821)）。影片是查核解說，畫面是公開遊戲錄製或作者 X 影片的截取，疊上條目與字幕，不是作者操作錄屏，未出現私人 IP 或本機路徑。說明文介紹 Amir Mushich 的開源專案 Pixel Plays，並寫 X 上超過 18 萬次觀看、用 Claude Opus 5.5 協助製作；結尾要人留言「遊戲」讓他知道、並先收藏，沒有答應留言就寄連結或檔案，不是留言換東西，故不標引流。
+
+查證（2026-11-13 台北時間，GitHub API 與原始檔）：
+
+- 官方 repo：[amirmushichge/pixel-plays](https://github.com/amirmushichge/pixel-plays)
+- 試玩：https://pixel-plays-ruby.vercel.app/
+- 作者 X 貼文：https://x.com/AmirMushich/status/2116509069477621819 （2026-10-31 20:34 台北時間，標題「3D pixel games with Claude Opus 5.5 (OS)」）
+- 五款遊戲：Balote、Stari Most、Rooftop Laundry、Tie-Break、Mini Ramp
+- 行數：說明文寫 3,557 行。以換行計算，五個遊戲頁 3,067 行（524+655+674+635+579）加 engine.js 343、shell.js 147，合計 3,557，相符
+- 零圖片、零依賴：倉庫樹沒有任何圖片檔；沒有 package.json，serve.mjs 只用 Node 內建模組。另有五個 .mp3（Suno 生成），不是圖片
+- 授權：LICENSE 為 MIT，Copyright (c) 2026 Amir Mushich，與說明文「程式碼 MIT」相符。README 與 MUSIC.md 寫明音樂不在 MIT 內、不得在專案外重用，說明文沒有寫這點，須補上
+- 星數：GitHub API 當日 463 星、46 個 fork
+- 視覺規則與說明文一致：固定 30 度正交視角、暗部偏紫、亮部偏暖黃、影子朝畫面右、只有植物會動、360×280 畫布整數倍放大；README 還有更多（Bayer dither、深度緩衝等）
+- Claude：兩筆提交（770640d、0c2a70f）末行都有 Co-Authored-By: Claude Opus 5.5，沒有簽章；倉庫文字檔裡沒有提示詞。說明文已寫參與來自作者說明及提交紀錄、尚無完整提示詞，與查證相符
+- 說明文的 18 萬次觀看是對該 X 貼文的宣稱，本則未在 X 當頁重核觀看數
+- README 署名：Concept by abhi. Game by AmirMushich. Visual reference: shawn.'s Small plays。「沒有複製素材或主題」是作者說法，本則未比對原作
+
+SkillSpector 靜態掃描（2026-11-13 台北時間，skillspector 2.12.0，--no-llm，commit 0c2a70f）：此 repo 不是 skill／MCP 包；issues 0、findings 0；risk score 0、severity LOW、max_issue_severity NONE；覆蓋率 85.7%（12／14 個元件，狀態 partial）。可對照 SEQ 0106（同樣是 AI 協助、在瀏覽器裡即時畫出的網頁作品）。配樂：影片標無音樂（解說用畫面）。GIF：0:50–0:55。
+
+![Pixel Plays 的 Balote 等角像素球場，疊「畫布 360×280」解說](../assets/gifs/v79-pixel-plays.gif)
+
+### [HA Bridge：可視化畫 3D 戶型並綁定 Home Assistant 實體（官方付費中控）](https://habridge.cn/)
+
+顏民凱示範付費中控 HA Bridge：在編輯器裡畫 3D 戶型、套用官方「栖光」UI 方案，並把 Home Assistant 實體綁到儀表盤，過程不必寫 YAML。
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 可信度高 | — | [影片 84](https://www.facebook.com/reel/1885203799120310) |
+
+顏民凱上傳的約 104 秒橫式 Facebook Reel（2026-09-04；1624×720；Brian 於 2026-11-13 在對話傳來 [這則 Reel](https://www.facebook.com/reel/1885203799120310)）。說明文只有一句：「輕鬆完成戶型圖設計，導入HA實體，終於不用再寫Yaml了」。無留言換連結，故不標引流。
+
+畫面是真實產品錄屏，不是概念動畫：先在儀表盤預覽等角 3D 戶型（燈光與空調等圖示可點），再切到燈光總覽、空調／窗簾／洗衣機等設備頁與控制彈窗，接著進入「戶型圖繪製」編輯器（平面圖、家具庫、即時 3D 預覽），最後是「導出 3D 戶型圖」對話框。頂欄有「編輯／儀表盤／打開 HA／保存」，與官方文件「編輯器與基本操作」所列工具列一致。左側可見「UI 方案 栖光」，旁邊有畫面標示「DWELL LIGHT · 1.0.0」。官方文件確認「栖光」是內建完整 UI 方案（含頁面、控件、彈窗、主題與素材，建立後再替換實體）；已查的官方文件沒有把 DWELL LIGHT 寫成栖光的英文名稱，故該英文標示僅作畫面紀錄。
+
+查證（2026-11-13 台北時間）：
+
+- 產品：[HA Bridge](https://habridge.cn/)，文件：https://wiki.habridge.cn/
+- 官方定位是獨立部署的家庭中控儀表盤：Home Assistant 負責設備與實體，HA Bridge 負責中控介面。可用可視化編輯器 DIY 二維面板，也可繪製 3D 戶型並在即時 3D 交互裡綁定實體
+- 官方寫明為付費專案，功能按授權開放，3D 交互需對應權益
+- 支援 Home Assistant Add-on 與獨立 Docker，預設存取埠 18080（可用 APP_PORT 更改）
+- 官方 Add-on 倉庫優先用 Gitee https://gitee.com/weidaye1122/ha-bridge-addon ，GitHub 備用 https://github.com/weidaye1122/ha-bridge-addon ；獨立 Docker 映像為 weidaye1122/ha_bridge
+- 這與同名的 Philips Hue 模擬器 [bwssytems/ha-bridge](https://github.com/bwssytems/ha-bridge) 不是同一個專案
+- 「不必再寫 YAML」是上傳者說明文的說法。官方文件描述的流程是在編輯器右側「關聯實體」搜尋並選擇 entity_id，並未要求手寫 Lovelace YAML；本則未實測每一種控件是否完全不必碰 YAML
+
+畫面頂欄出現內網中控位址，本則不公開；也未抄寫本機路徑或住家地址。戶型銘牌上的標題是上傳者專案畫面，不是產品名稱。
+
+SkillSpector 靜態掃描（2026-11-13 台北時間，skillspector 2.12.0，--no-llm，commit 09b9be5）：掃描的是公開 Add-on 安裝包 weidaye1122/ha-bridge-addon，不是付費產品本身的封閉映像。此 repo 不是 skill／MCP 包；issues 27（HIGH 6、MEDIUM 21），全部位於 release/ 與 tests/（例如 candidate.py、verify_addon_upgrade.sh、test_release_recovery.py 的環境變數傳遞、subprocess、升級驗證腳本中的刪除目錄等）；risk score 100、severity CRITICAL、recommendation DO_NOT_INSTALL、max_issue_severity HIGH；覆蓋率 100%（22／22 個元件，狀態 complete）。產品主程式不在此倉庫，本則未掃描其 Docker 映像。GitHub API 當日該 Add-on 倉庫 4 星，最近推送 2026-11-10 10:01 台北時間，提交說明為 Add-on 0.8.6-1。配樂：未標。
+
+![裁掉頂欄後的 HA Bridge 等角 3D 戶型儀表盤，燈光被點亮](../assets/gifs/v81-ha-bridge.gif)

@@ -247,3 +247,36 @@ A short list of design/animation skill repos; the end asks you to comment SKILLS
 ~12s Facebook Reel by Broch Builds (2026-11-11). Caption: comment SKILLS to receive a “320-item list ranked by GitHub stars, with install commands” — engagement bait. Repos named on screen, checked via GitHub API 2026-11-11 (Asia/Taipei): present — ⚠️ [caru-ini/stack-diagram](https://github.com/caru-ini/stack-diagram) ⚠️ (2,345★, MIT, last push 2026-11-09 14:00 Asia/Taipei); ⚠️ [elvarofficial/teardown](https://github.com/elvarofficial/teardown) ⚠️ (3,076, MIT, 2026-10-31 22:01); ⚠️ [t3dotgg/tstack](https://github.com/t3dotgg/tstack) ⚠️ (3,469, MIT, 2026-11-11 19:33); ⚠️ [heydamir/unslop](https://github.com/heydamir/unslop) ⚠️ (14,232, CC-BY-4.0, 2026-11-09 05:18; on-screen “#1, +13,630” delta **unverified**). On-screen path mromdev/claude-animated-shorts is 404; the one-letter typo that exists is ⚠️ [mromidev/claude-animated-shorts](https://github.com/mromidev/claude-animated-shorts) ⚠️ (2,867, MIT, 2026-11-01 13:57). benjitaylor/stageshow and haydenchetty/floorplan are 404; no substitutes guessed. #4 Earshot, #3 Rea-Video, #2 PixelFX had no repo path (Earshot is already SEQ 0011; owners not guessed). SkillSpector pending. GIF: 0:00–0:10.
 
 ![Skill-list / repo-board clip](../../assets/gifs/v61-broch-10-skills.gif)
+
+### [AI懶人報: Anthropic official legal plugins (triage-nda / review-contract / legal-risk-assessment / claude-for-legal)](https://github.com/anthropics/knowledge-work-plugins)
+
+A walkthrough of Anthropic’s official legal plugins: the legal folder in knowledge-work-plugins, and the practice-area plugins in claude-for-legal. The defaults follow US law and US practice; Taiwan matters should still be reviewed by a lawyer.
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| high credibility | 35,612 / 9,992 | [Video 89](https://www.facebook.com/reel/2280311616036852) |
+
+~95s vertical Facebook Reel by AI懶人報 (2026-11-13; 360×640; Brian sent [this reel](https://www.facebook.com/reel/2280311616036852) in chat on 2026-11-13). The caption covers four pieces: triage-nda sorts an NDA into green / yellow / red; review-contract first asks which side you are on, then flags clauses and offers rewrite language for red and yellow items; legal-risk-assessment scores severity times likelihood; claude-for-legal has 12 practice-area plugins, and the commercial one can list contracts with cancellation notice due in 90 days. It also says you need a paid Claude plan (desktop Cowork or Claude Code). The caption notes that these plugins are written against US law and US practice by default, so Taiwan legal questions and documents to sign still need a lawyer. The risk memo and renewal-list segments are marked as illustrations. The closing “follow @ai.lanrenbao” is an ordinary follow CTA, not a comment-for-link gate, so this entry is not marked as engagement bait.
+
+Verification (2026-11-13, Asia/Taipei):
+
+- Both official repos exist, and both are licensed [Apache 2.0](https://github.com/anthropics/knowledge-work-plugins): [anthropics/knowledge-work-plugins](https://github.com/anthropics/knowledge-work-plugins) and [anthropics/claude-for-legal](https://github.com/anthropics/claude-for-legal)
+- knowledge-work-plugins is officially a plugin set for knowledge workers, intended mainly for Claude Cowork and also compatible with Claude Code; the legal folder is present. GitHub API that day: 35,612 stars (the on-screen 34.6k is stale); last push 10:09 Asia/Taipei on 2026-11-13; scanned commit 02717ef
+- The legal/skills directory contains folders named triage-nda, review-contract, and legal-risk-assessment, so those three names are real; it also has brief, compliance-check, legal-response, meeting-briefing, signature-request, and vendor-check. The skill table in legal/README still uses older names such as contract-review and nda-triage, which do not fully match the current folder names
+- That README’s disclaimer says the plugin assists legal workflows but does not provide legal advice, and that AI analysis should be reviewed by a qualified lawyer before it is relied on for legal decisions. Default playbook examples reflect US legal positions and jurisdictions such as Delaware, New York, and California; if you operate under other legal systems (the README gives the EU and UK as examples), you must customize the playbook before relying on the analysis
+- claude-for-legal is officially a suite of plugins for legal workflows. GitHub API that day: 9,992 stars (the on-screen “over 9,800” / 9.9k is close). The scanned commit is 4a6c651 (the tip of main in the shallow clone; the repo’s updated_at is newer and may reflect other activity)
+- marketplace.json lists 13 plugins: 12 first-party practice-area plugins (commercial-legal, privacy-legal, product-legal, corporate-legal, employment-legal, regulatory-legal, ai-governance-legal, litigation-legal, law-student, legal-clinic, legal-builder-hub, ip-legal), plus the partner plugin cocounsel-legal maintained by Thomson Reuters. The caption’s “12 practice-area plugins” matches the first-party count
+- The official README says they can be installed as Claude Cowork or Claude Code plugins, or deployed through the Claude Managed Agents API
+- commercial-legal does include a renewal-tracker skill whose default window is cancel-by deadlines in the next 90 days (red 0–13 days, orange 14–44, yellow 45–89), matching the on-screen command text. That segment is marked as an illustration, so this entry treats the on-screen list as a demo and does not treat the dates in the clip as a real matter
+- The official README also stresses that every output is a draft for attorney review — not legal advice, not a legal conclusion, and not a substitute for a lawyer
+- On “you need a paid Claude plan”: the official Cowork product page says “Claude Cowork is now just Claude,” rolling out to Pro, Max, and Ultra, with more plans to follow. The plugin docs name Cowork or Claude Code as the intended surfaces (claude-for-legal also supports the Managed Agents API). This entry did not check every Claude plan tier for installability
+
+SkillSpector static scan (2026-11-13, Asia/Taipei, skillspector 2.12.0, --no-llm):
+
+- A scan of the entire knowledge-work-plugins repo (the marketplace contains many plugins) hit the 300-second timeout and produced no complete JSON. The legal plugin pack alone was scanned instead: 1 issue (1 HIGH, in README.md, rule Anti-Refusal Statement); risk score 20, severity LOW, recommendation SAFE, max_issue_severity HIGH; coverage 100% (14 / 14 components, status complete)
+- The whole claude-for-legal repo: 233 issues (22 HIGH, 207 MEDIUM, 4 LOW); risk score 100, severity CRITICAL, recommendation DO_NOT_INSTALL, max_issue_severity HIGH; coverage 98.7% (311 / 315 components, status partial)
+- This is a rule- and pattern-based scan, not a confirmed product compromise; many hits are in skill-instruction wording and MCP config files
+
+Music: not labeled.
+
+![NDA checklist with green and yellow lights](../../assets/gifs/v84-legal-plugins.gif)
