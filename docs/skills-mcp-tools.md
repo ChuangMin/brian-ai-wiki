@@ -247,3 +247,36 @@ GIF：影片 0:00–0:02，Altair AI skill 看板（動態設計，非錄屏）�
 Broch Builds 上傳的約 12 秒 Facebook Reel（2026-11-11）。說明文要留言 SKILLS 才寄「依 GitHub 星數排序、附安裝指令的 320 份清單」，屬引流。畫面點名的 repo 查證（GitHub API 2026-11-11 台北時間）：存在——⚠️ [caru-ini/stack-diagram](https://github.com/caru-ini/stack-diagram) ⚠️（2,345 星，MIT，最近推送 2026-11-09 14:00 Asia/Taipei）；⚠️ [elvarofficial/teardown](https://github.com/elvarofficial/teardown) ⚠️（3,076，MIT，2026-10-31 22:01）；⚠️ [t3dotgg/tstack](https://github.com/t3dotgg/tstack) ⚠️（3,469，MIT，2026-11-11 19:33）；⚠️ [heydamir/unslop](https://github.com/heydamir/unslop) ⚠️（14,232，CC-BY-4.0，2026-11-09 05:18；畫面稱 #1、＋13,630，增幅未核對）。畫面路徑 mromdev/claude-animated-shorts 回 404；名稱只差一字母、確實存在的是 ⚠️ [mromidev/claude-animated-shorts](https://github.com/mromidev/claude-animated-shorts) ⚠️（2,867，MIT，2026-11-01 13:57）。benjitaylor/stageshow、haydenchetty/floorplan 皆 404，未猜測替代。#4 Earshot、#3 Rea-Video、#2 PixelFX 未給 repo（Earshot 已有條目 SEQ 0011，本則不另猜路徑）。已核到的 repo SkillSpector 掃描待補（本批不 clone）。配樂：未標。GIF：0:00–0:10。
 
 ![技能清單／repo 看板輪播](../assets/gifs/v61-broch-10-skills.gif)
+
+### [AI懶人報：Anthropic 官方法務外掛（triage-nda／review-contract／legal-risk-assessment／claude-for-legal）](https://github.com/anthropics/knowledge-work-plugins)
+
+介紹 Anthropic 官方法務外掛：knowledge-work-plugins 的 legal 資料夾，以及 claude-for-legal 的領域外掛。預設依美國法與美國實務，台灣相關事項仍應由律師審查。
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 可信度高 | 35,612／9,992 | [影片 89](https://www.facebook.com/reel/2280311616036852) |
+
+AI懶人報上傳的約 95 秒直式 Facebook Reel（2026-11-13；360×640；Brian 於 2026-11-13 在對話傳來 [這則 Reel](https://www.facebook.com/reel/2280311616036852)）。說明文介紹四塊：triage-nda 把 NDA 分成綠／黃／紅燈；review-contract 先問你站哪邊再逐條標色，紅黃條文附修改建議；legal-risk-assessment 用嚴重程度乘發生機率打分；claude-for-legal 有 12 個領域外掛，其中商務合約可列出 90 天內要通知解約的合約。並寫要付費版 Claude（桌面版 Cowork 或 Claude Code）。說明文也註明這些外掛預設照美國法與美國實務寫，台灣的法律問題與要簽的文件最後還是要律師看；風險備忘錄、續約清單兩段是示意。片尾追蹤 @ai.lanrenbao 是普通追蹤呼籲，不是留言換連結，故不標引流。
+
+查證（2026-11-13 台北時間）：
+
+- 兩個官方倉庫都存在，授權皆為 [Apache 2.0](https://github.com/anthropics/knowledge-work-plugins)：[anthropics/knowledge-work-plugins](https://github.com/anthropics/knowledge-work-plugins)、[anthropics/claude-for-legal](https://github.com/anthropics/claude-for-legal)
+- knowledge-work-plugins 官方說明是給知識工作者、主要以 Claude Cowork 使用、也相容 Claude Code 的外掛集；legal 資料夾確實在內。GitHub API 當日 35,612 星（畫面寫 34.6k，數字已過時），最近推送 2026-11-13 10:09 台北時間，掃描用 commit 02717ef
+- legal／skills 目錄可見 triage-nda、review-contract、legal-risk-assessment 等技能資料夾，這三個名稱屬實；同資料夾還有 brief、compliance-check、legal-response、meeting-briefing、signature-request、vendor-check。legal／README 的技能表仍寫 contract-review、nda-triage 等較舊名稱，與現有資料夾名不完全一致
+- 該 README 的免責聲明寫明：此外掛協助法務流程，不提供法律意見，AI 分析須由合格律師審查後才能作為法律決定依據；預設 playbook 例子反映美國法律立場與 Delaware、New York、California 等管轄，若在其他法系（並舉 EU、UK 等為例）必須先改 playbook 再依賴分析
+- claude-for-legal 官方說明是法務工作流程外掛套件。GitHub API 當日 9,992 星（畫面寫破 9,800／9.9k，接近當日數字），掃描用 commit 4a6c651（該淺層 clone 的 main 尖端；倉庫 updated_at 較新，可能含其他活動）
+- marketplace.json 列出 13 個外掛：12 個官方領域外掛（commercial-legal、privacy-legal、product-legal、corporate-legal、employment-legal、regulatory-legal、ai-governance-legal、litigation-legal、law-student、legal-clinic、legal-builder-hub、ip-legal），再加上由 Thomson Reuters 維護的合作外掛 cocounsel-legal。說明文的「12 個領域外掛」與官方第一方數量相符
+- 官方 README 寫可作為 Claude Cowork 或 Claude Code 外掛安裝，也可經 Claude Managed Agents API 部署
+- commercial-legal 確有 renewal-tracker 技能，預設列出未來 90 天內的解約通知期限（紅 0–13 天、橙 14–44 天、黃 45–89 天），與畫面指令說明相符；該段畫面標了「示意」，本則把示意清單視為示範，不把片中列舉的日期當成真實案件
+- 官方也強調產出都是供律師審查的草稿，不是法律意見或法律結論，不能取代律師
+- 關於「要付費版 Claude」：官方 Cowork 產品頁寫 Claude Cowork is now just Claude，並寫正在推給 Pro、Max 與 Ultra，後續還會有更多方案。外掛文件指定的使用面是 Cowork 或 Claude Code（claude-for-legal 另支援 Managed Agents API）。本則未逐一核對每一種 Claude 方案能否安裝這些外掛
+
+SkillSpector 靜態掃描（2026-11-13 台北時間，skillspector 2.12.0，--no-llm）：
+
+- 對 knowledge-work-plugins 整個倉庫（marketplace 外掛數量很多）以 300 秒逾時未跑完，沒有完整 JSON。改掃其中的 legal 外掛包：issues 1（HIGH 1，位於 README.md，規則為 Anti-Refusal Statement），risk score 20、severity LOW、recommendation SAFE、max_issue_severity HIGH；覆蓋率 100%（14／14 個元件，狀態 complete）
+- 對 claude-for-legal 整個倉庫：issues 233（HIGH 22、MEDIUM 207、LOW 4），risk score 100、severity CRITICAL、recommendation DO_NOT_INSTALL、max_issue_severity HIGH；覆蓋率 98.7%（311／315 個元件，狀態 partial）
+- 這是規則與模式掃描，不是已確認的產品漏洞；許多命中出在技能說明的用語與 MCP 設定文件
+
+配樂：未標。
+
+![NDA 檢查表與綠燈／黃燈說明](../assets/gifs/v84-legal-plugins.gif)

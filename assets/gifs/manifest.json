@@ -588,5 +588,105 @@
     "duration": 5,
     "size_bytes": 2881780,
     "what_it_shows": "Karpathy／REPO SWARM 風格化儀表板，可見 LLM Wiki gist 等專案卡片"
+  },
+  {
+    "file": "v76-spacetime-curve.gif",
+    "video_number": "影片 79",
+    "entry_name": "Code with Bhurtel：Space-Time Curve（JavaScript 軟化重力網格動畫，非 AI 工具）",
+    "reel_url": "https://www.facebook.com/reel/1140316585123225",
+    "segment_start": 8.0,
+    "duration": 5,
+    "size_bytes": 2194698,
+    "what_it_shows": "黑洞已吞沒恆星與行星，發光線框網格深陷，底部靜態 gravityAt 片段仍在"
+  },
+  {
+    "file": "v77-small-specialist-models.gif",
+    "video_number": "影片 80",
+    "entry_name": "一人公司研究所：10 款專精小模型與三個挑選原則",
+    "reel_url": "https://www.facebook.com/reel/1761537521611500",
+    "segment_start": 138.0,
+    "duration": 5,
+    "size_bytes": 171324,
+    "what_it_shows": "插畫卡片「挑小模型三個原則」：夠專精、授權能商用、電腦跑得動"
+  },
+  {
+    "file": "v78-fable-social-hq.gif",
+    "video_number": "影片 81",
+    "entry_name": "Altair AI：Fable 5.2 用五個 agent 管社群（概念動畫，非產品錄屏）",
+    "reel_url": "https://www.facebook.com/reel/40885633571023865",
+    "segment_start": 16.0,
+    "duration": 5,
+    "size_bytes": 692471,
+    "what_it_shows": "概念儀表板從觸及 +212% 轉到 2 hrs saved / day、184K reach 與週報收尾"
+  },
+  {
+    "file": "v79-pixel-plays.gif",
+    "video_number": "影片 82",
+    "entry_name": "產品經理的背後靈 Philo：Pixel Plays（Amir Mushich 的五款零圖片像素網頁遊戲）",
+    "reel_url": "https://www.facebook.com/reel/1927405395307821",
+    "segment_start": 50.0,
+    "duration": 5,
+    "size_bytes": 422263,
+    "what_it_shows": "Balote 等角像素球場，疊「第二條 畫布 360×280」解說字"
+  },
+  {
+    "file": "v80-shibuya-fable.gif",
+    "video_number": "影片 83",
+    "entry_name": "Ming Cheng Ho（indiehack in）：Fable 5.2 寫程式蓋出渋谷 3D（製程尚未公開）",
+    "reel_url": "https://www.facebook.com/reel/2190397408553774",
+    "segment_start": 3.0,
+    "duration": 5,
+    "size_bytes": 2639919,
+    "what_it_shows": "風格化渋谷交叉口 3D，鏡頭從較平的視角推進出現深度，疊「2° 長焦把它壓平」字卡"
+  },
+  {
+    "file": "v81-ha-bridge.gif",
+    "video_number": "影片 84",
+    "entry_name": "HA Bridge：可視化畫 3D 戶型並綁定 Home Assistant 實體（官方付費中控）",
+    "reel_url": "https://www.facebook.com/reel/1885203799120310",
+    "segment_start": 8.0,
+    "duration": 5,
+    "size_bytes": 48679,
+    "what_it_shows": "裁掉含內網中控位址的頂欄後，等角 3D 戶型儀表盤上的燈光被點亮"
+  },
+  {
+    "file": "v82-live-threat-maps.gif",
+    "video_number": "影片 87",
+    "entry_name": "Hacking Tutorials Daily：三個免費網路威脅即時地圖（Kaspersky／Check Point／NETSCOUT）",
+    "reel_url": "https://www.facebook.com/reel/29346549524942796",
+    "segment_start": 4.0,
+    "duration": 5,
+    "size_bytes": 1581657,
+    "what_it_shows": "Kaspersky Cyberthreat Live Map 的旋轉地球，疊「is a spinning globe」字卡；右側可見 DEMO ON 控件"
+  },
+  {
+    "file": "v83-harness-engineering.gif",
+    "video_number": "影片 88",
+    "entry_name": "Machine Learning & AI：所謂 Google 9 頁 Agent Harness Engineering 文件（並非官方 Google PDF）",
+    "reel_url": "https://www.facebook.com/reel/1669067301263733",
+    "segment_start": 3.0,
+    "duration": 5,
+    "size_bytes": 390756,
+    "what_it_shows": "獨立六層 Harness Engineering 筆記第 1 頁，圖層依序亮起"
+  },
+  {
+    "file": "v84-legal-plugins.gif",
+    "video_number": "影片 89",
+    "entry_name": "AI懶人報：Anthropic 官方法務外掛（triage-nda／review-contract／legal-risk-assessment／claude-for-legal）",
+    "reel_url": "https://www.facebook.com/reel/2280311616036852",
+    "segment_start": 18.0,
+    "duration": 5,
+    "size_bytes": 334157,
+    "what_it_shows": "NDA 檢查表與綠燈／黃燈說明（畫面來源標示 Liam Barnes）"
+  },
+  {
+    "file": "v85-company-folder-autopilot.gif",
+    "video_number": "影片 90",
+    "entry_name": "Altair AI：Claude Code 空資料夾建六部門公司（概念動畫；說明文來自 @birmeya）",
+    "reel_url": "https://www.facebook.com/reel/1152801101050169",
+    "segment_start": 16.0,
+    "duration": 7,
+    "size_bytes": 652328,
+    "what_it_shows": "第 6 步 Make→Gmail→sheet 轉入第 7 步 Autopilot 與 8:00 Telegram 核准卡"
   }
 ]

@@ -246,3 +246,69 @@ Altair AI 上傳的約 24 秒直式 Facebook Reel（2026-11-11；Brian 於 2026-
 可帶走的作法：把長上下文模型對準筆記庫與 Claude Code session 紀錄，直問已開始對已交貨、統計含糊提示詞（例如 make it better）、找出自己的高產出時段；寫提示詞時先定義 better 是什麼。數字與「昨晚讀完整台筆電」的情節未驗證，不當產品示範。可對照 SEQ 0110（同樣是 Fable 5.2 的模擬稽核儀表板）、0104、0106、0111、0119（其他 Fable 5.2 條目）。配樂：未標。GIF：0:03–0:08。
 
 ![Fable 5.2 讀筆電的風格化 3D HUD 與 VERDICT](../assets/gifs/v73-fable-laptop-verdict.gif)
+
+### [Altair AI：Fable 5.2 用五個 agent 管社群（概念動畫，非產品錄屏）](https://www.facebook.com/reel/40885633571023865)
+
+風格化 SOCIAL HQ 儀表板，標題 FABLE 5.2／5 AI AGENTS RUN MY SOCIAL MEDIA。說明文沒有點名產品或 repo，畫面也沒有網址；數字與「一天、五平台、零手動發文」皆為動畫宣稱、未驗證
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 概念動畫・宣稱待驗證・可信度中 | — | [影片 81](https://www.facebook.com/reel/40885633571023865) |
+
+Altair AI 上傳的約 24 秒直式 Facebook Reel（2026-11-12；Brian 於 2026-11-13 12:59 Asia/Taipei 從 LINE 轉來裸連結 https://www.facebook.com/share/v/1Dtd5T4uCo/，對應 [這則 Reel](https://www.facebook.com/reel/40885633571023865)）。同一上傳者已見 SEQ 0094、0095、0097、0098、0121、0122。說明文是泛用的多 agent 社群管理提案（內容產製、規劃、agent 自動化、成效追蹤），沒有點名產品、repo 或網址；片尾只有「Follow Altair AI for more AI tips and tricks」，是普通追蹤呼籲，與 SEQ 0094、0097、0121 的 Follow 橫幅相同，不是留言換連結，故不標引流。
+
+畫面是風格化暗色科幻 HUD（與 SEQ 0121 同一系列），不是真實產品錄屏，也未出現私人 IP 或本機路徑。標題列寫 FABLE 5.2 AGENT MODE、5 AI AGENTS RUN MY SOCIAL MEDIA、one day, 5 platforms, zero manual posting。主面板標 01 SOCIAL HQ · agents on duty · 5 platforms，並列出研究、內容、排程、互動、分析等職能（另有 platforms · live）：research／trends、content／drafts、scheduler／queued、engage／replies、analytics／lift。中央軌道圖把 FABLE 5.2 放在中間，周圍是 LinkedIn、YouTube、Instagram、X／Twitter、TikTok；agent mode 會從 listening、writing、planning、replying、learning 走到 reporting，時鐘像在走完「一天」。底部有研究趨勢、草稿、週曆排程、平台連結數、留言互動、核准佇列、hashtag 排行、觸及分析、週報、成長分數，以及一則寫在畫面右下的提示詞：「Run my social media like a team of agents. Research trends, draft posts in my voice, schedule at the best times, reply to comments, then report weekly. Ask me before anything sensitive.」（effort: high · tools: browser, scheduler）。核准列寫 nothing sensitive goes out alone。
+
+片尾大標「2 hrs saved / day」「I only approve anything sensitive」，並出現「Fable 5.2 sends me one weekly report. My job is to approve and post less.」週報卡抽幀可見 This week: 14 posts, 38 replies, reach up 212%. Best post: prompt templates。頂列計數會跳到 TRENDS 12、POSTS 14、REPLIES 38、REACH 184K、SAVED 2.0h。這些數字與「零手動發文／每天省兩小時／觸及 +212%」都是動畫裡的宣稱，未驗證。畫面上的 SOCIAL HQ、FABLE 5.2 是這張概念儀表板的標題；Fable 5.2 是 Anthropic 正式型號（見 SEQ 0106、0121），但沒有找到叫 SOCIAL HQ 的官方產品或 repo，也不把這則當成已上線工具的示範。可對照 SEQ 0078（Paperclip：用組織與核准關卡管 agent 團隊）、0113（10 種 AI Employees 角色清單，無實作）、0091（FounderOS／Content Lab 創作者情報系統）、0121（同一上傳者的 Fable 5.2 概念 HUD）。配樂：未標。GIF：0:16–0:21。
+
+![Fable 5.2 SOCIAL HQ 概念儀表板，從觸及統計轉到每天省兩小時與週報](../assets/gifs/v78-fable-social-hq.gif)
+
+### [Machine Learning & AI：所謂 Google 9 頁 Agent Harness Engineering 文件（並非官方 Google PDF）](https://www.facebook.com/reel/1669067301263733)
+
+說明文稱 Google 公布 9 頁 Agent Harness Engineering PDF（Agent = Model + Harness，六步）；畫面是獨立技術筆記第 1 頁，頁尾寫 made by @Mr_Buzzoni。本則未找到官方 Google 的同名 9 頁 PDF。
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 宣稱待驗證・可信度中 | — | [影片 88](https://www.facebook.com/reel/1669067301263733) |
+
+Machine Learning & AI 上傳的約 22.5 秒直式 Facebook Reel（2026-11-12；1440×1920；Brian 於 2026-11-13 在對話傳來 [這則 Reel](https://www.facebook.com/reel/1669067301263733)）。越南文說明文稱 Google 剛公布一份 9 頁 PDF，談 Agent Harness Engineering，公式是 Agent = Model + Harness，並列出 6 個步驟：從舊失敗寫出規則；加上 linter、測試等檢查；建立 plan-execute-verify-fix 迴圈；跨 session 保存記憶與狀態；權限與核准控制；以及監看工具、成本、重試與異常。重點是每次失敗要變成以後不再犯的規則。無留言換連結，故不標引流。
+
+畫面全程是同一頁技術筆記的動畫，並未翻到後頁。頁首寫 Production Agent Engineering Practice 2026，標題為 Harness Engineering，副標 Agent = Model + Harness: The 6-Layer Production Playbook，頁尾寫 made by @Mr_Buzzoni、頁碼 1。圖上六層是 GUIDES、SENSORS、AGENTIC LOOP（Plan／Execute／Verify／Fix）、MEMORY、PERMISSIONS、OBSERVABILITY，與說明文的 6 步大致對應。標題旁有 Google 風格的 G 標誌，但出處行寫的是根據 Mitchell Hashimoto 的方法、OpenAI Codex field report、Martin Fowler 的 guides-and-sensors、以及 Anthropic、LangChain、Cursor 等材料整理。
+
+查證（2026-11-13 台北時間）：
+
+- 本則沒有找到由 Google 正式發布、標題為 Agent Harness Engineering 的 9 頁 PDF，因此不把「Google 公布這份 9 頁文件」當成事實
+- 畫面這份筆記也不是官方 Google 文件。公開搜尋未能取得可自行點算頁數的檔案；多則獨立評介把它寫成 2026 年 8 月的非官方技術筆記、約 9 頁，且不是會議論文、也不是任何公司的官方文件，故「9 頁」並非本則自行點算
+- 頁上 95% 企業 agent 未能上線、同模型 +44、Terminal Bench +25 名、100 萬行零手寫等數字，本則未核對
+- Google 另有公開談 harness 的材料，但標題與性質都不同，不可與畫面這份六層手冊當成同一份文件：例如 2026-09-09 Google Developers Blog 的 [The Anatomy of Harness Engineering: How to Evaluate, Iterate, and Guard AI Coding Agents](https://developers.googleblog.com/en/the-anatomy-of-harness-engineering-how-to-evaluate-iterate-and-guard-ai-coding-agents/)，以及 Google Research 的 [Industrial Agentic Engineering](https://research.google/pubs/industrial-agentic-engineering/)
+- 公式 Agent = Model + Harness 在其他公開文章也常見，本則不把它當成 Google 獨有發表
+
+可對照 SEQ 0004、0069、0078。配樂：未標。
+
+![獨立六層 Harness Engineering 筆記第 1 頁，圖層依序亮起](../assets/gifs/v83-harness-engineering.gif)
+
+### [Altair AI：Claude Code 空資料夾建六部門公司（概念動畫；說明文來自 @birmeya）](https://www.facebook.com/reel/1152801101050169)
+
+風格化 Claude Code 公司資料夾 HUD，按七步從空資料夾走到六個部門與 8:00 Telegram 核准。說明文與 @birmeya 的貼文幾乎逐字相同且未標出處；37 分鐘、20 筆名單與每日簡報皆為動畫宣稱、未驗證。
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 概念動畫・宣稱待驗證・可信度中 | — | [影片 90](https://www.facebook.com/reel/1152801101050169) |
+
+Altair AI 上傳的約 24 秒直式 Facebook Reel（2026-11-13；1080×1350；Brian 於 2026-11-13 在對話傳來 [這則 Reel](https://www.facebook.com/reel/1152801101050169)）。同一上傳者已見 SEQ 0094、0095、0097、0098、0121、0122、0125。說明文寫晚餐後把空資料夾丟進 Claude Code，37 分鐘後六個部門在早上 8 點用一則 Telegram 叫醒，並列出 7 步：安裝並指向空資料夾、用 5 題寫成最多 150 行的公司手冊（硬規則放最上面）、一次建立 sales／marketing／support／finance／ops／research 六個部門且各有列出輸入與輸出的 README、建立 lead-finder 寫下 20 筆附原因的名單且從不主動聯絡、同時啟動 lead-finder／post-writer／inbox 三個 agent（各鎖在自己的資料夾）並收回一則短摘要、經 MCP 接上 Make 列出可跑的 scenario 再草擬 follow-up、用 Gmail 寄出並記入試算表、最後設定每天 8:00，由 inbox 草擬回覆、analyst 讀昨日、planner 排當日，再用一則 Telegram 列出所有要你點頭的事項。文末「Subscribe to the exclusive content today」連到 Facebook 訂閱頁，再加上片尾 Follow Altair AI for more AI tips and tricks，都是普通訂閱／追蹤呼籲，不是留言換連結，故不標引流。
+
+這段說明文與 [@birmeya 的貼文](https://x.com/birmeya/status/2120904800871096798)幾乎逐字相同，本則沒有標出原作者；Altair AI 只在文末多了訂閱呼籲。畫面是風格化暗色 Claude Code company folder 概念 HUD，不是真實產品錄屏，也沒有 repo 或操作逐字稿（僅配樂、無旁白）。頂列一開始就亮著 QUESTIONS 5、LINES MAX 150、DEPTS 6、LEADS 20，並以 1／7 走到 7／7。中央轉盤依步驟顯示 claude · empty folder、5 questions · CLAUDE.md、6 departments · READMEs、lead-finder · 20 leads、3 agents · 1 summary、Make · Gmail · sheet、inbox · analyst · planner。左上 HANDBOOK 寫 CLAUDE.md，硬規則可見 no email without approval、finance only when asked。六個部門塊在第 3 步長出 README，之後 lead-finder、post-writer、inbox 分別掛上 sales、marketing、support；第 7 步再出現 analyst、planner，SUPPORT 標 DRAFTS、FINANCE 標 YESTERDAY、OPS 標 DAY PLAN。
+
+右上 STAGES 各步標了 Install 5 min、CLAUDE.md 10 min、Departments 2 min、lead-finder 5 min、Parallel run x3（沒有分鐘）、Make MCP 15 min、Autopilot daily（沒有分鐘）。有標分鐘的五段相加是 37，但七步並非都有分鐘數，不能把「全程 37 分鐘」當成已核對的計時。右下 MIN. SETUP 累計為 5→15→17→22（第 5 步仍為 22）→37→37，與這五段分鐘相符，同屬動畫宣稱。
+
+查證（2026-11-13 台北時間）：
+
+- 沒有找到對應的公開 repo
+- [Make MCP](https://help.make.com/get-started-with-make-mcp-server) 是真實產品，可把 Make scenario 接到包含 Claude 在內的 MCP 客戶端；本則未核對片中「列出可跑 scenario、用 Gmail 寄出並記入試算表」是否為一次真實執行
+- 20 筆名單、37 分鐘建置，以及每天 8:00 用一則 Telegram 做簡報，皆為說明文與動畫裡的宣稱，未驗證
+
+可對照 SEQ 0121、0125（同一上傳者的概念 HUD）、0098（同一上傳者談 Claude Code 分工）、0078（用組織與核准關卡管 agent 團隊）、0117（分部門 agent 與排程的公司系統宣稱）。
+
+互動重現：[空資料夾六部門公司 demo](https://wiki.singularityengine.dev/demos/company-folder-autopilot/)（7 步可逐步操作；名單與信件為虛構資料，不會連網或寄信）。配樂：僅配樂、無旁白。
+
+![第 6 步 Make 鏈轉入第 7 步 Autopilot 與 8:00 Telegram 核准卡](../assets/gifs/v85-company-folder-autopilot.gif)

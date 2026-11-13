@@ -78,5 +78,15 @@
     "source": "影片 44",
     "sourceUrl": "https://www.facebook.com/reel/1423421943269401",
     "added": "2026-11-02"
+  },
+  {
+    "id": "company-folder-autopilot",
+    "title": "空資料夾六部門公司：一步步走到 8:00 核准",
+    "desc": "依說明文的 7 步，從空資料夾走到六個部門、三個 agent、Make→Gmail→試算表鏈，以及早上 8:00 的 Telegram 核准卡（Approve／Armed／Sent）。名單與信件都是虛構示範資料，不會真的連網或寄出。",
+    "category": "Agent 系統",
+    "path": "company-folder-autopilot/",
+    "source": "影片 90",
+    "sourceUrl": "https://www.facebook.com/reel/1152801101050169",
+    "added": "2026-11-13"
   }
 ]

@@ -50,13 +50,26 @@ AI 生成的虛擬網紅健身短片，可練習辨識破綻
 
 ### [What the water keeps：Kevin Ngo 的繪本風泛舟網頁（稱以 Claude Fable 5.2 製作）](https://what-the-water-keeps.vercel.app)
 
-網頁作品確實可開啟；本則影片只循環播放變形划船動畫，沒有遊戲操作或提示詞
+網頁作品確實可開啟；本則影片只循環播放變形划船動畫，沒有遊戲操作或提示詞。後補核對官方公告：輸入價從 5.1 的每百萬 $10 降至 $8、輸出從 $50 降至 $40；輸出最多快 30%。說明文所稱企業零留存並非預設。
 
 | 可信度 | 星數 | 出處 |
 | --- | --- | --- |
-| 宣稱待驗證・可信度中 | — | [影片 59](https://www.facebook.com/reel/1465699568821932) |
+| 宣稱待驗證・可信度中 | — | [影片 59](https://www.facebook.com/reel/1465699568821932)／[影片 85](https://www.facebook.com/reel/1682717900077017) |
 
-Aifocus 上傳的約 57 秒 Facebook Reel（2026-11-10）。查證（2026-11-10 台北時間）：Anthropic 確實於 2026-11-09 發布 Claude Fable 5.2 與 Mythos 5.2（[官方公告](https://www.anthropic.com/claude-fable-and-mythos-5-2)）；兩者為同一底模，Fable 公開、Mythos 需經驗證計畫。官網所寫「八天、1,000+ 子代理做出原型作業系統」「30 小時 formalize 費馬大定理」「兩道黑洞物理開放問題」皆為 Anthropic 官方宣稱，本則**未獨立驗證**。[what-the-water-keeps.vercel.app](https://what-the-water-keeps.vercel.app) 可開啟；Kevin Ngo（@kevin_t_ngo）在 X 稱此 demo 由 Fable 5.2 做成（非官方頁具名）。影片未展示可玩過程。可對照 SEQ 0104：兩則都寫 Fable 5.2，但 Fable 5.2 本身是 Anthropic 的 Claude 模型。無留言換連結。
+Aifocus 上傳的約 57 秒 Facebook Reel（2026-11-10）。查證（2026-11-10 台北時間）：Anthropic 確實於 2026-11-09 發布 Claude Fable 5.2 與 Mythos 5.2（[官方公告](https://www.anthropic.com/claude-fable-and-mythos-5-2)）；兩者為同一底模，Fable 公開、Mythos 需經驗證計畫。官網所寫「八天、1,000+ 子代理做出原型作業系統」「30 小時 formalize 費馬大定理」「兩道黑洞物理開放問題」皆為 Anthropic 官方宣稱，本則**未獨立驗證**。[what-the-water-keeps.vercel.app](https://what-the-water-keeps.vercel.app) 可開啟；Kevin Ngo（@kevin_t_ngo）在 X 稱此 demo 由 Fable 5.2 做成（非官方頁具名）。影片未展示可玩過程。可對照 SEQ 0104：兩則都寫 Fable 5.2，但 Fable 5.2 本身是 Anthropic 的 Claude 模型。
+
+【影片 85】Marc.AI 上傳的約 10 秒直式 Facebook Reel（2026-11-10；Brian 於 2026-11-13 在對話傳來 [這則 Reel](https://www.facebook.com/reel/1682717900077017)）。說明文稱 11 月 9 日推出 Fable 5.2 與 Mythos 5.2，編碼、推理與視覺更強；Fable 5.2 回答快 30%，輸入價從每百萬 token $10 降至 $8，並支援企業零資料留存；Mythos 5.2 仍限經驗證的資安與生命科學使用者。畫面是通用科幻儀表板動畫，沒有產品介面、價格數字或官方標示，故不另做 GIF。無留言換連結，故不標引流。
+
+查證（2026-11-13 台北時間，對照[官方公告](https://www.anthropic.com/claude-fable-and-mythos-5-2)、[產品頁](https://www.anthropic.com/claude/fable)、平台模型頁與發布說明、以及[資料留存說明](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention)）：
+
+- 11 月 9 日發布：已核過，仍相符
+- 編碼、推理與視覺更強：官方寫在 coding、reasoning、vision 等面向有改進，屬官方宣稱
+- 「快 30%」：官方原文是 Fable 5.2 與 Mythos 5.2 產生輸出最多快 30%（up to 30% faster）於 5.1，不是只寫 Fable、也不是固定 30%。另有可選 fast mode，產生速度最多約 2.5 倍，價為輸入 $16／輸出 $80 每百萬 token
+- 價格：官方確認輸入從 5.1 的每百萬 $10 降至 $8；說明文沒寫輸出價，官方是從 $50 降至 $40。快取讀取為 $0.20（5.1 為 $0.25）
+- 「企業零資料留存」過寬：官方預設為安全監控所需的 30 天資料留存（Covered Models）；除非 Anthropic 另行授權，否則不適用零資料留存（ZDR）。企業 Frontier Safeguards（EFS）目前為私人測試，合格客戶可在導入 EFS 前繼續以 ZDR 使用；其他客戶為 30 天留存
+- Mythos 限制：官方是需通過已擴大的 Life Sciences 與 Cyber Verification Programs 的機構申請，不是籠統的「已驗證使用者」
+
+無私人 IP 或本機路徑。配樂：未標。
 
 ![循環划船動畫片段](../assets/gifs/v59-water-keeps.gif)
 

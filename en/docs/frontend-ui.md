@@ -253,3 +253,72 @@ A dark sci-fi monitoring dashboard that lays out planner, workers, quality / pol
 ~20s vertical Facebook Reel by Moh Moh (2026-11-11; Brian forwarded [this bare share link](https://www.facebook.com/share/v/19SorEAJS6/) via LINE at 20:07 Asia/Taipei on 2026-11-12). The caption is only the line “学了别人看不懂的东西，比Ai还要强” — no tool, product, or URL, and no comment-for-link bait. The clip is a looping dark sci-fi FUI dashboard titled JEV ENGINEERING (subtitle BUILD FABRIC / ENGINEERING SYSTEM), not a recording of a real product. No authoring tool, prompt, or product URL appears. The top stage row is INGEST→PLAN→EXECUTE→VERIFY→GATE→COMMIT (ROUTE / BUILD / VERIFY / RELEASE). Visible panels include AGENT PLANNER, CODE/WORKER, SIMULATION/WORKER, SOURCE/WORKER, QUALITY/EVIDENCE, POLICY/APPROVAL, PACKET MATRIX, RELEASE/GATE, TEST/EXECUTOR, CACHE/MEMORY, BUILD TRACE, and RESOURCE/BUDGET, among others (also REQUEST/INTAKE, INTEGRITY SCAN, AGENT SWARM). Mechanical jellyfish move across the panels (labeled 5 MEDUSA AGENTS), with pixel-style handoff tags. BUILD TRACE scrolls quality/gate-style log lines; the RESOURCE/BUDGET cost figure keeps ticking (sampled frames show roughly $18–$22). The panel itself is labeled USD/DEMO and “simulation demo cost,” so the numbers are fake demo values. A watermark “Xi @Klonzu” appears at the top right; it was not verified as a public product and is not treated as a brand. Takeaway: a layout idea for a multi-agent pipeline monitoring dashboard — planner → workers → quality / policy / release gates, plus a cost tracker. Cross-link: SEQ 0115 (also design-inspiration concept animation, not a tool demo). GIF: 0:08–0:13.
 
 ![JEV Engineering sci-fi FUI multi-agent dashboard](../../assets/gifs/v72-jev-engineering-fui.gif)
+
+### [Code with Bhurtel: Space-Time Curve (JavaScript softened-gravity grid animation, not an AI tool)](https://www.facebook.com/reel/1140316585123225)
+
+A 3D glowing wireframe grid warped by a star and an orbiting planet, later swallowed by a black hole; the bottom of the frame is a static Carbon-style gravityAt snippet for softened Newtonian acceleration. This is a motion graphic / creative-coding inspiration, not an AI tool, and it does not look like live output of that snippet
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| design inspiration · concept animation | — | [Video 79](https://www.facebook.com/reel/1140316585123225) |
+
+~15s vertical Facebook Reel by Code with Bhurtel (2026-11-11; Brian sent the bare LINE link https://www.facebook.com/share/r/1MDedB26No/ at 08:06 Asia/Taipei on 2026-11-13, which resolves to [this reel](https://www.facebook.com/reel/1140316585123225)). The caption is only “Space Time Curve Using JavaScript!” plus hashtags: no library, tool, or product URL, and not comment-for-link bait. The on-screen title is Space-Time Curve. A glowing 3D wireframe grid is warped by a star and an orbiting planet; a black hole sweeps in at about 0:04 and swallows both by about 0:10. Below is a static Carbon-style JavaScript card (traffic-light window dots) showing gravityAt(bodies, x, z, skip), which computes a softened Newtonian planar acceleration: d2 = dx² + dz² + soften², f = G * mass / (d2 * sqrt(d2)). The snippet never changes, and the animation looks pre-rendered rather than live output of that function; no graphics library is named. This is not an AI-tool video; it is filed as visual / creative-coding inspiration (see also SEQ 0115 and 0120). The takeaway is the softened-gravity formula and the idea of displacing a grid by a gravity potential. three.js would be one way to build that idea, but the video does not show it. No private information is on screen. GIF: 0:08–0:13.
+
+![Space-Time Curve black hole swallowing the star and planet, with a static gravityAt snippet below](../../assets/gifs/v76-spacetime-curve.gif)
+
+### [Philo: Pixel Plays (Amir Mushich’s five zero-image pixel web games)](https://github.com/amirmushichge/pixel-plays)
+
+Open-source Pixel Plays: five isometric pixel browser games drawn entirely in code. The line count, zero-image and zero-dependency claims, and the MIT code license check out; the music is not under MIT. Claude Opus 5.5 is the author’s account plus unsigned co-author commit trailers
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| high credibility | 463 | [Video 82](https://www.facebook.com/reel/1927405395307821) |
+
+~124s vertical Facebook Reel by 產品經理的背後靈 Philo (AI郵報) (2026-11-11; Brian sent [this reel](https://www.facebook.com/reel/1927405395307821) in chat on 2026-11-13). The clip is a fact-check explainer: public-game captures or excerpts from the author’s X video, with on-screen labels, not a developer walkthrough, and it shows no private IPs or local paths. The caption introduces Amir Mushich’s open-source project Pixel Plays, claims more than 180,000 views on X, and says Claude Opus 5.5 helped make it. It ends by asking people to comment 「遊戲」 so he knows, and to save the post; it does not promise a link or file in return, so no ⚠️.
+
+Verification (2026-11-13, Asia/Taipei, GitHub API and raw files):
+
+- Official repo: [amirmushichge/pixel-plays](https://github.com/amirmushichge/pixel-plays)
+- Play: https://pixel-plays-ruby.vercel.app/
+- Author’s X post: https://x.com/AmirMushich/status/2116509069477621819 (20:34 Asia/Taipei on 2026-10-31, titled “3D pixel games with Claude Opus 5.5 (OS)”)
+- The five games: Balote, Stari Most, Rooftop Laundry, Tie-Break, Mini Ramp
+- Line count: the caption says 3,557 lines. Counting newlines: 3,067 in the five game pages (524+655+674+635+579) plus engine.js 343 and shell.js 147 equals 3,557, which matches
+- Zero images / zero dependencies: the repo tree has no image files and no package.json; serve.mjs uses only Node built-ins. There are five .mp3 files (generated with Suno); those are not images
+- License: LICENSE is MIT, Copyright (c) 2026 Amir Mushich, matching the caption’s “code is MIT.” README and MUSIC.md state that the music is not under MIT and is not licensed for reuse outside this project — a point the caption omits and that should be noted
+- Stars: GitHub API that day: 463 stars, 46 forks
+- Visual rules match the caption: fixed 30° orthographic view, violet-leaning shadows, warm-yellow highlights, shadows to screen-right, only plants move, 360×280 canvas integer-upscaled. The README also lists further rules (Bayer dither, a depth buffer, and so on)
+- Claude: both commits (770640d, 0c2a70f) end with Co-Authored-By: Claude Opus 5.5 and are unsigned; no prompts appear in the repo’s text files. The caption already says Claude’s role comes from the author’s statement and the commit record, with no full prompts to reproduce the work, which matches
+- The “180,000+ views” figure is the caption’s claim about that X post; this entry did not re-count views on the X page
+- README credits: “Concept by abhi. Game by AmirMushich. Visual reference: shawn.'s Small plays.” “No assets or subjects were copied” is the author’s statement; this entry did not compare the originals
+
+SkillSpector static scan (2026-11-13, Asia/Taipei, skillspector 2.12.0, --no-llm, commit 0c2a70f): this repo is not a skill / MCP package; 0 issues, 0 findings; risk score 0, severity LOW, max_issue_severity NONE; coverage 85.7% (12 of 14 components, status partial). Cross-link SEQ 0106 (another AI-assisted page drawn live in the browser). The reel itself is labeled as having no music (explainer footage). GIF: 0:50–0:55.
+
+![Pixel Plays’ Balote isometric court, with an on-screen note that the canvas is 360×280](../../assets/gifs/v79-pixel-plays.gif)
+
+### [HA Bridge: visually design a 3D floor plan and bind Home Assistant entities (official paid dashboard)](https://habridge.cn/)
+
+顏民凱 demonstrates the paid dashboard HA Bridge: drawing a 3D floor plan in the editor, using the official 「栖光」 UI kit, and binding Home Assistant entities onto the dashboard, without writing YAML.
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| high credibility | — | [Video 84](https://www.facebook.com/reel/1885203799120310) |
+
+~104s landscape Facebook Reel by 顏民凱 (2026-09-04; 1624×720; Brian sent [this reel](https://www.facebook.com/reel/1885203799120310) in chat on 2026-11-13). The caption is only one line: 「輕鬆完成戶型圖設計，導入HA實體，終於不用再寫Yaml了」. There is no comment-for-link gate, so this entry is not marked as engagement bait.
+
+The clip is a real product recording, not a motion graphic. It starts on a dashboard preview of an isometric 3D floor plan (tappable light and climate icons), then moves through a lighting overview, HVAC / curtain / washer panels and control popups, into the 「戶型圖繪製」 editor (plan view, furniture library, live 3D preview), and ends on the 「導出 3D 戶型圖」 export dialog. The top bar shows 編輯 / 儀表盤 / 打開 HA / 保存, matching the official “editor basics” toolbar. The left sidebar shows 「UI 方案 栖光」, with an on-screen label 「DWELL LIGHT · 1.0.0」 beside it. Official docs confirm 栖光 is the built-in complete UI kit (pages, widgets, popups, theme, and assets; you then replace entities). The official pages checked for this entry do not name DWELL LIGHT as the English title of 栖光, so that English label is recorded only as on-screen text.
+
+Verification (2026-11-13, Asia/Taipei):
+
+- Product: [HA Bridge](https://habridge.cn/), docs: https://wiki.habridge.cn/
+- Official positioning: a self-hosted household dashboard. Home Assistant owns devices and entities; HA Bridge owns the control UI. You can DIY 2D panels in a visual editor, or draw a 3D floor plan and bind entities in a live 3D view
+- Officially a paid product; features follow the license, and 3D interaction needs the matching entitlement
+- Install as a Home Assistant add-on or standalone Docker; default port 18080 (changeable with APP_PORT)
+- Official add-on repo is first on Gitee at https://gitee.com/weidaye1122/ha-bridge-addon, with GitHub backup https://github.com/weidaye1122/ha-bridge-addon; the standalone Docker image is weidaye1122/ha_bridge
+- This is not the same project as the similarly named Philips Hue emulator [bwssytems/ha-bridge](https://github.com/bwssytems/ha-bridge)
+- “No more YAML” is the uploader’s caption. Official docs describe searching and selecting an entity_id under 關聯實體 in the editor, and they do not require hand-written Lovelace YAML; this entry did not test whether every widget can be used with no YAML at all
+
+The top bar shows a private LAN mid-control address, which this entry does not publish; local paths and a home address are also not copied here. The title on the floor-plan plaque is the uploader’s project, not the product name.
+
+SkillSpector static scan (2026-11-13, Asia/Taipei, skillspector 2.12.0, --no-llm, commit 09b9be5): the scan covered the public add-on pack weidaye1122/ha-bridge-addon, not the closed product image. This repo is not a skill / MCP package; 27 issues (6 HIGH, 21 MEDIUM), all in release/ and tests/ (for example env passing, subprocess, and a directory-delete in candidate.py, verify_addon_upgrade.sh, and test_release_recovery.py); risk score 100, severity CRITICAL, recommendation DO_NOT_INSTALL, max_issue_severity HIGH; coverage 100% (22 / 22 components, status complete). The main application is not in this repo, and its Docker image was not scanned. GitHub API that day: 4 stars on the add-on repo; last push 10:01 Asia/Taipei on 2026-11-10, commit message Add-on 0.8.6-1. Music: not labeled.
+
+![HA Bridge isometric 3D floor-plan dashboard with lights turning on, top bar cropped to hide a private LAN mid-control URL](../../assets/gifs/v81-ha-bridge.gif)

@@ -88,3 +88,25 @@ Aamir Pervez Tech 上傳的約 14 秒 Facebook Reel（2026-11-09），無旁白�
 Piyushikaamriti 上傳的約 44 秒 Facebook Reel（2026-09-04）。畫面為 ⚠️ [osirisai.live](https://osirisai.live) ⚠️ 風格儀表板。片中把 ⚠️ [Liveuamap](https://www.liveuamap.com) ⚠️ 的戰事新聞地圖當成 OSIRIS 功能；又把 DexScreener 上的 Osiris/SOL PumpSwap 迷因幣圖表稱為「股價」，有加密代幣導流風險。片尾要在留言寫名字，屬引流。查證（2026-11-10 台北時間）：官網存在且可見 $OSIRIS；⚠️ [simplifaisoul/osiris](https://github.com/simplifaisoul/osiris) ⚠️ MIT，11,643 星／2,427 fork，最近推送 2026-11-09 14:02 Asia/Taipei；repo 簡介附上 Solana 合約 2nZNHm3Lr9umG3DVrzYwHgktwkuKuJRXqqRqs3ewpump，代幣綁定已核到。圖層即時性未實測，標未驗證。可對照 SEQ 0101、0073。SkillSpector 掃描待補。
 
 ![OSIRIS 地圖儀表板片段](../assets/gifs/v56-osiris-osint.gif)
+
+### [Hacking Tutorials Daily：三個免費網路威脅即時地圖（Kaspersky／Check Point／NETSCOUT）](https://www.facebook.com/reel/29346549524942796)
+
+畫面列出 Kaspersky、Check Point、NETSCOUT 三個可免費觀看的威脅地圖；本次官方頁皆可開啟。資料分別是各廠商自家產品偵測或流量觀測，不是全球所有攻擊的完整即時畫面。
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 可信度高 | — | [影片 87](https://www.facebook.com/reel/29346549524942796) |
+
+Hacking Tutorials Daily 上傳的約 30 秒直式 Facebook Reel（2026-10-15；1080×1920；Brian 於 2026-11-13 在對話傳來 [這則 Reel](https://www.facebook.com/reel/29346549524942796)）。說明文只有一句：「Free Websites That Show Cyberattacks Happening In Real Time」。無留言換連結，故不標引流。
+
+畫面依序錄到三個官方地圖，接著是上傳者自己的解說動畫，不是第四個網站：疊字寫 the catch is each map、what one company's own tools caught，並標 own sensors only；結尾是 it's a real view, just never the whole picture。解說動畫裡的 live feed 與 auth log 是示意畫面（含文件用保留 IP 與虛構登入列），本則不抄那些位址或姓名。
+
+查證（2026-11-13 台北時間），三個網站皆回 HTTP 200，地圖本身可免費看，沒有死站：
+
+1. [Kaspersky Cyberthreat Live Map](https://cybermap.kaspersky.com/) — 由 AO Kaspersky Lab 營運。頁尾寫 Based on data from Kaspersky。官方 [DATA SOURCES](https://cybermap.kaspersky.com/subsystems) 頁說明資料來自 Kaspersky 產品的偵測流：OAS、ODS、MAV、WAV、IDS、VUL、KAS、RMW，也就是自家防毒／安全軟體看到的內容，不是全球所有攻擊。本則錄屏右側可見 DEMO ON 控件，該段可能是網站示範模式，不一定是錄製當下的即時資料。地圖可直接開、不必登入；Protect Yourself 只是試用導流。
+2. [Check Point Live Cyber Threat Map](https://threatmap.checkpoint.com/) — 由 Check Point Software 營運，畫面有 ThreatCloud AI 標誌，分類為 Malware、Phishing、Exploit。地圖可直接開、不必登入。官方 [ThreatCloud AI](https://www.checkpoint.com/ai/threatcloud/) 頁寫威脅情報庫來自 150,000 個連線網路與數百萬個端點，再加上 Check Point Research 與數十個外部情報源。故此圖也是該公司遙測，不是全球完整攻擊畫面。[www.checkpoint.com/threatmap](https://www.checkpoint.com/threatmap/) 本次同樣可開啟，但是行銷頁，實際地圖在 threatmap.checkpoint.com。
+3. [NETSCOUT Cyber Threat Horizon：Real-Time DDoS Attack Map](https://horizon.netscout.com/) — 由 NETSCOUT 營運。本次訪客即可看地圖；頁首有 Want more? Login | Sign Up。官方頁 [netscout.com/horizon](https://www.netscout.com/horizon) 稱之為 free tool，[global-threat-intelligence](https://www.netscout.com/global-threat-intelligence) 稱之為顯示即時與歷史全球 DDoS 活動的 free portal。免費帳號可再打開篩選、Neighborhoods，以及回溯至 2003 年的歷史資料。此圖只呈現 DDoS，不是所有類型的網路攻擊；資料來自 NETSCOUT ATLAS 對 ISP 與企業站點流量的觀測。片中地圖日期為 2026-10-09，與上傳日 2026-10-15 接近，不是本則查證當下的畫面。
+
+說明文把這些圖說成即時發生的網路攻擊，說過頭；影片後半自己也說明每張圖只反映一家公司的工具／感測器。可對照 SEQ 0101、0073、0103。配樂：未標。
+
+![Kaspersky Cyberthreat Live Map 的旋轉地球](../assets/gifs/v82-live-threat-maps.gif)

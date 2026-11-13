@@ -129,3 +129,21 @@ Blender 機械蜘蛛移動身體時各腳依步態順序 IK 自動抬腳落地�
 YuNo老師 上傳的約 43 秒 Facebook Reel（2026-11-08），無留言換連結。畫面寫 earthtejake/text-to-cad、22,499 星、MIT。查證（GitHub API 2026-11-10 台北時間）：earthtejake 不存在；真實 repo 為 [earthtojake/text-to-cad](https://github.com/earthtojake/text-to-cad)，MIT，25,948 星／2,467 fork，最近推送 2026-11-10 16:46 Asia/Taipei；官網 [texttocad.dev](https://www.texttocad.dev)。README 確認工程圖、DFM、G-code、Bambu、螺絲／軸承／馬達、URDF／SDF 等 skill；鉸鏈與「10 分鐘做出支架」未實測，標未驗證。SkillSpector 掃描待補。
 
 ![text-to-cad 3D 零件畫面](../assets/gifs/v58-text-to-cad.gif)
+
+### [Ming Cheng Ho（indiehack in）：Fable 5.2 寫程式蓋出渋谷 3D（製程尚未公開）](https://www.facebook.com/reel/2190397408553774)
+
+短片展示風格化的渋谷交叉口 3D 場景，畫面像是可推鏡的立體模型，不像常見的影片生成模型。說明文稱由 Fable 5.2 加一套未具名新製程做成，並說長片之後才介紹；公開搜尋尚未找到該長片。
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 宣稱待驗證・可信度中 | — | [影片 83](https://www.facebook.com/reel/2190397408553774) |
+
+Ming Cheng Ho 上傳的約 40.5 秒直式 Facebook Reel（2026-11-10；Brian 於 2026-11-13 在對話傳來 [這則 Reel](https://www.facebook.com/reel/2190397408553774)）。說明文很短：這支 Short 要介紹的是製程，畫面裡的渋谷是 Fable 5.2 結合新製程的結果，想知道怎麼做請訂閱 YouTube 頻道 indiehack in，之後會出一支長片專門介紹這套製程。片尾是訂閱卡（indiehack.in、YouTube @indiehackin），屬於普通訂閱呼籲，不是留言換連結，故不標引流。
+
+畫面是風格化、類似平塗／描邊的渋谷十字路口立體場景，浮水印寫 indiehack in 程式寫出來的 3D，有指南針與 1 到 5 號地點點。鏡頭會從壓平的長焦視角推進產生深度，移動時有運動模糊，建物輪廓在轉場中保持穩定，行人是簡化的塊狀人型，看板文字清楚，整體看起來像立體場景被推動，不像常見影片生成模型那種形狀糊掉、招牌崩解的變形。片中沒有出現程式編輯器、three.js、Blender 或其他函式庫／工具名稱，也沒有製作過程或提示詞；除片尾的 indiehack.in 與 @indiehackin 外，沒有其他網址。
+
+疊字宣稱包括：沒開 3D 軟體、沒有手繪；344 棟建物、真實尺寸、一行一行寫出來；建物來自政府開放資料；配樂和音效也是程式合成的；從建模到配樂都是 AI agent 做的。這些都是畫面或說明文的宣稱，本則未核對棟數、開放資料來源、是否真沒用 3D 軟體，也未驗證音效做法。過程中會跳出五張店家資訊卡（渋谷西村水果店、STARBUCKS 渋谷 TSUTAYA 2F、ロクシタンカフェ、USHIHACHI 極、MAG8 屋頂酒吧），片尾列表並註「店家資訊 2026 年 11 月查自官方網站」，這些聯絡資訊是否與官網一致，本則未逐筆核對，也未把電話抄進本站。
+
+查證（2026-11-13 台北時間）：Fable 5.2 是 Anthropic 於 2026-11-09 發布的 Claude 模型（見 SEQ 0106、https://www.anthropic.com/claude-fable-and-mythos-5-2）。作者網站 https://indiehack.in 與聯絡頁寫明 YouTube 為 @indiehackin。查 indiehack.in/videos 與公開搜尋，都沒有找到這支介紹製程的長片，也沒有找到具名的製程說明或 repo；該製程目前尚未公開。可對照 SEQ 0106（同樣宣稱用 Fable 5.2 做出在瀏覽器裡畫出的視覺作品，且作品頁可開啟）、0104（另一則把 Fable 5.2 和 3D 製作綁在一起，但畫面證據不足，且點名了 Higgsfield／Blender）。無私人 IP 或本機路徑。配樂：未標來源（畫面宣稱程式合成，未驗證）。
+
+![風格化渋谷交叉口 3D 場景的推鏡](../assets/gifs/v80-shibuya-fable.gif)

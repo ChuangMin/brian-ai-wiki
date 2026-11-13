@@ -4,7 +4,7 @@
 
 [Daily news](../news/index.md) — morning briefings (Chinese).
 
-[Relationship graph](../graph/index.html?lang=en) — an interactive map of every entry, category, source video and concept (285 nodes, 555 edges).
+[Relationship graph](../graph/index.html?lang=en) — an interactive map of every entry, category, source video and concept (304 nodes, 597 edges).
 
 Brian's public wiki. It collects AI tools and viewpoints from Facebook videos, screenshots, and recommendation lists, files them by topic, and marks credibility such as engagement bait and concept animation. New videos keep getting added.
 
@@ -14,24 +14,24 @@ Credibility tags are separate from categories: ⚠️ engagement bait (traffic f
 
 Entries tagged engagement bait put ⚠️ beside the link and beside URLs in the description.
 
-122 entries.
+132 entries.
 
 Division-of-labor patterns from existing entries: [Agent Division-of-Labor Patterns](docs/agent-patterns.md).
 
 ## Categories
 
-- [Agent systems and orchestration](docs/agent-orchestration.md) (18) — multi-agent command, swarms, resume-after-interrupt, commercial agent OSes, and the agent-platform landscape
+- [Agent systems and orchestration](docs/agent-orchestration.md) (21) — multi-agent command, swarms, resume-after-interrupt, commercial agent OSes, and the agent-platform landscape
 - [Memory and context](docs/memory-context.md) (11) — knowledge graphs, code graphs, long-term memory, handoff across agents
-- [Skills / MCP / tools](docs/skills-mcp-tools.md) (18) — shared agent building blocks: MCP, skills, methodology skills, speech, extraction models
+- [Skills / MCP / tools](docs/skills-mcp-tools.md) (19) — shared agent building blocks: MCP, skills, methodology skills, speech, extraction models
 - [Software development and quality](docs/dev-quality.md) (5) — version control, process replay, browser self-check, verify-then-gate
-- [Frontend and UI design](docs/frontend-ui.md) (19) — design systems, UI linters, design skills, interface templates, and concept interfaces
-- [3D / animation and DCC](docs/dcc-animation.md) (9) — Blender and other DCC add-ons, camera moves, procedural animation, game generation
+- [Frontend and UI design](docs/frontend-ui.md) (22) — design systems, UI linters, design skills, interface templates, and concept interfaces
+- [3D / animation and DCC](docs/dcc-animation.md) (10) — Blender and other DCC add-ons, camera moves, procedural animation, game generation
 - [AI image and video](docs/ai-media.md) (6) — AI-generated video and images, prompts, AI rendering, programmatic video
 - [Automation workflows](docs/automation-workflows.md) (4) — n8n and similar automation: rules first, human approval gates
 - [Finance and trading](docs/finance-trading.md) (5) — trading charts, Claude techniques for finance, and trading-bot engagement bait
-- [Security and governance](docs/security-governance.md) (6) — agent alignment incidents, privacy concerns, AI-assisted financial security
+- [Security and governance](docs/security-governance.md) (7) — agent alignment incidents, privacy concerns, AI-assisted financial security
 - [Physical AI and hardware](docs/physical-ai.md) (3) — ESP32, robots, and other physical devices
-- [Cost and tradeoffs](docs/cost-tradeoffs.md) (5) — token cost, command-output compression, agents versus traditional tools
+- [Cost and tradeoffs](docs/cost-tradeoffs.md) (6) — token cost, command-output compression, agents versus traditional tools
 - [Teams and organization](docs/teams-org.md) (1) — collaboration cost, decision structure, organization design
 - [Talks](docs/talks.md) (2) — talks and podcast clips: first-hand comments from AI leaders and practitioners
 - [Comedy and memes](docs/memes.md) (2) — workplace memes, comedy sketches, and jokes about AI
@@ -124,9 +124,18 @@ Division-of-labor patterns from existing entries: [Agent Division-of-Labor Patte
 | Video 76 | Altair AI: Fable 5.2 reads the laptop and says why nothing ships (motion graphic) | [reel/1980204536698183](https://www.facebook.com/reel/1980204536698183) | 2026-11-12 |
 | Video 77 | Altair AI: sort notes into a second brain overnight | [reel/1473932208004781](https://www.facebook.com/reel/1473932208004781) | 2026-11-12 |
 | Video 78 | Altair AI: Karpathy’s six free GitHub projects (including the LLM Wiki gist) | [reel/1655634979372088](https://www.facebook.com/reel/1655634979372088) | 2026-11-12 |
-<!-- Counts (after sync-v46 / prior 97 entries): -->
-- README.md：「共 97 則。」→「共 98 則。」；`- [Agent 系統與編排](docs/agent-orchestration.md)（10）` → `（11）`
-- en/index.md：「97 entries.」→「98 entries.」；Agent systems count 10 → 11
+| Video 79 | Code with Bhurtel: Space-Time Curve (JavaScript softened-gravity grid animation, not an AI tool) | [reel/1140316585123225](https://www.facebook.com/reel/1140316585123225) | 2026-11-13 |
+| Video 80 | 一人公司研究所: 10 specialized small models and three selection principles | [reel/1761537521611500](https://www.facebook.com/reel/1761537521611500) | 2026-11-13 |
+| Video 81 | Altair AI: Fable 5.2 runs social media with five agents (motion graphic, not a product recording) | [reel/40885633571023865](https://www.facebook.com/reel/40885633571023865) | 2026-11-13 |
+| Video 82 | Philo: Pixel Plays (Amir Mushich’s five zero-image pixel web games) | [reel/1927405395307821](https://www.facebook.com/reel/1927405395307821) | 2026-11-13 |
+| Video 83 | Ming Cheng Ho (indiehack in): a Shibuya 3D scene said to be coded with Fable 5.2 (process not public yet) | [reel/2190397408553774](https://www.facebook.com/reel/2190397408553774) | 2026-11-13 |
+| Video 84 | HA Bridge: visually design a 3D floor plan and bind Home Assistant entities (official paid dashboard) | [reel/1885203799120310](https://www.facebook.com/reel/1885203799120310) | 2026-11-13 |
+| Video 85 | What the water keeps: Kevin Ngo’s storybook rafting web piece (said to be made with Claude Fable 5.2) | [reel/1682717900077017](https://www.facebook.com/reel/1682717900077017) | 2026-11-13 |
+| Video 86 | Altair AI: Claude Second Brain (Obsidian repo list + plain-Markdown variant) | ⚠️ [reel/3002409066786760](https://www.facebook.com/reel/3002409066786760) | 2026-11-13 |
+| Video 87 | Hacking Tutorials Daily: three free live threat maps (Kaspersky / Check Point / NETSCOUT) | [reel/29346549524942796](https://www.facebook.com/reel/29346549524942796) | 2026-11-13 |
+| Video 88 | Machine Learning & AI: a so-called Google 9-page Agent Harness Engineering PDF (not an official Google document) | [reel/1669067301263733](https://www.facebook.com/reel/1669067301263733) | 2026-11-13 |
+| Video 89 | AI懶人報: Anthropic official legal plugins (triage-nda / review-contract / legal-risk-assessment / claude-for-legal) | [reel/2280311616036852](https://www.facebook.com/reel/2280311616036852) | 2026-11-13 |
+| Video 90 | Altair AI: a six-department company from an empty Claude Code folder (concept animation; caption from @birmeya) | [reel/1152801101050169](https://www.facebook.com/reel/1152801101050169) | 2026-11-13 |
 | Brian's recommendation list 2026-10-31 | Diagram skills: archify and diagram-design (no video) | — | 2026-10-31 |
 Notes on sources that have no link:
 - **Screenshot batch**: the mex training-curve repo is still unconfirmed
