@@ -141,13 +141,18 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 | 影片 77 | Altair AI：隔夜一指令整理筆記進第二大腦 | [reel/1473932208004781](https://www.facebook.com/reel/1473932208004781) | 2026-11-12 |
 | 影片 78 | Altair AI：Karpathy 的六個免費 GitHub 專案（含 LLM Wiki gist） | [reel/1655634979372088](https://www.facebook.com/reel/1655634979372088) | 2026-11-12 |
 | Brian 推薦清單 2026-10-31 | 圖表 skill 推薦：archify、diagram-design（無影片） | — | 2026-10-31 |
+
 沒有連結的來源，附上來源裡的待確認事項：
+
 - **截圖批次**：mex 訓練曲線那支待確認 repo
 - **截圖批次 2**：待確認：Tommy Vaga 是否即 VagaFX 的 Tomas Edgar、Opus 5.5 看板作者是否為 @Klonzu、Microduck 與 Open Duck Mini 的關係、Grok Desk 推文內文（X 擋抓取）、OPZEN 功能細節取自搜尋摘要；REA 星數 41 萬偏高但照 API 回傳；火箭、心智圖、插畫 prompt 三支沒有原始連結
 - **Brian 推薦清單 2026-10-31**：依名稱對應到 GitHub 星數最高的 repo：obra/superpowers、mattpocock/skills、DietrichGebert/ponytail、colbymchenry/codegraph、rtk-ai/rtk；ponytail、codegraph 有多個同名或衍生專案，Ponytail 的效能數字是作者自測
 - **Brian 推薦清單 2026-10-31**：tt-a1i/archify、cathrynlavery/diagram-design；中文 fork patrick-xin/diagram-design-zh
+
 來源另外記下的一句：
+
 - **影片 21**：另一支 reel 1110027721743729 下載失敗，未收錄
+
 ## 圖表演示
 
 可瀏覽的 HTML 示範：[Demos 索引](demos/index.html)。線上版：<https://wiki.singularityengine.dev/demos/>

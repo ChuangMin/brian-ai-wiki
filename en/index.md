@@ -141,13 +141,18 @@ Division-of-labor patterns from existing entries: [Agent Division-of-Labor Patte
 | Video 93 | Know Your System: Saga pattern (compensating transactions across services: orchestration vs choreography) | [reel/2222208475400708](https://www.facebook.com/reel/2222208475400708) | 2026-11-14 |
 | GitHub | labring/sealos-skills: agent skills for deploying apps, databases, and object storage on Sealos Cloud | [labring/sealos-skills](https://github.com/labring/sealos-skills) | 2026-11-14 |
 | Brian's recommendation list 2026-10-31 | Diagram skills: archify and diagram-design (no video) | — | 2026-10-31 |
+
 Notes on sources that have no link:
+
 - **Screenshot batch**: the mex training-curve repo is still unconfirmed
 - **Screenshot batch 2**: still unconfirmed: whether Tommy Vaga is Tomas Edgar of VagaFX, whether the Opus 5.5 board author is @Klonzu, how Microduck relates to Open Duck Mini, the body of the Grok Desk post (X blocked the fetch), and OPZEN feature details taken from search snippets. The REA star count of about 410k looks high but is what the API returned. The rocket, the mind map, and the illustration prompt have no original link
 - **Brian's recommendation list 2026-10-31**: matched by name to the highest-star GitHub repos: obra/superpowers, mattpocock/skills, DietrichGebert/ponytail, colbymchenry/codegraph, rtk-ai/rtk. ponytail and codegraph have several same-name or derivative projects. Ponytail's performance numbers are the author's own test
 - **Brian's recommendation list 2026-10-31**: tt-a1i/archify, cathrynlavery/diagram-design; Chinese fork patrick-xin/diagram-design-zh
+
 An extra note on a source that does have a link:
+
 - **Video 21**: another reel, 1110027721743729, failed to download and was not included
+
 ## Chart demos
 
 Browsable HTML demos: [Demos index](../demos/index.html?lang=en). Live: <https://wiki.singularityengine.dev/demos/?lang=en>
