@@ -118,3 +118,33 @@ Altair AI 上傳的約 22 秒直式 Facebook Reel（2026-11-12；Brian 於 2026-
 前五個 repo 的 API 星數合計 275,419，再加上 gist 至少 5,000+，接近畫面標題列的 277.6K；說明文「超過 30 萬星」把 gist 算成 50K，偏高。畫面總覽把六個都標 MIT，但 autoresearch 與該 gist 在查證當日看不到 SPDX 授權，不以畫面為準。可對照 SEQ 0095（其中 Astro-Han/karpathy-llm-wiki 是這個 gist 構想的衍生實作）、0077（另一則工程師該看的 GitHub repo 清單）。SkillSpector 掃描待補（本批不 clone；routines 暫停中）。配樂：未標。GIF：0:10–0:15。
 
 ![Karpathy REPO SWARM 風格化儀表板](../assets/gifs/v75-karpathy-six-repos.gif)
+
+### [Know Your System：Saga pattern（跨服務補償交易：編排 vs 事件協同）](https://www.facebook.com/reel/2222208475400708)
+
+六張圖卡說明跨四個服務結帳時，失敗要用補償（退款而不是回滾），並對比事件協同與編排。畫面的 Consistent 是最終一致，不是 ACID 隔離；影片沒提到編排中心可能成為單點故障。
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 可信度高 | — | [影片 93](https://www.facebook.com/reel/2222208475400708) |
+
+Know Your System 上傳的約 30 秒直式 Facebook Reel（2026-11-14 18:30 Asia/Taipei；360×640；Brian 於 2026-11-14 21:56 Asia/Taipei 從電腦傳來[這則 Reel](https://www.facebook.com/reel/2222208475400708)）。說明文只寫「Payment charged, but the item is out of stock」與 Saga pattern 標籤，沒有留言換連結，故不標引流。畫面是深色格線上的手做系統設計圖卡（標題 Saga Pattern · System Design），無旁白字幕，不是 AI 工具介紹。
+
+六張卡依序為：
+
+1/6 PARTIAL FAILURE：Order Pending、Payment Charged、Inventory No stock、Shipping 尚未動作。畫面用虛線框標 one ACID tx 並打叉，寫 Money taken, no item，接著 2PC 也打叉，並標 locks held、tight coupling。
+
+2/6 LOCAL STEPS：四個服務各有本地正向與補償動作——Order Create／Cancel、Payment Charge／Refund、Inventory Reserve／Release、Shipping Ship（失敗路徑下補償為 —，因為還沒出貨）。並標 local tx、compensation、eventually consistent。
+
+3/6 COMPENSATE：庫存失敗後 Payment 改為 Refunded、Order 改為 Canceled，大標 Consistent，並寫 Refund, not rollback。這裡的 Consistent 是卡 2 已寫出的最終一致（eventual consistency），不是單一資料庫 ACID 交易的隔離或自動回滾；補償是另做一筆反向本地交易（例如退款），見 [microservices.io 的 Saga pattern](https://microservices.io/patterns/data/saga.html)（該文並指出 saga 缺少 ACID 的 isolation，需另做隔離對策）與 [Azure Architecture Center 的 Saga](https://learn.microsoft.com/en-us/azure/architecture/patterns/saga)（寫明各服務已提交的變更不能靠回滾還原）。
+
+4/6 CHOREOGRAPHY：服務之間走 Event bus，事件依序 OrderPlaced、PaymentDone、OutOfStock，標 No central brain、decoupled、hard to trace。
+
+5/6 ORCHESTRATION：由中央 Orchestrator 依序下 Create、Charge、Reserve，失敗後再下 Refund、Cancel，標 Central brain、clear flow、extra service。影片沒有提到編排中心可能成為單點故障；Microsoft 的 Saga 說明則把「orchestrator 管理整段流程，因而引入一個故障點」列為編排的缺點。
+
+6/6 HAPPY PATH：庫存足夠時狀態變成 Created、Charged、Reserved、Booked，標 Order complete、all local tx committed。
+
+可對照 SEQ 0067（系統設計基本概念，含訊息佇列與一致性相關卡片）、0070（Kafka 事件架構）、0075（BFS）、0076（Prim）。
+
+互動重現：[saga-pattern 示範](https://wiki.singularityengine.dev/demos/saga-pattern/)（四個服務的虛構結帳板，可切換事件協同／編排與庫存有貨或缺貨，再一步步走補償；一致性標成最終一致，不會連網）。配樂：僅配樂、無旁白。
+
+![Saga 圖卡：本地補償與 Refund, not rollback](../../assets/gifs/v88-saga-pattern.gif)

@@ -88,5 +88,35 @@
     "source": "影片 90",
     "sourceUrl": "https://www.facebook.com/reel/1152801101050169",
     "added": "2026-11-13"
+  },
+  {
+    "id": "four-models-one-brain",
+    "title": "四模型一腦：把任務分到四條車道",
+    "desc": "把任務點一下或拖到 Fable、Opus、Sonnet、Haiku 四條車道；Prompt Doctor 可標記刪除、改寫或保留；另有夜間時程與虛構花費長條。全部是示範資料，不會連網。",
+    "category": "Agent 系統",
+    "path": "four-models-one-brain/",
+    "source": "影片 91",
+    "sourceUrl": "https://www.facebook.com/reel/3438861689623518",
+    "added": "2026-11-14"
+  },
+  {
+    "id": "jev-agent-router",
+    "title": "JEV agent-router：信心門檻與四路分流",
+    "desc": "送出一篇示範稿件狀態，調整信心門檻，看 Choice／Score／Noul 三個答案，以及閘門要 hold 到 review 還是派遣到 research／write／revise／review。花費與延遲都標成示範數字，不會連網。",
+    "category": "Agent 系統",
+    "path": "jev-agent-router/",
+    "source": "影片 92",
+    "sourceUrl": "https://www.facebook.com/reel/1513020620686286",
+    "added": "2026-11-14"
+  },
+  {
+    "id": "saga-pattern",
+    "title": "Saga pattern：編排 vs 事件協同",
+    "desc": "四個服務的虛構結帳板。開始一筆訂單，切換庫存有貨或缺貨，再一步步走補償；也可在事件匯流排（choreography）與中央編排（orchestration）之間切換。一致性標成最終一致，不會連網。",
+    "category": "系統設計",
+    "path": "saga-pattern/",
+    "source": "影片 93",
+    "sourceUrl": "https://www.facebook.com/reel/2222208475400708",
+    "added": "2026-11-14"
   }
 ]

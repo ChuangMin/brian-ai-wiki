@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JEV agent-router：信心門檻與四路分流（影片 92 重製）</title>
+<style>
+  :root {
+    --bg: #0B0E14;
+    --card: #131722;
+    --card-2: #1A2030;
+    --line: #2A2E39;
+    --line-strong: #363A45;
+    --text: #D1D4DC;
+    --muted: #8B93A7;
+    --bright: #FFFFFF;
+    --accent: #FF6A3D;
+    --ok: #3DDC97;
+    --hold: #F5A623;
+    --sonnet: #3B9EFF;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--text); }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Trebuchet MS", Roboto, "Segoe UI", "PingFang TC", "Noto Sans TC", Ubuntu, sans-serif;
+    line-height: 1.45;
+    min-height: 100%;
+  }
+  a { color: var(--sonnet); }
+  a:hover { color: var(--bright); }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 20px 16px 48px; }
+  .home { color: var(--muted); text-decoration: none; font-size: 13px; }
+  h1 { margin: 12px 0 4px; font-size: 22px; color: var(--bright); }
+  h1 small { display: block; font-weight: 400; color: var(--muted); font-size: 13px; margin-top: 4px; }
+  .banner {
+    background: rgba(255, 106, 61, 0.08);
+    border: 1px solid rgba(255, 106, 61, 0.35);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    margin: 12px 0 16px;
+  }
+  button {
+    font: inherit;
+    background: #1E222D;
+    color: var(--text);
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
+    padding: 7px 12px;
+    cursor: pointer;
+  }
+  button.primary { background: #3a1e14; border-color: var(--accent); color: var(--bright); }
+  button:hover { border-color: var(--accent); color: var(--bright); }
+  button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+  .card h2 {
+    margin: 0 0 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .muted { color: var(--muted); font-size: 13px; }
+  label { display: block; font-size: 12px; color: var(--muted); margin: 8px 0 4px; }
+  input[type="text"], textarea, select {
+    width: 100%;
+    font: inherit;
+    background: var(--card-2);
+    color: var(--bright);
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
+    padding: 7px 8px;
+  }
+  .row { display: flex; align-items: center; gap: 10px; margin: 10px 0; }
+  input[type="range"] { flex: 1; }
+  .floor { font-variant-numeric: tabular-nums; color: var(--bright); min-width: 3.5em; }
+  .btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .answers { display: flex; flex-direction: column; gap: 8px; }
+  .ans {
+    background: var(--card-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 10px;
+  }
+  .ans b { color: var(--bright); }
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    border-radius: 999px;
+    padding: 1px 8px;
+    border: 1px solid var(--line-strong);
+    margin-left: 6px;
+  }
+  .badge.dispatch { color: var(--ok); border-color: rgba(61,220,151,.5); }
+  .badge.hold { color: var(--hold); border-color: rgba(245,166,35,.5); }
+  .meter { height: 8px; background: #1E222D; border-radius: 99px; overflow: hidden; margin-top: 6px; }
+  .meter span { display: block; height: 100%; background: var(--accent); }
+  .readout { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .kv { background: var(--card-2); border-radius: 8px; padding: 8px 10px; }
+  .kv span { display: block; font-size: 11px; color: var(--muted); letter-spacing: 0.04em; }
+  .kv b { font-size: 18px; color: var(--bright); font-variant-numeric: tabular-nums; }
+  .queues { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+  .q { background: var(--card-2); border-radius: 8px; padding: 8px; font-size: 13px; border: 1px solid var(--line); }
+  .q.on { border-color: var(--accent); }
+  footer { margin-top: 18px; font-size: 12px; color: var(--muted); line-height: 1.6; max-width: 62em; }
+  .empty { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="home" href="../index.html">回 Demos 索引</a>
+  <h1>JEV agent-router<small>信心門檻、四路分流與閘門 · 影片 92 · 概念圖重製</small></h1>
+  <p class="banner">這是互動示範，不是 TypeSafe／Jev 的真實 API 呼叫。答案、信心值、花費與延遲都是依表單用本地規則算出的虛構數字，頁面不會連網。</p>
+  <div class="grid">
+    <section class="card">
+      <h2>示範狀態</h2>
+      <p class="muted" style="margin:0 0 8px">欄位名稱依畫面的 goal／notes／evidence／gaps，內容可改。</p>
+      <label for="intent">goal.intent</label>
+      <input id="intent" type="text" value="寫一篇比較開源 agent 工具的短文">
+      <label for="cutoff">notes.cutoff</label>
+      <input id="cutoff" type="text" value="只要 2026 年以後的來源">
+      <label for="fresh">evidence.fresh</label>
+      <select id="fresh">
+        <option value="stale">stale（證據偏舊）</option>
+        <option value="mixed" selected>mixed（有新有舊）</option>
+        <option value="fresh">fresh（夠新）</option>
+      </select>
+      <label for="gaps">gaps.missing</label>
+      <select id="gaps">
+        <option value="many">many（缺很多）</option>
+        <option value="some" selected>some（還缺一塊）</option>
+        <option value="none">none（夠用了）</option>
+      </select>
+      <label>GATE 信心門檻（這是示範用的使用者政策，不是官方預設）</label>
+      <div class="row">
+        <input id="floor" type="range" min="50" max="99" value="85">
+        <span class="floor" id="floorVal">0.85</span>
+      </div>
+      <div class="btns">
+        <button type="button" class="primary" id="submit">送出示範狀態</button>
+        <button type="button" id="reset">重設</button>
+      </div>
+    </section>
+    <section class="card">
+      <h2>Choice／Score／Noul</h2>
+      <div id="answers" class="answers"><p class="empty">按「送出示範狀態」後，這裡會出現三個類型化答案。</p></div>
+    </section>
+  </div>
+  <div class="grid" style="margin-top:12px">
+    <section class="card">
+      <h2>閘門與派遣</h2>
+      <div id="gate" class="empty">尚未送出。信心高於門檻會派遣，低於門檻會先 hold 到 review。</div>
+      <div class="queues" id="queues" hidden>
+        <div class="q" data-q="research"><b>research</b><div class="muted">蒐集證據</div></div>
+        <div class="q" data-q="write"><b>write</b><div class="muted">依證據起草</div></div>
+        <div class="q" data-q="revise"><b>revise</b><div class="muted">改稿</div></div>
+        <div class="q" data-q="review"><b>review</b><div class="muted">人工或閘門審查</div></div>
+      </div>
+    </section>
+    <section class="card">
+      <h2>花費／延遲讀數（示範數字）</h2>
+      <p class="muted" style="margin:0 0 8px">不是官方計費，也不是實際延遲。官方列表價是每百萬輸入 token $0.042、輸出免費；官方稱多數呼叫大約 100 ms。</p>
+      <div class="readout" id="readout">
+        <div class="kv"><span>STATUS</span><b>—</b></div>
+        <div class="kv"><span>CONFIDENCE</span><b>—</b></div>
+        <div class="kv"><span>DEMO LATENCY</span><b>—</b></div>
+        <div class="kv"><span>DEMO COST</span><b>—</b></div>
+      </div>
+    </section>
+  </div>
+  <footer>
+    重製來源：DeepResource.ai 的 <a href="https://www.facebook.com/reel/1513020620686286" target="_blank" rel="noopener noreferrer">影片 92</a>（LINE 分享連結 <a href="https://www.facebook.com/share/v/1EM1MrttCh/" target="_blank" rel="noopener noreferrer">1EM1MrttCh</a>）。說明文 crediting <a href="https://x.com/Flandermaxx/status/2121315745275543653" target="_blank" rel="noopener noreferrer">@Flandermaxx</a>。Jev 是 TypeSafe 的 System One 模型，見 <a href="https://docs.typesafe.ai/models" target="_blank" rel="noopener noreferrer">官方模型頁</a>。本頁只重現「先問三題、再依信心門檻決定 hold 或派遣」的概念，不會呼叫 API。可對照 wiki SEQ 0134。SEQ 0120 的「JEV Engineering」是另一個名稱，不是這個模型。
+  </footer>
+</div>
+<script>
+"use strict";
+const DEFAULTS = {
+  intent: "寫一篇比較開源 agent 工具的短文",
+  cutoff: "只要 2026 年以後的來源",
+  fresh: "mixed",
+  gaps: "some",
+  floor: 85
+};
+
+function $(id) { return document.getElementById(id); }
+
+$("floor").addEventListener("input", function () {
+  $("floorVal").textContent = (Number($("floor").value) / 100).toFixed(2);
+});
+
+function hash32(s) {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+function decide() {
+  const intent = $("intent").value.trim();
+  const cutoff = $("cutoff").value.trim();
+  const fresh = $("fresh").value;
+  const gaps = $("gaps").value;
+  const floor = Number($("floor").value) / 100;
+
+  let next = "write";
+  if (gaps === "many" || fresh === "stale") next = "research";
+  else if (gaps === "none" && fresh === "fresh") next = "revise";
+  if (/審|review|檢查/i.test(intent + cutoff)) next = "review";
+
+  let urgency = "medium";
+  if (fresh === "stale" || gaps === "many") urgency = "high";
+  if (/立刻|今天|critical|asap/i.test(intent + cutoff)) urgency = "critical";
+  if (gaps === "none" && fresh === "fresh") urgency = "low";
+
+  const seed = hash32([intent, cutoff, fresh, gaps, String(floor)].join("|"));
+  const wobble = ((seed % 17) - 8) / 100;
+  let conf = 0.78;
+  if (gaps === "none" && fresh === "fresh") conf = 0.93;
+  else if (gaps === "many" || fresh === "stale") conf = 0.71;
+  else if (next === "review") conf = 0.66;
+  conf = Math.max(0.55, Math.min(0.97, conf + wobble));
+
+  const safe = conf >= 0.7 && next !== "review";
+  const hold = conf < floor || !safe;
+  const dest = hold ? "review" : next;
+  const latency = 180 + (seed % 90);
+  const tokens = 800 + (seed % 500);
+  const cost = (tokens / 1e6) * 0.042;
+
+  return { next: dest, suggested: next, urgency, safe, conf, hold, floor, latency, cost, tokens };
+}
+
+function render(r) {
+  if (!r) return;
+  const answers = $("answers");
+  answers.innerHTML =
+    item("Choice · next_worker", r.suggested, r.conf, "四路之一：research／write／revise／review") +
+    item("Score · urgency", r.urgency, Math.max(0.6, r.conf - 0.05), "low 到 critical 的排序分數") +
+    item("Noul · safe_to_run", r.safe ? "yes" : "no", r.safe ? r.conf : Math.max(0.4, 1 - r.conf), "要不要現在跑");
+
+  const gate = $("gate");
+  const badge = r.hold
+    ? "<span class='badge hold'>GATE HOLDS → review</span>"
+    : "<span class='badge dispatch'>DISPATCH → " + r.next + "</span>";
+  gate.innerHTML = "<p style='margin:0 0 8px'><b>" + badge + "</b></p>" +
+    "<p class='muted' style='margin:0'>信心 " + r.conf.toFixed(2) + "，門檻 " + r.floor.toFixed(2) +
+    (r.hold ? "。低於門檻或 unsafe，先送到 review，不直接派遣。</p>" : "。通過門檻，依 Choice 派遣到對應佇列。</p>");
+
+  $("queues").hidden = false;
+  document.querySelectorAll(".q").forEach(function (q) {
+    q.classList.toggle("on", q.getAttribute("data-q") === r.next);
+  });
+
+  const kvs = $("readout").querySelectorAll(".kv b");
+  kvs[0].textContent = r.hold ? "HOLD" : "DISPATCH";
+  kvs[1].textContent = r.conf.toFixed(2);
+  kvs[2].textContent = r.latency + " ms";
+  kvs[3].textContent = "$" + costLabel(r.cost);
+}
+
+function costLabel(n) {
+  return n.toFixed(6);
+}
+
+function item(title, value, conf, note) {
+  const pct = Math.round(conf * 100);
+  return "<div class='ans'><div><b>" + title + "</b> → " + value +
+    " <span class='muted'>conf " + conf.toFixed(2) + "</span></div>" +
+    "<div class='meter' aria-hidden='true'><span style='width:" + pct + "%'></span></div>" +
+    "<div class='muted'>" + note + "</div></div>";
+}
+
+$("submit").addEventListener("click", function () { render(decide()); });
+$("reset").addEventListener("click", function () {
+  $("intent").value = DEFAULTS.intent;
+  $("cutoff").value = DEFAULTS.cutoff;
+  $("fresh").value = DEFAULTS.fresh;
+  $("gaps").value = DEFAULTS.gaps;
+  $("floor").value = String(DEFAULTS.floor);
+  $("floorVal").textContent = "0.85";
+  $("answers").innerHTML = "<p class='empty'>按「送出示範狀態」後，這裡會出現三個類型化答案。</p>";
+  $("gate").textContent = "尚未送出。信心高於門檻會派遣，低於門檻會先 hold 到 review。";
+  $("gate").className = "empty";
+  $("queues").hidden = true;
+  document.querySelectorAll(".q").forEach(function (q) { q.classList.remove("on"); });
+  $("readout").querySelectorAll(".kv b").forEach(function (b) { b.textContent = "—"; });
+});
+</script>
+</body>
+</html>

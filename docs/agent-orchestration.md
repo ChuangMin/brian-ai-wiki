@@ -312,3 +312,45 @@ Altair AI 上傳的約 24 秒直式 Facebook Reel（2026-11-13；1080×1350；Br
 互動重現：[空資料夾六部門公司 demo](https://wiki.singularityengine.dev/demos/company-folder-autopilot/)（7 步可逐步操作；名單與信件為虛構資料，不會連網或寄信）。配樂：僅配樂、無旁白。
 
 ![第 6 步 Make 鏈轉入第 7 步 Autopilot 與 8:00 Telegram 核准卡](../assets/gifs/v85-company-folder-autopilot.gif)
+
+### [Altair AI：Fable 5.2 四模型一腦任務分流（概念動畫；說明文與畫面不符）](https://www.facebook.com/reel/3438861689623518)
+
+風格化四模型分流板（Fable／Opus／Sonnet／Haiku）與 Prompt Doctor、Night Shift、Bill Autopsy。說明文是未署名轉貼的鏡像提示文案，與畫面不符；帳單與每 1 美元拆分未驗證。
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 概念動畫・宣稱待驗證・可信度中（說明文與畫面不符） | — | [影片 91](https://www.facebook.com/reel/3438861689623518) |
+
+Altair AI 上傳的約 26 秒直式 Facebook Reel（2026-11-14；1080×1468；Brian 於 2026-11-14 18:38 Asia/Taipei 從 LINE 傳來 [這則分享連結](https://www.facebook.com/share/r/1Fig8c7sAH/)，對應 [這則 Reel](https://www.facebook.com/reel/3438861689623518)）。同一上傳者已見 SEQ 0094、0095、0097、0098、0121、0122、0125、0132。本則依畫面書寫，不依說明文敘事。畫面是風格化暗色 FABLE 5.2 // CLAUDE CODE 概念 HUD，標題 THE BRAIN · TASKS ROUTING · FOUR MODELS · ONE BRAIN，不是真實產品錄屏，也沒有 repo 或操作逐字稿（僅配樂、無旁白）。片尾 Follow Altair AI for more AI tips and tricks，加上說明文末「Subscribe to the exclusive content today」連到 Facebook 訂閱頁，都是普通追蹤／訂閱呼籲，不是留言換連結，故不標引流。
+
+右上 MODEL LANES 把任務分到四條模型車道，標了用途與列表價：Fable 負責 plans · architecture · root causes，標 $8／$40；Opus 負責 complex reasoning · real builds，標 $4／$20；Sonnet 負責 daily coding · reviews · checks，標 $2／$10；Haiku 負責 rename · tag · extract，標 $0.10／$0.50。這些數字與官方 Fable 5.2、Opus 5.5、Sonnet 5.5，以及 Haiku 5.5（prompt 在 10 萬 token 以內那一檔）的列表價相符，見 [官方定價頁](https://platform.claude.com/docs/en/about-claude/pricing)。另有 Advisor、Cache、Subagents 三列：Cache 寫 read at 1/40 of input price · keep the session。查證（2026-11-14 台北時間）：Fable 5.2 的 cache hit 確為輸入價的 0.025 倍（1／40，即 $0.20／MTok）；但 Opus 5.5 與 Sonnet 5.5 的 cache hit 是 0.05 倍（1／20），畫面把 1／40 寫在共用 Cache 列，不能套到所有車道。Advisor 列寫 consulted at decision points，並有 ADVISOR · SONNET ASKS FABLE 與 /advisor fable 字樣；本則未找到叫 Advisor 的獨立產品。官方發表稿把 Advisor 寫成 Fable 5.2 可扮演的角色（Haiku、Sonnet 或 Opus 遇到較難問題時向它諮詢），見 [Claude Fable 5.2 and Mythos 5.2](https://www.anthropic.com/news/claude-fable-and-mythos-5-2)，並不把畫面上的 /advisor 當成已核對的指令。中央球體把任務從 TASK STACK 路由出去，並寫 THINKING IS FABLE'S JOB, TYPING IS NOT。
+
+PROMPT DOCTOR 標 11 CHECKS · OLD LINES THAT COST YOU，掃描 ~/.claude、CLAUDE.md、skills、agents、memory，可標 DELETE／REWRITE／KEEP，並寫 nothing changes without your yes 與 BACKUP FIRST。NIGHT SHIFT 標 NIGHT-SHIFT.md · AUTO MODE，時間軸從 23:45 先把問題問完，再寫目標與檢查清單，其後是示範用的分支與分段工作。BILL AUTOPSY 標 CCUSAGE · LOCAL LOGS，並有 $/SESSION 長條與佔比、80x less 等句子。[ccusage](https://github.com/ccusage/ccusage) 是真實的本地用量工具，但片中的長條、佔比與 80x less 都是動畫宣稱，未驗證。左下 EVERY $1 ON FABLE 把 1 美元拆成 THINKING 71¢、TYPING 27¢、RENAMES 2¢，同樣未驗證。跑馬燈與底部字條寫 PER TOKEN FABLE = 80x HAIKU，本則把 80× 當口號，不把它當成已量到的省錢倍數。
+
+CORE BENCHMARKS 把 REMOTE LABOR INDEX 動畫到 41.3%，並并列 89.3%、83.5%、49.1%，以及 OPUS 21.3、GPT-6 20.8。查證官方發表稿：Remote Labor Index（High effort）Fable 5.2 為 41.3%、Opus 5.5 為 21.3%、GPT-6 Astra 為 20.8%；OSWorld 2.1（offline set, partial）Fable 5.2 為 89.3%；FrontierCode 2.0（Xhigh effort）Fable 5.2 為 49.1%。跑馬燈的 BENCHCAB 83.5 vs 65.3，與官方 BenchCAD 2.1（Max effort）Fable 5.2 的 83.5、Opus 5.5 的 65.3 相符，只是畫面把名稱寫成 BENCHCAB。
+
+說明文與畫面不符：說明文談的是用一則 Fable 鏡像提示去讀本機 session 歷史、畫出行為肖像與 30 天計畫，並要調高 cleanupPeriodDays；畫面卻是四模型分流板、Prompt Doctor 與帳單解剖。這段說明文與 [@Kuzoxbt 的貼文](https://x.com/Kuzoxbt/status/2121392596970819722)幾乎逐字相同（Altair AI 在開頭多了 f*cking，文末多了訂閱呼籲），本則沒有標出原作者。該則貼文引用 @0xCodila，對應 [這則狀態](https://x.com/0xCodila/status/2120187587209896001)（本則讀到 Kuzoxbt 原文與引用卡，0xCodila 原帖頁面本則未能打開）。說明文裡「預設 30 天會刪掉完整 session、要改 cleanupPeriodDays 紀錄才不會每個月消失」只說對一半：官方 [Manage sessions](https://code.claude.com/docs/en/sessions) 與 [Explore the .claude directory](https://code.claude.com/docs/en/claude-directory) 寫明，cleanupPeriodDays 預設 30 天，session 逐字稿會過期刪除；但 ~/.claude/history.jsonl 在一般情況下會保留到你自行刪除，只有套用 HIPAA 設定時，清理才會一併刪掉超過此天數的 history.jsonl 條目。
+
+可對照 SEQ 0098、0121、0106、0132。
+
+互動重現：[四模型一腦 demo](https://wiki.singularityengine.dev/demos/four-models-one-brain/)（可把任務點選或拖到四條車道；時程與花費為虛構資料，不會連網）。配樂：僅配樂、無旁白。
+
+![四模型分流球體把任務路由到四條車道](../assets/gifs/v86-four-models-one-brain.gif)
+
+### [DeepResource.ai：JEV agent-router 四路研究寫作分流（概念圖；說明文來自 @Flandermaxx）](https://www.facebook.com/reel/1513020620686286)
+
+風格化 jev-agent-router 節點圖，用 TypeSafe Jev 的 Choice／Score／Noul 把研究寫作分成四路。jev-1.13.0 與列表價屬實；單次 4 ms、把 $0.000042 當固定費、1 萬次 $0.02，以及把 GATE 0.85 當官方預設，皆未驗證。
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 概念動畫・宣稱待驗證・可信度中 | — | [影片 92](https://www.facebook.com/reel/1513020620686286) |
+
+DeepResource.ai 上傳的約 24 秒直式 Facebook Reel（2026-11-13；1440×1800；Brian 於 2026-11-14 19:05 Asia/Taipei 從 LINE 傳來[這則分享連結](https://www.facebook.com/share/v/1EM1MrttCh/)，對應[這則 Reel](https://www.facebook.com/reel/1513020620686286)）。泰文說明文與畫面相符，並註明來自 [@Flandermaxx](https://x.com/Flandermaxx/status/2121315745275543653)（2026-11-13 18:54 UTC，即 2026-11-14 02:54 Asia/Taipei）；說明文是該則貼文的忠實摘要，本則有標出原作者。文末「Link อยู่ในคอมเมนต์」（連結在留言）只是指向，不是留言關鍵字換檔，故不標引流。畫面是風格化暗色節點圖，標題列 jev-agent-router-12（nodes 20、edges 371、bus readers 14），不是真實產品錄屏，也沒有這個 agent-router 的公開產品 repo（僅配樂、無旁白）。左側狀態節點是 goal、notes、evidence、gaps、last_error。中央圖把問題送到 jev-1.13.0 · system_one（標 typed、parallel、no_chat），再寫出三個類型化答案：Choice next_worker（research／write／revise／review）、Score urgency（low 到 critical）、Noul safe_to_run（yes／no），然後進 result.*、queues／或 human review。疊字可見 02 JEV DECIDES、03 CHOICE → WRITE、04 GATE HOLDS、06 CODE ACTS。
+
+查證（2026-11-14 台北時間）：jev-1.13.0 是 TypeSafe 真實的 System One 模型，Choice、Score、Noul 也是官方輸出型別；目前最新是 jev-1.14.0（2026-10-14，另加 Box），見[官方模型頁](https://docs.typesafe.ai/models)。官方列表價為每百萬輸入 token $0.042、輸出免費；畫面 GRAPH COST 面板的 input／M tokens $0.042、output free 與此相符。節點上的 cost_usd 0.000042 等於官方價乘上 1,000 個輸入 token，不是一筆固定手續費。X 貼文寫「1 萬次分流只要 $0.02」與 $0.000042 × 10,000 = $0.42 對不上，也與畫面 GRAPH COST 累計金額對不上（稍後畫面可見約 $0.39）。動畫裡單跳延遲約 4 ms（latency_ms 常見 2、4、5），說明文與 X 寫端到端平均 251 ms，畫面 GRAPH COST 則標 median 246 ms。官方文件寫多數呼叫大約 100 ms（發表文給 70–500 ms、從美西典型接近 100 ms），見 [How to build with System One](https://docs.typesafe.ai/concepts/how-to-build-with-system-one) 與 [System One 發表文](https://typesafe.ai/blog/introducing-system-one-models-and-jev)，因此 4 ms 與 251／246 ms 都是動畫或上傳者宣稱，不是官方典型值。GATE ≥ 0.85 寫在畫面 chief.py 的 `if answer.confidence >= 0.85`，以及 hold 0.71 → rev 這類紀錄，是使用者政策，不是 TypeSafe 預設。同一段 chief.py 寫 `from typesafe import Client, Choice, Score, Noul`，以及 `Client(model=jev-1.13.0)`；現行官方 Python SDK 是 `from typesafe_sdk import Choice, Noul, Score, TypeSafeClient`（套件 typesafe-sdk，客戶端類別是 TypeSafeClient 不是 Client），見 [Python usage](https://docs.typesafe.ai/sdk/python/usage/basic)，畫面 import 與現行 SDK 不符。說明文還寫 DISPATCH 以緊急程度把 8 個 worker 分到四條佇列，以及 HUMAN REVIEW 先留待簽名、每個狀態存成 JSON、稿件超過審查窗就提醒；這些是作者的流程設計，不是已發表的 TypeSafe 功能。
+
+可對照 SEQ 0120（JEV Engineering 的科幻 FUI 儀表板，是另一個「JEV」名稱，不是 TypeSafe 的 Jev 模型，兩則不要併在一起）。
+
+互動重現：[jev-agent-router 示範](https://wiki.singularityengine.dev/demos/jev-agent-router/)（可調信心門檻、送出示範狀態，看 Choice／Score／Noul 與閘門 hold 或派遣；花費與延遲標成示範數字，不會連網）。配樂：僅配樂、無旁白。
+
+![jev-agent-router 節點圖：Choice／Score／Noul 與閘門分流](../../assets/gifs/v87-jev-agent-router.gif)

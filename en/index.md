@@ -4,7 +4,7 @@
 
 [Daily news](../news/index.md) — morning briefings (Chinese).
 
-[Relationship graph](../graph/index.html?lang=en) — an interactive map of every entry, category, source video and concept (304 nodes, 597 edges).
+[Relationship graph](../graph/index.html?lang=en) — an interactive map of every entry, category, source video and concept (310 nodes, 615 edges).
 
 Brian's public wiki. It collects AI tools and viewpoints from Facebook videos, screenshots, and recommendation lists, files them by topic, and marks credibility such as engagement bait and concept animation. New videos keep getting added.
 
@@ -14,15 +14,15 @@ Credibility tags are separate from categories: ⚠️ engagement bait (traffic f
 
 Entries tagged engagement bait put ⚠️ beside the link and beside URLs in the description.
 
-132 entries.
+136 entries.
 
 Division-of-labor patterns from existing entries: [Agent Division-of-Labor Patterns](docs/agent-patterns.md).
 
 ## Categories
 
-- [Agent systems and orchestration](docs/agent-orchestration.md) (21) — multi-agent command, swarms, resume-after-interrupt, commercial agent OSes, and the agent-platform landscape
+- [Agent systems and orchestration](docs/agent-orchestration.md) (23) — multi-agent command, swarms, resume-after-interrupt, commercial agent OSes, and the agent-platform landscape
 - [Memory and context](docs/memory-context.md) (11) — knowledge graphs, code graphs, long-term memory, handoff across agents
-- [Skills / MCP / tools](docs/skills-mcp-tools.md) (19) — shared agent building blocks: MCP, skills, methodology skills, speech, extraction models
+- [Skills / MCP / tools](docs/skills-mcp-tools.md) (20) — shared agent building blocks: MCP, skills, methodology skills, speech, extraction models
 - [Software development and quality](docs/dev-quality.md) (5) — version control, process replay, browser self-check, verify-then-gate
 - [Frontend and UI design](docs/frontend-ui.md) (22) — design systems, UI linters, design skills, interface templates, and concept interfaces
 - [3D / animation and DCC](docs/dcc-animation.md) (10) — Blender and other DCC add-ons, camera moves, procedural animation, game generation
@@ -36,7 +36,7 @@ Division-of-labor patterns from existing entries: [Agent Division-of-Labor Patte
 - [Talks](docs/talks.md) (2) — talks and podcast clips: first-hand comments from AI leaders and practitioners
 - [Comedy and memes](docs/memes.md) (2) — workplace memes, comedy sketches, and jokes about AI
 - [Productivity and open-source tools](docs/productivity-tools.md) (1) — useful tools that are not themselves AI: conversion, desktop efficiency, small open-source utilities
-- [Systems design and engineering fundamentals](docs/systems-design.md) (7) — non-AI backend and distributed-systems basics and operations (such as a TLS checkup)
+- [Systems design and engineering fundamentals](docs/systems-design.md) (8) — non-AI backend and distributed-systems basics and operations (such as a TLS checkup)
 
 ## Sources
 
@@ -136,6 +136,10 @@ Division-of-labor patterns from existing entries: [Agent Division-of-Labor Patte
 | Video 88 | Machine Learning & AI: a so-called Google 9-page Agent Harness Engineering PDF (not an official Google document) | [reel/1669067301263733](https://www.facebook.com/reel/1669067301263733) | 2026-11-13 |
 | Video 89 | AI懶人報: Anthropic official legal plugins (triage-nda / review-contract / legal-risk-assessment / claude-for-legal) | [reel/2280311616036852](https://www.facebook.com/reel/2280311616036852) | 2026-11-13 |
 | Video 90 | Altair AI: a six-department company from an empty Claude Code folder (concept animation; caption from @birmeya) | [reel/1152801101050169](https://www.facebook.com/reel/1152801101050169) | 2026-11-13 |
+| Video 91 | Altair AI: Fable 5.2 four-model one-brain task routing (concept animation; the caption does not match the pictures) | [reel/3438861689623518](https://www.facebook.com/reel/3438861689623518) | 2026-11-14 |
+| Video 92 | DeepResource.ai: JEV agent-router four-way research/writing dispatch (concept diagram; caption from @Flandermaxx) | [reel/1513020620686286](https://www.facebook.com/reel/1513020620686286) | 2026-11-14 |
+| Video 93 | Know Your System: Saga pattern (compensating transactions across services: orchestration vs choreography) | [reel/2222208475400708](https://www.facebook.com/reel/2222208475400708) | 2026-11-14 |
+| GitHub | labring/sealos-skills: agent skills for deploying apps, databases, and object storage on Sealos Cloud | [labring/sealos-skills](https://github.com/labring/sealos-skills) | 2026-11-14 |
 | Brian's recommendation list 2026-10-31 | Diagram skills: archify and diagram-design (no video) | — | 2026-10-31 |
 Notes on sources that have no link:
 - **Screenshot batch**: the mex training-curve repo is still unconfirmed
