@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>四模型一腦：把任務分到四條車道（影片 91 重製）</title>
+<style>
+  :root {
+    --bg: #0B0E14;
+    --card: #131722;
+    --card-2: #1A2030;
+    --line: #2A2E39;
+    --line-strong: #363A45;
+    --text: #D1D4DC;
+    --muted: #8B93A7;
+    --bright: #FFFFFF;
+    --fable: #F5A623;
+    --opus: #A78BFA;
+    --sonnet: #3B9EFF;
+    --haiku: #3DDC97;
+    --del: #FF6B6B;
+    --rew: #F5A623;
+    --keep: #3DDC97;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--text); }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Trebuchet MS", Roboto, "Segoe UI", "PingFang TC", "Noto Sans TC", Ubuntu, sans-serif;
+    line-height: 1.45;
+    min-height: 100%;
+  }
+  a { color: var(--sonnet); }
+  a:hover { color: var(--bright); }
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 20px 16px 48px; }
+  .home { color: var(--muted); text-decoration: none; font-size: 13px; }
+  h1 { margin: 12px 0 4px; font-size: 22px; color: var(--bright); }
+  h1 small { display: block; font-weight: 400; color: var(--muted); font-size: 13px; margin-top: 4px; }
+  .banner {
+    background: rgba(245, 166, 35, 0.08);
+    border: 1px solid rgba(245, 166, 35, 0.35);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    margin: 12px 0 16px;
+  }
+  .btns { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+  button {
+    font: inherit;
+    background: #1E222D;
+    color: var(--text);
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
+    padding: 7px 12px;
+    cursor: pointer;
+  }
+  button:hover { border-color: var(--sonnet); color: var(--bright); }
+  button.primary { background: #17343a; border-color: var(--sonnet); color: var(--bright); }
+  button.on { color: var(--bright); }
+  button:focus-visible, a:focus-visible { outline: 2px solid var(--sonnet); outline-offset: 2px; }
+  .grid { display: grid; grid-template-columns: 0.9fr 1.2fr; gap: 12px; }
+  @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+  .card h2 {
+    margin: 0 0 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .muted { color: var(--muted); font-size: 13px; }
+  .stack { display: flex; flex-direction: column; gap: 6px; min-height: 120px; }
+  .task, .lane .task {
+    background: var(--card-2);
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+    padding: 8px 10px;
+    cursor: grab;
+    font-size: 13px;
+  }
+  .task:active { cursor: grabbing; }
+  .task b { color: var(--bright); }
+  .task .hint { display: block; font-size: 11px; color: var(--muted); }
+  .lanes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .lane {
+    background: var(--card-2);
+    border: 1px dashed var(--line-strong);
+    border-radius: 8px;
+    padding: 8px;
+    min-height: 130px;
+  }
+  .lane.over { border-style: solid; }
+  .lane h3 { margin: 0 0 6px; font-size: 13px; color: var(--bright); display: flex; justify-content: space-between; gap: 6px; }
+  .lane[data-id="fable"] { border-color: rgba(245,166,35,.45); }
+  .lane[data-id="opus"] { border-color: rgba(167,139,250,.45); }
+  .lane[data-id="sonnet"] { border-color: rgba(59,158,255,.45); }
+  .lane[data-id="haiku"] { border-color: rgba(61,220,151,.45); }
+  .price { font-size: 11px; color: var(--muted); font-weight: 400; }
+  .checks { display: flex; flex-direction: column; gap: 4px; }
+  .check {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    align-items: center;
+    background: var(--card-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 6px 8px;
+    font-size: 13px;
+  }
+  .check .acts { display: flex; gap: 4px; }
+  .check button { padding: 3px 7px; font-size: 11px; }
+  .check[data-act="del"] { border-color: rgba(255,107,107,.5); }
+  .check[data-act="rew"] { border-color: rgba(245,166,35,.5); }
+  .check[data-act="keep"] { border-color: rgba(61,220,151,.5); }
+  .btn-del.on, button[data-act="del"].on { border-color: var(--del); color: var(--del); }
+  .btn-rew.on, button[data-act="rew"].on { border-color: var(--rew); color: var(--rew); }
+  .btn-keep.on, button[data-act="keep"].on { border-color: var(--keep); color: var(--keep); }
+  .timeline { display: flex; flex-direction: column; gap: 6px; }
+  .tl {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 8px;
+    font-size: 13px;
+    padding: 6px 8px;
+    background: var(--card-2);
+    border-radius: 8px;
+    border: 1px solid var(--line);
+  }
+  .tl time { color: var(--sonnet); font-variant-numeric: tabular-nums; }
+  .bars { display: flex; align-items: flex-end; gap: 6px; height: 90px; margin: 8px 0; }
+  .bars div {
+    flex: 1;
+    background: linear-gradient(180deg, #ff6b6b, #f5a623);
+    border-radius: 3px 3px 0 0;
+    min-height: 8px;
+  }
+  .bars div.hi { outline: 1px solid var(--bright); }
+  .legend { font-size: 12px; color: var(--muted); }
+  footer { margin-top: 18px; font-size: 12px; color: var(--muted); line-height: 1.6; max-width: 62em; }
+  .counts { font-size: 13px; color: var(--muted); margin: 0 0 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="home" href="../index.html">回 Demos 索引</a>
+  <h1>四模型一腦<small>把任務點一下或拖到四條車道 · 影片 91 · 概念儀表板重製</small></h1>
+  <p class="banner">這是互動示範，不是 Claude Code 真實錄屏。任務、檢查結果、夜間時程與花費長條都是虛構資料，不會連網或改你電腦裡的設定。</p>
+  <div class="btns">
+    <button type="button" id="reset" class="primary">重設</button>
+    <span class="muted" id="status">把左側任務拖到右側車道，或先點任務再點車道。</span>
+  </div>
+  <div class="grid">
+    <section class="card">
+      <h2>任務堆疊</h2>
+      <p class="muted" style="margin:0 0 8px">尚未分車道的工作。可拖曳，或點選後再點車道。</p>
+      <div class="stack" id="stack"></div>
+    </section>
+    <section class="card">
+      <h2>四條模型車道</h2>
+      <div class="lanes" id="lanes"></div>
+    </section>
+  </div>
+  <div class="grid" style="margin-top:12px">
+    <section class="card">
+      <h2>Prompt Doctor · 舊行在燒錢</h2>
+      <p class="counts" id="docCounts"></p>
+      <div class="checks" id="checks"></div>
+      <p class="muted" style="margin:8px 0 0">標記只留在這個示範頁，不會改任何檔案。畫面原句是 nothing changes without your yes。</p>
+    </section>
+    <div>
+      <section class="card">
+        <h2>Night Shift · 虛構時程</h2>
+        <div class="timeline" id="night"></div>
+      </section>
+      <section class="card" style="margin-top:12px">
+        <h2>花費長條（虛構）</h2>
+        <div class="bars" id="bars"></div>
+        <p class="legend" id="billNote">頂部較高的兩根只是示範「少數任務佔掉不少花費」，數字不是真實帳單。</p>
+      </section>
+    </div>
+  </div>
+  <footer>
+    重製來源：Altair AI 的 <a href="https://www.facebook.com/reel/3438861689623518" target="_blank" rel="noopener noreferrer">影片 91</a>（LINE 分享連結 <a href="https://www.facebook.com/share/r/1Fig8c7sAH/" target="_blank" rel="noopener noreferrer">1Fig8c7sAH</a>）。原片是風格化分流板，說明文則是另一則「鏡像提示」文案，兩者不符。本頁只重現畫面上的四條車道、Prompt Doctor 與夜間時程概念，不代表已核對片中的帳單數字。可對照 wiki SEQ 0133。
+  </footer>
+</div>
+<script>
+"use strict";
+const LANES = [
+  { id: "fable", name: "FABLE", price: "$8 / $40", job: "計畫 · 架構 · 根因" },
+  { id: "opus", name: "OPUS", price: "$4 / $20", job: "複雜推理 · 實作" },
+  { id: "sonnet", name: "SONNET", price: "$2 / $10", job: "日常改碼 · 檢查" },
+  { id: "haiku", name: "HAIKU", price: "$0.10 / $0.50", job: "重新命名 · 擷取" }
+];
+const TASKS = [
+  { id: "t1", title: "plan API migration", hint: "高風險架構", suggest: "fable" },
+  { id: "t2", title: "build auth module", hint: "範圍清楚的實作", suggest: "opus" },
+  { id: "t3", title: "rename 40 files", hint: "機械式更名", suggest: "haiku" },
+  { id: "t4", title: "review PR #221", hint: "日常檢查", suggest: "sonnet" },
+  { id: "t5", title: "extract invoice fields", hint: "從掃描件擷取", suggest: "haiku" },
+  { id: "t6", title: "root-cause flaky test", hint: "先找根因", suggest: "fable" },
+  { id: "t7", title: "write migration", hint: "依計畫實作", suggest: "opus" },
+  { id: "t8", title: "tag 800 tickets", hint: "大量標記", suggest: "haiku" }
+];
+const CHECKS = [
+  { id: "c1", line: "\"answer without deliberating\"", note: "幾乎沒有作用" },
+  { id: "c2", line: "prompt 裡寫 token budget", note: "拿掉可降成本" },
+  { id: "c3", line: "過時的 never retry", note: "示範：曾重試 4／10" },
+  { id: "c4", line: "\"never\" 卻沒寫例外", note: "可改成寫出例外" },
+  { id: "c5", line: "delegate by default", note: "Fable 本身就會分流" },
+  { id: "c6", line: "\"double-check your work\"", note: "它已會自檢" },
+  { id: "c7", line: "\"show reasoning step by step\"", note: "它也可以拒絕" },
+  { id: "c8", line: "\"20 words per sentence\"", note: "過於瑣碎" },
+  { id: "c9", line: "把先前答案當成已完成", note: "示範標記" },
+  { id: "c10", line: "只寫 go / continue", note: "過於空泛" },
+  { id: "c11", line: "CLAUDE.md 超過 200 行", note: "可再精簡" }
+];
+const NIGHT = [
+  ["23:45", "先把問題一次問完（一則訊息）"],
+  ["00:03", "寫入 NIGHT-SHIFT.md：目標與檢查清單"],
+  ["01:40", "git switch -c night/api-rust（示範）"],
+  ["03:12", "part 2 卡住，先記下等人"],
+  ["05:20", "part 3 繼續（示範）"]
+];
+const BAR_HEIGHTS = [88, 76, 42, 38, 30, 28, 22, 18, 16, 14, 12, 10];
+
+let assignment = {};
+let selected = null;
+let actions = {};
+
+function $(id) { return document.getElementById(id); }
+
+function renderStack() {
+  const root = $("stack");
+  root.replaceChildren();
+  TASKS.filter(function (t) { return !assignment[t.id]; }).forEach(function (t) {
+    root.append(taskEl(t));
+  });
+  if (!root.children.length) {
+    root.innerHTML = "<p class='muted'>任務都已分到車道。可按重設再來一次。</p>";
+  }
+}
+
+function taskEl(t) {
+  const el = document.createElement("div");
+  el.className = "task";
+  el.draggable = true;
+  el.dataset.id = t.id;
+  el.innerHTML = "<b>" + t.title + "</b><span class='hint'>" + t.hint + " · 建議 " + t.suggest + "</span>";
+  el.addEventListener("dragstart", function (ev) {
+    ev.dataTransfer.setData("text/plain", t.id);
+    ev.dataTransfer.effectAllowed = "move";
+  });
+  el.addEventListener("click", function () {
+    selected = t.id;
+    $("status").textContent = "已選「" + t.title + "」，再點一條車道即可放入。";
+  });
+  return el;
+}
+
+function renderLanes() {
+  const root = $("lanes");
+  root.replaceChildren();
+  LANES.forEach(function (lane) {
+    const box = document.createElement("div");
+    box.className = "lane";
+    box.dataset.id = lane.id;
+    const jobs = TASKS.filter(function (t) { return assignment[t.id] === lane.id; });
+    box.innerHTML = "<h3>" + lane.name + " <span class='price'>" + jobs.length + " jobs · " + lane.price + "</span></h3><div class='muted'>" + lane.job + "</div>";
+    const hold = document.createElement("div");
+    hold.style.marginTop = "6px";
+    jobs.forEach(function (t) { hold.append(taskEl(t)); });
+    box.append(hold);
+    box.addEventListener("dragover", function (ev) { ev.preventDefault(); box.classList.add("over"); });
+    box.addEventListener("dragleave", function () { box.classList.remove("over"); });
+    box.addEventListener("drop", function (ev) {
+      ev.preventDefault();
+      box.classList.remove("over");
+      place(ev.dataTransfer.getData("text/plain"), lane.id);
+    });
+    box.addEventListener("click", function (ev) {
+      if (ev.target.closest(".task")) return;
+      if (selected) place(selected, lane.id);
+    });
+    root.append(box);
+  });
+}
+
+function place(id, lane) {
+  if (!id || !LANES.some(function (l) { return l.id === lane; })) return;
+  assignment[id] = lane;
+  selected = null;
+  const t = TASKS.find(function (x) { return x.id === id; });
+  $("status").textContent = "「" + (t ? t.title : id) + "」放到 " + lane.toUpperCase() + "。這只是示範分流。";
+  renderStack();
+  renderLanes();
+  renderBars();
+}
+
+function renderChecks() {
+  const root = $("checks");
+  root.replaceChildren();
+  CHECKS.forEach(function (c) {
+    const row = document.createElement("div");
+    row.className = "check";
+    const act = actions[c.id] || "";
+    if (act) row.dataset.act = act;
+    row.innerHTML = "<div><b>" + c.line + "</b><div class='muted'>" + c.note + "</div></div>";
+    const acts = document.createElement("div");
+    acts.className = "acts";
+    [["del", "Delete"], ["rew", "Rewrite"], ["keep", "Keep"]].forEach(function (pair) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.textContent = pair[1];
+      b.dataset.act = pair[0];
+      if (act === pair[0]) b.classList.add("on");
+      b.addEventListener("click", function () {
+        actions[c.id] = pair[0];
+        renderChecks();
+      });
+      acts.append(b);
+    });
+    row.append(acts);
+    root.append(row);
+  });
+  const n = { del: 0, rew: 0, keep: 0 };
+  Object.keys(actions).forEach(function (k) { n[actions[k]] += 1; });
+  $("docCounts").textContent = "DELETE " + n.del + " · REWRITE " + n.rew + " · KEEP " + n.keep + " ／ 11";
+}
+
+function renderNight() {
+  const root = $("night");
+  root.innerHTML = NIGHT.map(function (row) {
+    return "<div class='tl'><time>" + row[0] + "</time><div>" + row[1] + "</div></div>";
+  }).join("");
+}
+
+function renderBars() {
+  const root = $("bars");
+  root.replaceChildren();
+  BAR_HEIGHTS.forEach(function (h, i) {
+    const d = document.createElement("div");
+    d.style.height = h + "%";
+    if (i < 2) d.className = "hi";
+    d.title = "虛構 session " + (i + 1);
+    root.append(d);
+  });
+}
+
+$("reset").addEventListener("click", function () {
+  assignment = {};
+  selected = null;
+  actions = {};
+  $("status").textContent = "已重設。把左側任務拖到右側車道，或先點任務再點車道。";
+  renderStack();
+  renderLanes();
+  renderChecks();
+  renderBars();
+});
+
+renderStack();
+renderLanes();
+renderChecks();
+renderNight();
+renderBars();
+</script>
+</body>
+</html>

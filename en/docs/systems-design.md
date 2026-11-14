@@ -118,3 +118,33 @@ Verification (2026-11-12, Asia/Taipei, GitHub API; all under the karpathy accoun
 The five repos total 275,419 API stars, plus at least 5,000+ for the gist, which is close to the on-screen header 277.6K. The caption’s “over 300,000 stars” treats the gist as 50K and is high. The graphic labels all six MIT, but neither autoresearch nor the gist had a visible SPDX license that day, so the on-screen MIT label is not used as a source. Cross-links: SEQ 0095 (Astro-Han/karpathy-llm-wiki is a derivative of this gist idea) and 0077 (another “repos engineers should know” list). SkillSpector scan pending (not cloned in this batch; routines are paused). GIF: 0:10–0:15.
 
 ![Karpathy REPO SWARM stylized dashboard](../../assets/gifs/v75-karpathy-six-repos.gif)
+
+### [Know Your System: Saga pattern (compensating transactions across services: orchestration vs choreography)](https://www.facebook.com/reel/2222208475400708)
+
+Six cards show how a checkout that spans four services should compensate on failure (a refund, not a rollback), and contrast choreography with orchestration. The on-screen “Consistent” means eventual consistency, not ACID isolation. The video does not mention that the orchestrator can be a single point of failure.
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| high credibility | — | [Video 93](https://www.facebook.com/reel/2222208475400708) |
+
+~30s vertical Facebook Reel by Know Your System (2026-11-14 18:30 Asia/Taipei; 360×640). Brian sent [this reel](https://www.facebook.com/reel/2222208475400708) from his computer at 21:56 Asia/Taipei on 2026-11-14. The caption is only “Payment charged, but the item is out of stock” plus Saga pattern hashtags; it is not a comment-for-link gate, so this entry has no ⚠️. The clip is a hand-made system-design card animation on a dark grid (title Saga Pattern · System Design), with music only and no voice-over. It is not an AI-tool demo.
+
+The six cards, in order:
+
+1/6 PARTIAL FAILURE: Order is Pending, Payment is Charged, Inventory shows No stock, and Shipping has not started. A dashed box labels “one ACID tx” and is crossed out, with the line “Money taken, no item.” 2PC is also crossed out, with the labels “locks held” and “tight coupling.”
+
+2/6 LOCAL STEPS: each service has a local forward action and a compensation — Order Create / Cancel, Payment Charge / Refund, Inventory Reserve / Release, Shipping Ship (the compensate slot is “—” on the failure path, because shipping never ran). The card also labels local tx, compensation, and eventually consistent.
+
+3/6 COMPENSATE: after the inventory failure, Payment becomes Refunded and Order becomes Canceled. The card then shows “Consistent” and “Refund, not rollback.” That “Consistent” is the eventual consistency already named on card 2, not isolation or automatic rollback in a single ACID transaction. Compensation is a new reversing local transaction (for example a refund). See the [Saga pattern on microservices.io](https://microservices.io/patterns/data/saga.html), which also notes that a saga lacks ACID isolation and needs extra isolation countermeasures, and the [Azure Architecture Center Saga page](https://learn.microsoft.com/en-us/azure/architecture/patterns/saga), which says changes already committed by each service cannot be rolled back.
+
+4/6 CHOREOGRAPHY: the services talk over an Event bus. The events shown are OrderPlaced, PaymentDone, and OutOfStock, with the labels “No central brain,” “decoupled,” and “hard to trace.”
+
+5/6 ORCHESTRATION: a central Orchestrator issues Create, Charge, and Reserve, then Refund and Cancel after the failure, with the labels “Central brain,” “clear flow,” and “extra service.” The video does not mention that the orchestrator can be a single point of failure. Microsoft’s Saga write-up lists “the orchestrator manages the complete workflow, which introduces a point of failure” as a drawback of orchestration.
+
+6/6 HAPPY PATH: when stock is available the states become Created, Charged, Reserved, and Booked, with “Order complete” and “all local tx committed.”
+
+Cross-links: SEQ 0067 (basic system-design ideas, including message queues and consistency), 0070 (Kafka’s event architecture), 0075 (BFS), and 0076 (Prim).
+
+Interactive recreation: [saga-pattern demo](https://wiki.singularityengine.dev/demos/saga-pattern/) (a four-service checkout board with fictional orders; switch between choreography and orchestration, toggle inventory in or out of stock, and step through compensation; consistency is labeled as eventual, and nothing is sent on the network). Music: music only, no voice-over.
+
+![Saga cards: local compensation and Refund, not rollback](../../assets/gifs/v88-saga-pattern.gif)

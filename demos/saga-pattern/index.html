@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saga pattern：編排 vs 事件協同（影片 93 重製）</title>
+<style>
+  :root {
+    --bg: #0B100E;
+    --card: #121A16;
+    --card-2: #18221C;
+    --line: #2A3A32;
+    --line-strong: #3A4C42;
+    --text: #D4DDD6;
+    --muted: #8B9A91;
+    --bright: #FFFFFF;
+    --accent: #F5A623;
+    --ok: #3DDC97;
+    --hold: #F5A623;
+    --bad: #FF6A3D;
+    --order: #F5A623;
+    --pay: #3B9EFF;
+    --inv: #A78BFA;
+    --ship: #2DD4BF;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--text); }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Trebuchet MS", Roboto, "Segoe UI", "PingFang TC", "Noto Sans TC", Ubuntu, sans-serif;
+    line-height: 1.45;
+    min-height: 100%;
+  }
+  a { color: #3B9EFF; }
+  a:hover { color: var(--bright); }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 20px 16px 48px; }
+  .home { color: var(--muted); text-decoration: none; font-size: 13px; }
+  h1 { margin: 12px 0 4px; font-size: 22px; color: var(--bright); }
+  h1 small { display: block; font-weight: 400; color: var(--muted); font-size: 13px; margin-top: 4px; }
+  .banner {
+    background: rgba(245, 166, 35, 0.08);
+    border: 1px solid rgba(245, 166, 35, 0.35);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    margin: 12px 0 16px;
+  }
+  button, .seg button {
+    font: inherit;
+    background: #1A2420;
+    color: var(--text);
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
+    padding: 7px 12px;
+    cursor: pointer;
+  }
+  button.primary { background: #3a2a10; border-color: var(--accent); color: var(--bright); }
+  button:hover { border-color: var(--accent); color: var(--bright); }
+  button:disabled { opacity: 0.45; cursor: not-allowed; }
+  button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .toolbar { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; margin-bottom: 14px; }
+  .field { min-width: 180px; }
+  .field span, .field label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 6px; letter-spacing: 0.04em; }
+  .seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 8px; overflow: hidden; }
+  .seg button { border: 0; border-radius: 0; }
+  .seg button.on { background: #3a2a10; color: var(--bright); }
+  .btns { display: flex; flex-wrap: wrap; gap: 8px; }
+  .services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  @media (max-width: 800px) { .services { grid-template-columns: 1fr 1fr; } }
+  .svc {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 10px;
+    min-height: 150px;
+  }
+  .svc h2 { margin: 0 0 6px; font-size: 15px; color: var(--bright); }
+  .svc .icon { font-size: 18px; margin-right: 4px; }
+  .svc.order { border-top: 3px solid var(--order); }
+  .svc.pay { border-top: 3px solid var(--pay); }
+  .svc.inv { border-top: 3px solid var(--inv); }
+  .svc.ship { border-top: 3px solid var(--ship); }
+  .svc.ok { box-shadow: inset 0 0 0 1px rgba(61,220,151,.35); }
+  .svc.fail { box-shadow: inset 0 0 0 1px rgba(255,106,61,.45); }
+  .svc.comp { box-shadow: inset 0 0 0 1px rgba(245,166,35,.45); }
+  .state { font-size: 13px; margin: 4px 0; }
+  .pill { display: inline-block; font-size: 11px; border-radius: 999px; padding: 1px 8px; border: 1px solid var(--line-strong); margin: 2px 4px 2px 0; }
+  .pill.fwd { color: var(--ok); border-color: rgba(61,220,151,.5); }
+  .pill.back { color: #FF8FAB; border-color: rgba(255,143,171,.5); }
+  .pill.done { background: rgba(61,220,151,.12); }
+  .pill.run { background: rgba(245,166,35,.16); }
+  .db { font-size: 12px; color: var(--muted); }
+  .board { margin-top: 12px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+  .board h3 { margin: 0 0 8px; font-size: 12px; letter-spacing: 0.06em; color: var(--muted); text-transform: uppercase; }
+  .bus, .orch {
+    min-height: 52px;
+    background: var(--card-2);
+    border-radius: 8px;
+    border: 1px dashed var(--line-strong);
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+  .event {
+    display: inline-block;
+    margin: 2px 6px 2px 0;
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    color: var(--bright);
+  }
+  .event.bad { border-color: rgba(255,106,61,.6); color: var(--bad); }
+  .event.ok { border-color: rgba(61,220,151,.5); }
+  .note { font-size: 13px; color: var(--muted); margin-top: 8px; }
+  .note strong { color: var(--bright); }
+  .oktext { color: var(--ok); }
+  .badtext { color: var(--bad); }
+  .log { margin-top: 10px; font-size: 13px; max-height: 160px; overflow: auto; }
+  .log div { padding: 2px 0; border-bottom: 1px solid #1E2A24; }
+  footer { margin-top: 18px; font-size: 12px; color: var(--muted); line-height: 1.6; max-width: 62em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="home" href="../index.html">回 Demos 索引</a>
+  <h1>Saga pattern<small>跨服務補償交易 · 編排 vs 事件協同 · 影片 93 重製</small></h1>
+  <p class="banner">這是互動示範，訂單與庫存都是虛構資料，頁面不會連網。Saga 達成的是<strong>最終一致（eventual consistency）</strong>，不是單一資料庫的 ACID 隔離或回滾。</p>
+  <div class="toolbar">
+    <div class="field">
+      <span>協調方式</span>
+      <div class="seg" role="group" aria-label="協調方式">
+        <button type="button" id="modeChoreo" class="on">事件協同（choreography）</button>
+        <button type="button" id="modeOrch">編排（orchestration）</button>
+      </div>
+    </div>
+    <div class="field">
+      <span>庫存結果</span>
+      <div class="seg" role="group" aria-label="庫存結果">
+        <button type="button" id="invFail" class="on">Inventory 缺貨</button>
+        <button type="button" id="invOk">Inventory 有貨</button>
+      </div>
+    </div>
+    <div class="btns">
+      <button type="button" class="primary" id="start">開始一筆示範訂單</button>
+      <button type="button" id="step" disabled>下一步</button>
+      <button type="button" id="reset">重設</button>
+    </div>
+  </div>
+  <div class="services" id="services"></div>
+  <section class="board">
+    <h3 id="boardTitle">事件匯流排（event bus）</h3>
+    <div id="coord" class="bus">尚未開始。選好協調方式與庫存結果後，按「開始一筆示範訂單」。</div>
+    <p class="note" id="result"></p>
+    <div class="log" id="log" aria-live="polite"></div>
+  </section>
+  <footer>
+    重製來源：Know Your System 的 <a href="https://www.facebook.com/reel/2222208475400708" target="_blank" rel="noopener noreferrer">影片 93</a>。可對照 <a href="https://microservices.io/patterns/data/saga.html" target="_blank" rel="noopener noreferrer">microservices.io 的 Saga pattern</a> 與 <a href="https://learn.microsoft.com/en-us/azure/architecture/patterns/saga" target="_blank" rel="noopener noreferrer">Azure Architecture Center 的 Saga</a>。補償是退款／取消／釋放這類反向動作，不是分散式回滾。編排模式多一個中央協調者，流程較清楚，但官方文件也指出它可能成為單點故障——原影片沒有提到這一點。可對照 wiki SEQ 0135。
+  </footer>
+</div>
+<script>
+"use strict";
+const SERVICES = [
+  { id: "order", name: "Order", fwd: "Create", back: "Cancel", init: "—" },
+  { id: "pay", name: "Payment", fwd: "Charge", back: "Refund", init: "—" },
+  { id: "inv", name: "Inventory", fwd: "Reserve", back: "Release", init: "—" },
+  { id: "ship", name: "Shipping", fwd: "Ship", back: "—", init: "—" }
+];
+let mode = "choreography";
+let stock = false;
+let running = false;
+let cursor = 0;
+let plan = [];
+let states = resetStates();
+let orderId = "";
+
+function resetStates() {
+  const s = {};
+  SERVICES.forEach(function (svc) {
+    s[svc.id] = { status: "idle", label: "尚未開始", used: [] };
+  });
+  return s;
+}
+
+function $(id) { return document.getElementById(id); }
+
+function renderServices() {
+  $("services").innerHTML = SERVICES.map(function (svc) {
+    const st = states[svc.id];
+    const cls = ["svc", svc.id];
+    if (st.status === "ok") cls.push("ok");
+    if (st.status === "fail") cls.push("fail");
+    if (st.status === "comp") cls.push("comp");
+    const fwdOn = st.used.indexOf("fwd") >= 0 ? " done" : "";
+    const backOn = st.used.indexOf("back") >= 0 ? " done" : "";
+    return "<div class='" + cls.join(" ") + "'><h2><span class='icon' aria-hidden='true'></span>" + svc.name +
+      "</h2><div class='state'>" + st.label + "</div><div class='db'>本地交易</div>" +
+      "<div><span class='pill fwd" + fwdOn + "'>" + svc.fwd + "</span>" +
+      (svc.back !== "—" ? "<span class='pill back" + backOn + "'>" + svc.back + "</span>" : "<span class='pill'>—</span>") +
+      "</div></div>";
+  }).join("");
+}
+
+function setMode(next) {
+  if (running) return;
+  mode = next;
+  $("modeChoreo").classList.toggle("on", mode === "choreography");
+  $("modeOrch").classList.toggle("on", mode === "orchestration");
+  $("boardTitle").textContent = mode === "choreography" ? "事件匯流排（event bus）" : "編排中心（orchestrator）";
+  $("coord").className = mode === "choreography" ? "bus" : "orch";
+  if (!running) {
+    $("coord").textContent = mode === "choreography"
+      ? "事件會在服務之間傳遞，沒有中央大腦。"
+      : "由 Orchestrator 依序下指令。補充：官方文件指出編排中心可能成為單點故障，原影片沒有提到。";
+  }
+}
+
+function setStock(ok) {
+  if (running) return;
+  stock = ok;
+  $("invOk").classList.toggle("on", stock);
+  $("invFail").classList.toggle("on", !stock);
+}
+
+function log(msg) {
+  const row = document.createElement("div");
+  row.textContent = msg;
+  $("log").appendChild(row);
+  $("log").scrollTop = $("log").scrollHeight;
+}
+
+function buildPlan() {
+  const id = orderId;
+  if (mode === "choreography") {
+    const steps = [
+      { ev: "OrderPlaced", evClass: "ok", apply: function () { setSvc("order", "ok", "Pending", "fwd"); } , msg: id + " Order 建立為 Pending，送出 OrderPlaced" },
+      { ev: "PaymentDone", evClass: "ok", apply: function () { setSvc("pay", "ok", "Charged", "fwd"); } , msg: "Payment 收到事件後扣款成功，送出 PaymentDone" }
+    ];
+    if (!stock) {
+      steps.push({ ev: "OutOfStock", evClass: "bad", apply: function () { setSvc("inv", "fail", "No stock", "fwd"); } , msg: "Inventory 沒有庫存，送出 OutOfStock" });
+      steps.push({ ev: "PaymentRefunded", evClass: "ok", apply: function () { setSvc("pay", "comp", "Refunded", "back"); } , msg: "Payment 補償：Refund（退款，不是回滾）" });
+      steps.push({ ev: "OrderCanceled", evClass: "ok", apply: function () { setSvc("order", "comp", "Canceled", "back"); } , msg: "Order 補償：Cancel。現在是最終一致，不是 ACID 隔離。" });
+    } else {
+      steps.push({ ev: "StockReserved", evClass: "ok", apply: function () { setSvc("inv", "ok", "Reserved", "fwd"); } , msg: "Inventory 預留成功，送出 StockReserved" });
+      steps.push({ ev: "Shipped", evClass: "ok", apply: function () { setSvc("ship", "ok", "Booked", "fwd"); setSvc("order", "ok", "Created", "fwd"); } , msg: "Shipping 完成 Booked。各服務本地交易都已提交，訂單完成（最終一致）。" });
+    }
+    return steps;
+  }
+  const steps = [
+    { ev: "Create", evClass: "ok", apply: function () { setSvc("order", "ok", "Pending", "fwd"); } , msg: "Orchestrator 指令 Create：Order 設為 Pending" },
+    { ev: "Charge", evClass: "ok", apply: function () { setSvc("pay", "ok", "Charged", "fwd"); } , msg: "Orchestrator 指令 Charge：Payment 已扣款" }
+  ];
+  if (!stock) {
+    steps.push({ ev: "Reserve", evClass: "bad", apply: function () { setSvc("inv", "fail", "No stock", "fwd"); } , msg: "Orchestrator 指令 Reserve：Inventory 回報缺貨" });
+    steps.push({ ev: "Refund", evClass: "ok", apply: function () { setSvc("pay", "comp", "Refunded", "back"); } , msg: "Orchestrator 指令 Refund：退款，不是回滾" });
+    steps.push({ ev: "Cancel", evClass: "ok", apply: function () { setSvc("order", "comp", "Canceled", "back"); } , msg: "Orchestrator 指令 Cancel。最終一致；編排中心是流程的單一協調點。" });
+  } else {
+    steps.push({ ev: "Reserve", evClass: "ok", apply: function () { setSvc("inv", "ok", "Reserved", "fwd"); } , msg: "Orchestrator 指令 Reserve：已預留庫存" });
+    steps.push({ ev: "Ship", evClass: "ok", apply: function () { setSvc("ship", "ok", "Booked", "fwd"); setSvc("order", "ok", "Created", "fwd"); } , msg: "Orchestrator 指令 Ship：訂單完成，各本地交易都已提交。" });
+  }
+  return steps;
+}
+
+function setSvc(id, status, label, used) {
+  const st = states[id];
+  st.status = status;
+  st.label = label;
+  if (used && st.used.indexOf(used) < 0) st.used.push(used);
+}
+
+function showCoord(step) {
+  if (mode === "choreography") {
+    $("coord").innerHTML = "Event bus　<span class='event " + step.evClass + "'>" + step.ev + "</span>";
+  } else {
+    $("coord").innerHTML = "Orchestrator　指令 <span class='event " + step.evClass + "'>" + step.ev + "</span>";
+  }
+}
+
+function start() {
+  orderId = "ORD-" + (2400 + Math.floor(Math.random() * 90));
+  states = resetStates();
+  cursor = 0;
+  plan = buildPlan();
+  running = true;
+  $("log").innerHTML = "";
+  $("result").innerHTML = "";
+  $("start").disabled = true;
+  $("modeChoreo").disabled = true;
+  $("modeOrch").disabled = true;
+  $("invOk").disabled = true;
+  $("invFail").disabled = true;
+  $("step").disabled = false;
+  log("開始示範訂單 " + orderId + "（" + (mode === "choreography" ? "事件協同" : "編排") + "，庫存" + (stock ? "有貨" : "缺貨") + "）");
+  renderServices();
+  $("coord").textContent = "已建立 " + orderId + "。按「下一步」逐步執行。";
+}
+
+function step() {
+  if (!running || cursor >= plan.length) return;
+  const s = plan[cursor];
+  s.apply();
+  showCoord(s);
+  log((cursor + 1) + ". " + s.msg);
+  renderServices();
+  cursor += 1;
+  if (cursor >= plan.length) {
+    $("step").disabled = true;
+    running = "done";
+    if (!stock) {
+      $("result").innerHTML = "<strong>補償完成。</strong>畫面意義上的 Consistent，指的是最終一致：Payment 已退款、Order 已取消。這不是單一 ACID 交易的回滾或隔離。";
+    } else {
+      $("result").innerHTML = "<strong class='oktext'>訂單完成。</strong>四個服務各自提交本地交易後達到最終一致。";
+    }
+  }
+}
+
+function reset() {
+  running = false;
+  cursor = 0;
+  plan = [];
+  states = resetStates();
+  $("log").innerHTML = "";
+  $("result").innerHTML = "";
+  $("start").disabled = false;
+  $("step").disabled = true;
+  $("modeChoreo").disabled = false;
+  $("modeOrch").disabled = false;
+  $("invOk").disabled = false;
+  $("invFail").disabled = false;
+  renderServices();
+  setMode(mode);
+}
+
+$("modeChoreo").addEventListener("click", function () { setMode("choreography"); });
+$("modeOrch").addEventListener("click", function () { setMode("orchestration"); });
+$("invFail").addEventListener("click", function () { setStock(false); });
+$("invOk").addEventListener("click", function () { setStock(true); });
+$("start").addEventListener("click", start);
+$("step").addEventListener("click", step);
+$("reset").addEventListener("click", reset);
+renderServices();
+setMode("choreography");
+</script>
+</body>
+</html>

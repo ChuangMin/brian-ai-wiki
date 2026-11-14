@@ -688,5 +688,35 @@
     "duration": 7,
     "size_bytes": 652328,
     "what_it_shows": "第 6 步 Make→Gmail→sheet 轉入第 7 步 Autopilot 與 8:00 Telegram 核准卡"
+  },
+  {
+    "file": "v86-four-models-one-brain.gif",
+    "video_number": "影片 91",
+    "entry_name": "Altair AI：Fable 5.2 四模型一腦任務分流（概念動畫；說明文與畫面不符）",
+    "reel_url": "https://www.facebook.com/reel/3438861689623518",
+    "segment_start": 18.0,
+    "duration": 7,
+    "size_bytes": 1728310,
+    "what_it_shows": "四模型分流球體把多個任務路由到 Fable／Opus／Sonnet／Haiku 車道"
+  },
+  {
+    "file": "v87-jev-agent-router.gif",
+    "video_number": "影片 92",
+    "entry_name": "DeepResource.ai：JEV agent-router 四路研究寫作分流（概念圖；說明文來自 @Flandermaxx）",
+    "reel_url": "https://www.facebook.com/reel/1513020620686286",
+    "segment_start": 12.0,
+    "duration": 6,
+    "size_bytes": 2134336,
+    "what_it_shows": "jev-agent-router 節點圖：jev-1.13.0 回答 Choice／Score／Noul，閘門 hold 或派遣到四路佇列"
+  },
+  {
+    "file": "v88-saga-pattern.gif",
+    "video_number": "影片 93",
+    "entry_name": "Know Your System：Saga pattern（跨服務補償交易：編排 vs 事件協同）",
+    "reel_url": "https://www.facebook.com/reel/2222208475400708",
+    "segment_start": 9.0,
+    "duration": 6,
+    "size_bytes": 497036,
+    "what_it_shows": "Saga 圖卡 2/6–3/6：本地步驟與補償（Refund, not rollback；Consistent）再接到事件協同"
   }
 ]

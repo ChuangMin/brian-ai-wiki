@@ -280,3 +280,35 @@ SkillSpector 靜態掃描（2026-11-13 台北時間，skillspector 2.12.0，--no
 配樂：未標。
 
 ![NDA 檢查表與綠燈／黃燈說明](../assets/gifs/v84-legal-plugins.gif)
+
+### [labring/sealos-skills：在 Sealos Cloud 部署應用、資料庫與物件儲存的 agent skill 包](https://github.com/labring/sealos-skills)
+
+labring 的 Sealos Cloud agent skill 包（v2.0.0）。互動入口是 use-sealos，另兩個 skill 給 Brain 託管沙盒。GitHub 未偵測到授權檔，package.json 與多個 manifest 寫 MIT；官方介紹頁仍列出舊的八個 skill。
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 可信度高 | 84 | [GitHub（2026-11-14）](https://github.com/labring/sealos-skills) |
+
+Brian 於 2026-11-14 22:04 Asia/Taipei 從電腦先傳來 [已失效的 README.zh-TW.md](https://github.com/labring/sealos-skills/blob/main/readmes/README.zh-TW.md)（查證當日 404，目前倉庫沒有 `readmes/` 或 `README.zh-TW.md`），隨後傳來倉庫本身 [labring/sealos-skills](https://github.com/labring/sealos-skills)，並說之後可能參考它來寫自己的 skill。本則依目前 `main` 的 v2.0.0 書寫（最後推送 2026-09-28 08:36 UTC，即 2026-09-28 16:36 Asia/Taipei；提交 `a8e45c97`）。labring 是 Sealos 官方組織，倉庫首頁也指向 [sealos.io/sealos-skills](https://sealos.io/sealos-skills)。
+
+查證當日（2026-11-14 台北時間）GitHub API 星數 84、fork 21、未歸檔；`license` 欄為空，`/license` 端點回 Not Found，倉庫根目錄也沒有 `LICENSE` 或 `COPYING` 檔。`package.json` 與多個 host manifest（例如 `.claude-plugin/plugin.json`、`plugins/sealos` 底下的 Claude／Codex／Cursor／Qoder 清單）寫 `license: MIT`，本則把這記成檔案裡的聲明，不把它當成已附完整授權條款、已獲 GitHub 偵測的 MIT 倉庫。
+
+README 說明這是給 Sealos Cloud 部署與維運用的 agent plugin，同一份 `use-sealos` 可裝到 Claude Code、Codex、Cursor、Qoder、CodeBuddy、Gemini CLI、Qwen Code、DeepSeek Harness、skills.sh、OpenClaw 等；典型用法是對 agent 說 deploy X to Sealos 或「帮我把 X 部署到 Sealos」。2.0 把先前八個 skill 收成三個，舊實作留在分支 `codex/backup-before-next-20260928`。`skills/` 底下三個名字是指向 `plugins/sealos/skills/` 的符號連結，實作只在後者：
+
+- `use-sealos` 是互動入口，負責登入、選部署路徑、資料庫、物件儲存、公開 HTTPS 與部署後檢查，細節放在 `references/`（deploy／build／databases／platform／operate／recipes）與 `scripts/sealos-api.py`（OAuth2 device flow 與 Template API，強調只用 Python 標準庫）、`wait-app.sh`。
+- `sealos-deploy` 只在 Brain 託管模式（`SEALAI_DEPLOY_MODE=managed`）走 MCP 閘道（`template_ready`／`deployment_completed`）。
+- `k8s-kaniko-job` 是該沙盒沒有 Docker daemon 時，用叢集內 Kaniko Job 建映像並推到 GHCR。互動部署則用 docker buildx。
+
+README 寫三條部署路徑都走 Sealos Template API：模板商店（稱 200+ 一鍵模板，約 3 分鐘）、官方 Docker 映像產生模板（約 5–10 分鐘）、從專案原始碼建 linux/amd64 映像再部署。官方 [App Store 說明](https://sealos.io/docs/guides/app-store/)確認有模板商店，模板來自應用倉庫；200+ 與各路徑分鐘數是 README 數字，本則未清點也未實測。`use-sealos` 的 description 列出可開 PostgreSQL、MySQL、MongoDB、Redis、Kafka，以及 S3 相容物件儲存與公開 HTTPS。官方[總覽](https://sealos.io/docs/overview/intro/)與[資料庫產品頁](https://sealos.io/products/databases/)確認有託管 PostgreSQL、MySQL、MongoDB、Redis，以及內建 S3 相容物件儲存；產品頁另外列了 Milvus（skill 沒寫）。Kafka 未出現在該託管資料庫清單，只在部分 App Store 模板裡作為訊息元件出現，不以 skill 文案當成官方獨立 Kafka 產品。對照官方介紹頁（查證當日）仍寫 eight root skills，並列 sealos-deploy、sealos-database、sealos-s3、sealos-canvas、sealos-app-builder、cloud-native-readiness、dockerfile-skill、docker-to-sealos，與目前 main 的三個 skill 不符，介紹頁尚未跟上 2.0。
+
+值得學習的寫法（依實際檔案，供寫自己的 skill 參考，不是使用教學）：
+
+- 把實作集中在 `plugins/sealos/skills/`，根目錄 `skills/` 只放符號連結給 skills.sh 與通用安裝器。
+- 每個 `SKILL.md` 以 `---` 包住 YAML frontmatter，含 `name`、折行 `description`，以及 `allowed-tools` 的 Bash 工具允許清單；本文再分節寫決策樹、路由與執行規則，較長的平台細節改放到 `references/`，需要時再讀。
+- 同一倉庫用多份清單分發給不同 host：`.claude-plugin/marketplace.json` 與根目錄 `marketplace.json` 指向 `./plugins/sealos`；Claude 的 plugin 清單在 `.claude-plugin/plugin.json` 與 `plugins/sealos/.claude-plugin/plugin.json`；Codex 用 `.codex-plugin/plugin.json`、`.agents/plugins/marketplace.json` 與 `plugins/sealos/.codex-plugin/plugin.json`；Cursor 用 `.cursor-plugin/marketplace.json` 與 `plugins/sealos/.cursor-plugin/plugin.json`。另外還有 `.qoder-plugin`、`.codebuddy-plugin`，以及 `gemini-extension.json`／`qwen-extension.json`（`contextFileName` 皆為 `CLAUDE.md`，並寫明不主張 slash command）。
+- `AGENTS.md` 是給改這個倉庫的 agent 看的專案說明，寫清三個 skill 的分工、各 host 該讀哪份清單、驗證指令與執行安全（刪除資源前要明確確認等）。`CLAUDE.md` 則是給 Gemini／Qwen 等只吃上下文的 host 的短指針：跟著 `use-sealos` 走，不要另發明一套流程，也不在這份檔裡主張 `/sealos`。
+- 測試方面，`package.json` 的 `npm test` 跑 `node --test test.js test-host-coverage.js`：`test.js` 檢查 DeepSeek Harness 的 `index.js` 會從打包的 `SKILL.md` 註冊 `use-sealos`，並去掉 frontmatter；`test-host-coverage.js` 檢查 Gemini／Qwen 只載入 `CLAUDE.md`、OpenClaw／CodeBuddy 的指向、`skills/` 符號連結、Brain 所需的兩個兄弟 skill 名稱，以及 README 有寫到的安裝指令。`AGENTS.md` 另列了 use-sealos 與 Kaniko 腳本的 Python unittest，以及改 host 清單時要跑的 `scripts/validate-host-distribution.py`。
+
+SkillSpector 靜態掃描（2026-11-14 台北時間，skillspector 2.12.0，`--no-llm`）針對 `plugins/sealos/skills` 下三個 skill 做遞迴掃描，合併結果 risk score 100、severity CRITICAL、recommendation DO_NOT_INSTALL；分析狀態 complete_with_caveats，各 skill 元件覆蓋率 100%（use-sealos 10／10、k8s-kaniko-job 3／3、sealos-deploy 1／1）。分項：k8s-kaniko-job 11 則（CRITICAL 1、HIGH 5、MEDIUM 5），recommendation DO_NOT_INSTALL；sealos-deploy risk 34、MEDIUM、recommendation CAUTION，3 類發現、6 筆紀錄（HIGH 5、MEDIUM 1）；use-sealos 10 類發現、100 筆紀錄（CRITICAL 1、HIGH 98、MEDIUM 1），recommendation DO_NOT_INSTALL。這是規則與模式掃描，不是已確認的產品漏洞。兩則 CRITICAL 都是腳本把環境變數組成 HTTP 請求再 `urlopen`，對齊 OAuth／Template API／GitHub API 這類部署流程。use-sealos 裡大量 HIGH 是文件與腳本出現 kubeconfig／KUBECONFIG 字樣（Credential Access），以及 `sealos-api.py` 使用 env／network／file_write，但 frontmatter 只宣告 Bash 工具允許清單。另有 `wait-app.sh` 的 `curl -k`（略過 TLS 驗證）。sealos-deploy 的「Never ask the user」命中 Autonomous Decision Making，對應託管模式的控制面流程。安裝前應自行評估，尤其是會寫入 `~/.sealos/kubeconfig`、呼叫 kubectl 與對外 HTTP。
+
+本則無影片，故無 GIF，也不另做互動示範。可對照 SEQ 0057（Superpowers）、0058（Matt Pocock Skills）等其他 skill 包的組織方式。
