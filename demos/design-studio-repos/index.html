@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10 個 repo 的產品設計管線（示範）</title>
+<style>
+  :root {
+    --bg:#0a1018; --panel:#121a26; --ink:#e8eef6; --muted:#8b9bb0;
+    --line:#243246; --amber:#f0a24a; --teal:#5ee0c8; --rose:#ef6f7c;
+    --ok:#7dce7a; --chip:#1a2533;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin:0; min-height:100vh; color:var(--ink);
+    font: 15px/1.55 ui-sans-serif, system-ui, "Noto Sans TC", sans-serif;
+    background:
+      radial-gradient(1200px 500px at 80% -10%, #1a2a22 0%, transparent 60%),
+      radial-gradient(800px 400px at 0% 100%, #1a2233 0%, transparent 55%),
+      var(--bg);
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 24px 20px 56px; }
+  .banner {
+    border:1px solid #3a2c16; background:#1a150c; color:#f3d7a4;
+    padding:10px 14px; border-radius:10px; font-size:13px; margin-bottom:18px;
+  }
+  h1 { font-size: 28px; letter-spacing:.02em; margin:0 0 6px; }
+  .sub { color:var(--muted); margin:0 0 22px; }
+  .counters {
+    display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin:0 0 22px;
+  }
+  .counter {
+    background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px 16px;
+  }
+  .counter b { display:block; font-size:28px; font-variant-numeric:tabular-nums; color:var(--amber); }
+  .counter span { color:var(--muted); font-size:13px; }
+  .stages { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 18px; }
+  .stages button {
+    appearance:none; border:1px solid var(--line); background:var(--chip); color:var(--ink);
+    border-radius:999px; padding:8px 14px; cursor:pointer; font:inherit;
+  }
+  .stages button[aria-pressed="true"] { border-color:var(--teal); color:var(--teal); background:#132822; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); gap:12px; }
+  .card {
+    text-align:left; background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    padding:14px 16px; color:inherit; cursor:pointer; font:inherit; width:100%;
+  }
+  .card[aria-pressed="true"] { border-color:var(--teal); box-shadow: inset 0 0 0 1px var(--teal); }
+  .card .k { display:flex; justify-content:space-between; gap:8px; align-items:baseline; }
+  .card h2 { font-size:16px; margin:0; }
+  .card .stage { font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--teal); }
+  .meta { display:flex; flex-wrap:wrap; gap:6px; margin:8px 0; }
+  .pill { font-size:11px; border-radius:999px; padding:2px 8px; border:1px solid var(--line); color:var(--muted); }
+  .pill.none { color:var(--rose); border-color:#4a2430; }
+  .pill.mit, .pill.apache { color:var(--ok); border-color:#264226; }
+  .note { color:var(--muted); font-size:13px; min-height:3.1em; }
+  .detail {
+    margin-top:20px; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:16px 18px;
+  }
+  .detail h3 { margin:0 0 8px; font-size:18px; }
+  .detail a { color:var(--teal); }
+  footer { margin-top:24px; color:var(--muted); font-size:12px; }
+  @media (max-width:700px){ .counters{grid-template-columns:1fr;} h1{font-size:22px;} }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="banner">這是介面示範，不是真實的產品工作台。星數、授權與合計都是快照（畫面 577.7K；2026-11-15 查證合計約 585.7k），不會即時更新，也不會連網。</div>
+    <h1>10 個 repo 的產品設計管線</h1>
+    <p class="sub">依 style → design → system → build → review 點開任一張卡片。授權以查證為準：10 個裡有 8 個是 MIT 或 Apache-2.0。</p>
+    <div class="counters">
+      <div class="counter"><b id="starHud">577.7K</b><span>畫面星數合計（快照，不是即時數字）</span></div>
+      <div class="counter"><b id="licHud">8 / 10</b><span>查證有 MIT 或 Apache-2.0 授權（畫面寫 9/10）</span></div>
+    </div>
+    <div class="stages" id="stages"></div>
+    <div class="grid" id="grid"></div>
+    <div class="detail" id="detail" hidden></div>
+    <footer>示範資料來自 2026-11-15 的畫面與查證快照。GitHub 連結只在你點下去時才會離開本頁。</footer>
+  </div>
+<script>
+const STAGES = [
+  {id:'style', label:'01 style'},
+  {id:'design', label:'02 design'},
+  {id:'system', label:'03 system'},
+  {id:'build', label:'04 build'},
+  {id:'review', label:'05 review'}
+];
+const REPOS = [
+  {n:'01', id:'ui-ux-pro-max-skill', stage:'style', license:'MIT', hud:'148.7K', snap:'149.5k', url:'https://github.com/nextlevelbuilder/ui-ux-pro-max-skill',
+   role:'先選風格、色盤與字體（畫面寫 80 styles、192 palettes）。',
+   extra:'查證當日 149,526 星，MIT。'},
+  {n:'02', id:'awesome-design-md', stage:'style', license:'MIT', hud:'127.3K', snap:'127.5k', url:'https://github.com/VoltAgent/awesome-design-md',
+   role:'把真實網站的 DESIGN.md 放進專案根目錄。畫面與查證都是 84 份。',
+   extra:'既有條目 SEQ 0028。星數快照 127.5k。'},
+  {n:'03', id:'designer-skills', stage:'design', license:'MIT', hud:'3.3K', snap:'3.4k', url:'https://github.com/Owl-Listener/designer-skills',
+   role:'涵蓋研究到 UX 策略與原型。本倉庫可數到 111 個 SKILL.md。',
+   extra:'README 另寫 marketplace 有 273 skills、76 commands、33 plugins，這是更廣的宣稱，不是本倉庫的 111 個檔案數。'},
+  {n:'04', id:'stitch-skills', stage:'design', license:'Apache-2.0', hud:'8.8K', snap:'8.9k', url:'https://github.com/google-labs-code/stitch-skills',
+   role:'給 Google Stitch 用的 skill／plugin 包（design、build、utilities）。',
+   extra:'不是只會匯出 DESIGN.md。查證 Apache-2.0。'},
+  {n:'05', id:'mcp-server-guide', stage:'system', license:'無授權標示', hud:'2.2K', snap:'2.2k', url:'https://github.com/figma/mcp-server-guide',
+   role:'Figma 官方的 MCP 使用指南，不是 MCP server 本身。',
+   extra:'畫面寫 Starter 每月 6 次讀取；官方文件查證當日改為每月最多 20 次 tool calls。指南倉庫本身也還沒改這句。'},
+  {n:'06', id:'astryx', stage:'system', license:'MIT', hud:'26.7K', snap:'28.2k', url:'https://github.com/meta/astryx',
+   role:'Meta 的開源設計系統，說明文寫 150+ React 元件，且仍是 Beta。',
+   extra:'README 確認 Currently in Beta。畫面 26.7K，查證 28,166 星。'},
+  {n:'07', id:'taste-skill', stage:'build', license:'MIT', hud:'114.4K', snap:'115.7k', url:'https://github.com/Leonxlnx/taste-skill',
+   role:'在送出前抓掉常見的通用 AI 頁面味道。',
+   extra:'既有條目 SEQ 0030。星數快照 115.7k。'},
+  {n:'08', id:'modern-web-guidance-src', stage:'build', license:'Apache-2.0', hud:'3.3K', snap:'6.1k', url:'https://github.com/GoogleChrome/modern-web-guidance-src',
+   role:'Chrome 用來把過時網頁寫法換成現行 API 的 skill 來源庫。',
+   extra:'畫面 3.3K 偏低；查證約 6.1k。已發布的 GoogleChrome/modern-web-guidance 是另一個倉庫。'},
+  {n:'09', id:'agent-skills', stage:'review', license:'無授權標示', hud:'34.0K', snap:'34.1k', url:'https://github.com/vercel-labs/agent-skills',
+   role:'Vercel 的 skill 包。畫面上的「100+ 規則」指其中的 web-design-guidelines，不是整個倉庫。',
+   extra:'既有條目 SEQ 0031。畫面把授權標成 MIT，查證當日倉庫沒有偵測到授權。'},
+  {n:'10', id:'impeccable', stage:'review', license:'Apache-2.0', hud:'109.0K', snap:'110.2k', url:'https://github.com/pbakaus/impeccable',
+   role:'24 個潤飾指令與 62 條偵測規則，用來抓 AI 味設計。',
+   extra:'既有條目 SEQ 0029。星數快照 110.2k。'}
+];
+let stage='all', current=null;
+const stagesEl=document.getElementById('stages');
+const grid=document.getElementById('grid');
+const detail=document.getElementById('detail');
+function pill(lic){
+  const cls=lic==='MIT'?'mit':lic==='Apache-2.0'?'apache':'none';
+  return `<span class="pill ${cls}">${lic}</span>`;
+}
+function renderStages(){
+  stagesEl.innerHTML='';
+  [{'id':'all','label':'全部階段'},...STAGES].forEach(s=>{
+    const b=document.createElement('button');
+    b.type='button'; b.textContent=s.label; b.setAttribute('aria-pressed', String(stage===s.id));
+    b.addEventListener('click',()=>{stage=s.id; render();});
+    stagesEl.appendChild(b);
+  });
+}
+function render(){
+  renderStages();
+  grid.innerHTML='';
+  REPOS.filter(r=>stage==='all'||r.stage===stage).forEach(r=>{
+    const c=document.createElement('button');
+    c.className='card'; c.type='button'; c.setAttribute('aria-pressed', String(current===r.id));
+    c.innerHTML=`<div class="k"><h2>${r.n}  ${r.id}</h2><span class="stage">${r.stage}</span></div>
+      <div class="meta">${pill(r.license)}<span class="pill">畫面 ${r.hud}</span><span class="pill">查證 ${r.snap}</span></div>
+      <p class="note">${r.role}</p>`;
+    c.addEventListener('click',()=>{current=r.id; show(r); render();});
+    grid.appendChild(c);
+  });
+}
+function show(r){
+  detail.hidden=false;
+  detail.innerHTML=`<h3>${r.n}  ${r.id}</h3>
+    <p>${r.role} ${r.extra}</p>
+    <p>授權：${r.license}　畫面星數：${r.hud}　2026-11-15 查證：${r.snap}</p>
+    <p><a href="${r.url}" target="_blank" rel="noopener">${r.url}</a></p>`;
+}
+render();
+</script>
+</body>
+</html>

@@ -61,3 +61,13 @@ Brody 上傳的 1 分 53 秒 Facebook Reel，男聲英文旁白，配樂是安�
 GIF：影片 1:14.5–1:17.5，Creatorverse 創作者節點網路（只裁上半部 App 畫面）。
 
 ▶ 互動 Demo：[開啟](../demos/creatorverse-network/) ⚠️（https://wiki.singularityengine.dev/demos/creatorverse-network/ ⚠️）
+
+### 0142　Andrey Superior（@andreysuperior）：Fable 5.2 團隊 agent 在 Meta Ads Manager 建立並發布活動（宣稱；Facebook 轉發）
+
+QuickTime 重播 Ads Manager 示範帳戶建立並發布活動；Fable／agent／沒人碰滑鼠的說法無法從畫面查證。標籤：宣稱待驗證・可信度中。來源：影片 98。
+
+Andrey Superior（@andreysuperior）的約 19.5 秒直式畫面，經 Facebook 轉發（1440×2560，30fps；info.json 的 timestamp 為 1794642498，即 2026-11-14 07:48:18 UTC、2026-11-14 15:48:18 Asia/Taipei；upload_date 欄為 20261114，是 UTC 日期）。Brian 於 2026-11-15 從電腦傳來 https://www.facebook.com/reel/1111517925213954 。Facebook 上傳帳號是 Ampornchai Maneesangsakorn，說明文是泰文評論（大意是廣告代理商接下來要怎麼辦，如果它已經能做到這種程度），不是原作者的英文說明。原片是 Andrey 的 X 貼文 https://x.com/andreysuperior/status/2121353793577369670 。Facebook 與 X 都沒有要留言關鍵字換東西，故不標引流。畫面疊了 Fable 5.2 + Meta Ads。從頭到尾看得到 QuickTime Player 的選單列，也就是在播一段 Ads Manager 的螢幕錄影，不是即時的 agent 操作介面；片中也沒有出現 Claude、Fable 或任何 agent 控制台。因此「Fable 5.2 帶一組 agent、沒有人碰滑鼠、就在 Ads Manager 裡建好並發布活動」這類說法，無法從這支影片本身查證。X 說明文還寫 this shit already made and saved me over $10,000，金額只出現在說明文、沒有出現在畫面，同樣未驗證。螢幕標題列寫 Demo Ad Account，旁邊有一組帳號數字，位址列也帶著對應參數；本則與 GIF 都已遮去，不抄寫。網站欄是 example 風格的示範網址（可見 harbordental.example 與 new-patients 一類路徑），不是已驗證的真實網站。這些都顯示這是示範廣告帳戶，不能當成真實投放或真實花費。畫面上的活動名稱是 Harbor Dental | Leads | New patients，文案也用了這個名稱與 New to Portland 一類句子。本則只把它當成示範帳戶裡的畫面文字，不把這個名稱連到任何真實診所或公司，也不另加外部商業連結。可見流程大致是：新建活動（Leads／CTA）、每日預算後來可見約 45 美元、受眾寫 Portland +15 mi 與 25–65+，同時開了 Advantage audience，地區仍見 United States；右側 Audience definition 的估計人數約 331,000,000–372,000,000，這個量級和「波特蘭 15 英里」對不上，比較像把範圍放到接近全國。接著是文案與素材（牙齒圖示、Welcoming new patients）、預覽、Draft ready for review，再出現 Publishing your campaign（1 campaign、3 ad sets、6 ads），最後有 Campaign published、廣告進入審核的提示。發布前沒有另外跳出人工核准閘門，也沒有再確認一次每日上限（只看到每日預算欄位）。把建立活動的步驟自動化，也不等於買得有效益。另外，用自動化手段操作 Meta 產品、且未經事先許可，會碰到平台條款風險；官方允許的程式化廣告路徑是 Marketing API，不是去驅動 Ads Manager 介面。見 https://www.facebook.com/legal/terms 與 https://developers.facebook.com/docs/marketing-apis 。本則不是操作教學，也不示範怎麼自動點擊。可對照 SEQ 0106（Fable 5.2 是 Anthropic 於 2026-11-09 發布的正式模型）、SEQ 0111（另一則疊 Fable 5.2 字樣、但沒示範實際流程的宣傳短片）、SEQ 0133（同一型號的概念分流動畫，同樣不是產品錄屏）。互動重現：https://wiki.singularityengine.dev/demos/meta-ads-agent-pipeline/ （六步虛構管線，有人工核准閘門與預算上限開關；這不是 Meta 的介面，也不會連網或刊登廣告）。配樂：有現場環境音與介面操作聲，曲名未標。GIF：0:12–0:19（已裁到筆電螢幕，並遮去帳號數字、付款列尾碼，以及既有活動的花費欄；https://wiki.singularityengine.dev/assets/gifs/v92-meta-ads-agent-pipeline.gif）。
+
+互動 Demo：[meta-ads-agent-pipeline](https://wiki.singularityengine.dev/demos/meta-ads-agent-pipeline/)
+
+![QuickTime 重播 Ads Manager：從文案預覽走到發布提示；帳號數字與既有花費欄已遮](../assets/gifs/v92-meta-ads-agent-pipeline.gif)

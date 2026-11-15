@@ -312,3 +312,25 @@ README 寫三條部署路徑都走 Sealos Template API：模板商店（稱 200+
 SkillSpector 靜態掃描（2026-11-14 台北時間，skillspector 2.12.0，`--no-llm`）針對 `plugins/sealos/skills` 下三個 skill 做遞迴掃描，合併結果 risk score 100、severity CRITICAL、recommendation DO_NOT_INSTALL；分析狀態 complete_with_caveats，各 skill 元件覆蓋率 100%（use-sealos 10／10、k8s-kaniko-job 3／3、sealos-deploy 1／1）。分項：k8s-kaniko-job 11 則（CRITICAL 1、HIGH 5、MEDIUM 5），recommendation DO_NOT_INSTALL；sealos-deploy risk 34、MEDIUM、recommendation CAUTION，3 類發現、6 筆紀錄（HIGH 5、MEDIUM 1）；use-sealos 10 類發現、100 筆紀錄（CRITICAL 1、HIGH 98、MEDIUM 1），recommendation DO_NOT_INSTALL。這是規則與模式掃描，不是已確認的產品漏洞。兩則 CRITICAL 都是腳本把環境變數組成 HTTP 請求再 `urlopen`，對齊 OAuth／Template API／GitHub API 這類部署流程。use-sealos 裡大量 HIGH 是文件與腳本出現 kubeconfig／KUBECONFIG 字樣（Credential Access），以及 `sealos-api.py` 使用 env／network／file_write，但 frontmatter 只宣告 Bash 工具允許清單。另有 `wait-app.sh` 的 `curl -k`（略過 TLS 驗證）。sealos-deploy 的「Never ask the user」命中 Autonomous Decision Making，對應託管模式的控制面流程。安裝前應自行評估，尤其是會寫入 `~/.sealos/kubeconfig`、呼叫 kubectl 與對外 HTTP。
 
 本則無影片，故無 GIF，也不另做互動示範。可對照 SEQ 0057（Superpowers）、0058（Matt Pocock Skills）等其他 skill 包的組織方式。
+
+### ⚠️ [Isaac Wong（@isaac.startup）：7 個 Claude Code 每日指令（/grill-me 等；留言 Claude 加社群）](https://www.facebook.com/groups/1317626560441303/posts/1436491405221484/) ⚠️
+
+宣傳圖列出 7 個每日指令；要留言 Claude 才加入社群，並預告免費課程
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| ⚠️ 引流 | — | ⚠️ [Facebook 貼文（2026-11-15）](https://www.facebook.com/groups/1317626560441303/posts/1436491405221484/) ⚠️ |
+
+Isaac Wong（@isaac.startup）在 Facebook 社團「台灣 Claude Taiwan」發的圖文貼文（⚠️ [社團貼文](https://www.facebook.com/groups/1317626560441303/posts/1436491405221484/)；Brian 於 2026-11-15 01:43 Asia/Taipei 經 LINE 傳來短網址 ⚠️ [share/p/14sjB2JYxbi](https://www.facebook.com/share/p/14sjB2JYxbi/)）。同一作者的 Threads 為 ⚠️ [@isaac.startup](https://www.threads.com/@isaac.startup)。貼文開頭寫 2025 年每天花 6 小時用 ChatGPT 存提示、2026 年改用 Claude Code、把重複工作寫成指令；這段個人經歷未查證。文中列出 7 個他說每天會用的指令，並在圖末宣傳即將更新的免費 Claude 課程（稱內容涵蓋 2026–2027），要留言「Claude」才免費加入社群，故標 ⚠️ 引流。這是靜態宣傳圖，不是操作錄屏。
+
+七個指令與來源如下：
+
+1. `/grill-me`（先想清楚再動手）：來自 Matt Pocock 的公開 skill，見 SEQ 0058（⚠️ [mattpocock/skills](https://github.com/mattpocock/skills) 的 `/grill-me`、`/grill-with-docs`）。
+2. `/造假檢測`（動筆前先審自己）：上傳者說是動筆前先查立場、親身經歷與矛盾，屬個人指令，未找到對應的公開 repo。
+3. `/last30days`（找出熱門主題）：圖上說明是輸入主題後在 X、Reddit 等平台找過去 30 天的熱門討論。公開名稱對得上的 repo 是 ⚠️ [mvanhorn/last30days-skill](https://github.com/mvanhorn/last30days-skill)（查證當日 2026-11-15 台北時間，GitHub API 67,648 星、5,948 fork，MIT；貼文沒有附這個網址，本則只寫很可能是這一份，不是已證實為他所裝的版本）。SkillSpector 2026-11-15 CRITICAL / DO_NOT_INSTALL (pattern-only, partial)。掃描看到 cookie／憑證輔助相關的模式命中（例如憑證路徑，以及把環境變數送進網路請求的資料流），這是規則與模式掃描，不是已確認的漏洞或利用證明。該 repo 的 README 自己也寫，要用你自己的 API key 與瀏覽器 session 才能解鎖部分平台。安裝前應自行評估。
+4. `/bullet-viral-post`（寫出高互動內容）：圖上寫「我自建的 Skill」，依品牌風格產生 Threads 內容再依回饋優化，屬個人指令，未找到對應公開 repo。
+5. `fable-mode`（快速做決定；畫面上沒有斜線）：名稱很普通、同名用法很多，無法對到單一公開 skill。
+6. `/content-repurpose`（一條長內容變多個素材）：同樣是常見名稱，無法對到單一公開 skill。
+7. `/eli5`（用最簡單的方式解釋）：是通用寫法，不是獨有的公開套件。
+
+本則因宣傳圖是行銷素材，故意沒有做 GIF，公開站也不放海報圖。沒有另做互動 demo（這則是指令清單，不是適合重製的操作畫面）。配樂：不適用（無影片）。

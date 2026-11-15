@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>虛構廣告活動管線（示範，不會刊登）</title>
+<style>
+  :root {
+    --bg: #0e141c;
+    --panel: #17202b;
+    --panel-2: #1d2836;
+    --line: #2b3b4d;
+    --text: #e8eef5;
+    --muted: #93a4b8;
+    --accent: #7dd3c0;
+    --accent-2: #f0c36e;
+    --danger: #f08a8a;
+    --ok: #8fd89a;
+    --shadow: 0 10px 30px rgba(0,0,0,.28);
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.5 system-ui, "Noto Sans TC", "Segoe UI", sans-serif; }
+  body { min-height: 100vh; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 24px 20px 64px; }
+  .banner {
+    background: linear-gradient(90deg, #1b3040, #2a2618);
+    border: 1px solid #3b5348;
+    color: #f4e7c3;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 14px;
+    margin-bottom: 22px;
+  }
+  h1 { font-size: 1.55rem; margin: 0 0 6px; letter-spacing: .02em; }
+  .sub { color: var(--muted); margin: 0 0 22px; }
+  .stats { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 22px; }
+  .stat {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    padding: 10px 14px; min-width: 140px;
+  }
+  .stat b { display: block; font-size: 1.1rem; color: var(--accent-2); }
+  .stat span { color: var(--muted); font-size: 12px; }
+  .steps { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+  .step-btn {
+    flex: 1 1 140px; background: var(--panel); color: var(--text);
+    border: 1px solid var(--line); border-radius: 999px; padding: 8px 10px;
+    cursor: pointer; font: inherit; text-align: left;
+  }
+  .step-btn[aria-current="step"] { border-color: var(--accent); background: #1a2f33; }
+  .step-btn .n { color: var(--accent); font-weight: 700; margin-right: 6px; }
+  .step-btn.done .n { color: var(--ok); }
+  .grid { display: grid; grid-template-columns: 1.3fr .9fr; gap: 16px; }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 18px 18px 16px; box-shadow: var(--shadow); }
+  h2 { font-size: 1.1rem; margin: 0 0 12px; }
+  label { display: block; color: var(--muted); font-size: 13px; margin: 10px 0 4px; }
+  input, select, textarea {
+    width: 100%; background: var(--panel-2); color: var(--text);
+    border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; font: inherit;
+  }
+  textarea { min-height: 90px; resize: vertical; }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .row > * { flex: 1 1 140px; }
+  .hint { color: var(--muted); font-size: 13px; margin-top: 8px; }
+  .warn { color: var(--danger); font-size: 13px; margin-top: 8px; }
+  .ok { color: var(--ok); font-size: 13px; margin-top: 8px; }
+  .toggle { display: flex; align-items: center; gap: 8px; margin-top: 12px; color: var(--text); }
+  .toggle input { width: auto; }
+  .actions { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+  button.primary, button.ghost {
+    border-radius: 10px; padding: 8px 14px; font: inherit; cursor: pointer; border: 1px solid var(--line);
+  }
+  button.primary { background: var(--accent); color: #0e141c; font-weight: 700; border-color: transparent; }
+  button.primary:disabled { opacity: .45; cursor: not-allowed; }
+  button.ghost { background: transparent; color: var(--text); }
+  .phone {
+    width: 230px; margin: 0 auto; background: #0a0d12; border: 8px solid #2a323c;
+    border-radius: 28px; padding: 16px 14px 20px; min-height: 360px;
+  }
+  .phone .brand { font-size: 11px; color: var(--muted); }
+  .phone .art {
+    height: 150px; border-radius: 14px; margin: 10px 0;
+    background: radial-gradient(circle at 50% 40%, #d9efe8, #3d6d62 70%);
+    display: flex; align-items: center; justify-content: center; font-size: 52px;
+  }
+  .phone h3 { margin: 0 0 6px; font-size: 16px; }
+  .phone p { margin: 0; color: #d5dde6; font-size: 13px; }
+  .log { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12px;
+    background: #10161d; border-radius: 10px; padding: 10px; color: #c9d6e2;
+    min-height: 120px; white-space: pre-wrap; }
+  .pills { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0; }
+  .pill { border: 1px solid var(--line); border-radius: 999px; padding: 2px 8px; font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="banner" role="note">這不是 Meta Ads Manager，也不會連網或刊登任何廣告。頁面上的預算、受眾與文案都是虛構示範。發布前必須打開人工核准；若開啟預算上限，超過上限就不能發布。</div>
+    <h1>虛構六步廣告活動管線</h1>
+    <p class="sub">Cedar Park Family Clinic（虛構診所）。步驟：目標 → 預算／受眾 → 文案 → 素材 → 預覽 → 發布。對應影片 98 的流程構想，畫面與品牌都是另外設計的。</p>
+    <div class="stats">
+      <div class="stat"><b id="budgetLabel">$40 / 日</b><span>示範預算（快照，不會扣款）</span></div>
+      <div class="stat"><b id="capLabel">上限 $50</b><span>預算上限開關</span></div>
+      <div class="stat"><b id="gateLabel">未核准</b><span>人工核准閘門</span></div>
+    </div>
+    <div class="steps" id="steps" role="tablist" aria-label="六個步驟"></div>
+    <div class="grid">
+      <section class="card" id="main"></section>
+      <aside class="card">
+        <h2>活動預覽</h2>
+        <div class="phone" aria-label="虛構手機預覽">
+          <div class="brand">CEDAR PARK · 示範版位</div>
+          <div class="art" aria-hidden="true">⌂</div>
+          <h3 id="prevHead">同一週就能預約</h3>
+          <p id="prevBody">Rivertown 的 Cedar Park Family Clinic 是虛構示範診所，歡迎新朋友線上預約。本則文案不會刊登。</p>
+        </div>
+        <p class="hint">預覽不會使用真實素材庫，也不送審。</p>
+        <h2 style="margin-top:18px">管線紀錄</h2>
+        <div class="log" id="log"></div>
+      </aside>
+    </div>
+  </div>
+<script>
+const STEPS = [
+  { id: "objective", n: "01", t: "目標" },
+  { id: "budget", n: "02", t: "預算／受眾" },
+  { id: "copy", n: "03", t: "文案" },
+  { id: "creative", n: "04", t: "素材" },
+  { id: "preview", n: "05", t: "預覽" },
+  { id: "publish", n: "06", t: "發布" },
+];
+const state = {
+  step: 0,
+  objective: "leads",
+  budget: 40,
+  capOn: true,
+  cap: 50,
+  place: "Rivertown +10 km",
+  age: "25–64",
+  headline: "同一週就能預約",
+  body: "Rivertown 的 Cedar Park Family Clinic 是虛構示範診所，歡迎新朋友線上預約。本則文案不會刊登。",
+  creative: "clinic",
+  approved: false,
+  published: false,
+};
+const logEl = () => document.getElementById("log");
+function log(msg){
+  const now = new Date().toLocaleTimeString("zh-Hant", { hour12: false, timeZone: "Asia/Taipei" });
+  logEl().textContent = `[${now} Asia/Taipei] ${msg}\n` + logEl().textContent;
+}
+function syncStats(){
+  document.getElementById("budgetLabel").textContent = `$${state.budget} / 日`;
+  document.getElementById("capLabel").textContent = state.capOn ? `上限 $${state.cap}` : "上限關閉";
+  document.getElementById("gateLabel").textContent = state.published ? "已示範發布" : (state.approved ? "已核准" : "未核准");
+  document.getElementById("prevHead").textContent = state.headline;
+  document.getElementById("prevBody").textContent = state.body;
+  const art = document.querySelector(".phone .art");
+  art.textContent = state.creative === "smile" ? "☺" : state.creative === "calendar" ? "📅" : "⌂";
+}
+function overCap(){ return state.capOn && Number(state.budget) > Number(state.cap); }
+function canPublish(){ return state.approved && !overCap() && !state.published; }
+function renderSteps(){
+  const box = document.getElementById("steps");
+  box.innerHTML = STEPS.map((s,i) => `<button type="button" class="step-btn${i<state.step?" done":""}" ${i===state.step?'aria-current="step"':""} data-i="${i}"><span class="n">${s.n}</span>${s.t}</button>`).join("");
+  box.querySelectorAll("button").forEach(b => b.onclick = () => { state.step = +b.dataset.i; render(); });
+}
+function go(i){ state.step = Math.max(0, Math.min(STEPS.length-1, i)); render(); }
+function mainHTML(){
+  const s = STEPS[state.step].id;
+  if (s === "objective") return `
+    <h2>01 選擇目標</h2>
+    <label for="objective">活動目標</label>
+    <select id="objective">
+      <option value="leads" ${state.objective==="leads"?"selected":""}>潛在顧客（表單）</option>
+      <option value="traffic" ${state.objective==="traffic"?"selected":""}>網站流量</option>
+      <option value="awareness" ${state.objective==="awareness"?"selected":""}>品牌認知</option>
+    </select>
+    <p class="hint">這只是示範選單，不會對應任何廣告平台的官方目標代碼。</p>
+    <div class="actions"><button class="primary" id="next">下一步</button></div>`;
+  if (s === "budget") return `
+    <h2>02 預算與受眾</h2>
+    <div class="row">
+      <div><label for="budget">每日預算（美元，示範）</label><input id="budget" type="number" min="1" max="500" value="${state.budget}"></div>
+      <div><label for="cap">預算上限</label><input id="cap" type="number" min="1" max="500" value="${state.cap}" ${state.capOn?"":"disabled"}></div>
+    </div>
+    <label class="toggle"><input id="capOn" type="checkbox" ${state.capOn?"checked":""}> 打開預算上限（超過就不能發布）</label>
+    <div class="row">
+      <div><label for="place">地區（虛構）</label><input id="place" value="${state.place}"></div>
+      <div><label for="age">年齡</label><input id="age" value="${state.age}"></div>
+    </div>
+    <p class="hint">受眾估計若出現上億人，就和「一小圈地區」互相矛盾，那通常代表範圍被放得太寬。本頁不計算真實觸及。</p>
+    <p class="${overCap()?"warn":"ok"}" id="capMsg">${overCap()?"已超過上限，發布會被擋住。":"目前在上限內（或上限已關）。"}</p>
+    <div class="actions"><button class="ghost" id="prev">上一步</button><button class="primary" id="next">下一步</button></div>`;
+  if (s === "copy") return `
+    <h2>03 文案</h2>
+    <label for="headline">標題</label>
+    <input id="headline" value="${state.headline.replaceAll('"','&quot;')}">
+    <label for="body">主要文字</label>
+    <textarea id="body">${state.body}</textarea>
+    <p class="hint">文案是這個示範頁現寫的，不是任何真實診所或廣告帳戶的稿。</p>
+    <div class="actions"><button class="ghost" id="prev">上一步</button><button class="primary" id="next">下一步</button></div>`;
+  if (s === "creative") return `
+    <h2>04 素材</h2>
+    <label for="creative">示範插圖</label>
+    <select id="creative">
+      <option value="clinic" ${state.creative==="clinic"?"selected":""}>診所門面（抽象）</option>
+      <option value="smile" ${state.creative==="smile"?"selected":""}>微笑記號</option>
+      <option value="calendar" ${state.creative==="calendar"?"selected":""}>預約日曆</option>
+    </select>
+    <p class="hint">沒有上傳列，也不會連到任何素材庫。</p>
+    <div class="actions"><button class="ghost" id="prev">上一步</button><button class="primary" id="next">下一步</button></div>`;
+  if (s === "preview") return `
+    <h2>05 預覽</h2>
+    <div class="pills">
+      <span class="pill">目標：${state.objective}</span>
+      <span class="pill">預算：$${state.budget}/日</span>
+      <span class="pill">${state.place} · ${state.age}</span>
+    </div>
+    <p class="hint">右邊是同一則卡片的示意預覽。這一步只是給人看，還不能發布。</p>
+    <div class="actions"><button class="ghost" id="prev">上一步</button><button class="primary" id="next">去發布閘門</button></div>`;
+  const blocked = overCap() ? "預算超過上限，請先調低預算或關掉上限。" : (!state.approved ? "請先勾選人工核准。" : (state.published ? "已在這個示範頁標記為發布。沒有廣告被送出。" : "核准已開，可以做一次示範發布。"));
+  return `
+    <h2>06 發布閘門</h2>
+    <label class="toggle"><input id="approved" type="checkbox" ${state.approved?"checked":""}> 我已人工核准這則虛構活動</label>
+    <p class="${canPublish()||state.published?"ok":"warn"}">${blocked}</p>
+    <p class="hint">真實的廣告帳戶不該讓 agent 直接按發布。這個開關是示範用的人機閘門。</p>
+    <div class="actions">
+      <button class="ghost" id="prev">上一步</button>
+      <button class="primary" id="publish" ${canPublish()?"":"disabled"}>示範發布</button>
+    </div>`;
+}
+function hook(){
+  const q = id => document.getElementById(id);
+  if (q("objective")) q("objective").onchange = e => { state.objective = e.target.value; log("目標改為 "+state.objective); };
+  if (q("budget")) q("budget").oninput = e => { state.budget = +e.target.value; syncStats(); renderKeep(); };
+  if (q("cap")) q("cap").oninput = e => { state.cap = +e.target.value; syncStats(); renderKeep(); };
+  if (q("capOn")) q("capOn").onchange = e => { state.capOn = e.target.checked; syncStats(); renderKeep(); };
+  if (q("place")) q("place").oninput = e => state.place = e.target.value;
+  if (q("age")) q("age").oninput = e => state.age = e.target.value;
+  if (q("headline")) q("headline").oninput = e => { state.headline = e.target.value; syncStats(); };
+  if (q("body")) q("body").oninput = e => { state.body = e.target.value; syncStats(); };
+  if (q("creative")) q("creative").onchange = e => { state.creative = e.target.value; syncStats(); };
+  if (q("approved")) q("approved").onchange = e => { state.approved = e.target.checked; log(state.approved?"人工核准已打開":"人工核准已關閉"); syncStats(); renderKeep(); };
+  if (q("next")) q("next").onclick = () => go(state.step+1);
+  if (q("prev")) q("prev").onclick = () => go(state.step-1);
+  if (q("publish")) q("publish").onclick = () => {
+    if (!canPublish()) return;
+    state.published = true;
+    log("示範發布完成：沒有連網，也沒有廣告被送出。");
+    syncStats(); render();
+  };
+}
+function renderKeep(){
+  // re-render only cap message / publish button state without resetting focus if possible
+  render();
+}
+function render(){
+  renderSteps();
+  document.getElementById("main").innerHTML = mainHTML();
+  hook();
+  syncStats();
+}
+log("示範頁已載入。所有數字都是快照，不會連網。");
+render();
+</script>
+</body>
+</html>

@@ -718,5 +718,55 @@
     "duration": 6,
     "size_bytes": 497036,
     "what_it_shows": "Saga 圖卡 2/6–3/6：本地步驟與補償（Refund, not rollback；Consistent）再接到事件協同"
+  },
+  {
+    "file": "v89-algory-ui.gif",
+    "video_number": "影片 94",
+    "entry_name": "ALGORY：「打造自動化避險基金第 289 天」",
+    "reel_url": "https://www.facebook.com/reel/1127435123333312",
+    "segment_start": 20.2,
+    "duration": 6.2,
+    "size_bytes": 2102991,
+    "what_it_shows": "紅色 Algory 介面 0:20–0:26：generation 環、權益曲線與策略點圖；已避開前半段 HUD 美元數字與截斷錢包"
+  },
+  {
+    "file": "v90-claude-code-subagent-tip.gif",
+    "video_number": "影片 95",
+    "entry_name": "DeepResource.ai：Claude Code Subagent Tip（Sonnet 寫碼／Haiku swarm／Opus advisor／JEV fork）",
+    "reel_url": "https://www.facebook.com/reel/1122824923965641",
+    "segment_start": 8.0,
+    "duration": 6.2,
+    "size_bytes": 2053418,
+    "what_it_shows": "CLAUDE CODE SUBAGENT TIP 看板 0:08–0:14：節點圖、htop、router.jsonl 與計數器在跳動"
+  },
+  {
+    "file": "v91-design-studio-repos.gif",
+    "video_number": "影片 97",
+    "entry_name": "Altair AI：10 個 repo 組成產品設計工作室",
+    "reel_url": "https://www.facebook.com/reel/1459698966355266",
+    "segment_start": 15.0,
+    "duration": 8.0,
+    "size_bytes": 2494414,
+    "what_it_shows": "DESIGN STUDIO 概念看板 0:15–0:23：從 09/10 走到 10/10、畫面合計 577.7K；已裁掉底部 Follow Altair AI 橫幅"
+  },
+  {
+    "file": "v92-meta-ads-agent-pipeline.gif",
+    "video_number": "影片 98",
+    "entry_name": "Andrey Superior（@andreysuperior）：Fable 5.2 團隊 agent 在 Meta Ads Manager 建立並發布活動（宣稱；Facebook 轉發）",
+    "reel_url": "https://www.facebook.com/reel/1111517925213954",
+    "segment_start": 12.0,
+    "duration": 7.0,
+    "size_bytes": 1127256,
+    "what_it_shows": "Ads Manager 錄影 0:12–0:19：文案預覽、Draft ready for review、Publishing your campaign 到 Campaign published；已裁到筆電螢幕，並遮去帳號數字、付款列與既有花費欄"
+  },
+  {
+    "file": "v93-gods-eye-view.gif",
+    "video_number": "影片 99",
+    "entry_name": "David Ooi：God's Eye View 開源 3D 地球 OSINT 儀表板（bilawalsidhu/gods-eye-view）",
+    "reel_url": "https://www.facebook.com/reel/1123871826917666/",
+    "segment_start": 3.0,
+    "duration": 8.0,
+    "size_bytes": 2728977,
+    "what_it_shows": "地球全景、Starlink 飛過吉隆坡、NIFC 火場範圍與 GitHub 頁；已略過 TfL 監視器特寫"
   }
 ]

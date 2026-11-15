@@ -20,15 +20,15 @@ Describe a page and it writes one HTML file (Vercel)
 
 ### [Awesome DESIGN.md](https://github.com/VoltAgent/awesome-design-md)
 
-Design systems from 73 real sites, so AI can follow them when it builds UI
+Design systems from 84 real sites, so AI can follow them when it builds UI
 
 ![Awesome DESIGN.md GitHub preview](https://opengraph.githubassets.com/1/VoltAgent/awesome-design-md)
 
 | Credibility | Stars | Source |
 | --- | --- | --- |
-| — | 124.7k | [Video 9](https://www.facebook.com/reel/1780228483203385) |
+| — | 127.5k (2026-11-15) | [Video 9](https://www.facebook.com/reel/1780228483203385); [Video 97](https://www.facebook.com/reel/1459698966355266) |
 
-VoltAgent collected DESIGN.md files from 73 real sites (Stripe, Linear, and others). Drop one into a project and Claude follows a real design system instead of an AI look.
+VoltAgent collected DESIGN.md files from real sites (Stripe, Linear, and others). Drop one into a project and Claude follows a real design system instead of an AI look. Checked 2026-11-15: 84 files, 127.5k stars (Video 9 originally said 73 files and 124.7k). See also SEQ 0141.
 
 ### [Impeccable](https://github.com/pbakaus/impeccable)
 
@@ -38,9 +38,9 @@ Commands and rules that catch AI-flavored design problems
 
 | Credibility | Stars | Source |
 | --- | --- | --- |
-| — | 97.2k | [Video 9](https://www.facebook.com/reel/1780228483203385) |
+| — | 110.2k (2026-11-15) | [Video 9](https://www.facebook.com/reel/1780228483203385); [Video 97](https://www.facebook.com/reel/1459698966355266) |
 
-24 design commands (/impeccable audit, polish, bolder, quieter, and others) plus 59 rules. It specifically catches gradient headlines, emoji icons, and using Inter for everything. Apache-2.0.
+24 design commands (/impeccable audit, polish, bolder, quieter, and others) plus 62 rules. It specifically catches gradient headlines, emoji icons, and using Inter for everything. Apache-2.0. Checked 2026-11-15: 62 rules, 110.2k stars (Video 9 originally said 59 rules and 97.2k). See also SEQ 0141.
 
 ![A UI exploded into stacked glass planes in 3D perspective, with red warning labels popping in one by one. Recreate it with CSS perspective, rotateX/rotateZ, and translateZ layers.](../../assets/gifs/v09-design-plugins-3d-layer-ui.gif)
 
@@ -54,9 +54,9 @@ A Claude skill that sets design taste with three parameters
 
 | Credibility | Stars | Source |
 | --- | --- | --- |
-| — | 106.4k | [Video 9](https://www.facebook.com/reel/1780228483203385) |
+| — | 115.7k (2026-11-15) | [Video 9](https://www.facebook.com/reel/1780228483203385); [Video 97](https://www.facebook.com/reel/1459698966355266) |
 
-Set a design style with bold / motion / density so Claude produces work in your taste. MIT.
+Set a design style with bold / motion / density so Claude produces work in your taste. MIT. Checked 2026-11-15: 115.7k stars (Video 9 originally said 106.4k). See also SEQ 0141.
 
 ### [Web Design Guidelines (Vercel skill)](https://github.com/vercel-labs/agent-skills/tree/main/skills/web-design-guidelines)
 
@@ -66,9 +66,9 @@ A skill that checks web usability the way a UI linter would
 
 | Credibility | Stars | Source |
 | --- | --- | --- |
-| — | 33.3k (agent-skills) | [Video 9](https://www.facebook.com/reel/1780228483203385) |
+| — | 34.1k (agent-skills, 2026-11-15) | [Video 9](https://www.facebook.com/reel/1780228483203385); [Video 97](https://www.facebook.com/reel/1459698966355266) |
 
-A skill inside vercel-labs/agent-skills. It works like a UI linter: it catches disabled zoom, hit targets under 24px, and submits with no loading state.
+A skill inside vercel-labs/agent-skills. It works like a UI linter: it catches disabled zoom, hit targets under 24px, and submits with no loading state. The “100+ rules” often shown on screen refers to this web-design-guidelines skill, not the whole agent-skills pack. Checked 2026-11-15: 34.1k stars (Video 9 originally said 33.3k); no license was detected on the repo that day. See also SEQ 0141.
 
 ### [Apex: a JARVIS-style AI chief-of-staff interface](https://github.com/RubenM1990/APEX-UI)
 
@@ -322,3 +322,32 @@ The top bar shows a private LAN mid-control address, which this entry does not p
 SkillSpector static scan (2026-11-13, Asia/Taipei, skillspector 2.12.0, --no-llm, commit 09b9be5): the scan covered the public add-on pack weidaye1122/ha-bridge-addon, not the closed product image. This repo is not a skill / MCP package; 27 issues (6 HIGH, 21 MEDIUM), all in release/ and tests/ (for example env passing, subprocess, and a directory-delete in candidate.py, verify_addon_upgrade.sh, and test_release_recovery.py); risk score 100, severity CRITICAL, recommendation DO_NOT_INSTALL, max_issue_severity HIGH; coverage 100% (22 / 22 components, status complete). The main application is not in this repo, and its Docker image was not scanned. GitHub API that day: 4 stars on the add-on repo; last push 10:01 Asia/Taipei on 2026-11-10, commit message Add-on 0.8.6-1. Music: not labeled.
 
 ![HA Bridge isometric 3D floor-plan dashboard with lights turning on, top bar cropped to hide a private LAN mid-control URL](../../assets/gifs/v81-ha-bridge.gif)
+
+### 0141　Altair AI: a 10-repo product design studio
+
+A concept HUD lines up ten design repos as style → design → system → build → review. The real license count is 8/10, and the on-screen total of 577.7K is a snapshot. Tag: Concept animation · high confidence. Source: Video 97.
+
+A roughly 24-second vertical Facebook Reel from Altair AI (1080×1468). The info.json timestamp is 1794678769, which is 2026-11-14 17:52:49 UTC / 2026-11-15 01:52 Asia/Taipei; the upload_date field is 20261114, the UTC date. Brian sent the short URL https://www.facebook.com/share/r/1FqZxugmJ7/ via LINE at 2026-11-15 09:05 Asia/Taipei, which resolves to https://www.facebook.com/reel/1459698966355266. The pictures are a stylized DESIGN STUDIO concept HUD, not a recording of a real product. The end card says Follow Altair AI, and the caption has a subscribe link; both are ordinary follow/subscribe calls, not a comment-a-keyword hook, so this entry is not marked as gated bait.
+
+The caption says “Nine of ten repos ship under MIT or Apache.” The on-screen LICENSE panel reads MIT 6, Apache-2.0 3, and NONE 1 (mcp-server-guide), with MIT·APACHE 9/10 in the header. A 2026-11-15 GitHub API check finds 8/10 actually licensed: ui-ux-pro-max-skill, awesome-design-md, designer-skills, stitch-skills, astryx, taste-skill, modern-web-guidance-src, and impeccable (five MIT, three Apache-2.0). figma/mcp-server-guide and vercel-labs/agent-skills have no detected license; the HUD still tags agent-skills as MIT.
+
+The five stages (style → design → system → build → review) map to the ten repos. The on-screen star total of 577.7K is the sum of the numbers on that HUD, not a live total (the API sum the same day was 585,734, about 585.7k). HUD / checked figures (2026-11-15, Taipei time):
+
+1. [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) (style) 148.7K / 149.5k, MIT. The HUD says 80 styles and 192 palettes.
+2. [awesome-design-md](https://github.com/VoltAgent/awesome-design-md) (style) 127.3K / 127.5k, MIT, 84 DESIGN.md files. This is existing SEQ 0028; this filing updates the count and stars to 84 / 127.5k.
+3. [designer-skills](https://github.com/Owl-Listener/designer-skills) (design) 3.3K / 3.4k, MIT. This repo contains 111 SKILL.md files. The README also claims a marketplace of 273 skills, 76 commands, and 33 plugins; that is a broader claim.
+4. [stitch-skills](https://github.com/google-labs-code/stitch-skills) (design) 8.8K / 8.9k, Apache-2.0. This is a Stitch skills/plugin pack (stitch-design, stitch-build, stitch-utilities, and others), not just a DESIGN.md exporter.
+5. [mcp-server-guide](https://github.com/figma/mcp-server-guide) (system) 2.2K / 2.2k, no license shown. This is Figma’s official guide to the MCP server, not the server itself. The HUD, the caption, and that guide’s README still say Starter gets 6 reads a month. Official docs checked the same day say up to 20 tool calls per month: [Figma MCP rate limits](https://developers.figma.com/docs/figma-mcp-server/rate-limits-access/).
+6. [astryx](https://github.com/meta/astryx) (system) 26.7K / 28.2k, MIT. Meta’s open-source design system. The caption says 150+ React components; the README says it is currently in Beta.
+7. [taste-skill](https://github.com/Leonxlnx/taste-skill) (build) 114.4K / 115.7k, MIT. Existing SEQ 0030; this filing updates the stars to 115.7k.
+8. [modern-web-guidance-src](https://github.com/GoogleChrome/modern-web-guidance-src) (build) the HUD’s 3.3K is low; the check is about 6.1k (6,067), Apache-2.0. The published [GoogleChrome/modern-web-guidance](https://github.com/GoogleChrome/modern-web-guidance) is a separate repo (15,288 stars that day). Do not treat them as one repo.
+9. [agent-skills](https://github.com/vercel-labs/agent-skills) (review) 34.0K / 34.1k, no license shown (the HUD’s MIT tag is wrong). Existing SEQ 0031. The “100+ rules” on screen is the web-design-guidelines skill inside the pack, not the whole pack. This filing updates the stars to 34.1k.
+10. [impeccable](https://github.com/pbakaus/impeccable) (review) 109.0K / 110.2k, Apache-2.0. The HUD says 24 polish commands and 62 detector rules. Existing SEQ 0029; this filing updates the rule count and stars to 62 / 110.2k.
+
+See also SEQ 0028–0031.
+
+SkillSpector static scan (2026-11-15, Taipei time, skillspector 2.12.0, --no-llm): (1) nextlevelbuilder/ui-ux-pro-max-skill (commit d643997): scan pending (timed out at 180 seconds, no report). (2) Owl-Listener/designer-skills (commit 9a6930c): score 67, severity HIGH, recommendation DO_NOT_INSTALL; 5 issues (2 HIGH, 3 MEDIUM); coverage 99.5% (205 of 220 components fully inspected, 1 partially inspected), status partial. (3) google-labs-code/stitch-skills (commit 0337446): score 100, severity CRITICAL, recommendation DO_NOT_INSTALL; 149 issues (3 HIGH, 144 MEDIUM, 2 LOW); coverage 93.3% (83 of 103 components fully inspected, 6 partially inspected), status partial. (4) figma/mcp-server-guide (commit 5f3024c): scan pending (timed out at 180 seconds, no report). (5) GoogleChrome/modern-web-guidance-src (commit 5e5cd33): scan pending (timed out at 180 seconds, no report). (6) meta/astryx (commit 16fe6a8): scan pending (timed out at 180 seconds, no report). These are rule-and-pattern scans, not proof of a confirmed vulnerability.
+
+Interactive recreation: [design-studio-repos](https://wiki.singularityengine.dev/demos/design-studio-repos/) (five stages and ten clickable repo cards; stars and licenses are labelled as a snapshot; no network calls). Music: there is a soundtrack, but the track is not labelled.
+
+![DESIGN STUDIO concept board of ten repos, on-screen total 577.7K](../../assets/gifs/v91-design-studio-repos.gif)

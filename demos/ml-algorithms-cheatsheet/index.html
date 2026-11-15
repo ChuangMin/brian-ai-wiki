@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>經典機器學習問題怎麼分？（SEQ 0138 教學板）</title>
+<style>
+  :root {
+    --bg: #f4efe6;
+    --ink: #1c1914;
+    --muted: #5d564c;
+    --paper: #fffaf2;
+    --line: #d9d0c2;
+    --teal: #0f6f6a;
+    --teal-2: #14827c;
+    --rust: #b1492e;
+    --gold: #c48a2a;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--ink); }
+  body {
+    font-family: Georgia, "Songti TC", "Noto Serif TC", "Times New Roman", serif;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+  a { color: var(--teal); }
+  a:hover { color: var(--rust); }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 18px 16px 48px; }
+  .home { font-family: "Segoe UI", "PingFang TC", "Noto Sans TC", sans-serif; font-size: 12px; color: var(--muted); text-decoration: none; }
+  h1 { font-size: 28px; margin: 10px 0 6px; letter-spacing: .01em; }
+  h1 small { display: block; font-weight: 400; font-size: 14px; color: var(--muted); margin-top: 6px; font-family: "Segoe UI", "PingFang TC", "Noto Sans TC", sans-serif; }
+  .banner {
+    font-family: "Segoe UI", "PingFang TC", "Noto Sans TC", sans-serif;
+    background: #fff3d8; border: 1px solid #e4c37a; border-radius: 8px;
+    padding: 8px 12px; font-size: 13px; margin: 12px 0 18px; color: #5a3e08;
+  }
+  .ask {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 16px;
+    padding: 18px 16px 16px; box-shadow: 0 8px 24px rgba(40,30,10,.05);
+  }
+  .ask h2 {
+    margin: 0 0 4px; font-size: 22px; text-align: center;
+  }
+  .ask p.lead {
+    margin: 0 0 14px; text-align: center; color: var(--muted); font-size: 14px;
+    font-family: "Segoe UI", "PingFang TC", "Noto Sans TC", sans-serif;
+  }
+  .choices {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  }
+  @media (max-width: 700px) { .choices { grid-template-columns: 1fr; } }
+  .choices button {
+    font: inherit; text-align: left; cursor: pointer;
+    background: #fbf7f0; border: 1px solid var(--line); border-radius: 12px;
+    padding: 12px 14px; color: var(--ink);
+  }
+  .choices button:hover, .choices button.on {
+    border-color: var(--teal); background: #e7f4f2;
+  }
+  .choices button:focus-visible, a:focus-visible, .back:focus-visible {
+    outline: 2px solid var(--gold); outline-offset: 2px;
+  }
+  .choices b { display: block; font-size: 16px; }
+  .choices span {
+    display: block; font-size: 13px; color: var(--muted); margin-top: 3px;
+    font-family: "Segoe UI", "PingFang TC", "Noto Sans TC", sans-serif;
+  }
+  .detail { display: none; margin-top: 16px; }
+  .detail.show { display: block; }
+  .card {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 16px;
+    padding: 18px 18px 16px;
+  }
+  .card h3 { margin: 0 0 8px; font-size: 22px; }
+  .card .tag {
+    font-family: "Segoe UI", "PingFang TC", "Noto Sans TC", sans-serif;
+    display: inline-block; font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--teal); border: 1px solid #b7d9d6; border-radius: 999px; padding: 2px 8px; margin-bottom: 8px;
+  }
+  .card p { margin: 0 0 10px; font-size: 16px; }
+  .card ul { margin: 0; padding-left: 1.2em; font-family: "Segoe UI", "PingFang TC", "Noto Sans TC", sans-serif; font-size: 14px; }
+  .card li { margin: 0 0 6px; }
+  .back {
+    font-family: "Segoe UI", "PingFang TC", "Noto Sans TC", sans-serif;
+    margin-top: 14px; background: transparent; border: 0; color: var(--teal);
+    cursor: pointer; font-size: 14px; padding: 0;
+  }
+  .fine {
+    margin-top: 20px; font-size: 13px; color: var(--muted);
+    font-family: "Segoe UI", "PingFang TC", "Noto Sans TC", sans-serif;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="home" href="../">← 圖表演示</a>
+  <h1>經典機器學習問題怎麼分？<small>依 SEQ 0138 做的教學分流，版面與用詞都是另寫的，不是官方海報翻製</small></h1>
+  <div class="banner" role="status">這是自製的互動分流說明，版面與用詞都另外寫過，不是 Microsoft 2021 演算法表的複製。建議只當起點，不是唯一答案。</div>
+  <div class="ask" id="ask">
+    <h2>你現在想解決的是哪一種問題？</h2>
+    <p class="lead">先選一類。每類都有簡短說明，並列出常見做法（含表上沒有的較新方法）。這些是經驗法則，同一份資料往往值得多試幾種。</p>
+    <div class="choices" id="choices"></div>
+    <div class="detail" id="detail"></div>
+  </div>
+  <p class="fine">
+    八類問題的分法，參考 Microsoft 在 2021 年 7 月為 Azure Machine Learning designer 發布的
+    <a href="https://learn.microsoft.com/en-us/azure/machine-learning/algorithm-cheat-sheet?view=azureml-api-1">Machine Learning Algorithm Cheat Sheet</a>
+    （<a href="https://download.microsoft.com/download/3/5/b/35bb997f-a8c7-485d-8c56-19444dafd757/azure-machine-learning-algorithm-cheat-sheet-july-2021.pdf">官方 PDF</a>）。
+    那張表是給經典 SDK v1 模組的入門建議，Microsoft 寫明只是大約的經驗法則；該 SDK 已於 2025-03-31 棄用，支援在 2026-06-30 結束。
+    本頁補充了 XGBoost、LightGBM、DBSCAN 等當時表上沒有的方法，也把 One-vs-Rest／One-vs-One 標成策略，而不是獨立演算法。
+    來源影片：<a href="https://www.facebook.com/reel/1502253031965145">影片 96／SEQ 0138</a>。
+  </p>
+</div>
+<script>
+(function () {
+  "use strict";
+  var FAMILIES = [
+    {
+      id: "text",
+      title: "從文字裡取出意思",
+      hint: "主題、關鍵詞、把句子變成可用的特徵",
+      tag: "文字",
+      body: "當輸入主要是句子或文件，目標是理解內容、找出主題，或先把文字變成模型能用的數字特徵。許多所謂文字模組其實是前處理：切詞、n-gram、雜湊、清停用詞，本身還不是最終的預測模型。",
+      items: [
+        "主題模型，例如 LDA，用來把相似文件歸成幾組主題。",
+        "特徵做法：n-gram、TF-IDF、特徵雜湊；較新的選擇是句子或文件的嵌入向量。",
+        "前處理：正規化大小寫、去停用詞、詞幹／詞形還原。這些步驟通常要在分類或迴歸之前做。",
+        "後續任務（情緒、實體、翻譯等）再接到分類、序列或生成模型。"
+      ]
+    },
+    {
+      id: "binary",
+      title: "在兩個答案裡選一個",
+      hint: "是／否、通過／退回、會不會流失",
+      tag: "二分類",
+      body: "每筆資料只會落在兩個標籤之一。適合是非題，但若兩類數量差很多，或特徵非常多，選模型與評估方式都要跟著調整。",
+      items: [
+        "線性起點：邏輯迴歸、線性 SVM、平均感知器。特徵不多、需要速度快時常常夠用。",
+        "樹模型：決策樹、隨機森林、梯度提升（包含較新的 XGBoost、LightGBM、CatBoost）。",
+        "神經網路適合資料量大、特徵關係比較彎的情況，訓練通常較久。",
+        "先看正確率不夠，還要看精確率、召回率或校準後的機率。"
+      ]
+    },
+    {
+      id: "multi",
+      title: "在多個答案裡選一個",
+      hint: "種類、科別、評等、故障類型",
+      tag: "多分類",
+      body: "標籤超過兩個，而且每筆資料通常只屬於其中一類。可以直接用天生支援多類的模型，也可以把多個二分類器組合起來。",
+      items: [
+        "直接多類：多類邏輯迴歸、隨機森林、梯度提升（同樣可用 XGBoost／LightGBM）、神經網路。",
+        "One-vs-Rest（One-vs-All）與 One-vs-One 是組合策略，不是單獨一種演算法；表現取決於你選的二分類器，也跟類別是否失衡有關。",
+        "類別很多或很不均時，先檢查切分方式與評估指標，不要只看總正確率。"
+      ]
+    },
+    {
+      id: "reg",
+      title: "預測一個數字",
+      hint: "價格、需求、溫度、等待時間",
+      tag: "迴歸",
+      body: "目標是連續值或計數，而不是類別名稱。先想清楚誤差該怎麼算：平均誤差、極端值，還是整段分布。",
+      items: [
+        "線性迴歸、貝氏線性迴歸：快、好解釋，資料不大時是穩妥起點。",
+        "Poisson 或計數模型適合「發生了幾次」這類目標。",
+        "樹模型與梯度提升（含 XGBoost、LightGBM）常能處理非線性與交叉特徵。分位數迴歸則用來估計區間，而不只是平均值。",
+        "神經網路在資料量足夠時有用，但需要較長的訓練與調整。"
+      ]
+    },
+    {
+      id: "anom",
+      title: "找出看起來不尋常的點",
+      hint: "詐欺、故障前兆、異常流量",
+      tag: "異常偵測",
+      body: "重點通常不是「屬於哪一類」，而是「跟平常差多少」。正例往往很少，所以一般的分類正確率很容易誤導。",
+      items: [
+        "單類 SVM、PCA 或重建誤差，適合先畫一條「正常」的邊界。",
+        "較常見的後續選擇還有 Isolation Forest、LOF，以及用自編碼器看重建誤差。",
+        "特徵不多時，簡單邊界模型往往比較穩；先用已知的異常事件檢查召回，而不要只看總體分數。"
+      ]
+    },
+    {
+      id: "cluster",
+      title: "把相似的東西分成幾群",
+      hint: "客群、文件分組、沒有現成標籤時",
+      tag: "分群",
+      body: "沒有預先給定的答案，演算法只依相似性把資料組織起來。群數、距離算法和尺度都會大幅改變結果，需要人來看是否合理。",
+      items: [
+        "K-means 是最常見的起點，假設群大致是球狀，且要先指定群數。",
+        "較新或互補的做法：層次分群、高斯混合，以及不需先指定群數、能找任意形狀的 DBSCAN／HDBSCAN。",
+        "分群是探索工具，通常還要搭配可視化或後續的業務檢查。"
+      ]
+    },
+    {
+      id: "image",
+      title: "辨認圖片裡是什麼",
+      hint: "物件、場景、品質瑕疵",
+      tag: "影像分類",
+      body: "輸入是圖像，輸出是標籤。現在幾乎都會從預訓練的卷積網路或視覺 Transformer 出發，而不是從零訓練。",
+      items: [
+        "經典卷積骨幹：ResNet、DenseNet、EfficientNet。",
+        "較新的選擇還有 Vision Transformer（ViT）與其變體。",
+        "資料不多時，用現成權重做微調通常比自己從頭訓更划算。"
+      ]
+    },
+    {
+      id: "rec",
+      title: "建議下一步可能想看或想買的東西",
+      hint: "商品、文章、曲目、課程",
+      tag: "推薦",
+      body: "依過去的互動，猜測一個人接下來可能喜歡什麼。可以只靠「誰跟誰很像」，也可以加上物品本身的內容特徵。",
+      items: [
+        "協同過濾與矩陣分解（例如 SVD 類方法）只靠互動記錄。",
+        "內容式推薦依物品或使用者的屬性；兩者可以混成混合模型。",
+        "較常見的後續做法還有雙塔檢索、以及同時看記憶與特徵的 Wide & Deep 這類架構。",
+        "除了準不準，也要看多樣性、熱門偏差，以及冷啟動（新使用者或新物品）。"
+      ]
+    }
+  ];
+
+  var choices = document.getElementById("choices");
+  var detail = document.getElementById("detail");
+
+  FAMILIES.forEach(function (f) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.dataset.id = f.id;
+    b.innerHTML = "<b>" + f.title + "</b><span>" + f.hint + "</span>";
+    b.addEventListener("click", function () { show(f.id); });
+    choices.appendChild(b);
+  });
+
+  function show(id) {
+    var f = FAMILIES.filter(function (x) { return x.id === id; })[0];
+    Array.prototype.forEach.call(choices.querySelectorAll("button"), function (b) {
+      b.classList.toggle("on", b.dataset.id === id);
+    });
+    detail.classList.add("show");
+    detail.innerHTML =
+      '<div class="card">' +
+      '<div class="tag">' + f.tag + "</div>" +
+      "<h3>" + f.title + "</h3>" +
+      "<p>" + f.body + "</p>" +
+      "<ul>" + f.items.map(function (x) { return "<li>" + x + "</li>"; }).join("") + "</ul>" +
+      '<button type="button" class="back" id="back">← 回到問題清單</button>' +
+      "</div>";
+    document.getElementById("back").addEventListener("click", function () {
+      detail.classList.remove("show");
+      detail.innerHTML = "";
+      Array.prototype.forEach.call(choices.querySelectorAll("button"), function (b) { b.classList.remove("on"); });
+      choices.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    detail.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+})();
+</script>
+</body>
+</html>

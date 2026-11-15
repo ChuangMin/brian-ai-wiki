@@ -148,3 +148,19 @@ Know Your System 上傳的約 30 秒直式 Facebook Reel（2026-11-14 18:30 Asia
 互動重現：[saga-pattern 示範](https://wiki.singularityengine.dev/demos/saga-pattern/)（四個服務的虛構結帳板，可切換事件協同／編排與庫存有貨或缺貨，再一步步走補償；一致性標成最終一致，不會連網）。配樂：僅配樂、無旁白。
 
 ![Saga 圖卡：本地補償與 Refund, not rollback](../../assets/gifs/v88-saga-pattern.gif)
+
+### [Shiva.bytes：Machine Learning Algorithms Cheatsheet（八類演算法分流圖；源自 Azure ML designer 2021 表）](https://www.facebook.com/reel/1502253031965145)
+
+把 Microsoft 2021 年 Azure ML designer 演算法表改成黑底分流圖，說明文用八類問題解釋機器學習
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 改編自官方表 | — | [影片 96](https://www.facebook.com/reel/1502253031965145) |
+
+Shiva.bytes 上傳的約 9 秒直式 Facebook Reel（2026-11-13 22:02 Asia/Taipei，1200×1500；Brian 於 2026-11-15 從電腦傳來[這則 Reel](https://www.facebook.com/reel/1502253031965145)）。畫面幾乎是一張靜態分流圖，大標 Machine Learning Algorithms Cheatsheet，中間問 What do you want to do?，再分到八類：Text Analytics、Two-Class Classification、Multiclass Classification、Regression、Anomaly Detection、Clustering、Image Classification、Recommenders。說明文用白話寫這八類各解什麼問題，並問 If you had this kind of AI toolbox, what problem would you solve first? 沒有要留言關鍵字換東西，故不標引流。海報署名 Sivasankar Natarajan，並寫 Driving Smarter Outcomes with AI, Cloud & Data.；上傳帳號是 Shiva.bytes，是否同一人未另查。
+
+這張圖是把 Microsoft 2021 年 7 月為 Azure Machine Learning designer 發布的 Machine Learning Algorithm Cheat Sheet 重新排版上色（[官方說明頁](https://learn.microsoft.com/en-us/azure/machine-learning/algorithm-cheat-sheet?view=azureml-api-1)，[官方 PDF](https://download.microsoft.com/download/3/5/b/35bb997f-a8c7-485d-8c56-19444dafd757/azure-machine-learning-algorithm-cheat-sheet-july-2021.pdf)）。改編後拿掉了原圖的 © 2021 Microsoft Corporation. All rights reserved. 與 aka.ms/mlcheatsheet，也出現多處錯字，例如把 Derives 寫成 Drives、dictionary 寫成 directory、Vowpal Wabbit 寫成 Vowpel Wabbit、integer encoded 寫成 integer 10-encoded、cleaning operations on text 寫成 4O- on text、把官方的 Word2Vector 列誤標成第二個 Preprocess Text、linear model 寫成 linear modal、Averaged Perceptron 寫成 Perception、Neural 寫成 Neurol、fast training times 寫成 last trothing times、popular 寫成 populat、Discover structure 寫成 Discovery structure，以及 Train Wide & Deep Recommender module 被寫成 train Wide & Deep Recommenders module。
+
+Microsoft 自己寫明這張表只是大約的經驗法則，用來幫人從 designer 的經典模組裡找起點，不是唯一答案。表上列的是 Azure ML SDK v1 經典預先建置元件；該 SDK 已於 2025-03-31 棄用，支援在 2026-06-30 結束。表裡沒有 XGBoost、LightGBM 這類後來常見的梯度提升實作；One-vs-All 與 One-vs-One 是把二分類器組成多類的策略，不是獨立演算法；Text Analytics 裡除了 LDA 以外，Extract N-Gram、Feature Hashing、Preprocess Text 多半是前處理，不是最終模型。
+
+互動重現：[ml-algorithms-cheatsheet](https://wiki.singularityengine.dev/demos/ml-algorithms-cheatsheet/)（自製的「你現在想解決的是哪一種問題？」分流，版面與用詞都另外寫過，不是官方海報翻製；說明為通用解釋，並補充 XGBoost、LightGBM、DBSCAN 等較新做法；頁尾連回 2021 年官方表）。配樂：有配樂，曲名未標。本則因著作權考量，故意沒有做 GIF，公開站也不放海報截圖。

@@ -4,7 +4,7 @@
 
 [Daily news](../news/index.md) — morning briefings (Chinese).
 
-[Relationship graph](../graph/index.html?lang=en) — an interactive map of every entry, category, source video and concept (310 nodes, 615 edges).
+[Relationship graph](../graph/index.html?lang=en) — an interactive map of every entry, category, source video and concept (386 nodes, 761 edges).
 
 Brian's public wiki. It collects AI tools and viewpoints from Facebook videos, screenshots, and recommendation lists, files them by topic, and marks credibility such as engagement bait and concept animation. New videos keep getting added.
 
@@ -14,29 +14,29 @@ Credibility tags are separate from categories: ⚠️ engagement bait (traffic f
 
 Entries tagged engagement bait put ⚠️ beside the link and beside URLs in the description.
 
-136 entries.
+143 entries.
 
 Division-of-labor patterns from existing entries: [Agent Division-of-Labor Patterns](docs/agent-patterns.md).
 
 ## Categories
 
-- [Agent systems and orchestration](docs/agent-orchestration.md) (23) — multi-agent command, swarms, resume-after-interrupt, commercial agent OSes, and the agent-platform landscape
+- [Agent systems and orchestration](docs/agent-orchestration.md) (25) — multi-agent command, swarms, resume-after-interrupt, commercial agent OSes, and the agent-platform landscape
 - [Memory and context](docs/memory-context.md) (11) — knowledge graphs, code graphs, long-term memory, handoff across agents
-- [Skills / MCP / tools](docs/skills-mcp-tools.md) (20) — shared agent building blocks: MCP, skills, methodology skills, speech, extraction models
+- [Skills / MCP / tools](docs/skills-mcp-tools.md) (21) — shared agent building blocks: MCP, skills, methodology skills, speech, extraction models
 - [Software development and quality](docs/dev-quality.md) (5) — version control, process replay, browser self-check, verify-then-gate
-- [Frontend and UI design](docs/frontend-ui.md) (22) — design systems, UI linters, design skills, interface templates, and concept interfaces
+- [Frontend and UI design](docs/frontend-ui.md) (23) — design systems, UI linters, design skills, interface templates, and concept interfaces
 - [3D / animation and DCC](docs/dcc-animation.md) (10) — Blender and other DCC add-ons, camera moves, procedural animation, game generation
 - [AI image and video](docs/ai-media.md) (6) — AI-generated video and images, prompts, AI rendering, programmatic video
-- [Automation workflows](docs/automation-workflows.md) (4) — n8n and similar automation: rules first, human approval gates
+- [Automation workflows](docs/automation-workflows.md) (5) — n8n and similar automation: rules first, human approval gates
 - [Finance and trading](docs/finance-trading.md) (5) — trading charts, Claude techniques for finance, and trading-bot engagement bait
-- [Security and governance](docs/security-governance.md) (7) — agent alignment incidents, privacy concerns, AI-assisted financial security
+- [Security and governance](docs/security-governance.md) (8) — agent alignment incidents, privacy concerns, AI-assisted financial security
 - [Physical AI and hardware](docs/physical-ai.md) (3) — ESP32, robots, and other physical devices
 - [Cost and tradeoffs](docs/cost-tradeoffs.md) (6) — token cost, command-output compression, agents versus traditional tools
 - [Teams and organization](docs/teams-org.md) (1) — collaboration cost, decision structure, organization design
 - [Talks](docs/talks.md) (2) — talks and podcast clips: first-hand comments from AI leaders and practitioners
 - [Comedy and memes](docs/memes.md) (2) — workplace memes, comedy sketches, and jokes about AI
 - [Productivity and open-source tools](docs/productivity-tools.md) (1) — useful tools that are not themselves AI: conversion, desktop efficiency, small open-source utilities
-- [Systems design and engineering fundamentals](docs/systems-design.md) (8) — non-AI backend and distributed-systems basics and operations (such as a TLS checkup)
+- [Systems design and engineering fundamentals](docs/systems-design.md) (9) — non-AI backend and distributed-systems basics and operations (such as a TLS checkup)
 
 ## Sources
 
@@ -139,6 +139,14 @@ Division-of-labor patterns from existing entries: [Agent Division-of-Labor Patte
 | Video 91 | Altair AI: Fable 5.2 four-model one-brain task routing (concept animation; the caption does not match the pictures) | [reel/3438861689623518](https://www.facebook.com/reel/3438861689623518) | 2026-11-14 |
 | Video 92 | DeepResource.ai: JEV agent-router four-way research/writing dispatch (concept diagram; caption from @Flandermaxx) | [reel/1513020620686286](https://www.facebook.com/reel/1513020620686286) | 2026-11-14 |
 | Video 93 | Know Your System: Saga pattern (compensating transactions across services: orchestration vs choreography) | [reel/2222208475400708](https://www.facebook.com/reel/2222208475400708) | 2026-11-14 |
+| Video 94 | Tommy Vaga: ALGORY genetic algorithm and Goldman limits on AI coding tools (folded into SEQ 0049) | ⚠️ [reel/1127435123333312](https://www.facebook.com/reel/1127435123333312) | 2026-11-14 |
+| Video 95 | DeepResource.ai: Claude Code Subagent Tip (Sonnet writes code / Haiku swarm / Opus advisor / JEV fork) | [reel/1122824923965641](https://www.facebook.com/reel/1122824923965641) | 2026-11-15 |
+| Video 96 | Shiva.bytes: Machine Learning Algorithms Cheatsheet (an eight-family flowchart restyled from the 2021 Azure ML designer sheet) | [reel/1502253031965145](https://www.facebook.com/reel/1502253031965145) | 2026-11-15 |
+| Video 97 | Altair AI: a 10-repo product design studio | [reel/1459698966355266](https://www.facebook.com/reel/1459698966355266) | 2026-11-15 |
+| Video 98 | Andrey Superior (@andreysuperior): Fable 5.2 team agents create and publish a campaign in Meta Ads Manager (claim; Facebook reshare) | [reel/1111517925213954](https://www.facebook.com/reel/1111517925213954) | 2026-11-15 |
+| Video 99 | David Ooi: God's Eye View, an open-source 3D globe OSINT dashboard (bilawalsidhu/gods-eye-view) | [reel/1123871826917666](https://www.facebook.com/reel/1123871826917666/) | 2026-11-15 |
+| Facebook post (2026-11-15) | Isaac Wong (@isaac.startup): 7 daily Claude Code commands (/grill-me and others; comment Claude to join the community) | ⚠️ [group post](https://www.facebook.com/groups/1317626560441303/posts/1436491405221484/) | 2026-11-15 |
+| Facebook post (MIT PE, 2026-11-15) | MIT Professional Education: Applied Agentic AI for Organizational Transformation (8-week online course) | [official course page](https://professional.mit.edu/course-catalog/applied-agentic-ai-organizational-transformation) / [page post](https://www.facebook.com/MITProfessionalEducation/posts/gain-insights-to-move-from-ai-experimentation-to-scalable-implementation-across-/1601396092028738/) | 2026-11-15 |
 | GitHub | labring/sealos-skills: agent skills for deploying apps, databases, and object storage on Sealos Cloud | [labring/sealos-skills](https://github.com/labring/sealos-skills) | 2026-11-14 |
 | Brian's recommendation list 2026-10-31 | Diagram skills: archify and diagram-design (no video) | — | 2026-10-31 |
 

@@ -48,13 +48,23 @@ Tauhid 2.0 宣稱「給 Grok Bot 53 美元自動調槓桿」，畫面從 $54.76 
 
 ### [ALGORY：「打造自動化避險基金第 289 天」](https://algory.app/) ⚠️
 
-用基因演算法產生 MT5 交易機器人的付費軟體
+用基因演算法產生 MT5 交易機器人的付費軟體；新片用 Goldman 限制 AI 寫程式工具當引子
 
 | 可信度 | 星數 | 出處 |
 | --- | --- | --- |
-| ⚠️ 引流 | — | 截圖（Tommy Vaga） |
+| ⚠️ 引流 | — | 截圖（Tommy Vaga）；影片 94 |
 
-Tommy Vaga（應即 VagaFX 的 Tomas Edgar）賣的 Windows 軟體：用基因演算法讓策略分 Consistency／Growth 兩族繁殖約 20 代，以沒看過的 30% 歷史資料做樣本外測試、再跟 MT5 逐筆比對，存活者匯出成 MetaTrader 5 機器人，原型有 Multi Signal、Breakout Hunter、Reversion 等。官網自己寫「Algory 不會幫你交易」，作者也承認「避險基金」只是文字遊戲；影片只有紅色 HUD、沒有任何真實損益，回測不代表未來，請比照 Tauhid 2.0 存疑。配樂：ayaibrahimx 原聲
+Tommy Vaga（應即 VagaFX 的 Tomas Edgar）賣的 Windows 軟體：用基因演算法讓策略分 Consistency／Growth 兩族繁殖約 20 代，以沒看過的 30% 歷史資料做樣本外測試、再跟 MT5 逐筆比對，存活者匯出成 MetaTrader 5 機器人，原型有 Multi Signal、Breakout Hunter、Reversion 等。官網自己寫「Algory 不會幫你交易」，作者也承認「避險基金」只是文字遊戲。
+
+2026-11-13 05:12 Asia/Taipei 他又上傳一支約 36 秒的直式 Reel（⚠️ [reel/1127435123333312](https://www.facebook.com/reel/1127435123333312)；Brian 於 2026-11-14 從電腦傳來）。前半段是科幻交易 HUD 動畫（畫面上有 NOVAKINE、MERIDYX、VANTIX、VOLTAQ、TERRADEPTH、HALCYX、SYNAPTRA 等標題），例如 MERIDYX 出現 +$1,286,764、VANTIX 出現 +$143,240.46 與截斷的錢包位址，這些數字是動畫，不是實盤損益。中段切到紅色 Algory 介面：策略點圖（畫面可見 MULTI_SIGNAL、BREAKOUT_HUNTER、MEAN_REVERTER、PATTERN_SPOTTER、LEVEL_TRADER 等）、約 20 代的權益曲線、generation 20 的 forward test，以及標成 overfit or decayed 的篩選。片尾官網大標「Trading strategies that survive live」，並附「Trading leveraged products carries a high risk of loss. Backtested results are not a guide to future returns.」。
+
+開頭用 2026-11-02 Bloomberg 報導當引子。畫面出自 2026-11-04 FStech 轉寫（Jonathan Easton，[Goldman Sachs restricts AI coding tools for traders and bankers](https://www.fstech.co.uk/fst/Goldman_Sachs_Restricts_AI_Coding_Tools_For_Traders_And_Bankers.php)）：Bloomberg（Todd Gillespie，2026-11-02）寫的是高盛限制進階 AI 寫程式工具（點名 Claude Code、GitHub），量化策略人員（strats）仍可使用。旁白把事情說成 stopped traders using AI tools，說明文則寫 Goldman pulled AI coding tools from its traders and bankers, and only engineers keep them，都說得過滿。
+
+說明文又寫 Comment ALGO and I'll send you the link to breed your own bots with zero AI——留言關鍵字換連結，故保留 ⚠️。同一則說明文寫 zero AI，畫面卻疊「use machine learning」；基因演算法本身就是機器學習的一種，這裡的 zero AI 應讀成「不用 LLM」，不是完全沒用機器學習。把最近幾個月資料全程留白、最後再做 forward testing，是真實的驗證作法，但過關也不等於「survive live」，更不能當成實盤保證。回測不代表未來，請比照 Tauhid 2.0 存疑。
+
+互動重現：[trading-hud-ui](https://wiki.singularityengine.dev/demos/trading-hud-ui/)（UI 設計參考，非交易工具；可切換數個虛構 HUD 面板，數字皆為隨機示範，不會連網）。先前截圖配樂：ayaibrahimx 原聲；本則新片未標配樂。GIF：0:20–0:26 的 Algory 介面，已避開前半段 HUD 美元數字與截斷錢包。
+
+![0:20–0:26 的 Algory 介面，已避開前半段 HUD 美元數字與截斷錢包](../assets/gifs/v89-algory-ui.gif)
 
 ### [Grok Desk：6 個 AI agent 的 BTC 交易終端](https://x.com/marlenuii/status/2115396645131022816)
 
