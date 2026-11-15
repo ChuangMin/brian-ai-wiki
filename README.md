@@ -4,7 +4,7 @@
 
 [每日新聞](news/index.md) — 每天早上的新聞簡報。
 
-[關聯圖](graph/index.html) — 用互動圖看所有條目、分類、來源影片與概念之間的關係（310 個節點、615 條連線）。
+[關聯圖](graph/index.html) — 用互動圖看所有條目、分類、來源影片與概念之間的關係（386 個節點、761 條連線）。
 
 Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片、截圖與推薦清單整理 AI 工具與觀點，依主題分類收錄，並另外標示引流、概念動畫等可信度；之後的新影片會繼續加進來。
 
@@ -14,29 +14,29 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 
 標了引流的條目，連結和說明裡的網址旁邊都會加上 ⚠️。
 
-共 136 則。
+共 143 則。
 
 從既有條目歸納的分工類型見 [Agent 分工模式](docs/agent-patterns.md)。
 
 ## 分類
 
-- [Agent 系統與編排](docs/agent-orchestration.md)（23）— 多 agent 指揮、swarm、中斷續跑、商用 agent OS 與 agent 平台全景
+- [Agent 系統與編排](docs/agent-orchestration.md)（25）— 多 agent 指揮、swarm、中斷續跑、商用 agent OS 與 agent 平台全景
 - [記憶與上下文](docs/memory-context.md)（11）— 知識圖譜、程式碼圖譜、長期記憶、跨 agent 交接
-- [Skills／MCP／工具](docs/skills-mcp-tools.md)（20）— 通用的 agent 能力元件：MCP、skill、開發方法論 skill、語音、抽取模型
+- [Skills／MCP／工具](docs/skills-mcp-tools.md)（21）— 通用的 agent 能力元件：MCP、skill、開發方法論 skill、語音、抽取模型
 - [程式開發與品質](docs/dev-quality.md)（5）— 版控、過程重播、瀏覽器自我驗收、verify＋gate 流程
-- [前端與 UI 設計](docs/frontend-ui.md)（22）— 設計系統、UI linter、設計 skill、介面模板與概念介面
+- [前端與 UI 設計](docs/frontend-ui.md)（23）— 設計系統、UI linter、設計 skill、介面模板與概念介面
 - [3D／動畫與 DCC](docs/dcc-animation.md)（10）— Blender 等 DCC 外掛、運鏡、程序化動畫、遊戲生成
 - [AI 影像與影片](docs/ai-media.md)（6）— AI 生成影片與圖片、prompt、AI 渲染、程式化影片
-- [自動化工作流](docs/automation-workflows.md)（4）— n8n 等流程自動化，規則優先與人工核准閘門
+- [自動化工作流](docs/automation-workflows.md)（5）— n8n 等流程自動化，規則優先與人工核准閘門
 - [金融與交易](docs/finance-trading.md)（5）— 交易圖表、財務 Claude 技巧，以及交易機器人導流片
-- [安全與治理](docs/security-governance.md)（7）— agent 對齊事故、隱私疑慮、AI 輔助金融資安
+- [安全與治理](docs/security-governance.md)（8）— agent 對齊事故、隱私疑慮、AI 輔助金融資安
 - [實體 AI 與硬體](docs/physical-ai.md)（3）— ESP32、機器人等實體裝置
 - [成本與取捨](docs/cost-tradeoffs.md)（6）— token 成本、指令輸出壓縮、agent 與傳統工具的成本對比
 - [團隊與組織](docs/teams-org.md)（1）— 協作成本、決策結構、組織設計
 - [演講與 Talk](docs/talks.md)（2）— 演講、訪談、Podcast 片段：AI 領袖與從業者的第一手說法
 - [搞笑與迷因](docs/memes.md)（2）— 關於 AI 的職場迷因、搞笑短劇與梗圖
 - [生產力與開源工具](docs/productivity-tools.md)（1）— 本身不是 AI 的實用工具：轉檔、桌面效率、開源小工具
-- [系統設計與工程基礎](docs/systems-design.md)（8）— 非 AI 的後端／分散式系統基礎與維運常識（如 TLS 健檢）
+- [系統設計與工程基礎](docs/systems-design.md)（9）— 非 AI 的後端／分散式系統基礎與維運常識（如 TLS 健檢）
 
 ## 影片來源
 
@@ -75,6 +75,14 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 | 影片 91 | Altair AI：Fable 5.2 四模型一腦任務分流（概念動畫；說明文與畫面不符） | [reel/3438861689623518](https://www.facebook.com/reel/3438861689623518) | 2026-11-14 |
 | 影片 92 | DeepResource.ai：JEV agent-router 四路研究寫作分流（概念圖；說明文來自 @Flandermaxx） | [reel/1513020620686286](https://www.facebook.com/reel/1513020620686286) | 2026-11-14 |
 | 影片 93 | Know Your System：Saga pattern（跨服務補償交易：編排 vs 事件協同） | [reel/2222208475400708](https://www.facebook.com/reel/2222208475400708) | 2026-11-14 |
+| 影片 94 | Tommy Vaga：ALGORY 基因演算法與 Goldman 限制 AI 寫程式工具（併入 SEQ 0049） | ⚠️ [reel/1127435123333312](https://www.facebook.com/reel/1127435123333312) | 2026-11-14 |
+| 影片 95 | DeepResource.ai：Claude Code Subagent Tip（Sonnet 寫碼／Haiku swarm／Opus advisor／JEV fork） | [reel/1122824923965641](https://www.facebook.com/reel/1122824923965641) | 2026-11-15 |
+| 影片 96 | Shiva.bytes：Machine Learning Algorithms Cheatsheet（八類演算法分流圖；源自 Azure ML designer 2021 表） | [reel/1502253031965145](https://www.facebook.com/reel/1502253031965145) | 2026-11-15 |
+| 影片 97 | Altair AI：10 個 repo 組成產品設計工作室 | [reel/1459698966355266](https://www.facebook.com/reel/1459698966355266) | 2026-11-15 |
+| 影片 98 | Andrey Superior（@andreysuperior）：Fable 5.2 團隊 agent 在 Meta Ads Manager 建立並發布活動（宣稱；Facebook 轉發） | [reel/1111517925213954](https://www.facebook.com/reel/1111517925213954) | 2026-11-15 |
+| 影片 99 | David Ooi：God's Eye View 開源 3D 地球 OSINT 儀表板（bilawalsidhu/gods-eye-view） | [reel/1123871826917666](https://www.facebook.com/reel/1123871826917666/) | 2026-11-15 |
+| Facebook 貼文（2026-11-15） | Isaac Wong（@isaac.startup）：7 個 Claude Code 每日指令（/grill-me 等；留言 Claude 加社群） | ⚠️ [社團貼文](https://www.facebook.com/groups/1317626560441303/posts/1436491405221484/) | 2026-11-15 |
+| Facebook 貼文（MIT PE，2026-11-15） | MIT Professional Education：Applied Agentic AI for Organizational Transformation（8 週線上課） | [官方課程頁](https://professional.mit.edu/course-catalog/applied-agentic-ai-organizational-transformation)／[粉專貼文](https://www.facebook.com/MITProfessionalEducation/posts/gain-insights-to-move-from-ai-experimentation-to-scalable-implementation-across-/1601396092028738/) | 2026-11-15 |
 | GitHub | labring/sealos-skills：在 Sealos Cloud 部署應用、資料庫與物件儲存的 agent skill 包 | [labring/sealos-skills](https://github.com/labring/sealos-skills) | 2026-11-14 |
 | Brian 推薦清單 2026-10-31 | Agent skills 推薦：Superpowers、Matt Pocock Skills、Ponytail、CodeGraph、RTK（無影片） | — | 2026-10-31 |
 | 影片 17 | Sam Altman 談新模型與失落感（Cheeky Pint 片段，大叔美股筆記 Uncle Investment Note） | [reel/1167964102224005](https://www.facebook.com/reel/1167964102224005) | 2026-10-31 |

@@ -354,3 +354,37 @@ DeepResource.ai 上傳的約 24 秒直式 Facebook Reel（2026-11-13；1440×180
 互動重現：[jev-agent-router 示範](https://wiki.singularityengine.dev/demos/jev-agent-router/)（可調信心門檻、送出示範狀態，看 Choice／Score／Noul 與閘門 hold 或派遣；花費與延遲標成示範數字，不會連網）。配樂：僅配樂、無旁白。
 
 ![jev-agent-router 節點圖：Choice／Score／Noul 與閘門分流](../../assets/gifs/v87-jev-agent-router.gif)
+
+### [DeepResource.ai：Claude Code Subagent Tip（Sonnet 寫碼／Haiku swarm／Opus advisor／JEV fork）](https://www.facebook.com/reel/1122824923965641)
+
+概念動畫：Sonnet 主 session 寫碼，Haiku 三人 swarm 掃 repo，Opus 只在關卡審查，JEV 做 fork 分流
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 概念動畫・宣稱待驗證・可信度中 | — | 影片 95 |
+
+DeepResource.ai 上傳的約 22 秒直式 Facebook Reel（2026-11-10 01:00 Asia/Taipei，1080×1350；Brian 於 2026-11-15 從電腦傳來 [reel/1122824923965641](https://www.facebook.com/reel/1122824923965641)）。畫面標題 CLAUDE CODE SUBAGENT TIP，右下角浮水印 X @Bober_smart，是概念看板動畫，不是真實 Claude Code 錄屏。Facebook 說明文為泰文，歸功 @Flandermaxx，並寫 Link อยู่ในคอมเมนต์（連結在留言裡），沒有要留言關鍵字換東西，故不標引流。
+
+構想與 SEQ 0098 相近，再疊上 JEV fork 層：Sonnet 當主 session 寫碼、跑測試、fork 之後回到主線，畫面寫沒有其他 agent 碰 main；Haiku 以三人 swarm（search、grep、audit）各在自己的 worktree 跑，一邊幫主線掃 repo；Opus 當 ON CALL 顧問，讀整場 session、在計畫前與完成前等關卡出聲，平時安靜、不寫碼；JEV 在 fork layer 看 which file／which tool／retry or stop，並把分流寫進 router.jsonl；SPLIT 遇到 same error x2 就打回 Sonnet。
+
+畫面右下角寫 `~/app $ claude --swarm`，但這不是官方 CLI 旗標（查證 2026-11-15 台北時間，官方 CLI 參考與 subagent、Agent Teams 文件未列出 `--swarm`）。官方對等寫法是：主 session 用 `claude --model sonnet`（畫面也有這行）、顧問用 `--advisor opus`、session 內子代理用 `--agents` JSON，並在定義裡設 `model: haiku` 與 `isolation: worktree`；多 session 組隊則是實驗功能，需開啟 `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`。見 [Create custom subagents](https://code.claude.com/docs/en/sub-agents)、[Agent teams](https://code.claude.com/docs/en/agent-teams) 與 [CLI reference](https://code.claude.com/docs/en/cli-reference)。
+
+本則 Facebook 說明文沒有寫 Anthropic leaked；畫面也沒有這句。若其他轉貼把這套用法寫成 Anthropic 外流，這說得過滿，因為 subagent、`--advisor`、`--agents` 與實驗性 Agent Teams 都已有官方文件。說明文與畫面上的數字（例如約 313k tokens、3 次顧問呼叫、p=0.94／0.80、1,331 forks、7 個信心越線的 fork、測試 4/248 一路加到 248/248）會隨動畫跳動，是示意值，不是實測。若把 JEV 畫成幾乎即時或亞毫秒級分流，也與 TypeSafe 官方多數呼叫約 100 ms 的說明不符，見 SEQ 0134 的查證與 [How to build with System One](https://docs.typesafe.ai/concepts/how-to-build-with-system-one)。
+
+可對照 SEQ 0098（同一場 session 三模型分工）、0069（官方 Agent Teams）、0134（DeepResource.ai 的 JEV agent-router，同一上傳帳號、說明文同樣歸功 @Flandermaxx）。
+
+互動重現：[claude-code-subagent-tip](https://wiki.singularityengine.dev/demos/claude-code-subagent-tip/)（可點節點圖、Haiku swarm、Opus 關卡、JEV fork 卡、SPLIT、htop 與 router.jsonl；數字為隨機示範，不會連網；畫面的 `claude --swarm` 旁標了官方對等寫法）。配樂：有配樂，曲名未標。
+
+![Claude Code Subagent Tip 看板：節點圖、htop 與 router.jsonl](../../assets/gifs/v90-claude-code-subagent-tip.gif)
+
+### 0140　MIT Professional Education：Applied Agentic AI for Organizational Transformation（8 週線上課）
+
+MIT PE 的 8 週線上課程，講生成式與 agentic AI 如何接到組織流程；所列梯次報名已截止。標籤：可信度高。來源：Facebook 貼文（MIT PE，2026-11-15）。
+
+MIT Professional Education 粉專的公開圖文貼文（https://www.facebook.com/MITProfessionalEducation/posts/gain-insights-to-move-from-ai-experimentation-to-scalable-implementation-across-/1601396092028738/ ；Brian 於 2026-11-15 08:21 Asia/Taipei 經 LINE 傳來短網址 https://www.facebook.com/share/p/1FZ5w5fjGh/）。貼文說明是從 AI 試驗走到可規模化落地，並附宣傳圖。圖上列出四個主題：Generative & Agentic AI、Workflow Automation、Enterprise Integration、Risk & Governance，並標 8 weeks、Online course、NO CODING REQUIRED。沒有要留言關鍵字換東西，故不標引流。這是官方宣傳圖，不是課程錄影。
+
+課程官方頁為 https://professional.mit.edu/course-catalog/applied-agentic-ai-organizational-transformation （查證 2026-11-15 台北時間）。授課講師為 Abel Sanchez、John R. Williams；8 週線上、學費 $3,250、7 個 CEU，頁面寫 no coding required。招生與繳費由 Global Alumni 辦理（官方頁說明它是合作的 ed-tech 公司，負責報名、收款與學員支援）。頁面上列出的梯次是 2026-10-20 至 2026-12-15，報名截止日寫 2026-10-20；以查證當日 2026-11-15 來看，這個梯次的報名已經截止，課程尚在進行。之後是否再開班，以官方頁為準。
+
+宣傳文與官方頁都引用 McKinsey「Generative AI 每年可為全球經濟增加最多 4.4 兆美元」。這是 2023-06-14 報告 The economic potential of generative AI: The next productivity frontier 的區間上限；原文是對 63 個使用情境估每年約 2.6 至 4.4 兆美元，見 https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier 。
+
+本則因宣傳圖是機構行銷素材，故意沒有做 GIF，公開站也不放海報圖。沒有另做互動 demo。配樂：不適用（無影片）。

@@ -355,3 +355,37 @@ Cross-link only SEQ 0120, and do not merge the two: that entry is JEV Engineerin
 Interactive recreation: [jev-agent-router demo](https://wiki.singularityengine.dev/demos/jev-agent-router/) (confidence-floor slider, sample state, Choice / Score / Noul, and gate hold vs dispatch; cost and latency are labeled as demo numbers, and nothing is sent on the network). Music: music only, no voice-over.
 
 ![jev-agent-router node graph sending Choice, Score, and Noul into four queues](../../assets/gifs/v87-jev-agent-router.gif)
+
+### [DeepResource.ai: Claude Code Subagent Tip (Sonnet writes code / Haiku swarm / Opus advisor / JEV fork)](https://www.facebook.com/reel/1122824923965641)
+
+A concept animation: Sonnet is the main session writing code, a three-Haiku swarm maps the repo, Opus only reviews at gates, and JEV handles fork routing
+
+| Credibility | Stars | Source |
+| --- | --- | --- |
+| Concept animation · claims unverified · medium confidence | — | Video 95 |
+
+A roughly 22-second vertical Facebook Reel uploaded by DeepResource.ai (2026-11-10 01:00 Asia/Taipei, 1080×1350; Brian sent [reel/1122824923965641](https://www.facebook.com/reel/1122824923965641) from his computer on 2026-11-15). The title on screen is CLAUDE CODE SUBAGENT TIP, with an X watermark for @Bober_smart at the lower right. It is a concept-board animation, not a live Claude Code recording. The Facebook caption is in Thai, credits @Flandermaxx, and says the link is in the comments. That is not a keyword-for-a-link, so there is no ⚠️.
+
+The idea is close to SEQ 0098, with a JEV fork layer added on top. Sonnet is the main session: it writes code, runs tests, and comes back after a fork; the pictures say no other agent touches main. Haiku runs as a three-agent swarm (search, grep, audit), each in its own worktree, mapping the repo while Sonnet writes. Opus is an on-call advisor: it reads the whole session and speaks at gates such as before a plan and before done, stays quiet on routine turns, and never writes code. JEV sits in the fork layer, scoring which file, which tool, and retry or stop, and writes routes to router.jsonl. SPLIT sends "same error x2" back to Sonnet.
+
+The lower right of the board shows `~/app $ claude --swarm`, but that is not an official CLI flag (checked 2026-11-15 Taipei time: the official CLI reference, subagent, and Agent Teams docs do not list `--swarm`). The official equivalents are: `claude --model sonnet` for the main session (that line also appears on screen), `--advisor opus` for the advisor, `--agents` JSON for in-session subagents, with `model: haiku` and `isolation: worktree` in the definition. Coordinated multi-session teams are experimental and need `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`. See [Create custom subagents](https://code.claude.com/docs/en/sub-agents), [Agent teams](https://code.claude.com/docs/en/agent-teams), and [CLI reference](https://code.claude.com/docs/en/cli-reference).
+
+This Facebook caption does not say "Anthropic leaked", and the pictures do not either. If a repost frames the setup as an Anthropic leak, that overstates it: subagents, `--advisor`, `--agents`, and experimental Agent Teams are already in official docs. The numbers in the caption and on screen (about 313k tokens, three advisor calls, p=0.94 / 0.80, 1,331 forks, seven over-confidence forks, tests moving from 4/248 to 248/248) tick with the animation. They are illustrative, not measurements. If JEV is drawn as near-instant or sub-millisecond routing, that also conflicts with TypeSafe's official typical latency of about 100 ms; see the checks in SEQ 0134 and [How to build with System One](https://docs.typesafe.ai/concepts/how-to-build-with-system-one).
+
+See also SEQ 0098 (three models in one session), 0069 (official Agent Teams), and 0134 (DeepResource.ai's JEV agent-router, same uploader, caption also credited to @Flandermaxx).
+
+Interactive recreation: [claude-code-subagent-tip](https://wiki.singularityengine.dev/demos/claude-code-subagent-tip/) (a clickable node graph, Haiku swarm, Opus gates, JEV fork cards, SPLIT, htop, and router.jsonl; numbers are random demos; no network calls; the on-screen `claude --swarm` is labelled with the official equivalents). Music: there is a soundtrack, but the track is not labelled.
+
+![Claude Code Subagent Tip board: node graph, htop, and router.jsonl](../../assets/gifs/v90-claude-code-subagent-tip.gif)
+
+### 0140　MIT Professional Education: Applied Agentic AI for Organizational Transformation (8-week online course)
+
+An eight-week MIT Professional Education online course on how generative and agentic AI connect to organizational workflows. The listed cohort's registration is already closed. Tag: High confidence. Source: Facebook post (MIT PE, 2026-11-15).
+
+This is a public image post from the MIT Professional Education Facebook page (https://www.facebook.com/MITProfessionalEducation/posts/gain-insights-to-move-from-ai-experimentation-to-scalable-implementation-across-/1601396092028738/; Brian sent the short URL https://www.facebook.com/share/p/1FZ5w5fjGh/ via LINE at 2026-11-15 08:21 Asia/Taipei). The caption is about moving from AI experimentation to scalable implementation, with a promotional graphic. The graphic lists four themes: Generative & Agentic AI, Workflow Automation, Enterprise Integration, and Risk & Governance, and marks 8 weeks, Online course, and NO CODING REQUIRED. There is no comment-a-keyword-to-get-something hook, so this entry is not marked as gated bait. The image is official promotional art, not a recording of the course.
+
+The official course page is https://professional.mit.edu/course-catalog/applied-agentic-ai-organizational-transformation (checked 2026-11-15, Taipei time). Instructors are Abel Sanchez and John R. Williams. The page lists eight weeks online, a course fee of $3,250, 7 CEUs, and no coding required. Enrollment and payment are handled by Global Alumni (the page describes it as a collaborating ed-tech company that manages registration, payment, and participant support). The listed cohort runs 2026-10-20 to 2026-12-15, with a registration deadline of 2026-10-20. As of the check date 2026-11-15, registration for this cohort is already closed and the course is still in progress. Whether later cohorts open is left to the official page.
+
+The post and the official page both cite McKinsey as saying generative AI could add up to $4.4 trillion annually to the global economy. That figure is the top of the range in the 2023-06-14 report The economic potential of generative AI: The next productivity frontier; the original estimate is about $2.6 to $4.4 trillion annually across 63 use cases. See https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier.
+
+No GIF was made for this entry, and the public site does not host the promotional art, because it is institutional marketing material. There is no interactive demo. Music: not applicable (no video).

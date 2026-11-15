@@ -20,15 +20,15 @@
 
 ### [Awesome DESIGN.md](https://github.com/VoltAgent/awesome-design-md)
 
-73 個真實網站的設計系統，讓 AI 照著做 UI
+84 個真實網站的設計系統，讓 AI 照著做 UI
 
 ![Awesome DESIGN.md 的 GitHub 預覽](https://opengraph.githubassets.com/1/VoltAgent/awesome-design-md)
 
 | 可信度 | 星數 | 出處 |
 | --- | --- | --- |
-| — | 124.7k | [影片 9](https://www.facebook.com/reel/1780228483203385) |
+| — | 127.5k（2026-11-15） | [影片 9](https://www.facebook.com/reel/1780228483203385)；[影片 97](https://www.facebook.com/reel/1459698966355266) |
 
-VoltAgent 整理 73 個真實網站（Stripe、Linear…）的 DESIGN.md，丟進專案讓 Claude 照真實設計系統做，避免 AI 臉
+VoltAgent 整理真實網站（Stripe、Linear…）的 DESIGN.md，丟進專案讓 Claude 照真實設計系統做，避免 AI 臉。2026-11-15 查證為 84 份、127.5k 星（影片 9 當年寫 73 份、124.7k）。另見 SEQ 0141。
 
 ### [Impeccable](https://github.com/pbakaus/impeccable)
 
@@ -38,9 +38,9 @@ VoltAgent 整理 73 個真實網站（Stripe、Linear…）的 DESIGN.md，丟�
 
 | 可信度 | 星數 | 出處 |
 | --- | --- | --- |
-| — | 97.2k | [影片 9](https://www.facebook.com/reel/1780228483203385) |
+| — | 110.2k（2026-11-15） | [影片 9](https://www.facebook.com/reel/1780228483203385)；[影片 97](https://www.facebook.com/reel/1459698966355266) |
 
-24 個設計指令（/impeccable audit、polish、bolder、quieter…）+ 59 條規則，專抓漸層標題、emoji 圖示、全用 Inter 等 AI 味；Apache-2.0
+24 個設計指令（/impeccable audit、polish、bolder、quieter…）+ 62 條規則，專抓漸層標題、emoji 圖示、全用 Inter 等 AI 味；Apache-2.0。2026-11-15 查證為 62 條規則、110.2k 星（影片 9 當年寫 59 條、97.2k）。另見 SEQ 0141。
 
 ![UI 介面拆成多層玻璃平面做 3D 透視傾斜爆炸圖、紅色警示標籤逐一彈出；可用 CSS perspective + rotateX/rotateZ + translateZ 分層重現](../assets/gifs/v09-design-plugins-3d-layer-ui.gif)
 
@@ -54,9 +54,9 @@ UI 介面拆成多層玻璃平面做 3D 透視傾斜爆炸圖、紅色警示標�
 
 | 可信度 | 星數 | 出處 |
 | --- | --- | --- |
-| — | 106.4k | [影片 9](https://www.facebook.com/reel/1780228483203385) |
+| — | 115.7k（2026-11-15） | [影片 9](https://www.facebook.com/reel/1780228483203385)；[影片 97](https://www.facebook.com/reel/1459698966355266) |
 
-用 bold／motion／density 三個參數設定設計風格，讓 Claude 照你的品味產出；MIT
+用 bold／motion／density 三個參數設定設計風格，讓 Claude 照你的品味產出；MIT。2026-11-15 查證 115.7k 星（影片 9 當年寫 106.4k）。另見 SEQ 0141。
 
 ### [Web Design Guidelines（Vercel skill）](https://github.com/vercel-labs/agent-skills/tree/main/skills/web-design-guidelines)
 
@@ -66,9 +66,9 @@ UI 介面拆成多層玻璃平面做 3D 透視傾斜爆炸圖、紅色警示標�
 
 | 可信度 | 星數 | 出處 |
 | --- | --- | --- |
-| — | 33.3k（agent-skills） | [影片 9](https://www.facebook.com/reel/1780228483203385) |
+| — | 34.1k（agent-skills，2026-11-15） | [影片 9](https://www.facebook.com/reel/1780228483203385)；[影片 97](https://www.facebook.com/reel/1459698966355266) |
 
-vercel-labs/agent-skills 內的 skill，像 UI linter：抓禁止縮放、點擊區 < 24px、送出無 loading 狀態
+vercel-labs/agent-skills 內的 skill，像 UI linter：抓禁止縮放、點擊區 < 24px、送出無 loading 狀態。畫面上常說的「100+ 規則」指這個 web-design-guidelines skill，不是整個 agent-skills 包。2026-11-15 查證 34.1k 星（影片 9 當年寫 33.3k）；該倉庫當日未偵測到授權。另見 SEQ 0141。
 
 ### [Apex：JARVIS 風 AI 幕僚長介面](https://github.com/RubenM1990/APEX-UI)
 
@@ -322,3 +322,32 @@ SkillSpector 靜態掃描（2026-11-13 台北時間，skillspector 2.12.0，--no
 SkillSpector 靜態掃描（2026-11-13 台北時間，skillspector 2.12.0，--no-llm，commit 09b9be5）：掃描的是公開 Add-on 安裝包 weidaye1122/ha-bridge-addon，不是付費產品本身的封閉映像。此 repo 不是 skill／MCP 包；issues 27（HIGH 6、MEDIUM 21），全部位於 release/ 與 tests/（例如 candidate.py、verify_addon_upgrade.sh、test_release_recovery.py 的環境變數傳遞、subprocess、升級驗證腳本中的刪除目錄等）；risk score 100、severity CRITICAL、recommendation DO_NOT_INSTALL、max_issue_severity HIGH；覆蓋率 100%（22／22 個元件，狀態 complete）。產品主程式不在此倉庫，本則未掃描其 Docker 映像。GitHub API 當日該 Add-on 倉庫 4 星，最近推送 2026-11-10 10:01 台北時間，提交說明為 Add-on 0.8.6-1。配樂：未標。
 
 ![裁掉頂欄後的 HA Bridge 等角 3D 戶型儀表盤，燈光被點亮](../assets/gifs/v81-ha-bridge.gif)
+
+### 0141　Altair AI：10 個 repo 組成產品設計工作室
+
+概念 HUD 把 10 個設計 repo 排成 style→design→system→build→review；授權實際是 8/10，畫面合計 577.7K 是快照。標籤：概念動畫・可信度高。來源：影片 97。
+
+Altair AI 上傳的約 24 秒直式 Facebook Reel（1080×1468；info.json 的 timestamp 為 1794678769，即 2026-11-14 17:52:49 UTC、2026-11-15 01:52 Asia/Taipei；upload_date 欄為 20261114，是 UTC 日期。Brian 於 2026-11-15 09:05 Asia/Taipei 經 LINE 傳來短網址 https://www.facebook.com/share/r/1FqZxugmJ7/，對應 https://www.facebook.com/reel/1459698966355266）。畫面是風格化 DESIGN STUDIO 概念 HUD，不是真實產品錄屏。片尾 Follow Altair AI，說明文另有訂閱連結，都是普通追蹤／訂閱呼籲，不是留言關鍵字換東西，故不標引流。
+
+說明文寫 Nine of ten repos ship under MIT or Apache，畫面 LICENSE 寫 MIT 6、Apache-2.0 3、NONE 1（mcp-server-guide），頂列 MIT·APACHE 9/10。查證 2026-11-15（GitHub API）實際是 8/10：有授權的是 ui-ux-pro-max-skill、awesome-design-md、designer-skills、stitch-skills、astryx、taste-skill、modern-web-guidance-src、impeccable（MIT 5、Apache-2.0 3）。figma/mcp-server-guide 與 vercel-labs/agent-skills 都沒有偵測到授權；畫面卻把 agent-skills 標成 MIT。
+
+五個階段（style → design → system → build → review）對應十個 repo。畫面星數合計 577.7K 是當下畫面數字相加的快照，不是即時總和（查證當日 API 合計 585,734，約 585.7k）。各項畫面／查證（2026-11-15 台北時間）如下：
+
+1. [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill)（style）148.7K／149.5k，MIT，畫面寫 80 styles、192 palettes。
+2. [awesome-design-md](https://github.com/VoltAgent/awesome-design-md)（style）127.3K／127.5k，MIT，84 份 DESIGN.md；既有 SEQ 0028，本則已把份數與星數改為 84／127.5k。
+3. [designer-skills](https://github.com/Owl-Listener/designer-skills)（design）3.3K／3.4k，MIT。本倉庫可數到 111 個 SKILL.md；README 另寫 marketplace 有 273 skills、76 commands、33 plugins，那是更廣的宣稱。
+4. [stitch-skills](https://github.com/google-labs-code/stitch-skills)（design）8.8K／8.9k，Apache-2.0。這是給 Google Stitch 用的 skill／plugin 包（stitch-design、stitch-build、stitch-utilities 等），不是只會匯出 DESIGN.md。
+5. [mcp-server-guide](https://github.com/figma/mcp-server-guide)（system）2.2K／2.2k，無授權標示。這是 Figma 官方的 MCP 使用指南，不是 MCP server 本身。畫面、說明文與該指南 README 仍寫 Starter 每月 6 次讀取；官方文件查證當日改為每月最多 20 次 tool calls，見 [Figma MCP rate limits](https://developers.figma.com/docs/figma-mcp-server/rate-limits-access/)。
+6. [astryx](https://github.com/meta/astryx)（system）26.7K／28.2k，MIT。Meta 開源設計系統，說明文寫 150+ React 元件；README 寫 Currently in Beta。
+7. [taste-skill](https://github.com/Leonxlnx/taste-skill)（build）114.4K／115.7k，MIT；既有 SEQ 0030，本則已改為 115.7k。
+8. [modern-web-guidance-src](https://github.com/GoogleChrome/modern-web-guidance-src)（build）畫面 3.3K 偏低，查證約 6.1k（6,067），Apache-2.0。已發布的 [GoogleChrome/modern-web-guidance](https://github.com/GoogleChrome/modern-web-guidance) 是另一個倉庫（查證 15,288 星），不要併成同一個。
+9. [agent-skills](https://github.com/vercel-labs/agent-skills)（review）34.0K／34.1k，無授權標示（畫面 MIT 不正確）；既有 SEQ 0031。畫面上的「100+ 規則」是其中 web-design-guidelines 這個 skill，不是整個包；本則已把星數改為 34.1k。
+10. [impeccable](https://github.com/pbakaus/impeccable)（review）109.0K／110.2k，Apache-2.0。畫面寫 24 個指令與 62 條偵測規則；既有 SEQ 0029，本則已把規則數與星數改為 62／110.2k。
+
+可對照 SEQ 0028–0031。
+
+SkillSpector 靜態掃描（2026-11-15 台北時間，skillspector 2.12.0，--no-llm）：① nextlevelbuilder/ui-ux-pro-max-skill（commit d643997）掃描待補（180 秒逾時，沒有產出報告）。② Owl-Listener/designer-skills（commit 9a6930c）score 67、severity HIGH、recommendation DO_NOT_INSTALL；issues 5（HIGH 2、MEDIUM 3）；覆蓋率 99.5%（220 個元件裡 205 個 fully inspected、1 個 partially inspected），狀態 partial。③ google-labs-code/stitch-skills（commit 0337446）score 100、severity CRITICAL、recommendation DO_NOT_INSTALL；issues 149（HIGH 3、MEDIUM 144、LOW 2）；覆蓋率 93.3%（103 個元件裡 83 個 fully inspected、6 個 partially inspected），狀態 partial。④ figma/mcp-server-guide（commit 5f3024c）掃描待補（180 秒逾時，沒有產出報告）。⑤ GoogleChrome/modern-web-guidance-src（commit 5e5cd33）掃描待補（180 秒逾時，沒有產出報告）。⑥ meta/astryx（commit 16fe6a8）掃描待補（180 秒逾時，沒有產出報告）。以上是規則與模式掃描，不是已確認的漏洞或利用證明。
+
+互動重現：[design-studio-repos](https://wiki.singularityengine.dev/demos/design-studio-repos/)（五個階段與十張可點的 repo 卡；星數與授權都標成快照，不會連網）。配樂：有配樂，曲名未標。
+
+![10 個 repo 的 DESIGN STUDIO 概念看板，畫面合計 577.7K](../assets/gifs/v91-design-studio-repos.gif)

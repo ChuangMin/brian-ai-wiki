@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Code Subagent Tip（影片 95 重製）</title>
+<style>
+  :root {
+    --bg: #07090f;
+    --panel: #0c1018;
+    --line: #1c2533;
+    --text: #d5dee8;
+    --muted: #8b97a6;
+    --bright: #f4f7fb;
+    --sonnet: #3dd6c4;
+    --haiku: #d08a5a;
+    --opus: #c9b06a;
+    --jev: #b07cff;
+    --split: #6aa8ff;
+    --lead: #3d8cff;
+    --warn: #f5c542;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--text); }
+  body { font-family: "Segoe UI", "Trebuchet MS", "PingFang TC", "Noto Sans TC", sans-serif; }
+  a { color: #7ec8ff; }
+  a:hover { color: var(--bright); }
+  .page { max-width: 1180px; margin: 0 auto; padding: 10px 14px 36px; }
+  .home { color: var(--muted); text-decoration: none; font-size: 12px; }
+  h1 { margin: 6px 0 4px; font-size: 20px; color: var(--bright); }
+  h1 small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; margin-top: 3px; }
+  .banner {
+    margin: 8px 0 12px; padding: 8px 12px; border-radius: 8px;
+    border: 1px solid rgba(245,197,66,.55); background: rgba(245,197,66,.1);
+    color: #ffe7a0; font-size: 13px; font-weight: 600;
+  }
+  .board {
+    background: #080b12; border: 1px solid #1a2230; border-radius: 10px; padding: 10px 10px 8px;
+  }
+  .titlebar { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+  .titlebar h2 { margin: 0; font-size: 18px; letter-spacing: .06em; color: var(--sonnet); font-weight: 700; }
+  .titlebar h2 span { color: #9ff3e4; }
+  .sub { font-size: 10px; letter-spacing: .1em; color: var(--muted); margin-top: 2px; text-transform: uppercase; }
+  .topstats { display: flex; gap: 14px; font-size: 11px; letter-spacing: .08em; color: var(--muted); }
+  .topstats b { display: block; color: var(--bright); font-size: 16px; font-variant-numeric: tabular-nums; }
+  .graph {
+    position: relative; height: 430px; margin: 10px 0 8px;
+    background: radial-gradient(ellipse at 50% 40%, #10182a 0%, #080b12 70%);
+    border: 1px solid #141b28; border-radius: 8px; overflow: hidden;
+  }
+  .graph canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .node {
+    position: absolute; min-width: 148px; max-width: 200px;
+    border: 1px dashed rgba(255,255,255,.28); border-radius: 6px;
+    background: rgba(10,14,22,.92); padding: 5px 8px 6px; cursor: pointer;
+    font-size: 11px; line-height: 1.25;
+  }
+  .node:hover, .node.on { border-style: solid; box-shadow: 0 0 0 1px rgba(255,255,255,.15), 0 0 16px rgba(80,180,255,.15); }
+  .node .k { display: flex; justify-content: space-between; gap: 8px; font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .node .t { color: var(--bright); font-weight: 650; font-size: 12px; }
+  .node .d { color: var(--muted); font-size: 10px; }
+  .node.sonnet { border-color: rgba(61,214,196,.55); }
+  .node.haiku { border-color: rgba(208,138,90,.6); }
+  .node.opus { border-color: rgba(201,176,106,.6); }
+  .node.jev { border-color: rgba(176,124,255,.6); }
+  .node.split { border-color: rgba(106,168,255,.6); }
+  .node.lead { border-color: rgba(61,140,255,.65); }
+   .note {
+    position: absolute; right: 10px; bottom: 8px; top: auto; width: 210px;
+    font-size: 10px; color: var(--muted); background: rgba(8,10,16,.75);
+    border: 1px solid #1c2533; border-radius: 6px; padding: 6px 8px;
+  }
+  .note b { color: var(--bright); display: block; margin-bottom: 4px; }
+  .grid2 { display: grid; grid-template-columns: 1.15fr 1fr; gap: 8px; }
+  .panel { background: #0a0e16; border: 1px solid #1a2230; border-radius: 6px; padding: 7px 8px; min-height: 170px; }
+  .panel h3 { margin: 0 0 6px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  table.ht { width: 100%; border-collapse: collapse; font-size: 10px; font-variant-numeric: tabular-nums; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+  table.ht th, table.ht td { padding: 2px 4px; text-align: right; border-bottom: 1px solid #151c28; }
+  table.ht th { color: var(--muted); font-weight: 500; }
+  table.ht td.l, table.ht th.l { text-align: left; }
+  .bars { display: flex; gap: 8px; margin-bottom: 6px; font-size: 10px; }
+  .bars .row { flex: 1; }
+  .bars i { display: block; height: 8px; background: #15202c; border-radius: 2px; overflow: hidden; }
+  .bars i b { display: block; height: 100%; }
+  .log { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 10px; color: #9ec8b8; line-height: 1.45; height: 88px; overflow: hidden; white-space: pre; }
+  .chart { height: 70px; }
+  .chart canvas, .time canvas { display: block; width: 100%; height: 100%; }
+  .time { height: 54px; margin-top: 8px; }
+  .foot { display: grid; grid-template-columns: repeat(4, 1fr) 1.3fr; gap: 8px; margin-top: 8px; }
+  .kpi { border: 1px solid #1a2230; border-radius: 6px; padding: 8px; }
+  .kpi .lab { font-size: 10px; letter-spacing: .1em; color: var(--muted); text-transform: uppercase; }
+  .kpi .n { font-size: 22px; color: var(--bright); font-variant-numeric: tabular-nums; font-weight: 700; }
+  .cli {
+    border: 1px dashed rgba(61,214,196,.45); border-radius: 6px; padding: 8px 10px;
+    font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: #c9f6ea;
+  }
+  .cli .eq { margin-top: 6px; font-size: 10px; color: #c9b06a; line-height: 1.45; font-family: inherit; }
+  .btns { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; }
+  button {
+    font: inherit; font-size: 12px; background: #121820; color: var(--text);
+    border: 1px solid #2a3544; border-radius: 6px; padding: 6px 10px; cursor: pointer;
+  }
+  button:hover { border-color: var(--sonnet); color: var(--bright); }
+  button:focus-visible, a:focus-visible, .node:focus-visible { outline: 2px solid var(--warn); outline-offset: 2px; }
+  .fine { margin-top: 12px; color: var(--muted); font-size: 12px; }
+  @media (max-width: 900px) {
+    .graph { height: 520px; }
+    .grid2, .foot { grid-template-columns: 1fr; }
+    .node { transform: scale(.92); transform-origin: top left; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="home" href="../">← 圖表演示</a>
+  <h1>Claude Code Subagent Tip<small>依影片 95／SEQ 0137 重製的可點看板 · 虛構示範資料 · 不會連網</small></h1>
+  <div class="banner" role="status">這是介面重製，不是真實的 Claude Code 工作階段。數字為隨機示範。</div>
+  <div class="board">
+    <div class="titlebar">
+      <div>
+        <h2>CLAUDE CODE <span>SUBAGENT TIP</span></h2>
+        <div class="sub">Sonnet 5.5 builds · Haiku 5.5 swarms · JEV forks</div>
+      </div>
+      <div class="topstats">
+        <div>CALLS<b id="s-calls">131</b></div>
+        <div>SONNET<b id="s-sonnet">14</b></div>
+        <div>JEV<b id="s-jev">42</b></div>
+        <div>RETRIES<b id="s-retries">0</b></div>
+        <div>VERIFIED<b id="s-ver">3</b></div>
+      </div>
+    </div>
+    <div class="graph" id="graph">
+      <canvas id="links"></canvas>
+      <div class="note" id="hint"><b>點節點看說明</b>這是動畫看板。點 SPLIT 可模擬 same error x2；點 JEV 卡會寫入示範 router.jsonl。</div>
+    </div>
+    <div class="grid2">
+      <section class="panel">
+        <h3>htop · subagents</h3>
+        <div class="bars" id="bars"></div>
+        <table class="ht" id="htop"></table>
+      </section>
+      <section class="panel">
+        <h3>router.jsonl · <span id="forkn">1,322</span> forks</h3>
+        <div class="log" id="log"></div>
+        <div class="chart"><canvas id="tok"></canvas></div>
+      </section>
+    </div>
+    <section class="panel" style="margin-top:8px">
+      <h3>timeline · every call</h3>
+      <div class="time"><canvas id="tl"></canvas></div>
+    </section>
+    <div class="foot">
+      <div class="kpi"><div class="lab">Calls</div><div class="n" id="k-calls">131</div></div>
+      <div class="kpi"><div class="lab">Forks</div><div class="n" id="k-forks">1,322</div></div>
+      <div class="kpi"><div class="lab">Tests</div><div class="n" id="k-tests">4/248</div></div>
+      <div class="kpi"><div class="lab">Verified</div><div class="n" id="k-ver">1%</div></div>
+      <div class="cli">
+        ~/app $ claude --swarm
+        <div class="eq">畫面指令不是官方旗標。官方對等寫法：<code>claude --model sonnet --advisor opus</code>、<code>--agents</code> JSON，以及 subagent 的 <code>model: haiku</code> 與 <code>isolation: worktree</code>。多 session 組隊則是實驗功能 <code>CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1</code>。</div>
+      </div>
+    </div>
+  </div>
+  <div class="btns">
+    <button type="button" id="btn-split">觸發 SPLIT：same error x2</button>
+    <button type="button" id="btn-jev">寫一筆示範 JEV fork</button>
+    <button type="button" id="btn-pause">暫停動畫</button>
+  </div>
+  <p class="fine">視覺來自 @Bober_smart 的看板動畫，說明文來自 @Flandermaxx。JEV 的 p 值與 fork 數是示範動畫，不是實測。可對照 SEQ 0098、0069、0134。來源：<a href="https://www.facebook.com/reel/1122824923965641">影片 95</a>。</p>
+</div>
+<script>
+(function () {
+  "use strict";
+
+  var NODES = [
+    { id: "lead", cls: "lead", x: 3, y: 4, title: "sonnet 5.5", tag: "LEAD", desc: "main session · on", info: "Sonnet 當主 session：寫碼、跑測試、fork 之後回到主線。官方對等：claude --model sonnet。" },
+    { id: "edits", cls: "sonnet", x: 22, y: 4, title: "edits + tests", tag: "SONNET", desc: "runs tests", info: "主 session 改檔並跑測試。數字會遊走，是示範。" },
+    { id: "effort", cls: "sonnet", x: 41, y: 4, title: "effort", tag: "SONNET", desc: "max high · 4/4", info: "畫面標 effort max high。這是動畫標籤，不是官方跑分。" },
+    { id: "cli", cls: "sonnet", x: 60, y: 4, title: "--model sonnet", tag: "CLI", desc: "~/app $ claude", info: "claude --model sonnet 是官方旗標。右下角的 claude --swarm 不是。" },
+    { id: "delegate", cls: "haiku", x: 22, y: 16, title: "delegate to subagents", tag: "HAIKU 5.5", desc: "swarm · search grep audit · 3/3", info: "三個 Haiku 子代理：search、grep、audit。官方寫法是 --agents JSON，並在定義裡設 model: haiku。" },
+    { id: "advisor", cls: "opus", x: 22, y: 28, title: "Opus 5.5 · advisor", tag: "ON CALL", desc: "reads the whole session", info: "Opus 當顧問，不寫碼，只在關卡醒來。官方對等：--advisor opus。" },
+    { id: "search", cls: "haiku", x: 76, y: 22, title: "search · Haiku 5.5", tag: "DONE", desc: "maps the repo", info: "Haiku search 在自己的 worktree 裡掃 repo。官方對等：isolation: worktree。" },
+    { id: "file", cls: "jev", x: 8, y: 40, title: "which file", tag: "JEV", desc: "p=0.94 · sharp", info: "JEV 卡片上的 p 值是動畫數字，不是實測統計。" },
+    { id: "tool", cls: "jev", x: 28, y: 40, title: "which tool", tag: "JEV", desc: "p=0.94 · sharp", info: "which tool 同樣是動畫分流卡。" },
+    { id: "retry", cls: "jev", x: 48, y: 40, title: "retry or stop", tag: "JEV", desc: "p=0.80 · sharp", info: "retry or stop 的 p=0.80 也是示範值。" },
+    { id: "split", cls: "split", x: 3, y: 52, title: "same error x2", tag: "SPLIT", desc: "retry once → sonnet", info: "同一個錯誤出現兩次就打回 Sonnet。點這張卡或下方按鈕可模擬一次。" },
+    { id: "forks", cls: "jev", x: 28, y: 52, title: "JEV · fork layer", tag: "FORKS", desc: "sharp · route in code", info: "fork 次數是動畫累加，不是 TypeSafe 實測。官方典型延遲約 100 ms，不是亞毫秒。" },
+    { id: "back", cls: "lead", x: 55, y: 50, title: "back to Sonnet 5.5", tag: "LEAD", desc: "review + verify", info: "分流結果回到主 session 驗收。" },
+    { id: "grep", cls: "haiku", x: 3, y: 64, title: "grep · Haiku 5.5", tag: "RUNNING", desc: "finds call sites", info: "Haiku grep 在 worktree 裡找呼叫點。" },
+    { id: "sharp", cls: "jev", x: 28, y: 64, title: "sharp → runs in code", tag: "JEV", desc: "split → Sonnet", info: "動畫把 JEV 的分流畫成在程式裡執行。" },
+    { id: "plan", cls: "opus", x: 76, y: 42, title: "before a plan", tag: "OPUS 5.5", desc: "silent on routine turns", info: "計畫鎖定前，Opus 才出聲。這是影片裡的關卡設計。" },
+    { id: "done", cls: "opus", x: 3, y: 76, title: "before done", tag: "OPUS 5.5", desc: "never writes code · advising", info: "宣告完成前再審一次。顧問不寫碼。" },
+    { id: "apply", cls: "sonnet", x: 28, y: 76, title: "Sonnet applies advice", tag: "SONNET", desc: "edits + runs tests · tests pass", info: "Sonnet 採納建議、改碼、再跑測試。" },
+    { id: "audit", cls: "haiku", x: 76, y: 76, title: "audit · Haiku 5.5", tag: "RUNNING", desc: "runs in a worktree", info: "Haiku audit 跑在隔離 worktree。官方欄位是 isolation: worktree。" }
+  ];
+
+  var EDGES = [
+    ["lead", "edits"], ["edits", "effort"], ["effort", "cli"],
+    ["lead", "delegate"], ["delegate", "search"], ["delegate", "grep"], ["delegate", "audit"],
+    ["lead", "advisor"], ["advisor", "plan"], ["advisor", "done"],
+    ["file", "forks"], ["tool", "forks"], ["retry", "forks"],
+    ["split", "lead"], ["forks", "back"], ["back", "apply"],
+    ["sharp", "apply"], ["done", "apply"], ["plan", "apply"]
+  ];
+
+  var graph = document.getElementById("graph");
+  var hint = document.getElementById("hint");
+  var nodeEls = {};
+  NODES.forEach(function (n) {
+    var el = document.createElement("button");
+    el.type = "button";
+    el.className = "node " + n.cls;
+    el.id = "n-" + n.id;
+    el.style.left = n.x + "%";
+    el.style.top = n.y + "%";
+    el.innerHTML = '<div class="k"><span>' + n.tag + '</span></div><div class="t">' + n.title + '</div><div class="d" data-desc>' + n.desc + '</div>';
+    el.addEventListener("click", function () { selectNode(n.id); });
+    graph.appendChild(el);
+    nodeEls[n.id] = el;
+  });
+
+  var selected = null;
+  function selectNode(id) {
+    selected = id;
+    var n = NODES.filter(function (x) { return x.id === id; })[0];
+    Object.keys(nodeEls).forEach(function (k) {
+      nodeEls[k].classList.toggle("on", k === id);
+    });
+    hint.innerHTML = "<b>" + n.title + "</b>" + n.info;
+    if (id === "split") fireSplit();
+    if (id === "file" || id === "tool" || id === "retry" || id === "forks") writeFork(id);
+    drawLinks();
+  }
+
+  var state = {
+    calls: 131, sonnet: 14, jev: 42, retries: 0, ver: 3,
+    forks: 1322, tests: 4, testMax: 248,
+    tokens: { sonnet: 867, haiku: 753, opus: 197 },
+    readk: 313,
+    paused: false,
+    logs: [
+      '{"q":"which file", "p":0.94, "route":"code"}',
+      '{"q":"which tool", "p":0.94, "route":"code"}'
+    ],
+    rows: [
+      { pid: 1211, agent: "sonnet 5.5", task: "lead", cpu: 49.8, mem: "0.4G", st: "RUN" },
+      { pid: 1212, agent: "haiku 5.5", task: "search", cpu: 91.5, mem: "0.6G", st: "RUN" },
+      { pid: 1213, agent: "haiku 5.5", task: "grep", cpu: 82.9, mem: "0.7G", st: "RUN" },
+      { pid: 1214, agent: "haiku 5.5", task: "audit", cpu: 8.3, mem: "0.9G", st: "SLEEP" },
+      { pid: 1215, agent: "opus 5.5", task: "advisor", cpu: 90.7, mem: "1.2G", st: "RUN" },
+      { pid: 1216, agent: "jev", task: "which file", cpu: 84.4, mem: "1.2G", st: "RUN" },
+      { pid: 1217, agent: "jev", task: "which tool", cpu: 8.3, mem: "1.4G", st: "SLEEP" },
+      { pid: 1218, agent: "jev", task: "retry/stop", cpu: 89.7, mem: "1.6G", st: "RUN" },
+      { pid: 1219, agent: "split", task: "→ sonnet", cpu: 85.7, mem: "1.8G", st: "RUN" },
+      { pid: 1230, agent: "sonnet 5.5", task: "verify", cpu: 8.3, mem: "1.9G", st: "SLEEP" }
+    ]
+  };
+
+  function fmt(n) { return n.toLocaleString("en-US"); }
+
+  function renderStats() {
+    document.getElementById("s-calls").textContent = fmt(state.calls);
+    document.getElementById("s-sonnet").textContent = fmt(state.sonnet);
+    document.getElementById("s-jev").textContent = fmt(state.jev);
+    document.getElementById("s-retries").textContent = fmt(state.retries);
+    document.getElementById("s-ver").textContent = fmt(state.ver);
+    document.getElementById("k-calls").textContent = fmt(state.calls);
+    document.getElementById("k-forks").textContent = fmt(state.forks);
+    document.getElementById("k-tests").textContent = state.tests + "/" + state.testMax;
+    var pct = Math.min(100, Math.round(state.tests / state.testMax * 100));
+    document.getElementById("k-ver").textContent = state.tests >= state.testMax ? "✓" : (pct + "%");
+    document.getElementById("forkn").textContent = fmt(state.forks);
+    nodeEls.advisor.querySelector("[data-desc]").textContent = "reads the whole session · " + state.readk + "k read";
+    nodeEls.forks.querySelector("[data-desc]").textContent = "sharp · route in code · " + fmt(state.forks) + " forks";
+    nodeEls.edits.querySelector("[data-desc]").textContent = "runs tests · " + state.tests;
+    nodeEls.search.querySelector("[data-desc]").textContent = "maps the repo · " + Math.min(99, 40 + Math.floor(state.tests / 4)) + "%";
+  }
+
+  function renderHtop() {
+    var share = {
+      sonnet: 40 + Math.round(Math.random() * 20),
+      haiku: 25 + Math.round(Math.random() * 20),
+      opus: 20 + Math.round(Math.random() * 20)
+    };
+    var bars = document.getElementById("bars");
+    bars.innerHTML =
+      '<div class="row">sonnet<i><b style="width:' + share.sonnet + '%;background:#3dd6c4"></b></i></div>' +
+      '<div class="row">haiku<i><b style="width:' + share.haiku + '%;background:#d08a5a"></b></i></div>' +
+      '<div class="row">opus<i><b style="width:' + share.opus + '%;background:#c9b06a"></b></i></div>';
+    var html = "<tr><th class='l'>PID</th><th class='l'>AGENT</th><th class='l'>TASK</th><th>CPU</th><th>MEM</th><th>STATE</th></tr>";
+    state.rows.forEach(function (r) {
+      r.cpu = Math.max(0.3, Math.min(99, r.cpu + (Math.random() - 0.5) * 8));
+      if (Math.random() < 0.08) r.st = r.st === "RUN" ? "SLEEP" : "RUN";
+      html += "<tr><td class='l'>" + r.pid + "</td><td class='l'>" + r.agent + "</td><td class='l'>" + r.task + "</td><td>" + r.cpu.toFixed(1) + "</td><td>" + r.mem + "</td><td>" + r.st + "</td></tr>";
+    });
+    document.getElementById("htop").innerHTML = html;
+  }
+
+  function renderLog() {
+    document.getElementById("log").textContent = state.logs.slice(0, 6).join("\n");
+  }
+
+  function writeFork(kind) {
+    var q = kind === "tool" ? "which tool" : kind === "retry" ? "retry or stop" : kind === "split" ? "same error x2" : "which file";
+    var p = kind === "retry" ? (0.78 + Math.random() * 0.05) : kind === "split" ? (0.50 + Math.random() * 0.08) : (0.90 + Math.random() * 0.05);
+    var route = kind === "split" ? "sonnet" : kind === "retry" ? "retry" : "code";
+    state.logs.unshift('{"q":"' + q + '", "p":' + p.toFixed(2) + ', "route":"' + route + '"}');
+    if (state.logs.length > 8) state.logs.pop();
+    state.forks += 1;
+    state.jev += 1;
+    state.calls += 1;
+    renderLog();
+    renderStats();
+  }
+
+  function fireSplit() {
+    state.retries += 1;
+    state.sonnet += 1;
+    state.calls += 2;
+    writeFork("split");
+    hint.innerHTML = "<b>same error x2</b>SPLIT 把同一個錯誤打回 Sonnet（示範）。官方並沒有叫作 SPLIT 的旗標。";
+  }
+
+  document.getElementById("btn-split").addEventListener("click", function () {
+    selectNode("split");
+  });
+  document.getElementById("btn-jev").addEventListener("click", function () {
+    selectNode("forks");
+  });
+  document.getElementById("btn-pause").addEventListener("click", function () {
+    state.paused = !state.paused;
+    this.textContent = state.paused ? "繼續動畫" : "暫停動畫";
+  });
+
+  function fit(c) {
+    var r = c.getBoundingClientRect();
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var w = Math.max(1, Math.round(r.width * dpr));
+    var h = Math.max(1, Math.round(r.height * dpr));
+    if (c.width !== w || c.height !== h) { c.width = w; c.height = h; }
+    return { w: w, h: h };
+  }
+
+  function drawLinks() {
+    var c = document.getElementById("links");
+    var f = fit(c);
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, f.w, f.h);
+    var g = graph.getBoundingClientRect();
+    var scaleX = f.w / g.width;
+    var scaleY = f.h / g.height;
+    EDGES.forEach(function (e) {
+      var a = nodeEls[e[0]].getBoundingClientRect();
+      var b = nodeEls[e[1]].getBoundingClientRect();
+      var x1 = (a.left - g.left + a.width / 2) * scaleX;
+      var y1 = (a.top - g.top + a.height / 2) * scaleY;
+      var x2 = (b.left - g.left + b.width / 2) * scaleX;
+      var y2 = (b.top - g.top + b.height / 2) * scaleY;
+      var hot = selected && (e[0] === selected || e[1] === selected);
+      ctx.strokeStyle = hot ? "rgba(180,230,255,0.7)" : "rgba(120,160,200,0.22)";
+      ctx.lineWidth = hot ? 1.6 : 1;
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.quadraticCurveTo((x1 + x2) / 2, Math.min(y1, y2) - 18 * scaleY, x2, y2);
+      ctx.stroke();
+      var t = (Date.now() / 2000) % 1;
+      var mx = (1 - t) * (1 - t) * x1 + 2 * (1 - t) * t * ((x1 + x2) / 2) + t * t * x2;
+      var my = (1 - t) * (1 - t) * y1 + 2 * (1 - t) * t * (Math.min(y1, y2) - 18 * scaleY) + t * t * y2;
+      ctx.fillStyle = hot ? "#e8f6ff" : "rgba(200,230,255,0.45)";
+      ctx.beginPath(); ctx.arc(mx, my, hot ? 2.4 : 1.5, 0, Math.PI * 2); ctx.fill();
+    });
+  }
+
+  var tokHist = { s: [], h: [], o: [] };
+  function pushTok() {
+    state.tokens.sonnet = Math.max(80, state.tokens.sonnet + (Math.random() - 0.45) * 40);
+    state.tokens.haiku = Math.max(80, state.tokens.haiku + (Math.random() - 0.45) * 40);
+    state.tokens.opus = Math.max(80, state.tokens.opus + (Math.random() - 0.45) * 30);
+    tokHist.s.push(state.tokens.sonnet); if (tokHist.s.length > 40) tokHist.s.shift();
+    tokHist.h.push(state.tokens.haiku); if (tokHist.h.length > 40) tokHist.h.shift();
+    tokHist.o.push(state.tokens.opus); if (tokHist.o.length > 40) tokHist.o.shift();
+  }
+  function drawSeries(canvas, series, colors) {
+    var f = fit(canvas);
+    var ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, f.w, f.h);
+    var all = [];
+    series.forEach(function (s) { all = all.concat(s); });
+    if (all.length < 2) return;
+    var min = Math.min.apply(null, all), max = Math.max.apply(null, all), span = max - min || 1;
+    series.forEach(function (s, si) {
+      if (s.length < 2) return;
+      ctx.beginPath();
+      s.forEach(function (v, i) {
+        var x = (i / (s.length - 1)) * f.w;
+        var y = f.h - 4 - ((v - min) / span) * (f.h - 8);
+        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      });
+      ctx.strokeStyle = colors[si];
+      ctx.lineWidth = 1.4;
+      ctx.stroke();
+    });
+  }
+  var tl = [];
+  function drawTl() {
+    var c = document.getElementById("tl");
+    var f = fit(c);
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, f.w, f.h);
+    var lanes = ["#3dd6c4", "#d08a5a", "#c9b06a", "#b07cff"];
+    for (var L = 0; L < 4; L++) {
+      var y = 8 + L * (f.h / 4);
+      ctx.fillStyle = "rgba(255,255,255,0.04)";
+      ctx.fillRect(0, y, f.w, f.h / 6);
+      for (var i = 0; i < 18; i++) {
+        if ((i + L + Math.floor(Date.now() / 800)) % 3 === 0) {
+          ctx.fillStyle = lanes[L];
+          ctx.globalAlpha = 0.7;
+          ctx.fillRect((i / 18) * f.w + 2, y, f.w / 28, f.h / 6);
+          ctx.globalAlpha = 1;
+        }
+      }
+    }
+  }
+
+  function tick() {
+    if (!state.paused) {
+      state.calls += 1 + Math.floor(Math.random() * 3);
+      if (Math.random() < 0.4) state.sonnet += 1;
+      if (Math.random() < 0.5) { state.jev += 1; state.forks += 1; }
+      if (Math.random() < 0.25 && state.tests < state.testMax) state.tests += 1;
+      if (Math.random() < 0.15) state.ver += 1;
+      if (Math.random() < 0.2) state.readk += 1;
+      pushTok();
+      renderStats();
+      renderHtop();
+    }
+    drawLinks();
+    drawSeries(document.getElementById("tok"), [tokHist.s, tokHist.h, tokHist.o], ["#3dd6c4", "#d08a5a", "#c9b06a"]);
+    drawTl();
+  }
+
+  for (var i = 0; i < 20; i++) pushTok();
+  renderStats();
+  renderHtop();
+  renderLog();
+  window.addEventListener("resize", drawLinks);
+  setInterval(tick, 700);
+  requestAnimationFrame(drawLinks);
+})();
+</script>
+</body>
+</html>

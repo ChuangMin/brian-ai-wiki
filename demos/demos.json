@@ -118,5 +118,55 @@
     "source": "影片 93",
     "sourceUrl": "https://www.facebook.com/reel/2222208475400708",
     "added": "2026-11-14"
+  },
+  {
+    "id": "trading-hud-ui",
+    "title": "Trading HUD UI：直式科幻交易儀表板（設計參考）",
+    "desc": "依 SEQ 0049 影片的直式 9:16 科幻交易儀表板逐畫面重製：可切換九種虛構面板，Neural Shell（琥珀綠神經殼球體）、Global Mesh（深藍點陣地球與路由弧線）、Sigma Core（青色吸引子龍捲）、Surface Grid（紫綠 3D 波動曲面）、Liquidity Core（青色流動性漩渦與頻譜瀑布）、Depth Book（橘黃 3D 深度城市）、Policy Net（洋紅策略網路）、Chaos Engine（混沌吸引子）與紅色 Evo Protocol。全部都會動，數字為隨機示範。橫幅寫「UI 設計參考，非交易工具，數字為隨機示範」。沒有錢包位址，不含金額符號，不會連網。",
+    "category": "前端與 UI",
+    "path": "trading-hud-ui/",
+    "source": "影片 94（併入 SEQ 0049）",
+    "sourceUrl": "https://www.facebook.com/reel/1127435123333312",
+    "added": "2026-11-14"
+  },
+  {
+    "id": "claude-code-subagent-tip",
+    "title": "Claude Code Subagent Tip：三模型分工與 JEV fork",
+    "desc": "依影片 95 重製的可點看板：Sonnet 主 session、Haiku swarm（search／grep／audit）、Opus 關卡顧問、JEV fork 卡、SPLIT（same error x2）、htop 與 router.jsonl。橫幅寫明這是介面重製，不是真實的 Claude Code 工作階段。畫面的 claude --swarm 旁標了官方對等寫法。數字為隨機示範，不會連網。",
+    "category": "Agent 系統",
+    "path": "claude-code-subagent-tip/",
+    "source": "影片 95",
+    "sourceUrl": "https://www.facebook.com/reel/1122824923965641",
+    "added": "2026-11-15"
+  },
+  {
+    "id": "ml-algorithms-cheatsheet",
+    "title": "經典機器學習問題怎麼分？八類分流",
+    "desc": "自製的互動分流：先選你要解決的問題類型（文字、二分類、多分類、迴歸、異常、分群、影像、推薦），再看簡短說明與常見做法。版面與用詞都另外寫過，不是 Microsoft 2021 Azure ML designer 演算法表的複製。本頁也列出 XGBoost、LightGBM、DBSCAN 等該表沒有的較新方法，並把 One-vs-Rest／One-vs-One 標成策略。頁尾連回 2021 年官方表。不會連網。",
+    "category": "系統設計",
+    "path": "ml-algorithms-cheatsheet/",
+    "source": "影片 96",
+    "sourceUrl": "https://www.facebook.com/reel/1502253031965145",
+    "added": "2026-11-15"
+  },
+  {
+    "id": "design-studio-repos",
+    "title": "10 個 repo 的產品設計管線",
+    "desc": "依影片 97 重製的五階段管線（style→design→system→build→review）與十張可點的 repo 卡。橫幅寫明星數與授權都是快照（畫面合計 577.7K；查證授權為 8/10 MIT 或 Apache-2.0），不是即時數字，不會連網。",
+    "category": "前端與 UI",
+    "path": "design-studio-repos/",
+    "source": "影片 97",
+    "sourceUrl": "https://www.facebook.com/reel/1459698966355266",
+    "added": "2026-11-15"
+  },
+  {
+    "id": "meta-ads-agent-pipeline",
+    "title": "虛構六步廣告活動管線",
+    "desc": "依影片 98 重製的六步管線（目標→預算／受眾→文案→素材→預覽→發布）。這不是 Meta 的介面，也沒有真實診所。發布前要人工核准，可打開預算上限；頁面不會連網或刊登廣告。",
+    "category": "自動化工作流",
+    "path": "meta-ads-agent-pipeline/",
+    "source": "影片 98",
+    "sourceUrl": "https://www.facebook.com/reel/1111517925213954",
+    "added": "2026-11-15"
   }
 ]
