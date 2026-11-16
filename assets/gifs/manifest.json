@@ -767,6 +767,26 @@
     "segment_start": 3.0,
     "duration": 8.0,
     "size_bytes": 2728977,
-    "what_it_shows": "地球全景、Starlink 飛過吉隆坡、NIFC 火場範圍與 GitHub 頁；已略過 TfL 監視器特寫"
+    "what_it_shows": "0:03–0:06 地球、0:07–0:09 Starlink 飛過 KL、0:24–0:25 NIFC 火場範圍、0:40–0:42 GitHub 頁；已略過 TfL 監視器特寫"
+  },
+  {
+    "file": "v94-poteto-trust-pyramid.gif",
+    "video_number": "影片 100",
+    "entry_name": "Lauren Tan（poteto）：All Code Is Slop (Except Mine)（AI Engineer CODE 2026）",
+    "reel_url": "https://www.youtube.com/watch?v=O_zcc6Xl12g",
+    "segment_start": 28.0,
+    "duration": 14.0,
+    "size_bytes": 165642,
+    "what_it_shows": "0:28–0:32 標題、0:02:06–0:02:11 金字塔、0:13:34–0:13:39 團隊 PR 圖；已裁到投影片區，不含講者姓名條"
+  },
+  {
+    "file": "v95-motion-studio-repos.gif",
+    "video_number": "影片 101",
+    "entry_name": "Altair AI：14 個免費 repo 組成動態影像工作室（概念動畫）",
+    "reel_url": "https://www.facebook.com/reel/1129832049651368/",
+    "segment_start": 1.2,
+    "duration": 10.6,
+    "size_bytes": 3140313,
+    "what_it_shows": "1.2–4.5 Helix 的 anime.js 卡、13.0–16.5 Stack 的 TRELLIS 3D 檢視、27.8–31.6 片尾 14 張 Grid；已裁掉底部 Follow 橫幅"
   }
 ]

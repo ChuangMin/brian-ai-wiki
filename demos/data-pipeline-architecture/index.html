@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>端到端資料管線／End-to-end data pipeline</title>
+<style>
+  :root {
+    --bg:#0f141c; --panel:#171e2a; --ink:#e8eef6; --muted:#93a0b3;
+    --line:#2a3546; --accent:#3db8c5; --accent-dim:#1a4d55;
+    --bronze:#b36a3a; --silver:#8aa0b8; --gold:#c9a227;
+    --ok:#3ecf8e; --warn:#e0b14d;
+    --sans:"Segoe UI","PingFang TC","Noto Sans TC","Helvetica Neue",sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5}
+  header{max-width:1100px;margin:0 auto;padding:24px 20px 8px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:flex-start}
+  h1{margin:0 0 6px;font-size:1.5rem;letter-spacing:-.02em}
+  .sub{margin:0;color:var(--muted);max-width:46rem}
+  .lang{display:flex;gap:6px}
+  .lang button{border:1px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;padding:4px 12px;cursor:pointer;font:inherit}
+  .lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+  .banner{max-width:1100px;margin:0 auto 16px;padding:0 20px}
+  .banner p{margin:0;background:#2a2416;color:#e8d7a3;border:1px solid #5a4a22;border-radius:10px;padding:10px 14px;font-size:.95rem}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 20px 36px}
+  .flow{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:10px}
+  @media (max-width:800px){.flow{grid-template-columns:repeat(3,1fr)}}
+  .stage,.bar{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px;cursor:pointer;text-align:left;color:inherit;font:inherit;width:100%}
+  .stage[aria-current="true"],.bar[aria-current="true"]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+  .stage .n,.bar .n{color:var(--accent);font-variant-numeric:tabular-nums;font-size:.8rem}
+  .stage h3,.bar h3{margin:2px 0 6px;font-size:.95rem}
+  .chips{display:flex;flex-wrap:wrap;gap:4px}
+  .chip{background:#202a38;border-radius:999px;padding:1px 7px;font-size:.72rem;color:var(--muted)}
+  .bars{display:grid;gap:8px;margin:8px 0 16px}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px}
+  .panel h2{margin:0 0 8px;font-size:1.2rem}
+  .lead{margin:0 0 12px;color:var(--muted)}
+  .row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+  button.act,button.toggle{font:inherit;border:1px solid var(--ink);background:transparent;color:var(--ink);border-radius:8px;padding:6px 12px;cursor:pointer}
+  button.act.primary{background:var(--accent);border-color:var(--accent);color:#062226}
+  button.toggle[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+  .req{background:#0b0f16;color:#d5e8ea;font-family:var(--mono);font-size:.85rem;border-radius:10px;padding:10px 12px;white-space:pre-wrap;overflow-x:auto}
+  .caveat{background:#13262a;color:#b7e3e8;border-radius:10px;padding:10px 12px;margin:16px 0 0;font-size:.92rem}
+  .event{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
+  .dot{width:10px;height:10px;border-radius:50%;background:var(--muted)}
+  .dot.on{background:var(--accent);box-shadow:0 0 0 4px var(--accent-dim)}
+  .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  @media (max-width:700px){.cols{grid-template-columns:1fr}}
+  .medal{border-radius:10px;padding:10px;background:#121820;border:1px solid var(--line)}
+  .medal.bronze{border-color:var(--bronze)}
+  .medal.silver{border-color:var(--silver)}
+  .medal.gold{border-color:var(--gold)}
+  .medal h4{margin:0 0 6px;font-size:.9rem}
+  table{border-collapse:collapse;width:100%;font-size:.92rem}
+  th,td{border-bottom:1px solid var(--line);text-align:left;padding:6px 8px}
+  footer{max-width:1100px;margin:0 auto;padding:0 20px 40px;color:var(--muted);font-size:.9rem}
+  footer a{color:var(--accent)}
+</style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1 id="title"></h1>
+      <p class="sub" id="subtitle"></p>
+    </div>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" id="btn-zh" aria-pressed="true">中文</button>
+      <button type="button" id="btn-en" aria-pressed="false">English</button>
+    </div>
+  </header>
+  <div class="banner"><p id="banner"></p></div>
+  <div class="wrap">
+    <div class="flow" id="flow"></div>
+    <div class="bars" id="bars"></div>
+    <section class="panel" id="panel"></section>
+  </div>
+  <footer>
+    <p id="foot"></p>
+    <p><a href="https://wiki.singularityengine.dev/" id="home"></a></p>
+  </footer>
+<script>
+const COPY={
+  zh:{
+    title:"端到端資料管線",
+    sub:"依畫面八層做的互動示意，並加上實務補充。這不是原圖翻製，訂單資料是虛構的，也不會連網。",
+    banner:"圖上的雲端產品只是示例，不是完整清單。Bronze／Silver／Gold 是常見的湖倉分層，不是正式標準。本頁以畫面結構為準，不沿用說明文與畫面底部的宣傳用語。",
+    foot:"自製示範頁，對應影片 104／SEQ 0148。編排與監控是貫穿全程的能力，不只是最後兩步。",
+    home:"回到 AI 影片收藏 Wiki",
+    send:"送出一筆虛構訂單事件",
+    reset:"重設",
+    cloud:"示例雲端服務",
+    flowOk:"事件已走到目前這一層（示範資料）。"
+  },
+  en:{
+    title:"End-to-end data pipeline",
+    sub:"An interactive walkthrough of the graphic’s eight layers, with practical caveats. This is not a redraw of the poster. The order data is fictional, and the page never goes online.",
+    banner:"Cloud products on the graphic are examples, not a complete list. Bronze / Silver / Gold is a common lakehouse layering, not a formal standard. This page follows the diagram and does not reuse the caption or footer promotional wording.",
+    foot:"Original demo for Video 104 / SEQ 0148. Orchestration and monitoring run across the path; they are not only the last two steps.",
+    home:"Back to the AI video wiki",
+    send:"Send a fictional order event",
+    reset:"Reset",
+    cloud:"Example cloud services",
+    flowOk:"The event has reached this layer (demo data)."
+  }
+};
+const STAGES=[
+  {id:"src",n:"1",name:{zh:"資料來源",en:"Data Sources"},short:{zh:"來源",en:"Sources"},
+    chips:["Databases","Applications","Files/Logs","IoT","SaaS/APIs"],
+    lead:{zh:"資料從資料庫、應用、檔案與日誌、裝置與 SaaS API 進來。",en:"Data arrives from databases, apps, files and logs, devices, and SaaS APIs."},
+    body:{zh:"這是管線的起點。示範事件來自一間虛構商店 Maple Retail 的訂單系統。",en:"This is the start of the path. The demo event comes from a fictional shop, Maple Retail, and its order system."},
+    cave:{zh:"真實環境通常還有CDC、檔案落地與第三方匯出，來源品質參差不齊，所以後面才需要分層清理。",en:"Real estates also use CDC, file drops, and third-party extracts. Source quality varies, which is why later layers clean the data."},
+    svc:{aws:["RDS","S3 landing","API Gateway"],gcp:["Cloud SQL","Cloud Storage","APIs"],azure:["Azure SQL","Blob","APIs"]}
+  },
+  {id:"ing",n:"2",name:{zh:"擷取層",en:"Ingestion Layer"},short:{zh:"擷取",en:"Ingestion"},
+    chips:["Batch","Streaming","Kinesis","Pub/Sub","Event Hubs"],
+    lead:{zh:"用批次或串流把資料送進湖倉。",en:"Move data into the lake with batch or streaming services."},
+    body:{zh:"圖上示例有 AWS Kinesis、GCP Pub/Sub、Azure Event Hubs，並另寫 AWS Glue／ADF／Dataflow。",en:"The graphic cites AWS Kinesis, GCP Pub/Sub, and Azure Event Hubs, and also lists AWS Glue / ADF / Dataflow."},
+    cave:{zh:"同一行的 Dataflow 在 GCP 是產品名，在 Azure 常指 Data Factory 的 Mapping Data Flows，不宜當成三雲各一的對照。批次與串流的延遲、順序與重送語意也不一樣。",en:"Dataflow on that mixed row is a GCP product name, but on Azure it often means Mapping Data Flows in Data Factory, so it is not a clean three-cloud mapping. Batch and streaming also differ in delay, ordering, and retries."},
+    svc:{aws:["Kinesis","Glue"],gcp:["Pub/Sub","Dataflow"],azure:["Event Hubs","Data Factory"]}
+  },
+  {id:"store",n:"3",name:{zh:"儲存（資料湖）",en:"Storage (Data Lake)"},short:{zh:"資料湖",en:"Data Lake"},
+    chips:["Landing","Bronze","Silver","Gold","S3 / GCS / ADLS"],
+    lead:{zh:"先落地，再依 Bronze／Silver／Gold 逐步整理。",en:"Land the data, then curate it through Bronze, Silver, and Gold."},
+    body:{zh:"圖上 Raw Data 稱為 Landing Zone，再分成 Bronze（Raw）、Silver（Cleaned）、Gold（Curated），儲存示例是 S3、GCS、ADLS Gen2。",en:"The graphic calls raw data a landing zone, then splits Bronze (raw), Silver (cleaned), and Gold (curated). Storage examples are S3, GCS, and ADLS Gen2."},
+    cave:{zh:"這種勳章式分層由 Databricks 推廣，是常見做法而不是正式標準。有的團隊把 Landing 與 Bronze 分開，有的把 Gold 直接放在倉儲。",en:"This medallion layering was popularized by Databricks. It is a common practice, not a formal standard. Some teams separate a landing zone from Bronze; others keep Gold in the warehouse itself."},
+    svc:{aws:["S3"],gcp:["GCS"],azure:["ADLS Gen2"]}
+  },
+  {id:"proc",n:"4",name:{zh:"處理層",en:"Processing Layer"},short:{zh:"處理",en:"Processing"},
+    chips:["ETL / ELT","Glue","EMR","Databricks","Dataflow","Synapse"],
+    lead:{zh:"用 ETL 或 ELT 做轉換、關聯與彙總。",en:"Transform, join, and aggregate with ETL or ELT."},
+    body:{zh:"圖上示例包括 AWS Glue／EMR／Databricks、GCP Dataflow／Dataproc、Azure Databricks／Synapse／ADF。",en:"Examples on the graphic include AWS Glue / EMR / Databricks, GCP Dataflow / Dataproc, and Azure Databricks / Synapse / ADF."},
+    cave:{zh:"ETL 先轉再載、ELT 先載再轉，適用場景不同。這些產品是示例，不是推薦清單。",en:"ETL transforms before load; ELT loads first, then transforms. The products are examples, not a recommended shortlist."},
+    svc:{aws:["Glue","EMR","Databricks"],gcp:["Dataflow","Dataproc"],azure:["Databricks","Synapse","ADF"]}
+  },
+  {id:"serve",n:"5",name:{zh:"服務層",en:"Serving Layer"},short:{zh:"服務",en:"Serving"},
+    chips:["Warehouse","BI","APIs"],
+    lead:{zh:"把整理好的資料供給倉儲、圖表與 API。",en:"Serve curated data to a warehouse, dashboards, and APIs."},
+    body:{zh:"倉儲示例是 Redshift、BigQuery、Synapse；BI 示例是 Power BI、Looker、Tableau；另有 APIs／Applications。",en:"Warehouse examples are Redshift, BigQuery, and Synapse; BI examples are Power BI, Looker, and Tableau, plus APIs / applications."},
+    cave:{zh:"湖倉一體時，Gold 可能就在倉儲裡，不一定先在湖裡再複製一份。",en:"In a lakehouse, Gold may already live in the warehouse rather than being copied out of the lake."},
+    svc:{aws:["Redshift","QuickSight","API"],gcp:["BigQuery","Looker","API"],azure:["Synapse","Power BI","API"]}
+  },
+  {id:"cons",n:"6",name:{zh:"使用者與下游",en:"Consumers"},short:{zh:"使用者",en:"Consumers"},
+    chips:["Business Users","Analysts","Scientists","ML / AI","External"],
+    lead:{zh:"整理後的資料給人看、給模型用，或送到外部系統。",en:"People, models, and external systems consume the curated data."},
+    body:{zh:"圖上列出 Business Users、Data Analysts、Data Scientists、ML/AI Models、External Systems。示範裡只顯示一張虛構的日銷售卡。",en:"The graphic lists business users, data analysts, data scientists, ML/AI models, and external systems. This demo only shows a fictional daily-sales card."},
+    cave:{zh:"不同使用者需要的延遲、粒度與權限不同，通常不會共用同一份未加權限的資料。",en:"Different consumers need different latency, grain, and permissions, so they usually do not share one ungoverned dataset."},
+    svc:{aws:["Athena","SageMaker"],gcp:["Looker Studio","Vertex AI"],azure:["Power BI","Azure ML"]}
+  },
+  {id:"orch",n:"7",name:{zh:"編排與工作流",en:"Orchestration & Workflow"},short:{zh:"編排",en:"Orchestration"},
+    chips:["Step Functions","Composer","Data Factory","Logic Apps"],
+    lead:{zh:"用工作流把擷取、處理與載入串起來並排程。",en:"Schedule and stitch ingest, processing, and load into workflows."},
+    body:{zh:"圖上示例是 AWS Step Functions、GCP Composer、Azure Data Factory／Logic Apps。",en:"The graphic cites AWS Step Functions, GCP Composer, and Azure Data Factory / Logic Apps."},
+    cave:{zh:"編排不只這三個託管服務，實務上常見還有 Airflow、Prefect、Dagster。編排是貫穿全程的能力，不是只出現在最後。",en:"Orchestration is not limited to those three managed services; Airflow, Prefect, and Dagster are also common. It runs across the path, not only at the end."},
+    svc:{aws:["Step Functions","Managed Airflow"],gcp:["Cloud Composer"],azure:["Data Factory","Logic Apps"]}
+  },
+  {id:"mon",n:"8",name:{zh:"監控、日誌與告警",en:"Monitoring, Logging & Alerting"},short:{zh:"監控",en:"Monitoring"},
+    chips:["CloudWatch","Cloud Monitoring","Azure Monitor"],
+    lead:{zh:"看延遲、失敗與資料品質，並在出問題時告警。",en:"Watch latency, failures, and data quality, and alert when something breaks."},
+    body:{zh:"圖上示例是 AWS CloudWatch、GCP Monitoring、Azure Monitor，以及 Alerts／Notifications。",en:"Examples are AWS CloudWatch, GCP Monitoring, Azure Monitor, and alerts / notifications."},
+    cave:{zh:"監控要同時看管線有沒有跑完，以及資料對不對。圖上的安全與治理（IAM、RBAC、DLP）是基本盤，圖本身不是完整安全架構。",en:"Monitoring should cover both pipeline health and data correctness. IAM, RBAC, and DLP on the graphic are a baseline; the diagram itself is not a complete security architecture."},
+    svc:{aws:["CloudWatch"],gcp:["Cloud Monitoring"],azure:["Azure Monitor"]}
+  }
+];
+
+let lang=(new URLSearchParams(location.search).get("lang")==="en")?"en":"zh";
+let current="src";
+let cloud="aws";
+let step=-1; // event progress -1 none, 0..5 through the six horizontal stages
+const ORDER={id:"ord-1842",sku:"notebook-a5",qty:2,amount:48,ts:"2026-11-16T14:12:08Z"};
+
+function $(id){return document.getElementById(id)}
+function renderChrome(){
+  const c=COPY[lang];
+  $("title").textContent=c.title;
+  $("subtitle").textContent=c.sub;
+  $("banner").textContent=c.banner;
+  $("foot").textContent=c.foot;
+  $("home").textContent=c.home;
+  document.documentElement.lang=lang==="en"?"en":"zh-Hant";
+  $("btn-zh").setAttribute("aria-pressed",String(lang==="zh"));
+  $("btn-en").setAttribute("aria-pressed",String(lang==="en"));
+  const flow=$("flow"); flow.innerHTML="";
+  STAGES.slice(0,6).forEach((s,i)=>{
+    const b=document.createElement("button");
+    b.className="stage"; b.type="button";
+    if(s.id===current) b.setAttribute("aria-current","true");
+    b.innerHTML=`<div class="n">${s.n}</div><h3>${s.name[lang]}</h3><div class="chips">${s.chips.slice(0,3).map(x=>`<span class="chip">${x}</span>`).join("")}</div>`;
+    b.addEventListener("click",()=>{current=s.id;render();});
+    flow.appendChild(b);
+  });
+  const bars=$("bars"); bars.innerHTML="";
+  STAGES.slice(6).forEach(s=>{
+    const b=document.createElement("button");
+    b.className="bar"; b.type="button";
+    if(s.id===current) b.setAttribute("aria-current","true");
+    b.innerHTML=`<div class="n">${s.n}</div><h3>${s.name[lang]}</h3><div class="chips">${s.chips.map(x=>`<span class="chip">${x}</span>`).join("")}</div>`;
+    b.addEventListener("click",()=>{current=s.id;render();});
+    bars.appendChild(b);
+  });
+}
+function layerIndex(){ return STAGES.findIndex(s=>s.id===current); }
+function viewPanel(){
+  const s=STAGES.find(x=>x.id===current);
+  const c=COPY[lang];
+  let extra="";
+  if(current==="store") extra=viewMedallion();
+  else if(current==="cons") extra=viewConsumer();
+  else extra=`<div class="req">${payloadFor(current)}</div>`;
+  const svcs=s.svc[cloud].map(x=>`<span class="chip">${x}</span>`).join("");
+  $("panel").innerHTML=`
+    <h2>${s.n}. ${s.name[lang]}</h2>
+    <p class="lead">${s.lead[lang]}</p>
+    <p>${s.body[lang]}</p>
+    <div class="event">${[0,1,2,3,4,5].map(i=>`<span class="dot${step>=i?" on":""}" title="${STAGES[i].short[lang]}"></span>`).join("<span style='color:#2a3546'>→</span>")}
+    </div>
+    <div class="row">
+      <button class="act primary" id="send">${c.send}</button>
+      <button class="act" id="reset">${c.reset}</button>
+      <button class="toggle" data-cloud="aws" aria-pressed="${cloud==="aws"}">AWS</button>
+      <button class="toggle" data-cloud="gcp" aria-pressed="${cloud==="gcp"}">GCP</button>
+      <button class="toggle" data-cloud="azure" aria-pressed="${cloud==="azure"}">Azure</button>
+    </div>
+    <p class="lead">${c.cloud}</p>
+    <div class="chips">${svcs}</div>
+    ${extra}
+    <p class="caveat">${s.cave[lang]}</p>`;
+  $("send").addEventListener("click",()=>{ step=Math.min(5,step+1); current=STAGES[step].id; render();});
+  $("reset").addEventListener("click",()=>{ step=-1; current="src"; render();});
+  $("panel").querySelectorAll("[data-cloud]").forEach(b=>b.addEventListener("click",()=>{cloud=b.getAttribute("data-cloud");render();}));
+}
+function payloadFor(id){
+  if(step<0) return lang==="zh"?"尚未送出事件。點「送出一筆虛構訂單事件」看它沿管線前進。":"No event yet. Send a fictional order event to move it along the path.";
+  const reached=layerIndex()<=step || layerIndex()>=6;
+  if(layerIndex()<6 && layerIndex()>step) return lang==="zh"?"這筆事件還沒走到這一層。":"The event has not reached this layer yet.";
+  if(id==="src"||id==="ing") return `{ "event": "order.placed", "order_id": "${ORDER.id}", "sku": "${ORDER.sku}", "qty": ${ORDER.qty}, "amount": ${ORDER.amount}, "ts": "${ORDER.ts}" }`;
+  if(id==="proc") return lang==="zh"?`把訂單與商品維度關聯，並依日彙總。\nsku notebook-a5 → 品類 stationery，日銷售 48`: `Join the order to a product dimension and aggregate by day.\nsku notebook-a5 → category stationery, daily sales 48`;
+  if(id==="serve") return `GET /api/sales/daily?date=2026-11-16\n{ "shop": "Maple Retail", "category": "stationery", "revenue": 48 }`;
+  if(id==="orch") return lang==="zh"?"排程：每 15 分鐘跑一次擷取 → 轉換 → 載入；失敗則重試兩次並告警。":"Schedule: ingest → transform → load every 15 minutes; on failure, retry twice and alert.";
+  if(id==="mon") return lang==="zh"?"示範：延遲 42s、失敗 0、Gold 列數與來源訂單對得上。":"Demo: lag 42s, failures 0, Gold row count matches source orders.";
+  return COPY[lang].flowOk;
+}
+function viewMedallion(){
+  const b=lang==="zh"?`原始事件（含多餘欄位）\norder_id=${ORDER.id}\nsku=${ORDER.sku} qty=${ORDER.qty}\namount=48 currency=USD\nuser_agent="demo"`:`Raw event (extra fields kept)\norder_id=${ORDER.id}\nsku=${ORDER.sku} qty=${ORDER.qty}\namount=48 currency=USD\nuser_agent="demo"`;
+  const s=lang==="zh"?`清理後\norder_id=${ORDER.id}\nsku=${ORDER.sku}\nqty=2 amount=48.00\nts=${ORDER.ts}`:`Cleaned\norder_id=${ORDER.id}\nsku=${ORDER.sku}\nqty=2 amount=48.00\nts=${ORDER.ts}`;
+  const g=lang==="zh"?`策展後（日彙總）\nshop=Maple Retail\ncategory=stationery\nrevenue=48\norders=1`:`Curated (daily grain)\nshop=Maple Retail\ncategory=stationery\nrevenue=48\norders=1`;
+  return `<div class="cols">
+    <div class="medal bronze"><h4>Bronze · Raw</h4><div class="req">${step>=2?b:(lang==="zh"?"尚未到達":"Not reached")}</div></div>
+    <div class="medal silver"><h4>Silver · Cleaned</h4><div class="req">${step>=3?s:(lang==="zh"?"尚未到達":"Not reached")}</div></div>
+    <div class="medal gold"><h4>Gold · Curated</h4><div class="req">${step>=4?g:(lang==="zh"?"尚未到達":"Not reached")}</div></div>
+  </div>`;
+}
+function viewConsumer(){
+  if(step<5) return `<div class="req">${lang==="zh"?"事件還沒送到服務層，使用者還看不到。":"The event has not been served, so consumers do not see it yet."}</div>`;
+  return `<table><thead><tr><th>${lang==="zh"?"商店":"Shop"}</th><th>${lang==="zh"?"品類":"Category"}</th><th>${lang==="zh"?"當日營收（示範）":"Day revenue (demo)"}</th></tr></thead>
+    <tbody><tr><td>Maple Retail</td><td>stationery</td><td>48</td></tr></tbody></table>`;
+}
+function render(){renderChrome();viewPanel();}
+$("btn-zh").addEventListener("click",()=>{lang="zh";const u=new URL(location.href);u.searchParams.delete("lang");history.replaceState(null,"",u);render();});
+$("btn-en").addEventListener("click",()=>{lang="en";const u=new URL(location.href);u.searchParams.set("lang","en");history.replaceState(null,"",u);render();});
+render();
+</script>
+</body>
+</html>

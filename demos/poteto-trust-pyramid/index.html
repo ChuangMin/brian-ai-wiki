@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>the poteto pyramid：信任金字塔（影片 100 重製）</title>
+<style>
+  :root {
+    --bg: #fafafa;
+    --ink: #171717;
+    --muted: #5c5c5c;
+    --pink: #c9899a;
+    --line: #222;
+    --card: #ffffff;
+    --sel: #fff4c8;
+    --banner: #fff7e8;
+    --banner-line: #e8c56b;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--ink); }
+  body {
+    font-family: "Segoe UI", "PingFang TC", "Noto Sans TC", "Hiragino Sans GB", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.45;
+    min-height: 100%;
+  }
+  a { color: #1d4ed8; }
+  a:hover { color: #1e3a8a; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 20px 16px 56px; }
+  .home { color: var(--muted); text-decoration: none; font-size: 13px; }
+  h1 {
+    margin: 12px 0 2px;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+  .sub {
+    color: var(--pink);
+    font-size: 16px;
+    margin: 0 0 12px;
+    font-weight: 600;
+  }
+  .banner {
+    background: var(--banner);
+    border: 1px solid var(--banner-line);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 13px;
+    margin: 0 0 16px;
+  }
+  .toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 8px; }
+  .seg { display: inline-flex; border: 1px solid #ccc; border-radius: 8px; overflow: hidden; }
+  .seg button {
+    font: inherit;
+    background: #fff;
+    color: var(--ink);
+    border: 0;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+  .seg button.on { background: #171717; color: #fff; }
+  button:focus-visible, a:focus-visible, .layer:focus-visible { outline: 2px solid #111; outline-offset: 2px; }
+  .stage {
+    display: grid;
+    grid-template-columns: minmax(280px, 1.15fr) minmax(240px, 0.95fr);
+    gap: 24px;
+    align-items: start;
+    margin-top: 8px;
+  }
+  @media (max-width: 800px) { .stage { grid-template-columns: 1fr; } }
+  .pyramid-col { position: relative; padding: 8px 8px 8px 48px; }
+  .cost {
+    position: absolute;
+    left: 0; top: 78px; bottom: 28px;
+    width: 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cost .label {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    margin-bottom: 6px;
+  }
+  .cost .shaft {
+    flex: 1;
+    width: 3px;
+    background: var(--ink);
+  }
+  .cost .head {
+    width: 0; height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 14px solid var(--ink);
+  }
+  svg.pyramid { width: 100%; height: auto; display: block; max-width: 560px; margin: 0 auto; }
+  .layer { cursor: pointer; transition: fill 0.15s ease; }
+  .layer:hover { filter: brightness(0.97); }
+  .layer[data-active="1"] { fill: var(--sel); }
+  .layer-label { font-weight: 700; fill: var(--ink); pointer-events: none; }
+  .layer-sub { fill: #555; pointer-events: none; }
+  .hint { font-size: 13px; color: var(--muted); margin: 8px 0 0; text-align: center; }
+  .panel {
+    background: var(--card);
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 16px 16px 18px;
+    min-height: 280px;
+  }
+  .panel h2 { margin: 0 0 4px; font-size: 20px; }
+  .panel .kicker { color: var(--pink); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; margin: 0 0 10px; }
+  .panel ul { margin: 0; padding: 0 0 0 18px; }
+  .panel li { margin: 0 0 8px; }
+  .foot { margin-top: 28px; font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="home" href="../../">← 回 wiki 首頁 / Home</a>
+    <div class="toolbar">
+      <div class="seg" role="group" aria-label="Language">
+        <button type="button" id="btn-zh" class="on" onclick="setLang('zh')">中文</button>
+        <button type="button" id="btn-en" onclick="setLang('en')">English</button>
+      </div>
+    </div>
+    <h1 id="title"></h1>
+    <p class="sub" id="subtitle"></p>
+    <div class="banner" id="banner"></div>
+    <div class="stage">
+      <div class="pyramid-col">
+        <div class="cost" aria-hidden="true">
+          <div class="label" id="costLabel">cost</div>
+          <div class="shaft"></div>
+          <div class="head"></div>
+        </div>
+        <svg class="pyramid" viewBox="0 0 400 340" role="img" aria-labelledby="title">
+          <!-- inverted triangle outline; five bands, top wide → bottom point -->
+          <!-- triangle from (20,36) - (380,36) - (200,320) -->
+          <polygon class="layer" data-id="codebase" fill="#fff" stroke="#222" stroke-width="2"
+            points="20,36 380,36 344,92 56,92"></polygon>
+          <polygon class="layer" data-id="static" fill="#fff" stroke="#222" stroke-width="2"
+            points="56,92 344,92 308,148 92,148"></polygon>
+          <polygon class="layer" data-id="verification" fill="#fff" stroke="#222" stroke-width="2"
+            points="92,148 308,148 272,204 128,204"></polygon>
+          <polygon class="layer" data-id="prose" fill="#fff" stroke="#222" stroke-width="2"
+            points="128,204 272,204 242,254 158,254"></polygon>
+          <polygon class="layer" data-id="review" fill="#fff" stroke="#222" stroke-width="2"
+            points="158,254 242,254 200,320"></polygon>
+          <text class="layer-label" id="lab-codebase" x="200" y="62" text-anchor="middle" font-size="16"></text>
+          <text class="layer-sub" id="sub-codebase" x="200" y="80" text-anchor="middle" font-size="9"></text>
+          <text class="layer-label" id="lab-static" x="200" y="118" text-anchor="middle" font-size="16"></text>
+          <text class="layer-sub" id="sub-static" x="200" y="136" text-anchor="middle" font-size="9"></text>
+          <text class="layer-label" id="lab-verification" x="200" y="174" text-anchor="middle" font-size="16"></text>
+          <text class="layer-sub" id="sub-verification" x="200" y="192" text-anchor="middle" font-size="9"></text>
+          <text class="layer-label" id="lab-prose" x="200" y="226" text-anchor="middle" font-size="15"></text>
+          <text class="layer-sub" id="sub-prose" x="200" y="242" text-anchor="middle" font-size="9"></text>
+          <text class="layer-label" id="lab-review" x="200" y="286" text-anchor="middle" font-size="14"></text>
+        </svg>
+        <p class="hint" id="hint"></p>
+      </div>
+      <aside class="panel" id="panel" aria-live="polite">
+        <p class="kicker" id="pkicker"></p>
+        <h2 id="ptitle"></h2>
+        <ul id="plist"></ul>
+      </aside>
+    </div>
+    <p class="foot" id="foot"></p>
+  </div>
+<script>
+const COPY = {
+  zh: {
+    title: "我要怎麼更信任我的 agent？",
+    subtitle: "the poteto pyramid",
+    banner: "這是依 Lauren Tan（poteto）在 AI Engineer CODE 2026 演講「All Code Is Slop (Except Mine)」投影片重製的互動圖，不是產品、也不連網。金字塔上寬下窄，左邊的 cost 箭頭朝下。數字與效果都是講者／團隊自述，本頁未查核。",
+    hint: "點每一層看這場演講裡的例子。",
+    cost: "cost",
+    foot: "來源：影片 100 · 官方頁 ai.engineer/code/2026/talks/lauren-tan · 本頁不會連網。",
+    layers: {
+      codebase: {
+        lab: "codebase",
+        sub: "（好的 API 設計、架構、重構）",
+        kicker: "最寬的一層 · 也最划算",
+        title: "程式碼庫與 API",
+        items: [
+          "當 agent 重複犯同一個錯，先把修正寫進程式、API 或架構，而不是再加一段 AGENTS.md。",
+          "講者把程式碼庫比成一座要持續整理的園子：約束寫在程式裡，比寫在散文裡更容易重現、也更容易信任。",
+          "例子：內部框架 Dune（未公開；講者形容它像給 Electron 應用用的 Next.js，裡面塞了大量可執行的約束）。"
+        ]
+      },
+      static: {
+        lab: "static analysis",
+        sub: "（lint、型別、編譯器、測試、CI）",
+        kicker: "可執行的檢查",
+        title: "靜態分析",
+        items: [
+          "lint、型別系統、編譯器、測試與 CI，都比再寫一條文字規則容易重複執行。",
+          "講者團隊把許多「為什麼要這樣寫」的註解，改成會給出明確錯誤訊息的 lint 規則，要求 agent 修根本原因。",
+          "他們甚至限制絕大多數註解，理由是註解容易過期、也無法被強制執行。"
+        ]
+      },
+      verification: {
+        lab: "verification",
+        sub: "（形式化、執行期）",
+        kicker: "運行與證明",
+        title: "驗證",
+        items: [
+          "執行期驗證：用 feature map 加上可重用的 CLI，讓 agent 像真實使用者一樣操作，並留下影片、截圖等產物。",
+          "形式化方法：TLA+ 用來模型檢查跨裝置通知等主要流程；Lean 用來檢查部分演算法（例如自製虛擬化庫的閃爍／抖動）。講者說這仍在實驗，不是萬靈丹。",
+          "UI 屬性測試用開源庫 Bombadil（antithesishq/bombadil），講者說已抓到一些介面錯誤。"
+        ]
+      },
+      prose: {
+        lab: "prose",
+        sub: "（規則、skills、AGENTS.md）",
+        kicker: "需要判斷時才用",
+        title: "散文與規則",
+        items: [
+          "規則、skills、AGENTS.md 仍有位置，但只適合需要判斷的事。",
+          "同一類錯誤不要靠再加一段文字來補；先把它變成程式或檢查。",
+          "這是金字塔裡較薄、也較貴的一層。"
+        ]
+      },
+      review: {
+        lab: "human review",
+        sub: "",
+        kicker: "最薄的一層",
+        title: "人工審查",
+        items: [
+          "人工審查放在最下面，不是因為不重要，而是希望前面幾層先擋下能自動抓的問題。",
+          "講者說，在這些基礎到位之後，多數產品程式不再需要深度人工審查。這是講者的觀察，不是本頁的保證。",
+          "先把內圈寫程式的品質打好，再去自動化外圈；否則自動化只會製造更多 slop。"
+        ]
+      }
+    }
+  },
+  en: {
+    title: "how do i trust my agents more?",
+    subtitle: "the poteto pyramid",
+    banner: "This is an interactive recreation of a slide from Lauren Tan (poteto)’s AI Engineer CODE 2026 talk “All Code Is Slop (Except Mine).” It is not a product and it does not go online. The pyramid is wide at the top and narrow at the bottom, with a cost arrow pointing down. Figures and outcomes are speaker- or team-reported and are not audited here.",
+    hint: "Click each layer for examples from the talk.",
+    cost: "cost",
+    foot: "Source: Video 100 · official page ai.engineer/code/2026/talks/lauren-tan · this page does not go online.",
+    layers: {
+      codebase: {
+        lab: "codebase",
+        sub: "(good api design, architecture, refactoring)",
+        kicker: "the widest layer · the cheapest place to invest",
+        title: "Codebase and APIs",
+        items: [
+          "When an agent repeats a mistake, put the fix in the codebase, the API, or the architecture — not in another line of AGENTS.md.",
+          "The speaker compares the codebase to a garden you keep tending: constraints encoded in code are more reproducible, and easier to trust, than prose.",
+          "Example: the internal Dune framework (not public; described as something like Next.js for Electron apps, packed with enforceable constraints)."
+        ]
+      },
+      static: {
+        lab: "static analysis",
+        sub: "(lints, types, compilers, tests, ci)",
+        kicker: "checks you can run",
+        title: "Static analysis",
+        items: [
+          "Lints, type systems, compilers, tests, and CI are cheaper to rerun than another written rule.",
+          "The team turned many “why this is written this way” comments into lint rules with helpful errors, telling the agent to fix the root cause.",
+          "They also restricted the large majority of comments, because comments go stale and cannot be enforced."
+        ]
+      },
+      verification: {
+        lab: "verification",
+        sub: "(formal, runtime)",
+        kicker: "runtime and proofs",
+        title: "Verification",
+        items: [
+          "Runtime verification: feature maps plus reusable CLIs, so agents drive the app like a real user and leave videos, screenshots, and other artifacts.",
+          "Formal methods: TLA+ for model-checking major flows such as notifications across devices; Lean for some algorithms (for example flicker or jitter in a custom virtualization library). The speaker calls this experimental, not a silver bullet.",
+          "Property-based UI testing uses the open-source library Bombadil (antithesishq/bombadil). The speaker says it has already caught some UI bugs."
+        ]
+      },
+      prose: {
+        lab: "prose",
+        sub: "(rules, skills, AGENTS.md)",
+        kicker: "only where judgment is required",
+        title: "Prose and rules",
+        items: [
+          "Rules, skills, and AGENTS.md still belong here, but only for things that need judgment.",
+          "Do not patch the same class of mistake with more prose; encode it as code or as a check first.",
+          "This is a thinner, more expensive layer of the pyramid."
+        ]
+      },
+      review: {
+        lab: "human review",
+        sub: "",
+        kicker: "the thinnest layer",
+        title: "Human review",
+        items: [
+          "Human review sits at the point of the pyramid not because it does not matter, but so the layers above can catch what can be automated first.",
+          "The speaker says that once these foundations are in place, most product code no longer needs deep human review. That is the speaker’s observation, not a guarantee from this page.",
+          "Get the inner coding loop into good shape before you automate the outer loop; otherwise automation just produces more slop."
+        ]
+      }
+    }
+  }
+};
+
+const ORDER = ["codebase", "static", "verification", "prose", "review"];
+let lang = "zh";
+let active = "codebase";
+
+function setLang(next) {
+  lang = next;
+  document.getElementById("btn-zh").classList.toggle("on", lang === "zh");
+  document.getElementById("btn-en").classList.toggle("on", lang === "en");
+  document.documentElement.lang = lang === "zh" ? "zh-Hant-TW" : "en";
+  render();
+}
+
+function setActive(id) {
+  active = id;
+  render();
+}
+
+function render() {
+  const c = COPY[lang];
+  document.getElementById("title").textContent = c.title;
+  document.getElementById("subtitle").textContent = c.subtitle;
+  document.getElementById("banner").textContent = c.banner;
+  document.getElementById("hint").textContent = c.hint;
+  document.getElementById("costLabel").textContent = c.cost;
+  document.getElementById("foot").innerHTML = c.foot;
+  document.title = lang === "zh"
+    ? "the poteto pyramid：信任金字塔（影片 100 重製）"
+    : "the poteto pyramid (recreation of video 100)";
+  ORDER.forEach((id) => {
+    const L = c.layers[id];
+    document.getElementById("lab-" + id).textContent = L.lab;
+    const sub = document.getElementById("sub-" + id);
+    if (sub) sub.textContent = L.sub || "";
+  });
+  document.querySelectorAll(".layer").forEach((el) => {
+    el.setAttribute("data-active", el.getAttribute("data-id") === active ? "1" : "0");
+  });
+  const L = c.layers[active];
+  document.getElementById("pkicker").textContent = L.kicker;
+  document.getElementById("ptitle").textContent = L.title;
+  const ul = document.getElementById("plist");
+  ul.replaceChildren();
+  L.items.forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    ul.appendChild(li);
+  });
+}
+
+document.querySelectorAll(".layer").forEach((el) => {
+  el.addEventListener("click", () => setActive(el.getAttribute("data-id")));
+  el.addEventListener("keydown", (ev) => {
+    if (ev.key === "Enter" || ev.key === " ") {
+      ev.preventDefault();
+      setActive(el.getAttribute("data-id"));
+    }
+  });
+  el.setAttribute("tabindex", "0");
+  el.setAttribute("role", "button");
+});
+
+render();
+</script>
+</body>
+</html>

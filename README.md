@@ -4,7 +4,7 @@
 
 [每日新聞](news/index.md) — 每天早上的新聞簡報。
 
-[關聯圖](graph/index.html) — 用互動圖看所有條目、分類、來源影片與概念之間的關係（386 個節點、761 條連線）。
+[關聯圖](graph/index.html) — 用互動圖看所有條目、分類、來源影片與概念之間的關係（401 個節點、802 條連線）。
 
 Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片、截圖與推薦清單整理 AI 工具與觀點，依主題分類收錄，並另外標示引流、概念動畫等可信度；之後的新影片會繼續加進來。
 
@@ -14,18 +14,18 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 
 標了引流的條目，連結和說明裡的網址旁邊都會加上 ⚠️。
 
-共 143 則。
+共 148 則。
 
 從既有條目歸納的分工類型見 [Agent 分工模式](docs/agent-patterns.md)。
 
 ## 分類
 
-- [Agent 系統與編排](docs/agent-orchestration.md)（25）— 多 agent 指揮、swarm、中斷續跑、商用 agent OS 與 agent 平台全景
+- [Agent 系統與編排](docs/agent-orchestration.md)（26）— 多 agent 指揮、swarm、中斷續跑、商用 agent OS 與 agent 平台全景
 - [記憶與上下文](docs/memory-context.md)（11）— 知識圖譜、程式碼圖譜、長期記憶、跨 agent 交接
 - [Skills／MCP／工具](docs/skills-mcp-tools.md)（21）— 通用的 agent 能力元件：MCP、skill、開發方法論 skill、語音、抽取模型
 - [程式開發與品質](docs/dev-quality.md)（5）— 版控、過程重播、瀏覽器自我驗收、verify＋gate 流程
 - [前端與 UI 設計](docs/frontend-ui.md)（23）— 設計系統、UI linter、設計 skill、介面模板與概念介面
-- [3D／動畫與 DCC](docs/dcc-animation.md)（10）— Blender 等 DCC 外掛、運鏡、程序化動畫、遊戲生成
+- [3D／動畫與 DCC](docs/dcc-animation.md)（11）— Blender 等 DCC 外掛、運鏡、程序化動畫、遊戲生成
 - [AI 影像與影片](docs/ai-media.md)（6）— AI 生成影片與圖片、prompt、AI 渲染、程式化影片
 - [自動化工作流](docs/automation-workflows.md)（5）— n8n 等流程自動化，規則優先與人工核准閘門
 - [金融與交易](docs/finance-trading.md)（5）— 交易圖表、財務 Claude 技巧，以及交易機器人導流片
@@ -33,10 +33,10 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 - [實體 AI 與硬體](docs/physical-ai.md)（3）— ESP32、機器人等實體裝置
 - [成本與取捨](docs/cost-tradeoffs.md)（6）— token 成本、指令輸出壓縮、agent 與傳統工具的成本對比
 - [團隊與組織](docs/teams-org.md)（1）— 協作成本、決策結構、組織設計
-- [演講與 Talk](docs/talks.md)（2）— 演講、訪談、Podcast 片段：AI 領袖與從業者的第一手說法
+- [演講與 Talk](docs/talks.md)（3）— 演講、訪談、Podcast 片段：AI 領袖與從業者的第一手說法
 - [搞笑與迷因](docs/memes.md)（2）— 關於 AI 的職場迷因、搞笑短劇與梗圖
 - [生產力與開源工具](docs/productivity-tools.md)（1）— 本身不是 AI 的實用工具：轉檔、桌面效率、開源小工具
-- [系統設計與工程基礎](docs/systems-design.md)（9）— 非 AI 的後端／分散式系統基礎與維運常識（如 TLS 健檢）
+- [系統設計與工程基礎](docs/systems-design.md)（11）— 非 AI 的後端／分散式系統基礎與維運常識（如 TLS 健檢）
 
 ## 影片來源
 
@@ -81,6 +81,11 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 | 影片 97 | Altair AI：10 個 repo 組成產品設計工作室 | [reel/1459698966355266](https://www.facebook.com/reel/1459698966355266) | 2026-11-15 |
 | 影片 98 | Andrey Superior（@andreysuperior）：Fable 5.2 團隊 agent 在 Meta Ads Manager 建立並發布活動（宣稱；Facebook 轉發） | [reel/1111517925213954](https://www.facebook.com/reel/1111517925213954) | 2026-11-15 |
 | 影片 99 | David Ooi：God's Eye View 開源 3D 地球 OSINT 儀表板（bilawalsidhu/gods-eye-view） | [reel/1123871826917666](https://www.facebook.com/reel/1123871826917666/) | 2026-11-15 |
+| 影片 100 | Lauren Tan（poteto）：All Code Is Slop (Except Mine)（AI Engineer CODE 2026） | [watch?v=O_zcc6Xl12g](https://www.youtube.com/watch?v=O_zcc6Xl12g) | 2026-11-16 |
+| 影片 101 | Altair AI：14 個免費 repo 組成動態影像工作室（概念動畫） | [reel/1129832049651368](https://www.facebook.com/reel/1129832049651368/) | 2026-11-16 |
+| 影片 102 | Bekalu Tamene：四種 AI Agent 框架的架構差異（LangGraph／CrewAI／AutoGen／LlamaIndex） | [reel/1798828088038729](https://www.facebook.com/reel/1798828088038729) | 2026-11-16 |
+| 影片 103 | Aman Views：API Design 八則最佳實務（動畫圖卡，非實作錄屏） | [reel/3974601762681447](https://www.facebook.com/reel/3974601762681447) | 2026-11-16 |
+| 影片 104 | TechIn60Sec：端到端資料管線架構（動畫圖卡，非實作錄屏） | [reel/1117905587594958](https://www.facebook.com/reel/1117905587594958) | 2026-11-16 |
 | Facebook 貼文（2026-11-15） | Isaac Wong（@isaac.startup）：7 個 Claude Code 每日指令（/grill-me 等；留言 Claude 加社群） | ⚠️ [社團貼文](https://www.facebook.com/groups/1317626560441303/posts/1436491405221484/) | 2026-11-15 |
 | Facebook 貼文（MIT PE，2026-11-15） | MIT Professional Education：Applied Agentic AI for Organizational Transformation（8 週線上課） | [官方課程頁](https://professional.mit.edu/course-catalog/applied-agentic-ai-organizational-transformation)／[粉專貼文](https://www.facebook.com/MITProfessionalEducation/posts/gain-insights-to-move-from-ai-experimentation-to-scalable-implementation-across-/1601396092028738/) | 2026-11-15 |
 | GitHub | labring/sealos-skills：在 Sealos Cloud 部署應用、資料庫與物件儲存的 agent skill 包 | [labring/sealos-skills](https://github.com/labring/sealos-skills) | 2026-11-14 |

@@ -4,7 +4,7 @@
 
 [Daily news](../news/index.md) — morning briefings (Chinese).
 
-[Relationship graph](../graph/index.html?lang=en) — an interactive map of every entry, category, source video and concept (386 nodes, 761 edges).
+[Relationship graph](../graph/index.html?lang=en) — an interactive map of every entry, category, source video and concept (401 nodes, 802 edges).
 
 Brian's public wiki. It collects AI tools and viewpoints from Facebook videos, screenshots, and recommendation lists, files them by topic, and marks credibility such as engagement bait and concept animation. New videos keep getting added.
 
@@ -14,18 +14,18 @@ Credibility tags are separate from categories: ⚠️ engagement bait (traffic f
 
 Entries tagged engagement bait put ⚠️ beside the link and beside URLs in the description.
 
-143 entries.
+148 entries.
 
 Division-of-labor patterns from existing entries: [Agent Division-of-Labor Patterns](docs/agent-patterns.md).
 
 ## Categories
 
-- [Agent systems and orchestration](docs/agent-orchestration.md) (25) — multi-agent command, swarms, resume-after-interrupt, commercial agent OSes, and the agent-platform landscape
+- [Agent systems and orchestration](docs/agent-orchestration.md) (26) — multi-agent command, swarms, resume-after-interrupt, commercial agent OSes, and the agent-platform landscape
 - [Memory and context](docs/memory-context.md) (11) — knowledge graphs, code graphs, long-term memory, handoff across agents
 - [Skills / MCP / tools](docs/skills-mcp-tools.md) (21) — shared agent building blocks: MCP, skills, methodology skills, speech, extraction models
 - [Software development and quality](docs/dev-quality.md) (5) — version control, process replay, browser self-check, verify-then-gate
 - [Frontend and UI design](docs/frontend-ui.md) (23) — design systems, UI linters, design skills, interface templates, and concept interfaces
-- [3D / animation and DCC](docs/dcc-animation.md) (10) — Blender and other DCC add-ons, camera moves, procedural animation, game generation
+- [3D / animation and DCC](docs/dcc-animation.md) (11) — Blender and other DCC add-ons, camera moves, procedural animation, game generation
 - [AI image and video](docs/ai-media.md) (6) — AI-generated video and images, prompts, AI rendering, programmatic video
 - [Automation workflows](docs/automation-workflows.md) (5) — n8n and similar automation: rules first, human approval gates
 - [Finance and trading](docs/finance-trading.md) (5) — trading charts, Claude techniques for finance, and trading-bot engagement bait
@@ -33,10 +33,10 @@ Division-of-labor patterns from existing entries: [Agent Division-of-Labor Patte
 - [Physical AI and hardware](docs/physical-ai.md) (3) — ESP32, robots, and other physical devices
 - [Cost and tradeoffs](docs/cost-tradeoffs.md) (6) — token cost, command-output compression, agents versus traditional tools
 - [Teams and organization](docs/teams-org.md) (1) — collaboration cost, decision structure, organization design
-- [Talks](docs/talks.md) (2) — talks and podcast clips: first-hand comments from AI leaders and practitioners
+- [Talks](docs/talks.md) (3) — talks and podcast clips: first-hand comments from AI leaders and practitioners
 - [Comedy and memes](docs/memes.md) (2) — workplace memes, comedy sketches, and jokes about AI
 - [Productivity and open-source tools](docs/productivity-tools.md) (1) — useful tools that are not themselves AI: conversion, desktop efficiency, small open-source utilities
-- [Systems design and engineering fundamentals](docs/systems-design.md) (9) — non-AI backend and distributed-systems basics and operations (such as a TLS checkup)
+- [Systems design and engineering fundamentals](docs/systems-design.md) (11) — non-AI backend and distributed-systems basics and operations (such as a TLS checkup)
 
 ## Sources
 
@@ -145,6 +145,11 @@ Division-of-labor patterns from existing entries: [Agent Division-of-Labor Patte
 | Video 97 | Altair AI: a 10-repo product design studio | [reel/1459698966355266](https://www.facebook.com/reel/1459698966355266) | 2026-11-15 |
 | Video 98 | Andrey Superior (@andreysuperior): Fable 5.2 team agents create and publish a campaign in Meta Ads Manager (claim; Facebook reshare) | [reel/1111517925213954](https://www.facebook.com/reel/1111517925213954) | 2026-11-15 |
 | Video 99 | David Ooi: God's Eye View, an open-source 3D globe OSINT dashboard (bilawalsidhu/gods-eye-view) | [reel/1123871826917666](https://www.facebook.com/reel/1123871826917666/) | 2026-11-15 |
+| Video 100 | Lauren Tan (poteto): All Code Is Slop (Except Mine) (AI Engineer CODE 2026) | [watch?v=O_zcc6Xl12g](https://www.youtube.com/watch?v=O_zcc6Xl12g) | 2026-11-16 |
+| Video 101 | Altair AI: 14 free repos as a motion studio (concept animation) | [reel/1129832049651368](https://www.facebook.com/reel/1129832049651368/) | 2026-11-16 |
+| Video 102 | Bekalu Tamene: architectural differences among four AI agent frameworks (LangGraph / CrewAI / AutoGen / LlamaIndex) | [reel/1798828088038729](https://www.facebook.com/reel/1798828088038729) | 2026-11-16 |
+| Video 103 | Aman Views: eight API design practices (an animated graphic, not a live implementation) | [reel/3974601762681447](https://www.facebook.com/reel/3974601762681447) | 2026-11-16 |
+| Video 104 | TechIn60Sec: end-to-end data pipeline architecture (an animated graphic, not a live implementation) | [reel/1117905587594958](https://www.facebook.com/reel/1117905587594958) | 2026-11-16 |
 | Facebook post (2026-11-15) | Isaac Wong (@isaac.startup): 7 daily Claude Code commands (/grill-me and others; comment Claude to join the community) | ⚠️ [group post](https://www.facebook.com/groups/1317626560441303/posts/1436491405221484/) | 2026-11-15 |
 | Facebook post (MIT PE, 2026-11-15) | MIT Professional Education: Applied Agentic AI for Organizational Transformation (8-week online course) | [official course page](https://professional.mit.edu/course-catalog/applied-agentic-ai-organizational-transformation) / [page post](https://www.facebook.com/MITProfessionalEducation/posts/gain-insights-to-move-from-ai-experimentation-to-scalable-implementation-across-/1601396092028738/) | 2026-11-15 |
 | GitHub | labring/sealos-skills: agent skills for deploying apps, databases, and object storage on Sealos Cloud | [labring/sealos-skills](https://github.com/labring/sealos-skills) | 2026-11-14 |
