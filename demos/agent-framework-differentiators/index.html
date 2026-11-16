@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>四種 AI agent 框架的架構差異（更正版示範）</title>
+<style>
+  :root {
+    --bg:#f4f1ea; --paper:#fffdf8; --ink:#1e2330; --muted:#5d6573;
+    --line:#e2ddd3; --accent:#0f6e6b; --warn:#9a4a1c; --chip:#ece7dc;
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; min-height:100vh; color:var(--ink);
+    font:15px/1.55 ui-sans-serif, system-ui, "Noto Sans TC", sans-serif;
+    background:
+      radial-gradient(900px 400px at 100% 0%, #e7eee8 0%, transparent 55%),
+      radial-gradient(700px 360px at 0% 100%, #efe6d8 0%, transparent 55%),
+      var(--bg);
+  }
+  .wrap { max-width:1100px; margin:0 auto; padding:24px 20px 56px; }
+  .top { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:center; margin-bottom:12px; }
+  .top a { color:var(--muted); font-size:13px; }
+  .lang { display:flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+  .lang button { appearance:none; border:0; background:transparent; padding:6px 12px; cursor:pointer; font:inherit; color:var(--muted); }
+  .lang button[aria-pressed="true"] { background:var(--ink); color:#fff; }
+  .banner {
+    border:1px solid #e6d7b4; background:#fff8ea; color:#5c4a20;
+    padding:10px 14px; border-radius:10px; font-size:13px; margin:0 0 18px;
+  }
+  h1 { font-size:28px; letter-spacing:.01em; margin:0 0 6px; }
+  .sub { color:var(--muted); margin:0 0 20px; }
+  .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+  .card {
+    text-align:left; background:var(--paper); border:1px solid var(--line); border-radius:16px;
+    padding:16px 16px 14px; color:inherit; cursor:pointer; font:inherit; width:100%;
+  }
+  .card[aria-pressed="true"] { border-color:var(--accent); box-shadow:inset 0 0 0 1px var(--accent); }
+  .card .k { display:flex; justify-content:space-between; gap:8px; align-items:baseline; }
+  .card h2 { font-size:18px; margin:0; }
+  .card .fix { font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); }
+  .sketch { height:92px; margin:12px 0 10px; border-radius:10px; background:#f7f4ee; overflow:hidden; }
+  .sketch svg { width:100%; height:100%; display:block; }
+  .pills { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 8px; }
+  .pill { font-size:11px; border-radius:999px; padding:2px 8px; border:1px solid var(--line); color:var(--muted); }
+  .pill.warn { color:var(--warn); border-color:#f0d2b8; }
+  .note { color:var(--muted); font-size:13px; margin:0; min-height:3.2em; }
+  .detail { margin-top:18px; background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:16px 18px; }
+  .detail h3 { margin:0 0 8px; font-size:18px; }
+  .detail a { color:var(--accent); }
+  footer { margin-top:24px; color:var(--muted); font-size:12px; }
+  @media (max-width:800px){ .grid{grid-template-columns:1fr;} h1{font-size:22px;} }
+
+  .dot { fill:#1e2330; }
+  .ring { fill:none; stroke:#1e2330; stroke-width:1.6; }
+  .flow { fill:none; stroke:var(--accent); stroke-width:1.8; stroke-linecap:round; }
+  .lbl { font: 9px ui-sans-serif, system-ui, sans-serif; fill:#5d6573; }
+  #p-cycle { offset-path: path("M 60 46 A 28 22 0 1 1 59.9 46"); animation: run 3.2s linear infinite; }
+  @keyframes run { to { offset-distance: 100%; } }
+  #seq-token { animation: seq 2.8s ease-in-out infinite; }
+  @keyframes seq { 0%{cx:40} 25%{cx:90} 50%{cx:140} 75%{cx:190} 100%{cx:40} }
+  .msg { animation: hop 2.4s ease-in-out infinite; }
+  .msg.b { animation-delay: .8s; }
+  .msg.c { animation-delay: 1.6s; }
+  @keyframes hop { 0%,100%{ opacity:.15 } 40%{ opacity:1 } }
+  #rag-token { animation: rag 3s linear infinite; }
+  @keyframes rag { 0%{cx:36;cy:46} 35%{cx:110;cy:46} 70%{cx:170;cy:46} 100%{cx:210;cy:46} }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <a href="../index.html" data-i="home">← wiki 首頁 / Home</a>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" id="btn-zh" aria-pressed="true">中文</button>
+        <button type="button" id="btn-en" aria-pressed="false">English</button>
+      </div>
+    </div>
+    <div class="banner" id="banner"></div>
+    <h1 id="title"></h1>
+    <p class="sub" id="sub"></p>
+    <div class="grid" id="grid"></div>
+    <div class="detail" id="detail" hidden></div>
+    <footer id="foot"></footer>
+  </div>
+<script>
+const COPY = {
+  zh: {
+    home: "← wiki 首頁 / Home",
+    banner: "這是依 Bekalu Tamene 比較圖重製並更正的互動頁，不是原海報的複製，也不會連網。原圖把 LangChain 與 LangGraph 混稱，又把可循環的狀態圖寫成 DAG（DAG 不能有環）。CrewAI 不只線性流程。AutoGen 官方倉庫已封存，後繼是 Microsoft Agent Framework。「省下數週除錯」與 LlamaIndex 是「gold standard」都是行銷語句，本則未查核。星數是 2026-11-16 的 GitHub API 快照。",
+    title: "四種 AI agent 框架，實際差在編排方式",
+    sub: "點開任一張卡片看更正後的重點。小圖是示意，不是產品介面。",
+    foot: "來源是影片 102 的比較圖，不是實作錄屏。本頁不做推論或連網呼叫。GitHub 連結只在你點下去時才會離開本頁。",
+    more: "授權與星數",
+    snapshot: "2026-11-16 查證"
+  },
+  en: {
+    home: "← wiki home / 首頁",
+    banner: "This is a corrected recreation of Bekalu Tamene’s comparison graphic, not a copy of the poster, and it does not go online. The original slide mixes LangChain with LangGraph and calls a cyclic state graph a DAG (a DAG cannot have cycles). CrewAI is not linear-only. AutoGen’s official repo is archived; Microsoft Agent Framework is the successor. “Save weeks of debugging” and calling LlamaIndex the gold standard are marketing lines, not checked here. Star counts are a 2026-11-16 GitHub API snapshot.",
+    title: "Four AI agent frameworks, told apart by how they orchestrate",
+    sub: "Open a card for the corrected one-liner. The sketches are diagrams, not product UI.",
+    foot: "The source is the comparison graphic in Video 102, not a workflow recording. This page does not run inference or make network calls. GitHub links leave this page only when you click them.",
+    more: "License and stars",
+    snapshot: "Checked 2026-11-16"
+  }
+};
+const SKETCH = {
+  langgraph: `<svg viewBox="0 0 260 92" aria-hidden="true">
+    <circle class="ring" cx="60" cy="46" r="28"/>
+    <circle class="dot" cx="60" cy="18" r="5"/>
+    <circle class="dot" cx="88" cy="46" r="5"/>
+    <circle class="dot" cx="60" cy="74" r="5"/>
+    <circle class="dot" cx="32" cy="46" r="5"/>
+    <circle id="p-cycle" r="4" fill="#0f6e6b"/>
+    <text class="lbl" x="108" y="50">cyclic state graph — not a DAG</text>
+  </svg>`,
+  crewai: `<svg viewBox="0 0 260 92" aria-hidden="true">
+    <circle class="dot" cx="40" cy="28" r="5"/><circle class="dot" cx="90" cy="28" r="5"/><circle class="dot" cx="140" cy="28" r="5"/><circle class="dot" cx="190" cy="28" r="5"/>
+    <path class="flow" d="M45 28 H185"/>
+    <circle id="seq-token" cx="40" cy="28" r="3.5" fill="#0f6e6b"/>
+    <text class="lbl" x="40" y="16">sequential</text>
+    <circle class="dot" cx="115" cy="62" r="5"/>
+    <circle class="dot" cx="70" cy="80" r="5"/><circle class="dot" cx="115" cy="80" r="5"/><circle class="dot" cx="160" cy="80" r="5"/>
+    <path class="flow" d="M115 67 L70 75 M115 67 L115 75 M115 67 L160 75"/>
+    <text class="lbl" x="172" y="70">hierarchical</text>
+  </svg>`,
+  autogen: `<svg viewBox="0 0 260 92" aria-hidden="true">
+    <circle class="dot" cx="70" cy="24" r="6"/>
+    <circle class="dot" cx="36" cy="70" r="6"/>
+    <circle class="dot" cx="110" cy="70" r="6"/>
+    <path class="flow" d="M70 30 L42 64 M70 30 L102 64 M42 70 H104"/>
+    <circle class="msg" cx="54" cy="44" r="3" fill="#0f6e6b"/>
+    <circle class="msg b" cx="88" cy="44" r="3" fill="#0f6e6b"/>
+    <circle class="msg c" cx="73" cy="70" r="3" fill="#0f6e6b"/>
+    <text class="lbl" x="132" y="40">conversational group</text>
+    <text class="lbl" x="132" y="56">successor: Agent Framework</text>
+  </svg>`,
+  llamaindex: `<svg viewBox="0 0 260 92" aria-hidden="true">
+    <rect class="ring" x="20" y="34" width="22" height="24" rx="3"/>
+    <rect class="ring" x="20" y="14" width="22" height="16" rx="3"/>
+    <rect class="ring" x="20" y="62" width="22" height="16" rx="3"/>
+    <circle class="ring" cx="110" cy="46" r="16"/>
+    <circle class="dot" cx="170" cy="46" r="6"/>
+    <rect class="ring" x="198" y="36" width="36" height="20" rx="4"/>
+    <path class="flow" d="M44 46 H94 M126 46 H164 M176 46 H198"/>
+    <circle id="rag-token" cx="36" cy="46" r="3.5" fill="#0f6e6b"/>
+    <text class="lbl" x="100" y="22">index</text>
+    <text class="lbl" x="158" y="22">agent</text>
+  </svg>`
+};
+const CARDS = [
+  {
+    id:"langgraph",
+    name:"LangGraph",
+    slide:{zh:"畫面寫 LangChain/Graph：Cyclic State Graphs，並寫 Stateful, Non-Linear DAGs。", en:"The slide says LangChain/Graph: Cyclic State Graphs, and also Stateful, Non-Linear DAGs."},
+    fix:{zh:"更正：循環的有狀態圖", en:"Corrected: cyclic stateful graphs"},
+    one:{zh:"適合要精確控制迴圈與狀態的編排。這是 LangGraph，不是整個 LangChain。DAG 不能有環，所以「循環的 DAG」這個說法是錯的。",
+         en:"Use it when you want precise control over loops and state. That is LangGraph, not LangChain as a whole. A DAG cannot have cycles, so “cyclic DAG” is the wrong term."},
+    extra:{zh:"查證 langchain-ai/langgraph：45,022 星、MIT。同組織的 langchain 為 149,622 星、MIT；原圖把兩者混在同一格。",
+           en:"Checked langchain-ai/langgraph: 45,022 stars, MIT. langchain in the same org is 149,622 stars, MIT. The slide puts both in one panel."},
+    license:"MIT", stars:"45,022", url:"https://github.com/langchain-ai/langgraph", warn:true
+  },
+  {
+    id:"crewai",
+    name:"CrewAI",
+    slide:{zh:"畫面寫 Hierarchical Orchestration，並說最適合 linear, task-oriented teams。", en:"The slide says Hierarchical Orchestration, and that it is best for linear, task-oriented teams."},
+    fix:{zh:"更正：順序流程與層級編排都有", en:"Corrected: sequential and hierarchical"},
+    one:{zh:"角色扮演的 agent「crew」可以走順序流程，也可以用經理／員工式的層級委派。畫面只強調層級，又把適用情境寫成只有線性團隊，並不完整。",
+         en:"Role-playing agent crews can run a sequential process or a manager-worker hierarchy. The slide stresses hierarchy and then calls it best for linear teams, which is incomplete."},
+    extra:{zh:"查證 crewAIInc/crewAI：60,982 星、MIT。", en:"Checked crewAIInc/crewAI: 60,982 stars, MIT."},
+    license:"MIT", stars:"60,982", url:"https://github.com/crewAIInc/crewAI", warn:false
+  },
+  {
+    id:"autogen",
+    name:"AutoGen",
+    slide:{zh:"畫面寫 Microsoft AutoGen：Conversational Groups。", en:"The slide says Microsoft AutoGen: Conversational Groups."},
+    fix:{zh:"更正：對話式群組，但倉庫已封存", en:"Corrected: conversational groups, repo archived"},
+    one:{zh:"多 agent 對話與協作是它原本的賣點。官方 microsoft/autogen 的 README 寫已封存、不再維護，後繼是 Microsoft Agent Framework。",
+         en:"Multi-agent chats and collaboration were the original pitch. The official microsoft/autogen README says the repo is archived and unmaintained; Microsoft Agent Framework is the successor."},
+    extra:{zh:"查證 microsoft/autogen：61,869 星、CC-BY-4.0，已封存。後繼 microsoft/agent-framework：14,705 星、MIT。",
+           en:"Checked microsoft/autogen: 61,869 stars, CC-BY-4.0, archived. Successor microsoft/agent-framework: 14,705 stars, MIT."},
+    license:"CC-BY-4.0", stars:"61,869", url:"https://github.com/microsoft/autogen", warn:true,
+    also:"https://github.com/microsoft/agent-framework"
+  },
+  {
+    id:"llamaindex",
+    name:"LlamaIndex",
+    slide:{zh:"畫面寫 Data Agents 與 RAG-First Data Retrieval。說明文另稱它是 data-heavy 應用的 gold standard。", en:"The slide says Data Agents and RAG-First Data Retrieval. The caption also calls it the gold standard for data-heavy apps."},
+    fix:{zh:"更正：資料優先、偏 RAG，不是評比金牌", en:"Corrected: data-first / RAG, not a ranked gold standard"},
+    one:{zh:"長處是把資料源接進索引，再交給 agent 做檢索與回答。適合資料與檢索很重的應用。『gold standard』是說明文的行銷語句，本則未查核。",
+         en:"Its strength is connecting data sources to an index, then letting an agent retrieve and answer. That fits retrieval-heavy apps. “Gold standard” is a marketing line in the caption and is not checked here."},
+    extra:{zh:"查證 run-llama/llama_index：52,921 星、MIT。", en:"Checked run-llama/llama_index: 52,921 stars, MIT."},
+    license:"MIT", stars:"52,921", url:"https://github.com/run-llama/llama_index", warn:false
+  }
+];
+let lang="zh", current=null;
+const grid=document.getElementById("grid");
+const detail=document.getElementById("detail");
+function t(){ return COPY[lang]; }
+function render(){
+  const c=t();
+  document.getElementById("banner").textContent=c.banner;
+  document.getElementById("title").textContent=c.title;
+  document.getElementById("sub").textContent=c.sub;
+  document.getElementById("foot").textContent=c.foot;
+  document.querySelector('[data-i="home"]').textContent=c.home;
+  document.getElementById("btn-zh").setAttribute("aria-pressed", String(lang==="zh"));
+  document.getElementById("btn-en").setAttribute("aria-pressed", String(lang==="en"));
+  grid.innerHTML="";
+  CARDS.forEach(card=>{
+    const b=document.createElement("button");
+    b.className="card"; b.type="button";
+    b.setAttribute("aria-pressed", String(current===card.id));
+    b.innerHTML=`<div class="k"><h2>${card.name}</h2><span class="fix">${card.fix[lang]}</span></div>
+      <div class="sketch">${SKETCH[card.id]}</div>
+      <div class="pills"><span class="pill${card.warn?" warn":""}">${card.license}</span><span class="pill">${c.snapshot} ${card.stars}</span></div>
+      <p class="note">${card.one[lang]}</p>`;
+    b.addEventListener("click",()=>{ current=card.id; show(card); render(); });
+    grid.appendChild(b);
+  });
+}
+function show(card){
+  const c=t();
+  detail.hidden=false;
+  const extraLink = card.also ? `　<a href="${card.also}" target="_blank" rel="noopener">${card.also}</a>` : "";
+  detail.innerHTML=`<h3>${card.name}</h3>
+    <p>${card.slide[lang]}</p>
+    <p>${card.one[lang]} ${card.extra[lang]}</p>
+    <p>${c.more}：${card.license}　${c.snapshot}：${card.stars}</p>
+    <p><a href="${card.url}" target="_blank" rel="noopener">${card.url}</a>${extraLink}</p>`;
+}
+document.getElementById("btn-zh").addEventListener("click",()=>{lang="zh"; render(); if(current){ const c=CARDS.find(x=>x.id===current); if(c) show(c);} });
+document.getElementById("btn-en").addEventListener("click",()=>{lang="en"; render(); if(current){ const c=CARDS.find(x=>x.id===current); if(c) show(c);} });
+render();
+</script>
+</body>
+</html>

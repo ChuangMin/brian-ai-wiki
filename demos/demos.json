@@ -168,5 +168,55 @@
     "source": "影片 98",
     "sourceUrl": "https://www.facebook.com/reel/1111517925213954",
     "added": "2026-11-15"
+  },
+  {
+    "id": "poteto-trust-pyramid",
+    "title": "the poteto pyramid：五層信任金字塔",
+    "desc": "依影片 100 演講投影片重製的倒金字塔（codebase → static analysis → verification → prose → human review），左邊有朝下的 cost 箭頭，可點每一層看演講裡的例子。這不是產品，也不會連網。",
+    "category": "演講與 Talk",
+    "path": "poteto-trust-pyramid/",
+    "source": "影片 100",
+    "sourceUrl": "https://www.youtube.com/watch?v=O_zcc6Xl12g",
+    "added": "2026-11-16"
+  },
+  {
+    "id": "motion-studio-repos",
+    "title": "14 個 repo 的動態影像工作室",
+    "desc": "依影片 101 概念 HUD 重製：Helix／Stack／Grid 檢視 14 張 repo 卡，可依 Motion／Physics／Data／2D／3D／AI video／Sound 篩選，並標出授權與限制。這不是 Adobe 或 Fable 產品，星數是快照，也不會執行生成模型。",
+    "category": "3D／動畫與 DCC",
+    "path": "motion-studio-repos/",
+    "source": "影片 101",
+    "sourceUrl": "https://www.facebook.com/reel/1129832049651368/",
+    "added": "2026-11-16"
+  },
+  {
+    "id": "agent-framework-differentiators",
+    "title": "四種 AI agent 框架的架構差異（更正版）",
+    "desc": "依影片 102 比較圖重製的四張卡片：LangGraph 是循環的有狀態圖（不是 DAG），CrewAI 有順序與層級兩種編排，AutoGen 已封存、後繼是 Agent Framework，LlamaIndex 偏資料與 RAG。這不是原海報複製，星數是快照。",
+    "category": "Agent 系統與編排",
+    "path": "agent-framework-differentiators/",
+    "source": "影片 102",
+    "sourceUrl": "https://www.facebook.com/reel/1798828088038729",
+    "added": "2026-11-16"
+  },
+  {
+    "id": "api-design-best-practices",
+    "title": "API 設計八則（含實務補充）",
+    "desc": "依影片 103 的八則圖卡重製：命名、冪等、分頁、篩選排序、資源路徑、限流、版本、安全性。可操作冪等 key 重試、offset 與 cursor 在列表變動時的差異、限流額度與 401。這不是原圖翻製，資料為虛構。",
+    "category": "系統設計與工程基礎",
+    "path": "api-design-best-practices/",
+    "source": "影片 103",
+    "sourceUrl": "https://www.facebook.com/reel/3974601762681447",
+    "added": "2026-11-16"
+  },
+  {
+    "id": "data-pipeline-architecture",
+    "title": "端到端資料管線架構（含實務補充）",
+    "desc": "依影片 104 的八層圖卡重製：來源、擷取、資料湖（Bronze／Silver／Gold）、處理、服務、使用者，以及編排與監控。可送出虛構訂單事件看它沿管線前進。這不是原圖翻製，資料為虛構。",
+    "category": "系統設計與工程基礎",
+    "path": "data-pipeline-architecture/",
+    "source": "影片 104",
+    "sourceUrl": "https://www.facebook.com/reel/1117905587594958",
+    "added": "2026-11-16"
   }
 ]

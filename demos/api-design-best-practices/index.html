@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>API 設計八則／Eight API design practices</title>
+<style>
+  :root {
+    --bg: #f4efe4;
+    --paper: #fffaf1;
+    --ink: #1c2a33;
+    --muted: #5b6b74;
+    --line: #d9d0bf;
+    --teal: #0f6e6b;
+    --teal-soft: #d7efee;
+    --amber: #8a4b12;
+    --amber-soft: #f8e6c8;
+    --rose: #8a2430;
+    --rose-soft: #f8d7db;
+    --ok: #1d6b3a;
+    --ok-soft: #d8f0e1;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --sans: "Segoe UI", "PingFang TC", "Noto Sans TC", "Helvetica Neue", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); }
+  body { line-height: 1.5; }
+  header {
+    max-width: 1100px; margin: 0 auto; padding: 28px 20px 12px;
+    display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: flex-start;
+  }
+  h1 { font-size: 1.6rem; margin: 0 0 6px; letter-spacing: -0.02em; }
+  .sub { color: var(--muted); margin: 0; max-width: 46rem; }
+  .lang { display: flex; gap: 6px; }
+  .lang button {
+    border: 1px solid var(--ink); background: transparent; color: var(--ink);
+    border-radius: 999px; padding: 4px 12px; cursor: pointer; font: inherit;
+  }
+  .lang button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+  .banner {
+    max-width: 1100px; margin: 0 auto 18px; padding: 0 20px;
+  }
+  .banner p {
+    margin: 0; background: var(--amber-soft); color: var(--amber);
+    border: 1px solid #e4c894; border-radius: 10px; padding: 10px 14px; font-size: 0.95rem;
+  }
+  .grid {
+    max-width: 1100px; margin: 0 auto; padding: 0 20px 40px;
+    display: grid; grid-template-columns: 220px 1fr; gap: 18px;
+  }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+  nav.toc { position: sticky; top: 12px; align-self: start; }
+  nav.toc button {
+    display: block; width: 100%; text-align: left; font: inherit; cursor: pointer;
+    border: 1px solid transparent; background: transparent; color: var(--ink);
+    padding: 8px 10px; border-radius: 8px; margin-bottom: 4px;
+  }
+  nav.toc button[aria-current="true"] { background: var(--paper); border-color: var(--line); font-weight: 600; }
+  nav.toc .n { color: var(--teal); font-variant-numeric: tabular-nums; margin-right: 6px; }
+  .panel {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 16px;
+    padding: 22px 22px 20px; box-shadow: 0 8px 24px rgba(28,42,51,0.05);
+  }
+  .panel h2 { margin: 0 0 6px; font-size: 1.25rem; }
+  .lead { margin: 0 0 14px; color: var(--muted); }
+  .caveat {
+    background: var(--teal-soft); color: #114c4a; border-radius: 10px;
+    padding: 10px 12px; margin: 16px 0 0; font-size: 0.92rem;
+  }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+  button.act, button.toggle, select, input[type="text"] {
+    font: inherit; border: 1px solid var(--ink); background: #fff; color: var(--ink);
+    border-radius: 8px; padding: 6px 12px; cursor: pointer;
+  }
+  button.act.primary { background: var(--teal); color: #fff; border-color: var(--teal); }
+  button.act[aria-pressed="true"], button.toggle[aria-pressed="true"] { background: var(--ink); color: #fff; }
+  code, .mono { font-family: var(--mono); font-size: 0.92em; }
+  .req {
+    background: #1c2a33; color: #e8f2f1; font-family: var(--mono); font-size: 0.86rem;
+    border-radius: 10px; padding: 10px 12px; overflow-x: auto; white-space: pre-wrap;
+  }
+  .ok { background: var(--ok-soft); color: var(--ok); border-radius: 8px; padding: 8px 10px; }
+  .err { background: var(--rose-soft); color: var(--rose); border-radius: 8px; padding: 8px 10px; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--line); text-align: left; padding: 6px 8px; }
+  th { color: var(--muted); font-weight: 600; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 700px) { .cols { grid-template-columns: 1fr; } }
+  .bucket { display: flex; gap: 4px; margin: 10px 0; flex-wrap: wrap; }
+  .token {
+    width: 18px; height: 28px; border-radius: 4px; background: var(--teal); display: inline-block;
+  }
+  .token.off { background: var(--line); }
+  .log { font-family: var(--mono); font-size: 0.85rem; color: var(--muted); min-height: 1.4em; }
+  .dim { opacity: 0.45; }
+  footer {
+    max-width: 1100px; margin: 0 auto; padding: 0 20px 40px; color: var(--muted); font-size: 0.9rem;
+  }
+  footer a { color: var(--teal); }
+</style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1 id="title"></h1>
+      <p class="sub" id="subtitle"></p>
+    </div>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" id="btn-zh" aria-pressed="true">中文</button>
+      <button type="button" id="btn-en" aria-pressed="false">English</button>
+    </div>
+  </header>
+  <div class="banner"><p id="banner"></p></div>
+  <div class="grid">
+    <nav class="toc" id="toc" aria-label="Rules"></nav>
+    <section class="panel" id="panel"></section>
+  </div>
+  <footer>
+    <p id="foot"></p>
+    <p><a href="https://wiki.singularityengine.dev/" id="home">wiki.singularityengine.dev</a></p>
+  </footer>
+<script>
+const CATALOG = [
+  { id:"nb", name:{zh:"線裝筆記本", en:"Stitched notebook"}, color:"ink", added:5 },
+  { id:"pen", name:{zh:"鋼筆", en:"Fountain pen"}, color:"ink", added:9 },
+  { id:"card", name:{zh:"卡片組", en:"Card set"}, color:"sand", added:12 },
+  { id:"clip", name:{zh:"長尾夾", en:"Binder clips"}, color:"sand", added:2 },
+  { id:"ruler", name:{zh:"木尺", en:"Wooden ruler"}, color:"ink", added:7 }
+];
+const LIST0 = ["item9","item8","item7","item6","item5","item4","item3","item2","item1"];
+const COPY = {
+  zh: {
+    title: "API 設計八則",
+    sub: "依畫面八則做的互動說明，並加上實務補充。這不是原圖翻製，資料都是虛構的，也不會連網。",
+    banner: "來源圖卡的說明文是另一套 10 點清單（狀態碼、錯誤內容、快取、OpenAPI 等），與這八則並不完全一致。本頁以畫面為準。八則清單廣泛沿用 ByteByteGo／Sahn Lam 的整理。",
+    foot: "自製示範頁，對應影片 103／SEQ 0147。權杖只顯示 Bearer <token>，沒有可複製的憑證字串。PUT 與 PATCH、冪等、分頁漂移、版本做法與限流狀態碼見各則補充。",
+    home: "回到 AI 影片收藏 Wiki",
+    tocAria: "八則目錄"
+  },
+  en: {
+    title: "Eight API design practices",
+    sub: "An interactive walkthrough of the video’s eight rules, with practical caveats. This is not a redraw of the source graphic. All data is fictional, and the page never goes online.",
+    banner: "The caption is a different ten-point list (status codes, error bodies, caching, OpenAPI, and more) and does not fully match these eight rules. This page follows the video. The eight-rule list is widely reused from a ByteByteGo / Sahn Lam write-up.",
+    foot: "Original demo for Video 103 / SEQ 0147. Tokens are shown only as Bearer <token>. See each card for caveats on PUT vs PATCH, idempotency, offset drift, versioning styles, and rate-limit status codes.",
+    home: "Back to the AI video wiki",
+    tocAria: "List of eight rules"
+  }
+};
+const RULES = [
+  {
+    id:"naming",
+    n:"1",
+    name:{zh:"Clear Naming 清楚命名", en:"Clear Naming"},
+    lead:{zh:"資源用名詞，動詞交給 HTTP。", en:"Nouns for resources; verbs come from HTTP."},
+    cave:{zh:"圖上的 Update 列只畫了 PUT，沒有 PATCH。PUT 是完整取代（RFC 9110）；部分更新應是 PATCH（RFC 5789）。", en:"The naming row uses PUT for Update and omits PATCH. PUT replaces a resource (RFC 9110); partial updates belong to PATCH (RFC 5789)."}
+  },
+  {
+    id:"idem",
+    n:"2",
+    name:{zh:"Idempotency 冪等", en:"Idempotency"},
+    lead:{zh:"同一請求打兩次，結果應該一樣。", en:"The same request twice should have the same effect."},
+    cave:{zh:"GET／PUT／DELETE 在 RFC 9110 裡本身就是冪等；POST／PATCH 一般不是。Idempotency-Key 是應用層慣例，不是 HTTP 方法語意的一部分。", en:"GET, PUT, and DELETE are idempotent in RFC 9110; POST and PATCH generally are not. An Idempotency-Key is an application convention, not part of the HTTP method itself."}
+  },
+  {
+    id:"page",
+    n:"3",
+    name:{zh:"Pagination 分頁", en:"Pagination"},
+    lead:{zh:"大列表一次只回一頁。", en:"Return big lists a page at a time."},
+    cave:{zh:"列表中間插入或刪除時，offset／limit 會漂移（同一筆可能出現在兩頁，或被跳過）。cursor／keyset 較穩，但不能隨意跳到某一頁。", en:"If the list changes between pages, offset/limit can drift (duplicates or skipped rows). Cursor or keyset pagination is more stable, but you usually cannot jump to an arbitrary page."}
+  },
+  {
+    id:"filter",
+    n:"4",
+    name:{zh:"Filter & Sort 篩選與排序", en:"Filter & Sort"},
+    lead:{zh:"讓用戶端只要自己需要的資料。", en:"Let clients ask for exactly what they need."},
+    cave:{zh:"篩選與排序欄位應允許清單化，避免任意欄位與昂貴查詢。這是示範資料，不是真實商品。", en:"Allow-list filter and sort fields so clients cannot request arbitrary columns or expensive queries. This catalog is fictional."}
+  },
+  {
+    id:"paths",
+    n:"5",
+    name:{zh:"Resource Paths 資源路徑", en:"Resource Paths"},
+    lead:{zh:"相關資源可以嵌進 URL，也可以用查詢參數表達。", en:"Related resources can be nested in the URL, or expressed with query parameters."},
+    cave:{zh:"巢狀路徑對上 query 是風格選擇，不是硬性規則。嵌太深會難用，許多 API 會混用兩種寫法。", en:"Nested paths versus query parameters are a style choice, not a hard rule. Deep nesting gets awkward; many APIs mix both."}
+  },
+  {
+    id:"rate",
+    n:"6",
+    name:{zh:"Rate Limiting 限流", en:"Rate Limiting"},
+    lead:{zh:"保護 API 不被過度使用。影片例子是 100 req/min；這裡用縮小的 8 次額度方便操作。", en:"Protect the API from overuse. The video’s example is 100 req/min; this demo uses a smaller bucket of 8 so you can trip it."},
+    cave:{zh:"額度用完時，實務上通常回 429 Too Many Requests，並帶 RateLimit 或 Retry-After，而不是只顯示 quota used。", en:"When the quota is exhausted, APIs usually respond with 429 Too Many Requests and RateLimit or Retry-After headers, not only a “quota used” label."}
+  },
+  {
+    id:"ver",
+    n:"7",
+    name:{zh:"Versioning 版本", en:"Versioning"},
+    lead:{zh:"改 API 時讓舊用戶端繼續可用。圖上的 Ana Roy 是虛構人名。", en:"Change the API without breaking old clients. Ana Roy, on the graphic, is a fictional name."},
+    cave:{zh:"把路徑寫成 /v1、/v2 只是版本做法之一，也有人放在標頭或媒體類型（Accept）。", en:"URI versions such as /v1 and /v2 are only one approach. Others put the version in a header or in the media type (Accept)."}
+  },
+  {
+    id:"sec",
+    n:"8",
+    name:{zh:"Security 安全性", en:"Security"},
+    lead:{zh:"每個請求都走 HTTPS，並帶 token。", en:"HTTPS and a token on every request."},
+    cave:{zh:"HTTPS 加 bearer token 是基本盤，不是完整的縱深防禦。還需要授權範圍、輸入檢查、最短權限與憑證到期等。本頁只顯示 Bearer <token>。", en:"HTTPS plus a bearer token is a baseline, not defense in depth. You still need scopes, input checks, least privilege, and token expiry. This page only shows Bearer <token>."}
+  }
+];
+
+let lang = (new URLSearchParams(location.search).get("lang") === "en") ? "en" : "zh";
+let current = "naming";
+
+const state = {
+  verb: "create",
+  useKey: true,
+  orders: [],
+  nextOrder: 1001,
+  keys: {},
+  lastIdem: "",
+  inserted: false,
+  pageMode: "offset",
+  page: 1,
+  color: "ink",
+  sort: "newest",
+  pathMode: "nested",
+  tokens: 8,
+  blockedUntil: 0,
+  rateLog: "",
+  ver: "v1",
+  hasToken: true,
+  secLog: ""
+};
+
+function $(id){ return document.getElementById(id); }
+
+function listNow(){
+  return state.inserted ? ["item10", ...LIST0] : LIST0.slice();
+}
+function pageSlice(mode, page){
+  const list = listNow();
+  const limit = 3;
+  if(mode === "offset"){
+    const offset = (page-1)*limit;
+    return { rows:list.slice(offset, offset+limit), q:`?limit=${limit}&offset=${offset}` };
+  }
+  if(page === 1) return { rows:list.slice(0, limit), q:`?limit=${limit}` };
+  // cursor of first page's last item in the ORIGINAL first page, which is item7
+  const after = "item7";
+  const idx = list.indexOf(after);
+  const rows = idx >= 0 ? list.slice(idx+1, idx+1+limit) : [];
+  return { rows, q:`?limit=${limit}&after=${after}` };
+}
+
+function renderChrome(){
+  const c = COPY[lang];
+  $("title").textContent = c.title;
+  $("subtitle").textContent = c.sub;
+  $("banner").textContent = c.banner;
+  $("foot").textContent = c.foot;
+  $("home").textContent = c.home;
+  document.documentElement.lang = lang === "en" ? "en" : "zh-Hant";
+  $("btn-zh").setAttribute("aria-pressed", String(lang==="zh"));
+  $("btn-en").setAttribute("aria-pressed", String(lang==="en"));
+  const toc = $("toc");
+  toc.innerHTML = "";
+  toc.setAttribute("aria-label", c.tocAria);
+  RULES.forEach(r=>{
+    const b = document.createElement("button");
+    b.type = "button";
+    b.innerHTML = `<span class="n">${r.n}</span>${r.name[lang]}`;
+    if(r.id === current) b.setAttribute("aria-current","true");
+    b.addEventListener("click", ()=>{ current=r.id; render(); });
+    toc.appendChild(b);
+  });
+}
+
+function renderPanel(){
+  const r = RULES.find(x=>x.id===current);
+  const el = $("panel");
+  let body = "";
+  if(current==="naming") body = viewNaming();
+  if(current==="idem") body = viewIdem();
+  if(current==="page") body = viewPage();
+  if(current==="filter") body = viewFilter();
+  if(current==="paths") body = viewPaths();
+  if(current==="rate") body = viewRate();
+  if(current==="ver") body = viewVer();
+  if(current==="sec") body = viewSec();
+  el.innerHTML = `<h2>${r.n}. ${r.name[lang]}</h2><p class="lead">${r.lead[lang]}</p>${body}<p class="caveat">${r.cave[lang]}</p>`;
+  bindPanel();
+}
+
+function viewNaming(){
+  const map = {
+    create:{m:"POST", p:"/api/products", zh:"建立", en:"Create"},
+    read:{m:"GET", p:"/api/products/42", zh:"讀取", en:"Read"},
+    update:{m:"PUT", p:"/api/products/42", zh:"完整更新（圖上的 Update）", en:"Replace (Update on the graphic)"},
+    patch:{m:"PATCH", p:"/api/products/42", zh:"部分更新（圖上未列）", en:"Partial update (omitted on the graphic)"},
+    del:{m:"DELETE", p:"/api/products/42", zh:"刪除", en:"Delete"}
+  };
+  const a = map[state.verb];
+  const btns = Object.entries(map).map(([k,v])=>
+    `<button class="toggle" data-verb="${k}" aria-pressed="${state.verb===k}">${v[lang]}</button>`
+  ).join("");
+  return `<div class="row">${btns}</div><div class="req">${a.m} ${a.p}</div>`;
+}
+
+function viewIdem(){
+  const tbl = lang==="zh"
+    ? "圖上：GET／PUT／DELETE＝yes；POST／PATCH＝no（除非帶 key）。"
+    : "On the graphic: GET / PUT / DELETE = yes; POST / PATCH = no unless you send a key.";
+  const keyLab = lang==="zh" ? "使用同一把 Idempotency-Key" : "Reuse the same Idempotency-Key";
+  const send = lang==="zh" ? "送出 POST /api/orders" : "Send POST /api/orders";
+  const reset = lang==="zh" ? "清空示範" : "Reset demo";
+  const hdr = state.useKey ? "Idempotency-Key: k-order-1" : "(no idempotency key)";
+  const rows = state.orders.map(o=>`<tr><td>${o.id}</td><td>${o.via}</td></tr>`).join("") ||
+    `<tr><td colspan="2">${lang==="zh"?"尚無訂單":"No orders yet"}</td></tr>`;
+  return `<p>${tbl}</p>
+    <div class="row">
+      <button class="toggle" id="use-key" aria-pressed="${state.useKey}">${keyLab}</button>
+      <button class="act primary" id="send-order">${send}</button>
+      <button class="act" id="reset-order">${reset}</button>
+    </div>
+    <div class="req">POST /api/orders
+${hdr}</div>
+    <p class="log" id="idem-log">${state.lastIdem}</p>
+    <table><thead><tr><th>id</th><th>${lang==="zh"?"結果":"Result"}</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+
+function viewPage(){
+  const off = pageSlice("offset", state.page);
+  const cur = pageSlice("cursor", state.page);
+  const ins = lang==="zh" ? (state.inserted?"已在列表最前插入 item10":"在列表最前插入一筆新資料") : (state.inserted?"item10 is already at the top":"Insert a new item at the top");
+  const p1 = lang==="zh"?"第 1 頁":"Page 1";
+  const p2 = lang==="zh"?"第 2 頁":"Page 2";
+  function col(title, q, rows, note){
+    return `<div><strong>${title}</strong><div class="req">${q}</div><ul>${rows.map(r=>`<li>${r}</li>`).join("")}</ul><p class="log">${note||""}</p></div>`;
+  }
+  const offNote = (state.inserted && state.page===2)
+    ? (lang==="zh"?"item7 原本在第 1 頁，插入後出現在第 2 頁（漂移）。":"item7 was on page 1; after the insert it also appears on page 2 (drift).")
+    : "";
+  const curNote = (state.inserted && state.page===2)
+    ? (lang==="zh"?"cursor 仍從 item7 之後繼續，第 2 頁內容不變。":"The cursor still continues after item7, so page 2 is unchanged.")
+    : (state.page===2 ? (lang==="zh"?"continues after the last item":"continues after the last item") : "");
+  return `<div class="row">
+      <button class="toggle" data-pg="1" aria-pressed="${state.page===1}">${p1}</button>
+      <button class="toggle" data-pg="2" aria-pressed="${state.page===2}">${p2}</button>
+      <button class="act" id="insert-item" ${state.inserted?"disabled":""}>${ins}</button>
+    </div>
+    <div class="cols">
+      ${col("Offset-based", "/api/items"+off.q, off.rows, offNote)}
+      ${col("Cursor-based", "/api/items"+cur.q, cur.rows, curNote)}
+    </div>`;
+}
+
+function viewFilter(){
+  const rows = CATALOG.filter(p => state.color==="all" || p.color===state.color)
+    .sort((a,b)=> state.sort==="newest" ? b.added-a.added : a.added-b.added);
+  const q = `/products?color=${state.color}&sort=${state.sort==="newest"?"date_added":"date_added_asc"}`;
+  const thName = lang==="zh"?"商品":"Item";
+  const thWhen = lang==="zh"?"加入日（示範）":"Added (demo day)";
+  const tr = rows.map(p=>`<tr><td>${p.name[lang]}</td><td>${p.color}</td><td>Mar ${p.added}</td></tr>`).join("");
+  return `<div class="row">
+      <button class="toggle" data-color="ink" aria-pressed="${state.color==="ink"}">${lang==="zh"?"顏色：ink":"Color: ink"}</button>
+      <button class="toggle" data-color="sand" aria-pressed="${state.color==="sand"}">${lang==="zh"?"顏色：sand":"Color: sand"}</button>
+      <button class="toggle" data-color="all" aria-pressed="${state.color==="all"}">${lang==="zh"?"全部":"All"}</button>
+      <button class="toggle" data-sort="newest" aria-pressed="${state.sort==="newest"}">${lang==="zh"?"最新優先":"Newest first"}</button>
+      <button class="toggle" data-sort="oldest" aria-pressed="${state.sort==="oldest"}">${lang==="zh"?"最舊優先":"Oldest first"}</button>
+    </div>
+    <div class="req">GET ${q}</div>
+    <table><thead><tr><th>${thName}</th><th>color</th><th>${thWhen}</th></tr></thead><tbody>${tr}</tbody></table>
+    <p class="log">${lang==="zh"?`回傳 ${rows.length} / ${CATALOG.length} 列`:`Returned ${rows.length} of ${CATALOG.length} rows`}</p>`;
+}
+
+function viewPaths(){
+  const nested = "/api/v1/carts/204/items/88";
+  const query = "/api/v1/items?cart_id=204&item_id=88";
+  const which = state.pathMode==="nested" ? nested : query;
+  const note = state.pathMode==="nested"
+    ? (lang==="zh"?"圖上稱為 clear hierarchy：購物車 204 → 列 88。":"The graphic calls this a clear hierarchy: cart 204 → item 88.")
+    : (lang==="zh"?"圖上稱為 less clear：同一筆資源，改用查詢參數。":"The graphic calls this less clear: the same resource, expressed as query parameters.");
+  return `<div class="row">
+      <button class="toggle" data-path="nested" aria-pressed="${state.pathMode==="nested"}">${lang==="zh"?"巢狀路徑":"Nested path"}</button>
+      <button class="toggle" data-path="query" aria-pressed="${state.pathMode==="query"}">${lang==="zh"?"查詢參數":"Query parameters"}</button>
+    </div>
+    <div class="req">${which}</div>
+    <p class="log">${note}</p>`;
+}
+
+function viewRate(){
+  const now = Date.now();
+  if(state.blockedUntil && now >= state.blockedUntil){ state.tokens = 8; state.blockedUntil = 0; }
+  const left = state.blockedUntil ? Math.max(0, Math.ceil((state.blockedUntil-now)/1000)) : 0;
+  const tokens = Array.from({length:8}, (_,i)=>`<span class="token${i<state.tokens?"":" off"}"></span>`).join("");
+  const send = lang==="zh"?"送出請求":"Send request";
+  const reset = lang==="zh"?"重設額度":"Reset bucket";
+  return `<p>${lang==="zh"?"示範額度：8 次（對應影片的 100 req/min 概念）。":"Demo bucket: 8 requests (standing in for the video’s 100 req/min)."}</p>
+    <div class="bucket" aria-label="quota">${tokens}</div>
+    <div class="row">
+      <button class="act primary" id="send-rate">${send}</button>
+      <button class="act" id="reset-rate">${reset}</button>
+    </div>
+    <div class="req">GET /api/widgets
+X-Demo-Remaining: ${state.tokens}${left?`\nRetry-After: ${left}`:""}</div>
+    <p class="log" id="rate-log">${state.rateLog}</p>`;
+}
+
+function viewVer(){
+  const v1 = `{ "name": "Ana Roy" }`;
+  const v2 = `{ "first": "Ana", "last": "Roy" }`;
+  const path = state.ver==="v1" ? "/api/v1/users/7" : "/api/v2/users/7";
+  const body = state.ver==="v1" ? v1 : v2;
+  const note = lang==="zh" ? "v1 繼續提供 name；v2 改成 first／last，舊應用不必立刻跟上。" : "v1 keeps serving name; v2 ships first/last, so older clients can stay on v1.";
+  return `<div class="row">
+      <button class="toggle" data-ver="v1" aria-pressed="${state.ver==="v1"}">GET /api/v1/users/7</button>
+      <button class="toggle" data-ver="v2" aria-pressed="${state.ver==="v2"}">GET /api/v2/users/7</button>
+    </div>
+    <div class="req">GET ${path}
+${body}</div>
+    <p class="log">${note}</p>`;
+}
+
+function viewSec(){
+  const on = lang==="zh"?"帶 Bearer <token>":"Send Bearer <token>";
+  const off = lang==="zh"?"不帶 token":"No token";
+  const send = lang==="zh"?"送出 GET /api/v1/profile":"Send GET /api/v1/profile";
+  const hdr = state.hasToken ? "Authorization: Bearer <token>" : "(no Authorization header)";
+  return `<div class="row">
+      <button class="toggle" data-tok="1" aria-pressed="${state.hasToken}">${on}</button>
+      <button class="toggle" data-tok="0" aria-pressed="${!state.hasToken}">${off}</button>
+      <button class="act primary" id="send-sec">${send}</button>
+    </div>
+    <div class="req">GET /api/v1/profile
+HTTPS
+${hdr}</div>
+    <p class="log" id="sec-log">${state.secLog}</p>`;
+}
+
+function bindPanel(){
+  $("panel").querySelectorAll("[data-verb]").forEach(b=>b.addEventListener("click",()=>{ state.verb=b.getAttribute("data-verb"); render(); }));
+  const uk = $("use-key"); if(uk) uk.addEventListener("click",()=>{ state.useKey=!state.useKey; render(); });
+  const so = $("send-order"); if(so) so.addEventListener("click", sendOrder);
+  const ro = $("reset-order"); if(ro) ro.addEventListener("click", ()=>{ state.orders=[]; state.keys={}; state.nextOrder=1001; state.lastIdem=""; render(); });
+  $("panel").querySelectorAll("[data-pg]").forEach(b=>b.addEventListener("click",()=>{ state.page=Number(b.getAttribute("data-pg")); render(); }));
+  const ins = $("insert-item"); if(ins) ins.addEventListener("click",()=>{ state.inserted=true; render(); });
+  $("panel").querySelectorAll("[data-color]").forEach(b=>b.addEventListener("click",()=>{ state.color=b.getAttribute("data-color"); render(); }));
+  $("panel").querySelectorAll("[data-sort]").forEach(b=>b.addEventListener("click",()=>{ state.sort=b.getAttribute("data-sort"); render(); }));
+  $("panel").querySelectorAll("[data-path]").forEach(b=>b.addEventListener("click",()=>{ state.pathMode=b.getAttribute("data-path"); render(); }));
+  const sr = $("send-rate"); if(sr) sr.addEventListener("click", sendRate);
+  const rr = $("reset-rate"); if(rr) rr.addEventListener("click", ()=>{ state.tokens=8; state.blockedUntil=0; state.rateLog=""; render(); });
+  $("panel").querySelectorAll("[data-ver]").forEach(b=>b.addEventListener("click",()=>{ state.ver=b.getAttribute("data-ver"); render(); }));
+  $("panel").querySelectorAll("[data-tok]").forEach(b=>b.addEventListener("click",()=>{ state.hasToken=b.getAttribute("data-tok")==="1"; state.secLog=""; render(); }));
+  const ss = $("send-sec"); if(ss) ss.addEventListener("click", sendSec);
+}
+
+function sendOrder(){
+  const key = state.useKey ? "k-order-1" : null;
+  if(key && state.keys[key]){
+    const existing = state.keys[key];
+    state.lastIdem = lang==="zh"
+      ? `seen ${key} → same result（重放 ${existing}，沒有新增訂單）`
+      : `seen ${key} → same result (replayed ${existing}, no new order)`;
+    render();
+    return;
+  }
+  const id = "ORD-"+state.nextOrder++;
+  const via = key
+    ? (lang==="zh"?`新建，並記住 ${key}`:`created and remembered under ${key}`)
+    : (lang==="zh"?"新建（沒有 key，每次都是新訂單）":"created (no key, every send is a new order)");
+  state.orders.push({id, via});
+  if(key) state.keys[key]=id;
+  state.lastIdem = lang==="zh" ? `建立 ${id}` : `created ${id}`;
+  render();
+}
+
+function sendRate(){
+  const now = Date.now();
+  if(state.blockedUntil && now < state.blockedUntil){
+    const left = Math.ceil((state.blockedUntil-now)/1000);
+    state.rateLog = lang==="zh"
+      ? `429 Too Many Requests · Retry-After: ${left}`
+      : `429 Too Many Requests · Retry-After: ${left}`;
+    render();
+    return;
+  }
+  if(state.blockedUntil && now >= state.blockedUntil){ state.tokens=8; state.blockedUntil=0; }
+  if(state.tokens<=0){
+    state.blockedUntil = now + 5000;
+    state.rateLog = lang==="zh"
+      ? "429 Too Many Requests · Retry-After: 5 · RateLimit: 8;w=60"
+      : "429 Too Many Requests · Retry-After: 5 · RateLimit: 8;w=60";
+    render();
+    return;
+  }
+  state.tokens -= 1;
+  state.rateLog = lang==="zh" ? `200 OK · 剩餘 ${state.tokens}` : `200 OK · ${state.tokens} remaining`;
+  render();
+}
+
+function sendSec(){
+  if(state.hasToken){
+    state.secLog = lang==="zh"
+      ? '200 OK · { "name": "Ana Roy" }'
+      : '200 OK · { "name": "Ana Roy" }';
+  } else {
+    state.secLog = "401 Unauthorized";
+  }
+  render();
+}
+
+function render(){ renderChrome(); renderPanel(); }
+
+$("btn-zh").addEventListener("click",()=>{
+  lang="zh";
+  const u=new URL(location.href); u.searchParams.delete("lang"); history.replaceState(null,"",u);
+  render();
+});
+$("btn-en").addEventListener("click",()=>{
+  lang="en";
+  const u=new URL(location.href); u.searchParams.set("lang","en"); history.replaceState(null,"",u);
+  render();
+});
+render();
+</script>
+</body>
+</html>
