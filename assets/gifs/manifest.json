@@ -258,7 +258,7 @@
     "duration": 3.0,
     "what_it_shows": "淺色電影院後台（影片中 logo 拼作 Kinlo）：游標點 Finance 側欄的 Cards 分頁、再點 Calendar，每次換頁都從點擊處以圓形 clip-path 擴散蓋過舊畫面；下方同時顯示 src/App.tsx 的 setTheme() 原始碼（document.startViewTransition + animate clipPath on ::view-transition-new(root)）",
     "size_bytes": 957321,
-    "rebuild_note": "來源檔 /workspace/fb/reel39.mp4（檔名是 39，內容是影片 37）。重製：ffmpeg -ss 2 -t 3 -i reel39.mp4 -vf \"crop=1040:1100:20:560,fps=12,scale=720:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=160:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=4:diff_mode=rectangle\" v37-view-transition-wipe.gif（裁切範圍含儀表板＋程式碼面板，720×762，36 格，約 0.96 MB）。可互動的重製版在 demos/view-transition-dashboard/。"
+    "rebuild_note": "來源檔 本機來源影片（不公開）（檔名是 39，內容是影片 37）。重製：ffmpeg -ss 2 -t 3 -i reel39.mp4 -vf \"crop=1040:1100:20:560,fps=12,scale=720:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=160:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=4:diff_mode=rectangle\" v37-view-transition-wipe.gif（裁切範圍含儀表板＋程式碼面板，720×762，36 格，約 0.96 MB）。可互動的重製版在 demos/view-transition-dashboard/。"
   },
   {
     "file": "v40-vibevoice-diarization.gif",
@@ -269,7 +269,7 @@
     "duration": 3.5,
     "what_it_shows": "「誰講・幾秒」段落：VibeVoice 官方 demo 的 Jimmy Fallon 訪談片段（標題 Video subtitles from VibeVoice-ASR），下方逐句標出講者 1／講者 0 與中英字幕，示範說話者分離",
     "size_bytes": 857138,
-    "rebuild_note": "來源檔 /workspace/fb/reel43.mp4（內容是影片 40）。重製：ffmpeg -ss 22.5 -t 3.5 -i reel43.mp4 -vf \"crop=1080:960:0:380,fps=10,scale=500:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=128:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=4:diff_mode=rectangle\" v40-vibevoice-diarization.gif"
+    "rebuild_note": "來源檔 本機來源影片（不公開）（內容是影片 40）。重製：ffmpeg -ss 22.5 -t 3.5 -i reel43.mp4 -vf \"crop=1080:960:0:380,fps=10,scale=500:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=128:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=4:diff_mode=rectangle\" v40-vibevoice-diarization.gif"
   },
   {
     "file": "v41-photo-sort-fly.gif",
@@ -280,7 +280,7 @@
     "duration": 3.5,
     "what_it_shows": "手機拍筆電螢幕：按「開始整理」前縮圖堆成圓形一團，接著飛進「整理我的 Downloads 資料夾」頁面的各分類框，計數跟著跳動",
     "size_bytes": 761297,
-    "rebuild_note": "來源檔 /workspace/fb/reel44.mp4（內容是影片 41）。手持翻拍畫面晃動、難壓縮，所以用較小尺寸：ffmpeg -ss 10.5 -t 3.5 -i reel44.mp4 -vf \"crop=1080:1300:0:150,fps=7,scale=300:-1:flags=lanczos,hqdn3d=4:4:6:6,split[a][b];[a]palettegen=max_colors=48:stats_mode=full[p];[b][p]paletteuse=dither=none\" v41-photo-sort-fly.gif。可互動的重製版在 demos/photo-sort-fly/。"
+    "rebuild_note": "來源檔 本機來源影片（不公開）（內容是影片 41）。手持翻拍畫面晃動、難壓縮，所以用較小尺寸：ffmpeg -ss 10.5 -t 3.5 -i reel44.mp4 -vf \"crop=1080:1300:0:150,fps=7,scale=300:-1:flags=lanczos,hqdn3d=4:4:6:6,split[a][b];[a]palettegen=max_colors=48:stats_mode=full[p];[b][p]paletteuse=dither=none\" v41-photo-sort-fly.gif。可互動的重製版在 demos/photo-sort-fly/。"
   },
   {
     "file": "v43-android-adb-agent.gif",
@@ -291,7 +291,7 @@
     "duration": 4.0,
     "what_it_shows": "影片下半部：左下 Windows cmd.exe 的執行紀錄捲動，桌上的真手機（加速播放）自己切換畫面、開 Telegram 與 Play 商店頁面；不含上半部那個查無此帳號的 GitHub 頁面",
     "size_bytes": 833456,
-    "rebuild_note": "來源檔 /workspace/fb/reel46.mp4（內容是影片 43）。重製：ffmpeg -ss 2 -t 4 -i reel46.mp4 -vf \"crop=1000:570:40:1058,fps=10,scale=600:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=128:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=4:diff_mode=rectangle\" v43-android-adb-agent.gif"
+    "rebuild_note": "來源檔 本機來源影片（不公開）（內容是影片 43）。重製：ffmpeg -ss 2 -t 4 -i reel46.mp4 -vf \"crop=1000:570:40:1058,fps=10,scale=600:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=128:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=4:diff_mode=rectangle\" v43-android-adb-agent.gif"
   },
   {
     "file": "v44-creatorverse-network.gif",
@@ -302,7 +302,7 @@
     "duration": 3.0,
     "what_it_shows": "影片上半部的 App 畫面：Content Lab 的 Creatorverse 分頁，發光的創作者節點網路（@ines.calloway、@felixdanvers 等帳號標籤），上方 Your accounts 4／Tracked 25／Watch list 12／Suggested 3 篩選列與「Filming · no charges」標籤，鏡頭緩慢推移；不含下半部的真人講解畫面",
     "size_bytes": 578981,
-    "rebuild_note": "來源檔 /workspace/fb/reel47.mp4（內容是影片 44）。重製：ffmpeg -ss 74.5 -t 3.0 -i reel47.mp4 -vf \"crop=1080:860:0:0,fps=10,scale=500:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=96:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle\" v44-creatorverse-network.gif"
+    "rebuild_note": "來源檔 本機來源影片（不公開）（內容是影片 44）。重製：ffmpeg -ss 74.5 -t 3.0 -i reel47.mp4 -vf \"crop=1080:860:0:0,fps=10,scale=500:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=96:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle\" v44-creatorverse-network.gif"
   },
   {
     "file": "v46-gbrain-network.gif",
@@ -313,7 +313,7 @@
     "duration": 2.5,
     "what_it_shows": "動態設計：GBRAIN／GARRY TAN 字樣與發光節點網路動畫（非真實錄屏）",
     "size_bytes": 978308,
-    "rebuild_note": "來源 /workspace/fb/prep-20261109-2119433356584604119-2119431899001057280-720p.mp4。ffmpeg -ss 0 -t 2.5 -i … -vf \"fps=8,scale=480:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=64:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle\""
+    "rebuild_note": "來源 本機來源影片（不公開）。ffmpeg -ss 0 -t 2.5 -i … -vf \"fps=8,scale=480:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=64:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle\""
   },
   {
     "file": "v47-altair-skill-board.gif",
@@ -324,7 +324,7 @@
     "duration": 2.0,
     "what_it_shows": "動態設計 skill 看板：列出 mattpocock/skills、addyosmani/agent-skills 等 repo 與星數（非真實錄屏）",
     "size_bytes": 755194,
-    "rebuild_note": "來源 /workspace/fb/prep-20261109-1Dm3wukMTU-1815732602882824.mp4。ffmpeg -ss 0 -t 2.0 -i … -vf \"fps=7,scale=420:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=48:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle\""
+    "rebuild_note": "來源 本機來源影片（不公開）。ffmpeg -ss 0 -t 2.0 -i … -vf \"fps=7,scale=420:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=48:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle\""
   },
   {
     "file": "v50-altair-obsidian-open-source.gif",
@@ -335,7 +335,7 @@
     "duration": 2.5,
     "what_it_shows": "動態設計 OPEN SOURCE 面板：列出 obsidian-skills、defuddle、obsidian-clipper、obsidian-help、obsidian-importer 與星數（非真實錄屏）",
     "size_bytes": 663435,
-    "rebuild_note": "來源 /workspace/fb/prep-20261109-1895633831459873.mp4。ffmpeg -ss 1 -t 2.5 -i … -vf \"fps=7,scale=420:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=48:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle\""
+    "rebuild_note": "來源 本機來源影片（不公開）。ffmpeg -ss 1 -t 2.5 -i … -vf \"fps=7,scale=420:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=48:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle\""
   },
   {
     "file": "v51-altair-plain-md-second-brain.gif",
@@ -346,7 +346,7 @@
     "duration": 3.0,
     "what_it_shows": "動態設計模擬儀表板：純 .md 第二大腦（無 Obsidian／Notion），顯示檔案數等 UI 計數（非真實操作、CLAUDE.md 內容未展示）",
     "size_bytes": 932451,
-    "rebuild_note": "來源 /workspace/fb/prep-20261109-2062559707739569.mp4。ffmpeg -ss 3 -t 3 -i … -vf \"fps=8,scale=480:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=64:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle\""
+    "rebuild_note": "來源 本機來源影片（不公開）。ffmpeg -ss 3 -t 3 -i … -vf \"fps=8,scale=480:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=64:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle\""
   },
   {
     "file": "v52-altair-multi-model-claude-code.gif",
@@ -357,7 +357,7 @@
     "duration": 3.0,
     "what_it_shows": "動態設計：Sonnet／Haiku／Opus 三角色編排示意與模擬儀表板數字（非真實錄屏）",
     "size_bytes": 471066,
-    "rebuild_note": "來源 /workspace/fb/prep-20261109-2504853660346325.mp4。ffmpeg -ss 5 -t 3 -i … -vf \"fps=8,scale=480:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=64:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle\""
+    "rebuild_note": "來源 本機來源影片（不公開）。ffmpeg -ss 5 -t 3 -i … -vf \"fps=8,scale=480:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=64:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle\""
   },
   {
     "file": "v53-cangjie-skill-distill.gif",
@@ -788,5 +788,25 @@
     "duration": 10.6,
     "size_bytes": 3140313,
     "what_it_shows": "1.2–4.5 Helix 的 anime.js 卡、13.0–16.5 Stack 的 TRELLIS 3D 檢視、27.8–31.6 片尾 14 張 Grid；已裁掉底部 Follow 橫幅"
+  },
+  {
+    "file": "v96-vfx-pipeline-hud.gif",
+    "video_number": "影片 106",
+    "entry_name": "Altair AI：Fable 5.2 八 repo VFX 管線概念儀表板（12 鏡，非實作錄屏）",
+    "reel_url": "https://www.facebook.com/reel/1487099606683340/",
+    "segment_start": 1.5,
+    "duration": 5.5,
+    "size_bytes": 2661165,
+    "what_it_shows": "約 1.5–7.0 秒，SAM 2 到 ProPainter 的高亮與關係圖；已裁掉底部 Follow 橫幅"
+  },
+  {
+    "file": "v97-saas-landing-friday.gif",
+    "video_number": "影片 107",
+    "entry_name": "DeepResource.ai：Fable 5.2 八 repo 概念 HUD 做 SaaS 登陸頁（說明文來自 @Flandermaxx）",
+    "reel_url": "https://www.facebook.com/reel/1122956367317954/",
+    "segment_start": 6.5,
+    "duration": 6.0,
+    "size_bytes": 2075443,
+    "what_it_shows": "約 6.5–12.5 秒，Radix／Lucide／Astro 到 Flowbite 的過場"
   }
 ]

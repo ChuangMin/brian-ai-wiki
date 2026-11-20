@@ -144,13 +144,7 @@ Keep ⚠️ on the title and the Video 48 link only. Videos 51 / 60 / 61 / 77 / 
 
 ### [Lamis Mukta (Anthropic): agent memory from CLAUDE.md to Dreaming](https://x.com/David_eficaz/status/2118745007628726684)
 
-An Anthropic engineer on agent memory: CLAUDE.md → tool memory → skills → a memory/ directory, then async Dreaming consolidation
-
-| Credibility | Stars | Source |
-| --- | --- | --- |
-| high credibility · caption framing unverified | — | [Video 49](https://x.com/David_eficaz/status/2118745007628726684) |
-
-~31-minute English conference talk by Lamis Mukta (Member of Technical Staff, Anthropic) at AI DevCon by Tessl, shared by David (@David_eficaz). Timecodes: memory evolution CLAUDE.md → tool memory → skills → agent-managed memory/ (03:16); progressive disclosure skills (05:30); concurrency via hashing the memory file before/after edits (10:05); memory permissioning — read-only org knowledge vs read/write scratchpad (11:45); limits of in-band memory updates (14:59); Dreaming — async out-of-band batch consolidation from transcripts (17:49); Dreaming architecture — orchestrator + subagents finding recurring errors (21:27). Quantitative claims (e.g. "97% fewer first pass errors") unverified. The X caption's "Opus 5.5" framing does not appear in the talk — mark caption framing unverified.
+This entry has been moved to [Talks (SEQ 0096)](talks.md#seq-0096). The subject is still memory and context, so this short note stays here so the old category-page link keeps working. The full write-up, chapter key points, and timeline are under that entry.
 
 ### [Altair AI: Obsidian CEO's open-source Claude + Obsidian tools](https://github.com/kepano/defuddle)
 

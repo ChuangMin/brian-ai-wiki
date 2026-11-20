@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>信任階梯與內外圈（影片 105 重製）</title>
+<style>
+  :root {
+    --bg: #f3efe6;
+    --ink: #1c1410;
+    --muted: #6b5b4e;
+    --card: #fffaf3;
+    --line: #d7cbbb;
+    --copper: #9a4e2c;
+    --copper-d: #6e3218;
+    --sage: #3f6b55;
+    --gold: #c4a15a;
+    --sel: #f3e2c4;
+    --banner: #fff6dd;
+    --banner-line: #e0c57a;
+    --outer: #2b4c7e;
+    --inner: #9a4e2c;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--ink); }
+  body {
+    font-family: "Segoe UI", "PingFang TC", "Noto Sans TC", "Hiragino Sans GB", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.45;
+  }
+  a { color: #1d4ed8; }
+  a:hover { color: #1e3a8a; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 20px 16px 64px; }
+  .home { color: var(--muted); text-decoration: none; font-size: 13px; }
+  h1 { margin: 12px 0 2px; font-size: 26px; font-weight: 700; letter-spacing: -0.03em; }
+  .sub { color: var(--copper); font-size: 15px; margin: 0 0 12px; font-weight: 600; }
+  .banner {
+    background: var(--banner);
+    border: 1px solid var(--banner-line);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 13px;
+    margin: 0 0 16px;
+  }
+  .toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 12px; }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; }
+  .seg button {
+    font: inherit; background: #fff; color: var(--ink); border: 0;
+    padding: 6px 12px; cursor: pointer;
+  }
+  .seg button.on { background: var(--ink); color: #fff; }
+  button:focus-visible, a:focus-visible, .rung:focus-visible, .role:focus-visible {
+    outline: 2px solid #111; outline-offset: 2px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(240px, 0.9fr) minmax(240px, 1.1fr);
+    gap: 20px;
+    align-items: start;
+  }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+  h2 { font-size: 15px; margin: 0 0 8px; letter-spacing: 0.04em; text-transform: none; }
+  .ladder, .kitchen, .loops {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px;
+  }
+  .loops { margin-top: 16px; }
+  .rung {
+    display: block; width: 100%; text-align: left;
+    border: 1px solid var(--line);
+    background: #fff; color: inherit;
+    border-radius: 8px; padding: 8px 10px; margin: 0 0 8px;
+    cursor: pointer; font: inherit;
+  }
+  .rung:last-child { margin-bottom: 0; }
+  .rung .n { display: inline-block; width: 1.4em; font-weight: 700; color: var(--copper-d); }
+  .rung.on { background: var(--sel); border-color: var(--gold); }
+  .detail { font-size: 13px; color: var(--muted); margin-top: 8px; min-height: 3.2em; }
+  .roles { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  @media (max-width: 600px) { .roles { grid-template-columns: 1fr; } }
+  .role {
+    border: 1px solid var(--line); border-radius: 8px; background: #fff;
+    padding: 8px; cursor: pointer; font: inherit; color: inherit; text-align: left;
+  }
+  .role.on { background: var(--sel); border-color: var(--gold); }
+  .role b { display: block; color: var(--copper-d); font-size: 13px; }
+  .role span { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .flow {
+    display: grid;
+    grid-template-columns: 1fr 16px 1fr 16px 1fr;
+    gap: 6px;
+    align-items: stretch;
+    margin: 10px 0;
+  }
+  @media (max-width: 700px) {
+    .flow { grid-template-columns: 1fr; }
+    .arrow { display: none; }
+  }
+  .col {
+    border: 1px dashed var(--line);
+    border-radius: 8px;
+    padding: 8px;
+    background: #fff;
+    min-height: 150px;
+  }
+  .col h3 { margin: 0 0 6px; font-size: 13px; }
+  .col.outer h3 { color: var(--outer); }
+  .col.inner h3 { color: var(--inner); }
+  .arrow { display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 18px; }
+  .chip {
+    font-size: 12px; border-radius: 6px; padding: 6px 7px; margin: 0 0 6px;
+    background: #f6f1e8; border: 1px solid var(--line);
+  }
+  .chip .src { font-weight: 700; color: var(--outer); }
+  .job {
+    font-size: 12px; border-radius: 6px; padding: 6px 7px; margin: 0 0 6px;
+    background: #f8ece4; border: 1px solid #ead3c4;
+  }
+  .buf {
+    font-size: 12px; border-radius: 6px; padding: 6px 7px; margin: 0 0 6px;
+    background: #eef4ee; border: 1px solid #cfe0d3;
+  }
+  .note { font-size: 12px; color: var(--muted); margin-top: 8px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
+  .actions button {
+    font: inherit; cursor: pointer; border-radius: 8px;
+    border: 1px solid var(--line); background: #fff; padding: 6px 10px;
+  }
+  .actions button.primary { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .count { font-size: 13px; color: var(--sage); font-weight: 600; }
+  .caveat { font-size: 12px; color: var(--muted); margin-top: 18px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="home" href="../../" data-i="home">← 回 Wiki 首頁</a>
+    <h1 data-i="title">信任階梯與內外圈</h1>
+    <p class="sub" data-i="sub">影片 105 重製 · 虛構示意，不是產品</p>
+    <div class="banner" data-i="banner">這是依 Matt Pocock 與 Lauren Tan（poteto）直播對談做的互動示意，不是原直播畫面，也不會連網。講者與主持人提到的 PR 數字未在本頁查核，而且顯然不是 2,500 個功能（講者說很多是整理環境的 gardening）。「一次約 30 則議題」是對談裡的例子，不是轉發文案裡的「30 多個 agent」。</div>
+    <div class="toolbar">
+      <div class="seg" role="group" aria-label="Language">
+        <button type="button" id="btn-zh" class="on">中文</button>
+        <button type="button" id="btn-en">English</button>
+      </div>
+    </div>
+    <div class="grid">
+      <section class="ladder">
+        <h2 data-i="ladderTitle">信任階梯</h2>
+        <div id="rungs"></div>
+        <div class="detail" id="rung-detail"></div>
+      </section>
+      <section class="kitchen">
+        <h2 data-i="kitchenTitle">Michelin 廚房（不是工廠流水線）</h2>
+        <div class="roles" id="roles"></div>
+        <div class="detail" id="role-detail"></div>
+      </section>
+    </div>
+    <section class="loops">
+      <h2 data-i="loopTitle">外圈把脈絡送進內圈</h2>
+      <p class="note" data-i="loopLead">外圈（例行工作、連接器）從議題追蹤、聊天室或信件把真實訊號拉回來；內圈的協調者自己少動手，負責把工作分給子 agent。點下面的按鈕，看一波虛構的 Lantern Board 議題怎麼走。</p>
+      <div class="actions">
+        <button type="button" class="primary" id="btn-send" data-i="send">送出一波虛構議題（示意 30 則裡的 4 張）</button>
+        <button type="button" id="btn-clear" data-i="clear">清空</button>
+        <div class="seg" role="group" aria-label="Dispatch mode">
+          <button type="button" id="mode-fix" class="on" data-i="modeFix">立刻派修</button>
+          <button type="button" id="mode-buf" data-i="modeBuf">先寫進緩衝文件</button>
+        </div>
+      </div>
+      <p class="count" id="burst"></p>
+      <div class="flow">
+        <div class="col outer">
+          <h3 data-i="colOuter">外圈 · 訊號</h3>
+          <div id="outer-box"></div>
+        </div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="col inner">
+          <h3 data-i="colCoord">內圈 · 協調者</h3>
+          <div id="coord-box"></div>
+        </div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="col inner">
+          <h3 id="right-head" data-i="colAgents">子 agent／緩衝</h3>
+          <div id="agent-box"></div>
+        </div>
+      </div>
+      <p class="note" data-i="loopNote">重點是讓 agent 取用真實資料，而不是由人當中間代理人、也不是靠猜測。人仍對結果負責。</p>
+    </section>
+    <p class="caveat" data-i="caveat">來源：影片 105。對照 SEQ 0144 的信任金字塔 demo。數字為講者／主持人自述，未查核，也不要和較晚那場演講的口徑混在一起。</p>
+  </div>
+<script>
+(function () {
+  var lang = "zh";
+  var rung = 0;
+  var role = 0;
+  var mode = "fix";
+  var sent = true;
+  var T = {
+    zh: {
+      home: "← 回 Wiki 首頁",
+      title: "信任階梯與內外圈",
+      sub: "影片 105 重製 · 虛構示意，不是產品",
+      banner: "這是依 Matt Pocock 與 Lauren Tan（poteto）直播對談做的互動示意，不是原直播畫面，也不會連網。講者與主持人提到的 PR 數字未在本頁查核，而且顯然不是 2,500 個功能（講者說很多是整理環境的 gardening）。「一次約 30 則議題」是對談裡的例子，不是轉發文案裡的「30 多個 agent」。",
+      ladderTitle: "信任階梯",
+      kitchenTitle: "Michelin 廚房（不是工廠流水線）",
+      loopTitle: "外圈把脈絡送進內圈",
+      loopLead: "外圈（例行工作、連接器）從議題追蹤、聊天室或信件把真實訊號拉回來；內圈的協調者自己少動手，負責把工作分給子 agent。點下面的按鈕，看一波虛構的 Lantern Board 議題怎麼走。",
+      send: "送出一波虛構議題（示意 30 則裡的 4 張）",
+      clear: "清空",
+      modeFix: "立刻派修",
+      modeBuf: "先寫進緩衝文件",
+      colOuter: "外圈 · 訊號",
+      colCoord: "內圈 · 協調者",
+      colAgents: "子 agent／緩衝",
+      loopNote: "重點是讓 agent 取用真實資料，而不是由人當中間代理人、也不是靠猜測。人仍對結果負責。",
+      caveat: "來源：影片 105。對照 SEQ 0144 的信任金字塔 demo。數字為講者／主持人自述，未查核，也不要和較晚那場演講的口徑混在一起。",
+      burstOff: "",
+      burstOn: "示意：一次湧進約 30 則議題，下面只展開 4 張相關單，好看出協調者在找共同模式。",
+      rungs: [
+        { t: "微觀管理一個 agent", d: "旅程在加入新團隊之前就開始了。她自述約 1、2 月時，很多時間花在盯著單一 agent。" },
+        { t: "先把廚房與工具備好", d: "信任來自環境：刀、流程與可執行的檢查準備好，agent 才不會只靠一長串要它記住的規則。" },
+        { t: "把外圈接到內圈", d: "議題若只出現在聊天室或信件裡，人就成了中間代理人。用例如行工作把真實脈絡送進內圈，agent 才能自己取資料。" },
+        { t: "並行多個「餐廳」", d: "環境穩了之後，才比較有辦法同時照看多個專案。講者把每個大型對話／專案比成一間餐廳，人在其間來回巡視。" }
+      ],
+      roles: [
+        { t: "家庭煮手", s: "一個人包辦", d: "自己切、自己煮、自己收拾。對應只靠一個人、一個 agent 的階段。" },
+        { t: "請助手進廚房", s: "分工開始讓人緊張", d: "人一多，若沒人知道刀具放哪、步驟是什麼，廚房反而更亂。這就是還不能盲目加 agent 的原因。" },
+        { t: "主廚負責組織", s: "仍對成品負責", d: "主廚不必每道菜都親手做，但要負責備料、節奏與出品。工程師的名字仍跟結果綁在一起。" }
+      ],
+      events: [
+        { src: "Lantern Board", text: "#1842 結帳頁 /pay 逾時" },
+        { src: "聊天室 #bugs", text: "搜尋對錯字多的查詢沒反應" },
+        { src: "信件", text: "匯出 CSV 在 800 列被截斷" },
+        { src: "看板", text: "第一次進入深色模式會閃白" }
+      ],
+      coordFix: "協調者（幕僚型 agent）看到一波相關議題，先分組再派出子 agent：重現、在主線確認仍存在，再提議修正。",
+      coordBuf: "協調者先把重複出現的模式追加到一份緩衝文件，而不是每張單都立刻派修，好留時間看出全貌。",
+      job: ["重現 #1842", "核對搜尋錯字", "檢查匯出截斷", "重現深色模式閃白"],
+      bufItems: [
+        "結帳與匯出都在資料量變大時失敗，可能是同一條逾時設定。",
+        "搜尋與深色模式都和第一次載入的狀態有關，先記下來再一起看。"
+      ]
+    },
+    en: {
+      home: "← Back to the wiki home",
+      title: "The trust ladder and the inner / outer loops",
+      sub: "A recreation of Video 105 · a fictional sketch, not a product",
+      banner: "This is an interactive sketch of the Matt Pocock live conversation with Lauren Tan (poteto). It is not a still from the livestream, and the page does not go online. The PR figures mentioned by the speaker and host are unaudited here, and they are clearly not 2,500 features (she says much of the work is gardening the environment). The burst of about 30 issues is an example from the conversation, not the repost caption’s “30+ agents.”",
+      ladderTitle: "The trust ladder",
+      kitchenTitle: "A Michelin kitchen (not a factory line)",
+      loopTitle: "The outer loop feeds the inner loop",
+      loopLead: "The outer loop (routines and connectors) pulls real signals from an issue tracker, a chat room, or mail. The inner-loop coordinator does little of the work itself and delegates to sub-agents. Use the button to walk a fictional burst of Lantern Board issues through the loops.",
+      send: "Send a fictional burst (4 of about 30 issues)",
+      clear: "Clear",
+      modeFix: "Dispatch fixes now",
+      modeBuf: "Append to a buffer first",
+      colOuter: "Outer loop · signals",
+      colCoord: "Inner loop · coordinator",
+      colAgents: "Sub-agents / buffer",
+      loopNote: "The point is that the agent can fetch real data, instead of a human acting as the proxy or the model guessing. The human is still responsible for the result.",
+      caveat: "Source: Video 105. See also the trust-pyramid demo for SEQ 0144. Figures are speaker- or host-reported and unaudited, and should not be mixed with the later talk’s figures.",
+      burstOff: "",
+      burstOn: "Sketch: a burst of about 30 issues arrives at once. Only four related tickets are expanded here, so you can see the coordinator looking for a shared pattern.",
+      rungs: [
+        { t: "Micromanaging one agent", d: "She says the climb started even before joining the new team. Around January or February she was spending many hours micromanaging a single agent." },
+        { t: "Set up the kitchen and the tools first", d: "Trust comes from the environment: knives, process, and executable checks, so the agent is not asked to remember a long list of rules." },
+        { t: "Connect the outer loop to the inner loop", d: "If bug reports only live in chat or mail, you become the proxy. Routines can carry real context into the inner loop so agents can fetch it themselves." },
+        { t: "Run more than one “restaurant”", d: "Once the environment holds, it is more realistic to watch several projects at once. She likens each large chat or project to a restaurant, and herself to someone moving between them." }
+      ],
+      roles: [
+        { t: "Home cook", s: "Doing every step", d: "You chop, cook, and clean yourself. That maps to the stage of one person and one agent." },
+        { t: "Invite help into the kitchen", s: "Help can feel stressful", d: "If nobody knows where the knives are or what the steps are, more people make the kitchen worse. That is why you should not blindly add agents." },
+        { t: "The chef organizes", s: "Still owns the plate", d: "The chef does not cook every dish, but still owns prep, timing, and the result. The engineer’s name stays on the work." }
+      ],
+      events: [
+        { src: "Lantern Board", text: "#1842 checkout page /pay timed out" },
+        { src: "Chat #bugs", text: "Search ignores typo-heavy queries" },
+        { src: "Mail", text: "CSV export cuts off at 800 rows" },
+        { src: "Board", text: "Dark mode flashes white on first paint" }
+      ],
+      coordFix: "The coordinator (a chief-of-staff agent) groups a related burst, then spawns sub-agents to reproduce, confirm the bug still exists on the main branch, and propose a fix.",
+      coordBuf: "The coordinator appends recurring patterns to a buffer document instead of dispatching a fix for every ticket at once, so there is time to see the wider picture.",
+      job: ["Reproduce #1842", "Check typo search", "Inspect the truncated export", "Reproduce the dark-mode flash"],
+      bufItems: [
+        "Checkout and export both fail when the payload grows — possibly the same timeout.",
+        "Search and dark mode both involve first-load state. Note them, then look together."
+      ]
+    }
+  };
+
+  function $(id) { return document.getElementById(id); }
+  function t() { return T[lang]; }
+
+  function applyI18n() {
+    var dict = t();
+    document.documentElement.lang = lang === "zh" ? "zh-Hant-TW" : "en";
+    document.title = lang === "zh" ? "信任階梯與內外圈（影片 105 重製）" : "The trust ladder and the loops (Video 105 recreation)";
+    document.querySelectorAll("[data-i]").forEach(function (el) {
+      var k = el.getAttribute("data-i");
+      if (dict[k] != null) el.textContent = dict[k];
+    });
+    $("btn-zh").className = lang === "zh" ? "on" : "";
+    $("btn-en").className = lang === "en" ? "on" : "";
+    renderRungs();
+    renderRoles();
+    renderLoop();
+  }
+
+  function renderRungs() {
+    var box = $("rungs");
+    box.innerHTML = "";
+    t().rungs.forEach(function (item, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "rung" + (i === rung ? " on" : "");
+      b.innerHTML = "<span class=\"n\">" + (i + 1) + "</span> " + item.t;
+      b.addEventListener("click", function () { rung = i; renderRungs(); });
+      box.appendChild(b);
+    });
+    $("rung-detail").textContent = t().rungs[rung].d;
+  }
+
+  function renderRoles() {
+    var box = $("roles");
+    box.innerHTML = "";
+    t().roles.forEach(function (item, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "role" + (i === role ? " on" : "");
+      b.innerHTML = "<b>" + item.t + "</b><span>" + item.s + "</span>";
+      b.addEventListener("click", function () { role = i; renderRoles(); });
+      box.appendChild(b);
+    });
+    $("role-detail").textContent = t().roles[role].d;
+  }
+
+  function renderLoop() {
+    $("mode-fix").className = mode === "fix" ? "on" : "";
+    $("mode-buf").className = mode === "buf" ? "on" : "";
+    $("burst").textContent = sent ? t().burstOn : t().burstOff;
+    var outer = $("outer-box");
+    var coord = $("coord-box");
+    var agents = $("agent-box");
+    outer.innerHTML = "";
+    coord.innerHTML = "";
+    agents.innerHTML = "";
+    if (!sent) return;
+    t().events.forEach(function (ev) {
+      var d = document.createElement("div");
+      d.className = "chip";
+      d.innerHTML = "<span class=\"src\">" + ev.src + "</span> · " + ev.text;
+      outer.appendChild(d);
+    });
+    var c = document.createElement("div");
+    c.className = "chip";
+    c.textContent = mode === "fix" ? t().coordFix : t().coordBuf;
+    coord.appendChild(c);
+    if (mode === "fix") {
+      t().job.forEach(function (j) {
+        var d = document.createElement("div");
+        d.className = "job";
+        d.textContent = j;
+        agents.appendChild(d);
+      });
+    } else {
+      t().bufItems.forEach(function (j) {
+        var d = document.createElement("div");
+        d.className = "buf";
+        d.textContent = j;
+        agents.appendChild(d);
+      });
+    }
+  }
+
+  $("btn-zh").addEventListener("click", function () { lang = "zh"; applyI18n(); });
+  $("btn-en").addEventListener("click", function () { lang = "en"; applyI18n(); });
+  $("btn-send").addEventListener("click", function () { sent = true; renderLoop(); });
+  $("btn-clear").addEventListener("click", function () { sent = false; renderLoop(); });
+  $("mode-fix").addEventListener("click", function () { mode = "fix"; renderLoop(); });
+  $("mode-buf").addEventListener("click", function () { mode = "buf"; renderLoop(); });
+  applyI18n();
+})();
+</script>
+</body>
+</html>

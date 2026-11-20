@@ -1,9 +1,9 @@
 # AI 影片收藏 Wiki 關聯圖 / Relationship graph
 
 - 頁面 / Page: [graph/index.html](index.html) · [English](index.html?lang=en)
-- 產生時間 / Generated: 2026-11-16 22:49 (UTC+8)
-- 來源 commit / Source commit: `5ba24c21b83a2c54d421b1ad8d5c16869ab5b743` (ChuangMin/brian-ai-wiki, main)
-- 規模 / Size: 401 nodes · 802 edges · 32 communities · 156 entries · index.html 489230 bytes
+- 產生時間 / Generated: 2026-11-17 18:13 (UTC+8)
+- 來源 commit / Source commit: `c2fd8dd93930b2d5d9af75590ff2ec58d1f8899c` (ChuangMin/brian-ai-wiki, main)
+- 規模 / Size: 417 nodes · 840 edges · 26 communities · 161 entries · index.html 505856 bytes
 
 ## 怎麼產生的 / How it is built
 
@@ -17,10 +17,4 @@
 
 ## 重建 / Rebuild
 
-新增條目後，在產生端執行 / After adding entries, rerun:
-
-```bash
-/workspace/wiki-src/build_graph.sh /path/to/brian-ai-wiki --pull --package /workspace/wiki-handoff/sync-graph.tar.gz
-```
-
-這個資料夾的檔案都是產生出來的，請不要手動編輯。/ Files in this folder are generated; do not hand-edit.
+新增條目後，在產生端重跑 Graphify 管線。這個資料夾的檔案都是產生出來的，請不要手動編輯。/ After adding entries, rerun the Graphify pipeline on the producer side. Files in this folder are generated; do not hand-edit.

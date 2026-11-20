@@ -136,13 +136,7 @@ Altair AI 動態設計短片（非真實錄屏）。【影片 48】22 秒「10 A
 
 ### [Lamis Mukta（Anthropic）：從 CLAUDE.md 到 Dreaming 的 agent 記憶演進](https://x.com/David_eficaz/status/2118745007628726684)
 
-Anthropic 工程師談 agent 記憶：CLAUDE.md→tool memory→skills→memory/ 目錄，再到非同步 Dreaming 整併
-
-| 可信度 | 星數 | 出處 |
-| --- | --- | --- |
-| 可信度高・宣稱待驗證（說明文框架） | — | [影片 49](https://x.com/David_eficaz/status/2118745007628726684) |
-
-David（@David_eficaz）轉貼的約 31 分鐘英文會議演講：Lamis Mukta（Member of Technical Staff, Anthropic）在 AI DevCon by Tessl 講 agent 記憶。重點時間碼：記憶演進 CLAUDE.md→tool memory→skills→由 agent 管理的 memory/ 目錄（03:16）；skills 的 progressive disclosure（05:30）；編輯記憶檔前後用 hashing 做 concurrency control（10:05）；記憶權限——組織知識唯讀 vs scratchpad 可讀寫（11:45）；in-band 記憶更新的限制（14:59）；Dreaming：非同步、out-of-band 批次從 transcript 整併記憶（17:49）；Dreaming 架構——orchestrator＋子 agent 找重複錯誤（21:27）。演講中的量化宣稱（例如「97% fewer first pass errors」）屬宣稱待驗證。X 說明文提到「Opus 5.5」「不要 prompt、要建自 prompt 系統」等框架，演講本身未出現 Opus 5.5——說明文框架標宣稱待驗證。配樂：會議現場。無 GIF。
+此則已改列到[演講與 Talk（SEQ 0096）](talks.md#seq-0096)。主題仍與記憶與上下文相關，故在此留短註，避免舊分類頁的連結失效。完整說明、分段重點與時間軸見該則。
 
 ### [Altair AI：Obsidian CEO 開源的 Claude＋Obsidian 工具清單](https://github.com/kepano/defuddle)
 

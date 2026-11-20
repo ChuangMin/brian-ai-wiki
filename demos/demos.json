@@ -218,5 +218,45 @@
     "source": "影片 104",
     "sourceUrl": "https://www.facebook.com/reel/1117905587594958",
     "added": "2026-11-16"
+  },
+  {
+    "id": "trust-ladder-loops",
+    "title": "信任階梯與內外圈（影片 105 重製）",
+    "desc": "依 Matt Pocock 與 Lauren Tan 的直播對談重製：可點的信任階梯、Michelin 廚房隱喻，以及外圈把虛構議題送進內圈協調者的示意。可切換立刻派修與先寫進緩衝文件。這不是產品，資料為虛構，頁面不會連網。",
+    "category": "演講與 Talk",
+    "path": "trust-ladder-loops/",
+    "source": "影片 105",
+    "sourceUrl": "https://www.facebook.com/reel/4411053492371686",
+    "added": "2026-11-16"
+  },
+  {
+    "id": "vfx-pipeline-hud",
+    "title": "VFX 管線概念儀表板（影片 106 重製）",
+    "desc": "依 Altair AI 的 12 鏡 VFX 概念儀表板重製：可點左側八個 repo 或播放示意流程，中央是簡化關係圖。報價與倍數都是示意數字。這不是產品，不會連網或執行那些模型。",
+    "category": "前端與 UI 設計",
+    "path": "vfx-pipeline-hud/",
+    "source": "影片 106",
+    "sourceUrl": "https://www.facebook.com/reel/1487099606683340/",
+    "added": "2026-11-17"
+  },
+  {
+    "id": "saas-landing-friday",
+    "title": "SaaS 登陸頁工具牆（影片 107 重製）",
+    "desc": "依 DeepResource.ai 的 Fable 5.2 登陸頁概念 HUD 重製：八個前端 repo 加 Launch 卡可點或自動播放。報價、工時與註冊數都是示意數字。這不是接案紀錄，不會連網或部署。",
+    "category": "前端與 UI 設計",
+    "path": "saas-landing-friday/",
+    "source": "影片 107",
+    "sourceUrl": "https://www.facebook.com/reel/1122956367317954/",
+    "added": "2026-11-17"
+  },
+  {
+    "id": "jev-coding-loop",
+    "title": "Jev 編碼迴圈：五個型別決策（影片 108 重製）",
+    "desc": "依 irongiantXBT 影片重製：把編碼迴圈裡五個型別決策（Score／Choice／Noul）和一次寫碼分開走。Table I 的單價、倍數與每月 $51 是 2026 年 11 月工作筆記自己的算法；官方 Jev 價目為每百萬輸入 token $0.042。不是原頁翻製，不會連網。",
+    "category": "Agent 系統與編排",
+    "path": "jev-coding-loop/",
+    "source": "影片 108",
+    "sourceUrl": "https://x.com/irongiantXBT/status/2122433777943396737",
+    "added": "2026-11-17"
   }
 ]
