@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VFX 管線概念儀表板（示範）</title>
+<style>
+  :root {
+    --bg:#07080c; --panel:#101218; --ink:#ece8e4; --muted:#8b8480;
+    --line:#26222a; --red:#e24b4b; --red2:#ff6d6d; --ok:#9ad7a0;
+    --chip:#16141c;
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; min-height:100vh; color:var(--ink);
+    font: 14px/1.5 ui-sans-serif, system-ui, "Noto Sans TC", sans-serif;
+    background: radial-gradient(900px 420px at 70% 0%, #2a1014 0%, transparent 55%), var(--bg);
+  }
+  .wrap { max-width: 1180px; margin:0 auto; padding:20px 16px 48px; }
+  .banner { border:1px solid #3a2418; background:#16110c; color:#f0d2a8; padding:10px 14px; border-radius:10px; font-size:13px; margin-bottom:16px; }
+  h1 { font-size:26px; margin:0 0 6px; letter-spacing:.02em; }
+  .sub { color:var(--muted); margin:0 0 18px; }
+  .kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin:0 0 14px; }
+  .kpi { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:10px 12px; }
+  .kpi b { display:block; font-size:20px; font-variant-numeric:tabular-nums; color:var(--red2); }
+  .kpi s { color:#6d6662; }
+  .kpi span { color:var(--muted); font-size:11px; letter-spacing:.08em; text-transform:uppercase; }
+  .shots { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 14px; }
+  .shot { font:11px/1 ui-monospace,monospace; border:1px solid var(--line); background:var(--chip); color:var(--muted); border-radius:6px; padding:6px 8px; min-width:70px; }
+  .shot.on { color:#f4d0d0; border-color:#5a2a2a; }
+  .layout { display:grid; grid-template-columns: 280px 1fr; gap:12px; }
+  .panel { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:12px; }
+  .group { margin:0 0 10px; }
+  .group h2 { margin:0 0 6px; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); display:flex; justify-content:space-between; }
+  button.repo {
+    display:block; width:100%; text-align:left; font:inherit; color:inherit;
+    background:transparent; border:1px solid transparent; border-radius:8px;
+    padding:8px 8px; cursor:pointer; margin:0 0 4px;
+  }
+  button.repo small { display:block; color:var(--muted); font-size:12px; }
+  button.repo .role { float:right; font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:#c48a8a; }
+  button.repo[aria-pressed="true"] { border-color:var(--red); background:#1c1014; }
+  .graph-head { display:flex; justify-content:space-between; align-items:center; gap:8px; margin:0 0 8px; }
+  .graph-head h2 { margin:0; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  .filters button {
+    appearance:none; border:1px solid var(--line); background:var(--chip); color:var(--muted);
+    border-radius:999px; padding:4px 10px; cursor:pointer; font:11px inherit;
+  }
+  .filters button[aria-pressed="true"] { color:var(--red2); border-color:var(--red); }
+  canvas { width:100%; height:380px; background:#09090d; border-radius:8px; display:block; }
+  .term {
+    margin-top:12px; background:#0b0c10; border:1px solid var(--line); border-radius:10px;
+    padding:10px 12px; font:12px/1.45 ui-monospace, SFMono-Regular, monospace; color:#c8c2bc;
+    min-height:7.5em; white-space:pre-wrap;
+  }
+  .term .ok { color:var(--ok); }
+  .term .hi { color:var(--red2); }
+  .controls { margin:12px 0 0; display:flex; gap:8px; }
+  .controls button {
+    appearance:none; border:1px solid var(--line); background:#1a1214; color:var(--ink);
+    border-radius:8px; padding:8px 14px; cursor:pointer; font:inherit;
+  }
+  footer { margin-top:20px; color:var(--muted); font-size:12px; }
+  footer a { color:#e8b4b4; }
+  @media (max-width:800px){ .layout,.kpis{grid-template-columns:1fr;} canvas{height:260px;} h1{font-size:22px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="banner">這是介面示範，不是真實的 VFX 工作室產品或工作階段錄屏。報價、工時與「70 倍」都是影片裡的示意數字，未查核。本頁不會連網，也不會執行那些模型。</div>
+  <h1>12 鏡 VFX 管線概念儀表板</h1>
+  <p class="sub">依 Altair AI 短片重製：左側八個 repo 分成 matte、tracking、cg、depth；點選或按播放，看中央關係圖與示意行程。</p>
+  <div class="kpis">
+    <div class="kpi"><span>Quote</span><b><s>$14,000</s> $4,900</b></div>
+    <div class="kpi"><span>Delivery</span><b><s>4 weeks</s> 26 h</b></div>
+    <div class="kpi"><span>His cost（示意）</span><b>$200</b></div>
+    <div class="kpi"><span>vs studio（示意）</span><b>70×</b></div>
+  </div>
+  <div class="shots" id="shots"></div>
+  <div class="layout">
+    <div class="panel" id="repos"></div>
+    <div class="panel">
+      <div class="graph-head">
+        <h2>VFX graph · 8 repos · live（示意）</h2>
+        <div class="filters" id="filters"></div>
+      </div>
+      <canvas id="graph" width="800" height="380" aria-label="示意節點圖"></canvas>
+      <div class="term" id="term"></div>
+      <div class="controls">
+        <button type="button" id="play">播放流程</button>
+        <button type="button" id="reset">重設</button>
+      </div>
+    </div>
+  </div>
+  <footer>示範資料來自 2026-11-17 的畫面與查證快照。GitHub 連結只在你點下去時才會離開本頁。對照 <a href="https://wiki.singularityengine.dev/">AI 影片收藏 Wiki</a> SEQ 0150。</footer>
+</div>
+<script>
+const GROUPS = [
+  { id:"matte", title:"matte & cleanup", items:[
+    { id:"sam2", name:"SAM 2", role:"roto artist", blurb:"cuts the singer out of every frame", repo:"facebookresearch/sam2", cmd:"fable pass sam2 --shots 12 -j 4", load:"loading sam2_hiera_large.pt" },
+    { id:"rvm", name:"Robust Video Matting", role:"keyer", blurb:"swaps the background, no green screen", repo:"PeterL1n/RobustVideoMatting", cmd:"fable pass rvm --shots 12", load:"loading rvm_resnet50.pth" },
+    { id:"pp", name:"ProPainter", role:"cleanup artist", blurb:"erases wires, logos and strangers", repo:"sczhou/ProPainter", cmd:"fable pass propainter --shots 12", load:"loading ProPainter.pth" },
+  ]},
+  { id:"track", title:"tracking", items:[
+    { id:"ct", name:"CoTracker", role:"tracker", blurb:"pins any pixel through the shot", repo:"facebookresearch/co-tracker", cmd:"fable pass cotracker --shots 12", load:"torch.hub cotracker3_offline" },
+  ]},
+  { id:"cg", title:"cg & fx", items:[
+    { id:"houdini", name:"fxhoudinimcp", role:"FX artist", blurb:"drives Houdini: fire, smoke, destruction", repo:"healkeiser/fxhoudinimcp", cmd:"fable pass fxhoudinimcp --shots 12", load:"connect houdini mcp" },
+    { id:"mocap", name:"mixamo-llm-mocap", role:"mocap artist", blurb:"phone video of a dancer to a 3D character", repo:"squall01337/mixamo-llm-mocap", cmd:"fable pass mixamo-llm-mocap --shots 12", load:"retarget mixamo rig" },
+    { id:"c4d", name:"cinema4d-mcp", role:"3D artist", blurb:"builds and animates C4D scenes from chat", repo:"ttiimmaacc/cinema4d-mcp", cmd:"fable pass cinema4d-mcp --shots 12", load:"connect cinema4d mcp" },
+  ]},
+  { id:"depth", title:"depth", items:[
+    { id:"vda", name:"Video Depth Anything", role:"atmosphere artist", blurb:"reads depth so fog and focus land right", repo:"DepthAnything/Video-Depth-Anything", cmd:"fable pass video-depth-anything --shots 12", load:"loading video_depth_anything_v2" },
+  ]},
+];
+const TOOLS = GROUPS.flatMap(g => g.items.map(it => ({...it, group:g.id})));
+const SHOTS = Array.from({length:12}, (_,i) => ({ id:"SH"+String(i+1).padStart(2,"0"), done:0 }));
+let active = 0, timer = null, filter = "all";
+
+const shotsEl = document.getElementById("shots");
+const reposEl = document.getElementById("repos");
+const termEl = document.getElementById("term");
+const canvas = document.getElementById("graph");
+const ctx = canvas.getContext("2d");
+const filtersEl = document.getElementById("filters");
+
+function renderShots(){
+  shotsEl.innerHTML = SHOTS.map(s => `<div class="shot ${s.done?"on":""}">${s.id} ${s.done}/8</div>`).join("");
+}
+function renderRepos(){
+  reposEl.innerHTML = GROUPS.map(g => `<div class="group"><h2>${g.title}<span>${g.items.length}</span></h2>${
+    g.items.map(it => {
+      const i = TOOLS.indexOf(TOOLS.find(t => t.id===it.id));
+      return `<button type="button" class="repo" data-i="${i}" aria-pressed="${i===active}"><span class="role">${it.role}</span><strong>${it.name}</strong><small>${it.blurb}</small></button>`;
+    }).join("")
+  }</div>`).join("");
+  reposEl.querySelectorAll("button.repo").forEach(b => b.onclick = () => select(+b.dataset.i, true));
+}
+function renderFilters(){
+  const opts = [["all","all"],["matte","matte"],["track","track"],["cg","cg"],["depth","depth"]];
+  filtersEl.innerHTML = opts.map(([id,label]) => `<button type="button" data-id="${id}" aria-pressed="${filter===id}">${label}</button>`).join("");
+  filtersEl.querySelectorAll("button").forEach(b => b.onclick = () => { filter=b.dataset.id; renderFilters(); draw(); });
+}
+function logFor(i){
+  const t = TOOLS[i];
+  const lines = [`$ ${t.cmd}`, t.load, "queue 12 shots, 4 workers"];
+  SHOTS.forEach((s, n) => {
+    if (n < 4) lines.push(`${s.id}  ……  ${t.group}  ok`);
+  });
+  lines.push(`pass ${(i+1)}/8 done  <span class="hi">${t.name}</span>`);
+  termEl.innerHTML = lines.join("\n");
+}
+function select(i, stop){
+  active = i;
+  SHOTS.forEach(s => { s.done = Math.min(8, i+1); });
+  renderShots(); renderRepos(); logFor(i); draw();
+  if (stop && timer){ clearInterval(timer); timer=null; document.getElementById("play").textContent="播放流程"; }
+}
+function draw(){
+  const w=canvas.width, h=canvas.height;
+  ctx.clearRect(0,0,w,h);
+  const tool = TOOLS[active];
+  // prettified fictional graph
+  const nodes = [];
+  for (let i=0;i<48;i++){
+    const ang = (i/48)*Math.PI*2 + 0.2;
+    const r = 70 + (i%7)*18;
+    nodes.push({ x: w*0.52 + Math.cos(ang)*r*1.15, y: h*0.5 + Math.sin(ang)*r, g: ["matte","track","cg","depth"][i%4] });
+  }
+  ctx.globalAlpha=0.55;
+  ctx.strokeStyle="#8a4450";
+  for (let i=0;i<nodes.length;i++){
+    for (let j=i+1;j<nodes.length;j++){
+      if ((i+j)%5) continue;
+      const a=nodes[i], b=nodes[j];
+      const dx=a.x-b.x, dy=a.y-b.y;
+      if (dx*dx+dy*dy>220*220) continue;
+      ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+    }
+  }
+  ctx.globalAlpha=1;
+  nodes.forEach((n,i) => {
+    const on = filter==="all" || n.g===filter;
+    const hot = on && n.g===tool.group;
+    ctx.fillStyle = hot ? "#ff6d6d" : on ? "#c06068" : "#3a343c";
+    ctx.beginPath(); ctx.arc(n.x,n.y, hot?5.2:3.1, 0, Math.PI*2); ctx.fill();
+  });
+  // 12 shot cubes around the rim
+  SHOTS.forEach((s,i) => {
+    const ang = -Math.PI/2 + (i/12)*Math.PI*2;
+    const x = w*0.52 + Math.cos(ang)*195;
+    const y = h*0.5 + Math.sin(ang)*150;
+    ctx.strokeStyle = s.done ? "#e24b4b" : "#444048";
+    ctx.strokeRect(x-10,y-10,20,20);
+    ctx.fillStyle="#9a9090"; ctx.font="10px ui-monospace,monospace";
+    ctx.fillText(s.id, x-12, y+24);
+  });
+  ctx.fillStyle="#ffd0d0";
+  ctx.font="13px ui-sans-serif,system-ui";
+  ctx.fillText(`${tool.name}  ·  ${tool.role}  ·  ${Math.min(12,(active+1)*2)}/12 shots（示意）`, 16, 22);
+}
+document.getElementById("play").onclick = () => {
+  if (timer){ clearInterval(timer); timer=null; document.getElementById("play").textContent="播放流程"; return; }
+  document.getElementById("play").textContent="暫停";
+  if (active>=TOOLS.length-1) select(0);
+  timer=setInterval(() => {
+    if (active>=TOOLS.length-1){ clearInterval(timer); timer=null; document.getElementById("play").textContent="播放流程"; return; }
+    select(active+1);
+  }, 1400);
+};
+document.getElementById("reset").onclick = () => { if(timer){clearInterval(timer);timer=null;} SHOTS.forEach(s=>s.done=0); document.getElementById("play").textContent="播放流程"; select(0); };
+renderShots(); renderRepos(); renderFilters(); select(0);
+</script>
+</body>
+</html>

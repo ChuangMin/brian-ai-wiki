@@ -396,3 +396,21 @@ MIT Professional Education 粉專的公開圖文貼文（https://www.facebook.co
 Bekalu Tamene 上傳的約 15 秒直式 Facebook Reel（1080×1920；info.json 的 timestamp 為 1793869708，即 2026-11-05 09:08:28 UTC、2026-11-05 17:08 Asia/Taipei；upload_date 欄為 20261105，是 UTC 日期，與台北日期同一天）。Brian 於 2026-11-16 18:37 Asia/Taipei 經 LINE 傳來 https://www.facebook.com/share/r/1E8wJckTqQ/ （canonical https://www.facebook.com/reel/1798828088038729）。畫面是對一張靜態比較海報做 Ken Burns 推鏡，不是實作或產品錄屏。海報標題為 AI Agent Frameworks: Architectural Differentiators，分四格介紹 LangChain/Graph、CrewAI、Microsoft AutoGen、LlamaIndex。說明文把它寫成幫你省下數週除錯的快速對照，並請讀者在留言區說自己的專案適合哪一個；這是普通互動呼籲，不是留言關鍵字換東西，故不標引流。片中只有配樂、沒有旁白，逐字稿未提供，曲名未標。本則不收錄海報上的講者職稱列，也沒有做 GIF（這是宣傳比較圖）。四格原文與查證（GitHub API，2026-11-16 晚間台北時間）如下。① LangChain/Graph：畫面寫 Cyclic State Graphs，並接著寫 Stateful, Non-Linear DAGs，Best for complex state management。循環的狀態圖是 LangGraph 的重點，但 DAG 不能有環，「循環的 DAG」這個說法是錯的。原圖把 LangChain 和 LangGraph 混稱；LangGraph 才是這套圖編排，LangChain 是更廣的框架。查證 [langchain-ai/langgraph](https://github.com/langchain-ai/langgraph) 為 45,022 星、MIT；同組織的 [langchain](https://github.com/langchain-ai/langchain) 為 149,622 星、MIT。② CrewAI：畫面寫 Hierarchical Orchestration，Structured Manager-Worker delegation，並說 Best for linear, task-oriented teams。它確實有經理／員工式的層級委派，但也支援順序流程，並不是只有線性編排。查證 [crewAIInc/crewAI](https://github.com/crewAIInc/crewAI) 為 60,982 星、MIT。③ Microsoft AutoGen：畫面寫 Conversational Groups，Multi-Agent Chats & Debates。多 agent 對話與協作是它原本的定位，但官方 [microsoft/autogen](https://github.com/microsoft/autogen) 的 README 寫已封存、不再維護，後繼是 [Microsoft Agent Framework](https://github.com/microsoft/agent-framework)。查證 autogen 為 61,869 星、CC-BY-4.0，已封存；agent-framework 為 14,705 星、MIT。④ LlamaIndex：畫面寫 Data Agents 與 RAG-First Data Retrieval，Best for context-heavy search applications。資料優先、偏 RAG 與檢索是合理的對照，但說明文稱它是 data-heavy 應用的 gold standard，這是行銷語句，本則未查核。查證 [run-llama/llama_index](https://github.com/run-llama/llama_index) 為 52,921 星、MIT。說明文所說的 save you weeks of debugging，本則也無法查核。可對照 SEQ 0048（Agentic AI 實作速查心智圖，同樣是一張架構全景圖，細節不宜照抄）與 SEQ 0072（用 LangGraph 做 PDF 問答的範本）。SkillSpector 掃描未做：這些是大型既有框架，不是 skill／MCP 包。互動重現：https://wiki.singularityengine.dev/demos/agent-framework-differentiators/ （四張可點卡片與示意動畫，採用更正後的說法；這不是原海報複製，也不會連網）。配樂：有配樂、無旁白，曲名未標。
 
 互動 Demo：[agent-framework-differentiators](https://wiki.singularityengine.dev/demos/agent-framework-differentiators/)
+
+### 0152　irongiantXBT：Diogo Almeida《Jev Engineering for Coding Agents》工作筆記第 1 頁（動畫，非實作錄屏）
+
+直式動畫只展示 Diogo Almeida 2026 年 11 月工作筆記第 1 頁：把編碼迴圈裡五個型別決策（Score／Choice／Noul）從 frontier 模型拿開。頁首 400 倍、200 倍與每月 $51 是筆記自己的 Table I 算法；Jev 單價寫每百萬 token $0.08，與 2026-11-17 官方 $0.042 不符。轉貼另引 AnnatarXBT 一篇 Fable 5.2 文章，不是同一份文件。來源：影片 108。
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 工作筆記動畫・數字待核對 | — | [影片 108](https://x.com/irongiantXBT/status/2122433777943396737) |
+
+Iron Giant（@irongiantXBT）上傳的約 24 秒直式 X 影片（1800×2400；2026-11-17 04:57 Asia/Taipei）。Brian 於 2026-11-17 18:05 Asia/Taipei 經 LINE 傳來。帳號名稱帶 XBT，但這則是編碼 agent harness 說明，不是交易內容，也沒有錢包字串。沒有要留言關鍵字換檔，故不標引流。畫面是對一份 PDF 第 1 頁做推近拉遠，不是實作錄屏。只有配樂、沒有旁白，曲名未標。
+
+頁眉寫 2026 Working Note on Jev Engineering Practice，日期 November 2026，頁碼 1。標題 Jev Engineering for Coding Agents，副標 Five Typed Decisions Around Every Loop, and What They Take Off the Frontier Model。作者列 Diogo Almeida，Founder, Jev • co-author of InstructGPT。查證：InstructGPT 論文（[arXiv 2203.02155](https://arxiv.org/abs/2203.02155)）作者名單確有 Diogo Almeida，並標為主要作者之一；TypeSafe 官方介紹他為創辦人兼 CEO，Jev 是 TypeSafe 的 System One 模型。
+
+頁首四格與 Table I（frontier cached／cold prefix／cheap llm／jev）的 400×、200×（4.8 s → 24 ms）與每月 $51，是筆記用自訂假設算的：frontier 重讀 160,000 token，Jev 讀 40,000 token，並把 Jev 寫成每百萬 token $0.08、輸出免費。2026-11-17 查 [官方模型頁](https://docs.typesafe.ai/models)，Jev 為每百萬輸入 token $0.042、輸出免費，與 $0.08 不符；官方多數呼叫約 70–500 ms，筆記寫 24 ms。畫面程式 `client.system_one(...)` 應視為示意，現行 SDK 是 TypeSafeClient。
+
+這則貼文沒有附上該 PDF 的下載連結，另引 @AnnatarXBT 的 Fable 5.2 文章，不是同一份文件。網路上另有一份 2026 年 9 月、12 頁的獨立整理稿，封面寫明未獲 TypeSafe 背書，不要把它當成這一頁的原件。可對照 SEQ 0134、0137；SEQ 0120 的「JEV Engineering」是另一個儀表板，不要併在一起。SkillSpector 不適用。
+
+互動重現：[jev-coding-loop](https://wiki.singularityengine.dev/demos/jev-coding-loop/)（可逐步走完五個型別決策與一次寫碼；Table I 標成筆記原文。不是原頁翻製，不會連網）。本則沒有做 GIF（來源是帶作者名與論文式版面的工作筆記頁）。

@@ -351,3 +351,41 @@ SkillSpector static scan (2026-11-15, Taipei time, skillspector 2.12.0, --no-llm
 Interactive recreation: [design-studio-repos](https://wiki.singularityengine.dev/demos/design-studio-repos/) (five stages and ten clickable repo cards; stars and licenses are labelled as a snapshot; no network calls). Music: there is a soundtrack, but the track is not labelled.
 
 ![DESIGN STUDIO concept board of ten repos, on-screen total 577.7K](../../assets/gifs/v91-design-studio-repos.gif)
+
+### 0150　Altair AI: a Fable 5.2 concept HUD for a 12-shot VFX pipeline (8 repos; not a real session recording)
+
+A dark production-dashboard animation: eight repos grouped as matte / tracking / cg / depth, with a VFX GRAPH and a 12-shot board. This is not a real VFX session. The quote, 26 hours, and “70×” figures are unaudited claims. Source: Video 106. Brian noted interest in the UI design, so this entry describes the layout and interaction in more detail.
+
+| Confidence | Stars | Source |
+| --- | --- | --- |
+| Concept animation · unaudited claims | — | [Video 106](https://www.facebook.com/reel/1487099606683340/) |
+
+Altair AI, ~26.5 s vertical reel (1080×1468; 2026-11-17 01:49 Asia/Taipei). Share URL https://www.facebook.com/share/r/19jccamwAE/ . The Follow banner is an ordinary follow prompt, not gated bait. Music only; no narration.
+
+**UI:** A top bar (FABLE 5.2 · 12 VFX SHOTS, REC, “music video, 1 engineer”); KPI chips (quote $14,000 struck through to $4,900, delivery 4 weeks struck through to 26 h, his cost $200, vs studio 70× cheaper); a SH01–SH12 board with x/8 stage counts; a left REPOS list in pass order (the eight tools and role labels above); a center VFX GRAPH · 8 REPOS · LIVE that recolors with the selection, plus matte / track / cg / depth filters; a stylized PowerShell running fictional `fable pass` commands (this entry does not copy the on-screen local path). Playback walks the eight tools in order; it is not a real product.
+
+The caption’s age and nationality do not appear on screen. The caption’s healkeiser/fxh link does not exist; the repo is [healkeiser/fxhoudinimcp](https://github.com/healkeiser/fxhoudinimcp). Fable 5.2 is a paid model. ProPainter is S-Lab License 1.0 (non-commercial); CoTracker is CC BY-NC 4.0; Houdini, Cinema 4D, and a GPU are not “free.”
+
+GitHub check 2026-11-17 ~09:33 Asia/Taipei, 45,406 stars combined, licenses as in the Chinese entry. SkillSpector 2.12.0 `--no-llm` on the three MCP-related repos (same counts as above; pattern hits are not proof of a vulnerability; the scanner rated all three CRITICAL / DO_NOT_INSTALL). The other five libraries are out of scope. See also SEQ 0145 and 0141.
+
+Interactive recreation: https://wiki.singularityengine.dev/demos/vfx-pipeline-hud/ . GIF: ~1.5–7.0 s, Follow banner cropped (https://wiki.singularityengine.dev/assets/gifs/v96-vfx-pipeline-hud.gif).
+
+![VFX pipeline concept HUD, about 1.5–7.0 s, Follow banner cropped](../../assets/gifs/v96-vfx-pipeline-hud.gif)
+
+### 0151　DeepResource.ai: a Fable 5.2 concept HUD for a SaaS landing page (caption credits @Flandermaxx)
+
+A dark FUI that lights up Next.js, shadcn/ui, Tailwind, Radix, Lucide, Astro, Flowbite, AstroWind, and a Launch card in order. Quote, time, and multiplier figures are unaudited. The caption omits Flowbite and AstroWind. Source: Video 107.
+
+| Confidence | Stars | Source |
+| --- | --- | --- |
+| Concept animation · unaudited claims | — | [Video 107](https://www.facebook.com/reel/1122956367317954/) |
+
+DeepResource.ai, ~24.7 s vertical reel (1080×1350; 2026-11-17 07:00 Asia/Taipei). Share URL https://www.facebook.com/share/v/1D5LctnPdN/ . Brian’s 09:31 UI-design note belongs to SEQ 0150, sent before this link; this video is still a frontend-tool concept HUD. The Thai caption credits @Flandermaxx; “link in the comments” is a pointer, not gated bait. No matching X post was confirmed this pass. Music only; not a real client-job recording.
+
+**UI:** Header GRAPH saas-landing-friday (9 nodes, 552 edges, 8 repos, CLIENT / FABLE 5.2, a DAY 1 / DAY 2 clock). Left: brief / quote / assets / repos / speed. Center-left: a flow graph. Right: a 3×3 tool wall from queued to done, with Launch going live. Bottom: ROUTE THE PAGES, RUN LOG, DISPATCH, and OUTPUT / INVOICE, plus `~/fable $ build landing.yaml --repos 8 --ship friday`.
+
+The caption lists only the first six tools. Wiring Next.js and Astro / AstroWind into one landing-page pipeline is a conceptual mash-up. The quote panel shows studio $11,400, 6 weeks, bid $3,100, Fable 19 h. The invoice climbs to $3,100 and claims 57× cheaper and 53× faster on a $200 plan. The speed row shows 1008 h vs 0.4 h; 53× matches 6 weeks / 19 h and 57× matches $11,400 / $200, but 0.4 h does not match 19 h. The caption’s 48 hours is not on screen. Fable 5.2 is paid. Star and license checks (2026-11-17 ~09:40 Asia/Taipei, 495,529 combined) match the Chinese entry, including the onwidget → arthelokyo/astrowind redirect and Lucide’s outdated 1,600-icon figure. SkillSpector does not apply. See also SEQ 0141 and 0150.
+
+Interactive recreation: https://wiki.singularityengine.dev/demos/saas-landing-friday/ . GIF: ~6.5–12.5 s (https://wiki.singularityengine.dev/assets/gifs/v97-saas-landing-friday.gif).
+
+![SaaS landing-page concept HUD, about 6.5–12.5 s](../../assets/gifs/v97-saas-landing-friday.gif)

@@ -351,3 +351,45 @@ SkillSpector 靜態掃描（2026-11-15 台北時間，skillspector 2.12.0，--no
 互動重現：[design-studio-repos](https://wiki.singularityengine.dev/demos/design-studio-repos/)（五個階段與十張可點的 repo 卡；星數與授權都標成快照，不會連網）。配樂：有配樂，曲名未標。
 
 ![10 個 repo 的 DESIGN STUDIO 概念看板，畫面合計 577.7K](../assets/gifs/v91-design-studio-repos.gif)
+
+### 0150　Altair AI：Fable 5.2 八 repo VFX 管線概念儀表板（12 鏡，非實作錄屏）
+
+暗色製作儀表板概念動畫：左側 8 個 repo 依 matte／tracking／cg／depth 排列，中央是 VFX GRAPH 與 12 鏡進度，並非真實工作流程錄屏。報價、26 小時與「70 倍」屬宣稱待驗證。來源：影片 106。Brian 於 09:31 註「他的 UI design 有興趣」，故本則對佈局與互動多寫一點。
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 概念動畫・宣稱待驗證 | — | [影片 106](https://www.facebook.com/reel/1487099606683340/) |
+
+Altair AI 約 26.5 秒直式 Reel（1080×1468；2026-11-17 01:49 Asia/Taipei）。短網址 https://www.facebook.com/share/r/19jccamwAE/ 。畫面是風格化儀表板，不是真實 VFX 錄屏。底部 Follow 橫幅是普通追蹤呼籲，不標引流。只有配樂、沒有旁白。
+
+**UI：** 頂列 FABLE 5.2 · 12 VFX SHOTS，REC 與「music video, 1 engineer」。KPI：QUOTE（$14,000 劃線，$4,900）、DELIVERY（4 weeks 劃線，26 h）、HIS COST $200、vs STUDIO 70X cheaper。SH01–SH12 鏡次條顯示 x/8。左側 REPOS（in pass order）四組：matte & cleanup（SAM 2／roto artist、Robust Video Matting／keyer、ProPainter／cleanup artist）、tracking（CoTracker）、cg & fx（fxhoudinimcp、mixamo-llm-mocap、cinema4d-mcp）、depth（Video Depth Anything）。選中項紅框高亮，中央 VFX GRAPH · 8 REPOS · LIVE 跟著改色，並有 matte／track／cg／depth 篩選。左下是風格化 PowerShell，跑示意的 `fable pass` 指令（本則不抄畫面上的本機路徑）。互動依 8 個工具順序播放，不是真產品。
+
+說明文與 HUD 上的報價、26 小時、70 倍屬宣稱待驗證。說明文的年齡與國籍畫面未出現。說明文把 fxhoudinimcp 寫成 healkeiser/fxh，2026-11-17 查不存在，正確為 [healkeiser/fxhoudinimcp](https://github.com/healkeiser/fxhoudinimcp)。Fable 5.2 是付費模型，不能把整套說成免費。ProPainter 為 S-Lab License 1.0（非商業），CoTracker 為 CC BY-NC 4.0；Houdini、Cinema 4D 與 GPU 也不在「免費」裡。
+
+查證 2026-11-17 約 09:33 台北時間，合計 45,406 星：sam2 20,167 Apache-2.0；RobustVideoMatting 9,612 GPL-3.0；ProPainter 7,070 S-Lab 1.0；co-tracker 5,201 CC BY-NC 4.0；fxhoudinimcp 423 MIT；mixamo-llm-mocap 448 MIT（SPDX NOASSERTION）；cinema4d-mcp 139 MIT；Video-Depth-Anything 2,346 Apache-2.0。
+
+SkillSpector 2.12.0 `--no-llm`（pattern 命中不是漏洞證明）：fxhoudinimcp 113 則（CRITICAL 5、HIGH 23、MEDIUM 33、LOW 52，coverage 99%，不完全）；cinema4d-mcp 16 則（CRITICAL 3、HIGH 5、MEDIUM 4、LOW 4，coverage 89.5%，不完全）；mixamo-llm-mocap 36 則（CRITICAL 2、HIGH 2、MEDIUM 12、LOW 20，coverage 97.2%，不完全）。掃描器對三個都評 CRITICAL、建議 DO_NOT_INSTALL。其餘五個不適用。可對照 SEQ 0145、0141。
+
+互動重現：https://wiki.singularityengine.dev/demos/vfx-pipeline-hud/ （示意數字，不會連網）。GIF：約 1.5–7.0 秒，已裁 Follow 橫幅（https://wiki.singularityengine.dev/assets/gifs/v96-vfx-pipeline-hud.gif）。
+
+![VFX 管線概念儀表板，約 1.5–7.0 秒，已裁 Follow 橫幅](../assets/gifs/v96-vfx-pipeline-hud.gif)
+
+### 0151　DeepResource.ai：Fable 5.2 八 repo 概念 HUD 做 SaaS 登陸頁（說明文來自 @Flandermaxx）
+
+暗色 FUI 依序點亮 Next.js、shadcn/ui、Tailwind、Radix、Lucide、Astro、Flowbite、AstroWind 與 Launch 卡。報價、工時與倍數屬宣稱待驗證；說明文少列了 Flowbite 與 AstroWind。來源：影片 107。
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 概念動畫・宣稱待驗證 | — | [影片 107](https://www.facebook.com/reel/1122956367317954/) |
+
+DeepResource.ai 約 24.7 秒直式 Reel（1080×1350；2026-11-17 07:00 Asia/Taipei）。短網址 https://www.facebook.com/share/v/1D5LctnPdN/ 。09:31 的「他的 UI design 有興趣」是針對 SEQ 0150，不是這則的註記；但本則本身也是前端工具牆的概念 HUD。泰文說明文歸功 @Flandermaxx，「Link อยู่ในคอมเมนต์」只是指向留言，不標引流。本次未核到對應 X 原帖。只有配樂、沒有旁白。不是真實接案錄屏。
+
+**UI：** 頂列 GRAPH saas-landing-friday（NODES 9、EDGES 552、REPOS 8、CLIENT / FABLE 5.2、DAY 1／DAY 2 計時）。左側 brief／quote／assets／repos／speed；中央偏左流向圖；右側 3×3 工具卡從 queued 到 done，Launch 最後變 live。底列 ROUTE THE PAGES（routes > ui > css > a11y > icons > shell > blocks > site > live）、RUN LOG、DISPATCH，以及 OUTPUT / INVOICE。指令列寫 `~/fable $ build landing.yaml --repos 8 --ship friday`。
+
+說明文只列前六個 repo，畫面還有 Flowbite 與 AstroWind。把 Next.js 與 Astro／AstroWind 接在同一條登陸頁管線是概念拼貼。quote：studio $11,400、6 weeks、my bid $3,100、fable 19 h。發票加到 $3,100，並寫 57× cheaper、53× faster、$200 plan。speed 列寫 1008 h 對 0.4 h；53× 對得上 6 週／19 小時，57× 對得上 $11,400／$200，但 0.4 h 與 19 h 對不上。說明文的 48 小時未出現在畫面。數字皆未查核。Fable 5.2 是付費模型。
+
+查證 2026-11-17 約 09:40 台北時間，合計 495,529 星：next.js 143,644 MIT；shadcn-ui/ui 128,347 MIT；tailwindcss 98,699 MIT；radix-ui/primitives 19,510 MIT；lucide 25,797 ISC（畫面 24K；官方已寫 2000+ icons，畫面 1,600 已過時）；astro 64,007 MIT（SPDX NOASSERTION）；flowbite 9,386 MIT（另有付費 Pro，400+ sections 是否含 Pro 未核到）；onwidget/astrowind 已轉址 [arthelokyo/astrowind](https://github.com/arthelokyo/astrowind) 6,139 MIT。SkillSpector 不適用。可對照 SEQ 0141、0150（上傳帳號不同，視覺語彙相近）。
+
+互動重現：https://wiki.singularityengine.dev/demos/saas-landing-friday/ 。GIF：約 6.5–12.5 秒（https://wiki.singularityengine.dev/assets/gifs/v97-saas-landing-friday.gif）。
+
+![SaaS 登陸頁概念 HUD，約 6.5–12.5 秒](../assets/gifs/v97-saas-landing-friday.gif)

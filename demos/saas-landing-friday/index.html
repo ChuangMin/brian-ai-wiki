@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS 登陸頁工具牆（示範）</title>
+<style>
+  :root {
+    --bg:#070b12; --panel:#101826; --ink:#e6eef8; --muted:#8aa0b8;
+    --line:#1c2a3c; --cyan:#5ee0c8; --blue:#6ea8ff; --amber:#f0c36a; --chip:#0f1824;
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; min-height:100vh; color:var(--ink);
+    font: 14px/1.5 ui-sans-serif, system-ui, "Noto Sans TC", sans-serif;
+    background: radial-gradient(1000px 480px at 80% -10%, #123046 0%, transparent 55%), var(--bg);
+  }
+  .wrap { max-width: 1180px; margin:0 auto; padding:20px 16px 48px; }
+  .banner { border:1px solid #1e3a4a; background:#0d1a22; color:#c6e6f0; padding:10px 14px; border-radius:10px; font-size:13px; margin-bottom:16px; }
+  h1 { font-size:26px; margin:0 0 6px; }
+  .sub { color:var(--muted); margin:0 0 16px; }
+  .top { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:0 0 14px; }
+  .top button {
+    appearance:none; border:1px solid var(--line); background:#102030; color:var(--ink);
+    border-radius:8px; padding:8px 14px; cursor:pointer; font:inherit;
+  }
+  .pills { display:flex; flex-wrap:wrap; gap:6px; color:var(--muted); font-size:12px; }
+  .pills span { border:1px solid var(--line); border-radius:999px; padding:3px 8px; }
+  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .card {
+    text-align:left; background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    padding:12px 14px; color:inherit; cursor:pointer; font:inherit; width:100%; min-height:150px;
+  }
+  .card[aria-pressed="true"] { border-color:var(--cyan); box-shadow: inset 0 0 0 1px var(--cyan); }
+  .card .k { display:flex; justify-content:space-between; gap:8px; align-items:baseline; }
+  .card h2 { font-size:16px; margin:0; }
+  .card .st { font-size:11px; letter-spacing:.1em; text-transform:uppercase; }
+  .card .st.queued { color:var(--muted); }
+  .card .st.run { color:var(--amber); }
+  .card .st.done { color:var(--cyan); }
+  .card .st.live { color:#9dffc7; }
+  .card p { margin:6px 0 8px; color:var(--muted); font-size:12px; }
+  .meta { display:flex; flex-wrap:wrap; gap:5px; }
+  .pill { font-size:10px; border-radius:999px; padding:2px 7px; border:1px solid var(--line); color:var(--muted); }
+  .preview { margin-top:8px; height:46px; border-radius:8px; background:linear-gradient(90deg,#122032,#1a2e44); border:1px solid #24364a; }
+  .preview.ui { background:
+    linear-gradient(#1a2c40,#1a2c40) 10px 16px/42px 12px no-repeat,
+    linear-gradient(#245,#245) 58px 14px/54px 16px no-repeat,
+    linear-gradient(#163044,#163044); }
+  .preview.icons { background-image: radial-gradient(circle at 20px 22px,#5ee0c8 3px,transparent 4px), radial-gradient(circle at 44px 22px,#6ea8ff 3px,transparent 4px), radial-gradient(circle at 68px 22px,#5ee0c8 3px,transparent 4px); }
+  .bottom { display:grid; grid-template-columns: 1.2fr 1fr; gap:10px; margin-top:12px; }
+  .panel { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:12px 14px; }
+  .panel h3 { margin:0 0 8px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  .log { font:12px/1.5 ui-monospace,monospace; color:#c5d4e4; min-height:6.5em; white-space:pre-wrap; }
+  .invoice b { display:block; font-size:32px; color:var(--cyan); font-variant-numeric:tabular-nums; }
+  .invoice small { color:var(--muted); }
+  .detail { margin-top:12px; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px 16px; }
+  .detail a { color:var(--cyan); }
+  footer { margin-top:20px; color:var(--muted); font-size:12px; }
+  footer a { color:var(--cyan); }
+  @media (max-width:850px){ .grid,.bottom{grid-template-columns:1fr;} h1{font-size:22px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="banner">這是介面示範，不是真實接案紀錄，也不會部署網站。報價、19 小時、57 倍、$200 plan、Lighthouse 100 與註冊數都是影片裡的示意數字，未查核。本頁不會連網。</div>
+  <h1>saas-landing-friday 工具牆</h1>
+  <p class="sub">依 DeepResource.ai 短片重製（說明文歸功 @Flandermaxx）。影片實際有八個 repo 加一張 Launch 卡；說明文只列了前六個，少了 Flowbite 與 AstroWind。</p>
+  <div class="top">
+    <button type="button" id="play">播放流程</button>
+    <button type="button" id="reset">重設</button>
+    <div class="pills">
+      <span>routes</span><span>ui</span><span>css</span><span>a11y</span><span>icons</span><span>shell</span><span>blocks</span><span>site</span><span>live</span>
+    </div>
+  </div>
+  <div class="grid" id="grid"></div>
+  <div class="bottom">
+    <div class="panel"><h3>Run log（示意）</h3><div class="log" id="log"></div></div>
+    <div class="panel invoice"><h3>Output / invoice（示意）</h3><b id="earn">$0</b><small id="note">對照畫面：studio $11,400 · bid $3,100 · fable 19 h · $200 plan。speed 列寫 1008 h 對 0.4 h，與 19 h／53× 不吻合。</small></div>
+  </div>
+  <div class="detail" id="detail" hidden></div>
+  <footer>星數與授權是 2026-11-17 的查證快照，不是即時數字。GitHub 連結只在你點下去時才會離開本頁。對照 <a href="https://wiki.singularityengine.dev/">AI 影片收藏 Wiki</a> SEQ 0151。</footer>
+</div>
+<script>
+const CARDS = [
+  { id:"next", name:"Next.js", kind:"the framework", repo:"vercel/next.js", stars:"143,644", lic:"MIT", note:"routes 7 · server render · 畫面寫 143K 星" },
+  { id:"shadcn", name:"shadcn/ui", kind:"the component library", repo:"shadcn-ui/ui", stars:"128,347", lic:"MIT", note:"copy-paste、zinc theme；畫面寫 24 個元件、128K 星" },
+  { id:"tw", name:"Tailwind CSS", kind:"the styling layer", repo:"tailwindlabs/tailwindcss", stars:"98,699", lic:"MIT", note:"畫面寫 v4、1,280 classes、9 kb css、98K 星" },
+  { id:"radix", name:"Radix", kind:"the accessible primitives", repo:"radix-ui/primitives", stars:"19,510", lic:"MIT", note:"menus / dialogs、focus trapped、aria；畫面 19K 星" },
+  { id:"lucide", name:"Lucide", kind:"the icon set", repo:"lucide-icons/lucide", stars:"25,797", lic:"ISC", note:"畫面寫 1,600 icons、24K 星；查證官方說明已是 2000+、25,797 星" },
+  { id:"astro", name:"Astro", kind:"the zero-JS shell", repo:"withastro/astro", stars:"64,007", lic:"MIT", note:"islands、畫面寫 Lighthouse 100（未查核）、63K 星" },
+  { id:"flowbite", name:"Flowbite", kind:"the pattern kit", repo:"themesberg/flowbite", stars:"9,386", lic:"MIT", note:"畫面寫 400+ sections；開源之外另有付費 Pro，400+ 是否含 Pro 未核到" },
+  { id:"astrowind", name:"AstroWind", kind:"the launch template", repo:"arthelokyo/astrowind", stars:"6,139", lic:"MIT", note:"畫面寫 onwidget/astrowind，已轉址到 arthelokyo/astrowind" },
+  { id:"launch", name:"Launch", kind:"the live site", repo:"", stars:"—", lic:"—", note:"示意登陸頁與註冊數，不是真實上線紀錄" },
+];
+const LOGS = [
+  "08:31  brief   saas landing · friday",
+  "08:44  quote   bid $3,100 accepted",
+  "08:58  fable   plan 9 parts ok",
+  "09:14  next    scaffold app/ routes",
+  "11:30  shadcn  add button card dialog",
+  "13:41  tailwind hero + zinc + dark",
+  "15:56  radix   dialog signup, focus trap",
+  "17:47  lucide  import 18 icons",
+  "20:21  astro   island signup form",
+  "21:54  flowbite pick pricing + faq",
+  "00:28  astrowind og + sitemap",
+  "02:08  launch  deploy preview（示意）",
+];
+let step = -1, timer=null;
+const grid=document.getElementById("grid");
+const logEl=document.getElementById("log");
+const earn=document.getElementById("earn");
+const detail=document.getElementById("detail");
+
+function statusOf(i){
+  if (i===8 && step>=8) return "live";
+  if (i<step) return "done";
+  if (i===step) return "run";
+  return "queued";
+}
+function render(){
+  grid.innerHTML = CARDS.map((c,i) => {
+    const st=statusOf(i);
+    const prev = c.id==="lucide" ? "icons" : "ui";
+    return `<button type="button" class="card" data-i="${i}" aria-pressed="${i===Math.max(0,step)}">
+      <div class="k"><h2>${c.name}</h2><span class="st ${st}">${st}</span></div>
+      <p>${c.kind}</p>
+      <div class="meta"><span class="pill">${c.lic}</span><span class="pill">${c.stars} ★ 查證</span></div>
+      <div class="preview ${prev}" aria-hidden="true"></div>
+    </button>`;
+  }).join("");
+  grid.querySelectorAll(".card").forEach(b => b.onclick = () => open(+b.dataset.i));
+  const shown = LOGS.slice(0, Math.max(1, step+2)).map((l,i,arr)=> i===arr.length-1? "▸ "+l: "  "+l);
+  logEl.textContent = shown.join("\n") || "待命。";
+  const earned = [0,360,1030,1710,1900,2360,2800,2990,3100][Math.max(0,step)] || 0;
+  earn.textContent = "$" + earned.toLocaleString("en-US");
+}
+function open(i){
+  const c=CARDS[i];
+  detail.hidden=false;
+  const link = c.repo ? `<p>Repo：<a href="https://github.com/${c.repo}" rel="noopener">${c.repo}</a>（離開本頁）</p>` : "<p>Launch 卡不是一個公開 repo。</p>";
+  detail.innerHTML = `<h3>${c.name}</h3><p>${c.note}</p>${link}`;
+  if (timer){ clearInterval(timer); timer=null; document.getElementById("play").textContent="播放流程"; }
+  step=i; render();
+}
+document.getElementById("play").onclick = () => {
+  if (timer){ clearInterval(timer); timer=null; document.getElementById("play").textContent="播放流程"; return; }
+  document.getElementById("play").textContent="暫停";
+  if (step>=8) step=-1;
+  timer=setInterval(()=>{
+    step++; render();
+    if (step>=8){ clearInterval(timer); timer=null; document.getElementById("play").textContent="播放流程"; }
+  }, 900);
+};
+document.getElementById("reset").onclick = () => { if(timer){clearInterval(timer);timer=null;} step=-1; document.getElementById("play").textContent="播放流程"; detail.hidden=true; render(); };
+render();
+</script>
+</body>
+</html>
