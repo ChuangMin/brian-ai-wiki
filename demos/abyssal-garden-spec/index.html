@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abyssal Garden 規格書：prompt 怎麼寫（影片 109 重製）</title>
+<style>
+  :root {
+    --bg: #07141d; --card: #0d1f2b; --line: #1e3a4a; --text: #d5e6ee;
+    --muted: #7fa0b0; --bright: #f4fbff; --accent: #6ad0c8; --sun: #c9f3c0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Noto Sans TC", sans-serif;
+    line-height: 1.45;
+  }
+  a { color: var(--accent); }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 20px 16px 48px; }
+  .home { color: var(--muted); text-decoration: none; font-size: 13px; }
+  h1 { margin: 12px 0 4px; font-size: 22px; color: var(--bright); }
+  h1 small { display: block; font-weight: 400; color: var(--muted); font-size: 13px; margin-top: 4px; }
+  .banner {
+    background: rgba(106,208,200,.08); border: 1px solid rgba(106,208,200,.35);
+    border-radius: 8px; padding: 8px 12px; font-size: 13px; margin: 12px 0 16px;
+  }
+  button {
+    font: inherit; background: #123040; color: var(--text);
+    border: 1px solid var(--line); border-radius: 6px; padding: 7px 12px; cursor: pointer;
+  }
+  button.primary { background: #15463f; border-color: var(--accent); color: var(--bright); }
+  button:hover { border-color: var(--accent); color: var(--bright); }
+  button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 14px; }
+  .grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 12px; }
+  @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+  .card h2 { margin: 0 0 8px; font-size: 13px; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; }
+  canvas { width: 100%; height: auto; display: block; border-radius: 8px; background: #06202c; }
+  .fps { font-size: 12px; color: var(--muted); margin-top: 8px; }
+  .steps { display: flex; flex-direction: column; gap: 6px; }
+  .step {
+    border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; background: #0a1922;
+  }
+  .step.on { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .step .k { font-size: 11px; color: var(--muted); }
+  .step .t { font-weight: 600; color: var(--bright); }
+  .explain { min-height: 5.4em; font-size: 14px; margin: 10px 0 0; }
+  .foot { margin-top: 18px; font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="home" href="https://wiki.singularityengine.dev/">← AI 影片收藏 Wiki</a>
+  <h1>Abyssal Garden 規格書：prompt 怎麼寫<small>依影片 109 與作者公開的 prompt.txt 重製的規格導覽，不是原作畫面或程式的翻製</small></h1>
+  <div class="banner">左側畫布是本頁自己的 2D 示意，不使用 WebGPU，也不是 Noniv 的 97 KB 檔案。約 180 FPS 與檔案大小是作者自報，未在此重測。Fable 5.2＋Claude Code 是貼文與媒體的說法，官方倉庫說明沒有寫模型名稱。本頁不會連網。正式作品見 <a href="https://noniv.github.io/abyssal-garden/">noniv.github.io/abyssal-garden</a>。</div>
+  <div class="row">
+    <button class="primary" id="play" type="button">播放一輪</button>
+    <button id="step" type="button">下一節</button>
+    <button id="reset" type="button">重設</button>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <h2>示意畫布（非原作）</h2>
+      <canvas id="view" width="720" height="480" aria-label="示意水下場景"></canvas>
+      <p class="fps" id="fps">本頁示意幀率：—（不是作者自報的約 180 FPS）</p>
+    </div>
+    <div class="card">
+      <h2>prompt.txt 章節</h2>
+      <div class="steps" id="steps"></div>
+      <p class="explain" id="explain"></p>
+    </div>
+  </div>
+  <p class="foot">來源：影片 109。規格原文見 <a href="https://github.com/Noniv/abyssal-garden">github.com/Noniv/abyssal-garden</a> 的 prompt.txt（MIT）。</p>
+</div>
+<script>
+const SECTIONS = [
+  { k: "目標", t: "在瀏覽器即時跑的奇幻水下場景",
+    d: "原文開頭：Build a real-time fantasy underwater scene that runs in the browser. It only needs to look beautiful and let me fly a free camera through it. 影片裡的中譯「做一個在瀏覽器即時運行的奇幻水下場景」是合理縮寫。" },
+  { k: "優先順序", t: "視覺品質 → 穩定幀率 → 檔案小",
+    d: "衝突時依這個順序取捨。這是規格書，不是一句短提示。" },
+  { k: "硬限制", t: "不准引擎函式庫、只能 WebGPU、全部程序生成",
+    d: "不准 Three.js／Babylon.js 或其他引擎；全部程序生成，沒有圖片、模型或音檔；交付物是單一 index.html，並回報壓縮後大小；規定零每幀 JS 配置，緩衝區先配好。" },
+  { k: "目標硬體", t: "RTX 5070 Ti、2560×1440、平均不超過 11 ms",
+    d: "prompt 寫 Windows 11 25H2、Chrome 157、RTX 5070 Ti、Ryzen 7800X3D、180 Hz，2560×1440 全解析度；GPU 每幀平均 ≤ 11 ms，腳本飛過 60 秒期間不可超過 16.7 ms。約 180 FPS 是作者在這組硬體上的自報，不是本頁測到的數字。" },
+  { k: "場景", t: "海帶林、光柱、沉船與生物",
+    d: "規格列出搖曳的海帶柱、由青到深藍的深度霧、神光與焦散、岩石峽谷、虹彩植被、魟魚與魚群、上升氣泡，以及沉船與石鯨尾雕塑。世界有邊界，但起點附近不應看出邊界。" },
+  { k: "操作", t: "WASD、滑鼠鎖定、Q／E 升降",
+    d: "WASD 移動，滑鼠鎖定視角，Q／E 升降，Shift 加速。" },
+  { k: "驗證", t: "另一個 AI 只看畫面，加上 GPU 計時",
+    d: "視覺評審是另一個子代理，只看六個固定機位與一段飛越錄影，不看程式；問題降到只剩次要才算完成。效能要回報平均、p99 與最大值。完成時交出 index.html、檔案大小、效能報告與評審結論。" }
+];
+const stepsEl = document.getElementById("steps");
+const explain = document.getElementById("explain");
+SECTIONS.forEach((s, i) => {
+  const el = document.createElement("div");
+  el.className = "step";
+  el.dataset.i = i;
+  el.innerHTML = '<div class="k">' + (i + 1) + "／" + SECTIONS.length + "　" + s.k + '</div><div class="t">' + s.t + "</div>";
+  el.addEventListener("click", () => show(i));
+  stepsEl.appendChild(el);
+});
+let idx = 0, timer = null;
+function show(i) {
+  idx = (i + SECTIONS.length) % SECTIONS.length;
+  [...stepsEl.children].forEach((el, n) => el.classList.toggle("on", n === idx));
+  const s = SECTIONS[idx];
+  explain.textContent = s.d;
+}
+show(0);
+document.getElementById("step").onclick = () => { clearInterval(timer); timer = null; show(idx + 1); };
+document.getElementById("reset").onclick = () => { clearInterval(timer); timer = null; show(0); };
+document.getElementById("play").onclick = () => {
+  clearInterval(timer);
+  show(0);
+  let n = 0;
+  timer = setInterval(() => {
+    n += 1;
+    if (n >= SECTIONS.length) { clearInterval(timer); timer = null; return; }
+    show(n);
+  }, 2200);
+};
+
+const cv = document.getElementById("view");
+const ctx = cv.getContext("2d");
+const fpsEl = document.getElementById("fps");
+const kelp = Array.from({ length: 9 }, (_, i) => ({ x: 50 + i * 78, h: 220 + (i * 37) % 160, p: i * 0.7 }));
+const bubbles = Array.from({ length: 18 }, (_, i) => ({ x: 40 + (i * 97) % 680, y: (i * 53) % 480, r: 2 + (i % 4), s: 0.4 + (i % 5) * 0.15 }));
+let last = performance.now(), frames = 0, acc = 0, shown = 0;
+function frame(t) {
+  const w = cv.width, h = cv.height;
+  const g = ctx.createLinearGradient(0, 0, 0, h);
+  g.addColorStop(0, "#8fd7d0");
+  g.addColorStop(0.35, "#2a7a86");
+  g.addColorStop(1, "#061821");
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, w, h);
+  const tsec = t / 1000;
+  ctx.save();
+  ctx.globalAlpha = 0.18;
+  for (let i = 0; i < 6; i++) {
+    const sway = Math.sin(tsec * 0.6 + i) * 18;
+    ctx.beginPath();
+    ctx.moveTo(w * 0.42 + i * 18 + sway, 0);
+    ctx.lineTo(w * 0.28 + i * 28 + sway * 1.4, h);
+    ctx.lineWidth = 28 - i * 3;
+    ctx.strokeStyle = i % 2 ? "#d9ffe8" : "#b8fff6";
+    ctx.stroke();
+  }
+  ctx.restore();
+  kelp.forEach((k, i) => {
+    ctx.beginPath();
+    ctx.moveTo(k.x, h);
+    for (let y = h, s = 0; y > h - k.h; y -= 10, s++) {
+      ctx.lineTo(k.x + Math.sin(tsec * 1.1 + k.p + s * 0.2) * (10 + s * 0.35), y);
+    }
+    ctx.strokeStyle = i % 2 ? "#3f7a4a" : "#2e5c40";
+    ctx.lineWidth = 9;
+    ctx.stroke();
+  });
+  // simple geometric hull, not a copy of the original ship
+  ctx.save();
+  ctx.translate(480, 300);
+  ctx.rotate(-0.35);
+  ctx.fillStyle = "rgba(20,40,52,0.85)";
+  ctx.beginPath();
+  ctx.moveTo(-90, 20); ctx.lineTo(110, 10); ctx.lineTo(70, 48); ctx.lineTo(-70, 52); ctx.closePath();
+  ctx.fill();
+  ctx.strokeStyle = "rgba(170,210,220,0.35)";
+  ctx.lineWidth = 2;
+  for (let i = -60; i <= 80; i += 20) { ctx.beginPath(); ctx.moveTo(i, 12); ctx.lineTo(i, 48); ctx.stroke(); }
+  ctx.restore();
+  bubbles.forEach(b => {
+    b.y -= b.s;
+    if (b.y < -8) b.y = h + 8;
+    ctx.beginPath();
+    ctx.arc(b.x + Math.sin(tsec + b.x) * 6, b.y, b.r, 0, Math.PI * 2);
+    ctx.strokeStyle = "rgba(220,255,255,0.7)";
+    ctx.stroke();
+  });
+  frames += 1;
+  acc += t - last;
+  last = t;
+  if (acc >= 500) {
+    shown = Math.round(frames * 1000 / acc);
+    frames = 0; acc = 0;
+    fpsEl.textContent = "本頁示意幀率：" + shown + "（不是作者自報的約 180 FPS）";
+  }
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

@@ -393,3 +393,21 @@ DeepResource.ai 約 24.7 秒直式 Reel（1080×1350；2026-11-17 07:00 Asia/Tai
 互動重現：https://wiki.singularityengine.dev/demos/saas-landing-friday/ 。GIF：約 6.5–12.5 秒（https://wiki.singularityengine.dev/assets/gifs/v97-saas-landing-friday.gif）。
 
 ![SaaS 登陸頁概念 HUD，約 6.5–12.5 秒](../assets/gifs/v97-saas-landing-friday.gif)
+
+### ⚠️ 0153　AI郵報：Noniv 的 Abyssal Garden（單一 HTML、WebGPU 水下世界；Fable 5.2 為轉述） ⚠️
+
+AI郵報查核解說 Noniv（Maksymilian Dendura）的開源 WebGPU 水下世界 Abyssal Garden：單一 HTML、無圖片／模型／音檔，作者公開的 prompt.txt 是一份規格書。約 180 FPS 為作者自報；Fable 5.2＋Claude Code 是貼文與媒體的說法，倉庫說明沒有寫。片尾要留言換完整文章，標引流。來源：影片 109。
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| ⚠️ 引流 | 2,714 | ⚠️ [影片 109](https://www.facebook.com/reel/1453889810227728) ⚠️ |
+
+AI郵報上傳的約 125 秒直式 Facebook Reel（1080×1920；2026-11-17 11:00 Asia/Taipei）。Brian 於 2026-11-22 在對話傳來，沒有經 LINE。影片是查核解說：錄製公開的 Abyssal Garden 與相關作品 web-ocean 畫面，疊上條目與字幕，不是作者寫程式的錄屏，未出現私人 IP 或本機路徑。只有配樂、沒有旁白，曲名未標。片頭註明「畫面：Abyssal Garden（Noniv，MIT），本站錄製」。片尾 AI POST 結束卡寫「留言完整文章傳給你」，是留言才傳完整文章，屬引流。
+
+查證（2026-11-22 台北時間）：官方 repo 為 ⚠️ [Noniv/abyssal-garden](https://github.com/Noniv/abyssal-garden) ⚠️，試玩 [noniv.github.io/abyssal-garden](https://noniv.github.io/abyssal-garden/)，MIT，Copyright (c) 2026 Maksymilian Dendura。當日 2,714 星、402 個 fork；HEAD 為 a596354。index.html 為 99,514 bytes（約 97.18 KiB），與 GitHub 說明的 97 KB 相符；README 仍寫 96 KB，略舊。prompt.txt 為 2,036 bytes、34 行，開頭原文是 Build a real-time fantasy underwater scene that runs in the browser… 影片中譯「做一個在瀏覽器即時運行的奇幻水下場景」是合理縮寫。優先順序、硬限制、目標硬體、場景、操作與驗證方式都與倉庫檔案相符。約 180 FPS（RTX 5070 Ti、2560×1440）與手機約 20 FPS 是作者自報，本則未重測。倉庫檔案與提交訊息都沒有寫 Fable 或 Claude，「Fable 5.2＋Claude Code」是貼文與媒體的說法。完整 git log 對得上影片所引 11/12–11/13 提交：首版之後同日加了選單、畫質與碰撞。
+
+相關作品 [web-ocean](https://github.com/Noniv/web-ocean)（試玩 [ocean-noniv.vercel.app](https://ocean-noniv.vercel.app/)）同樣是 MIT、同一作者，當日 1,074 星；GitHub 說明寫 Built with Claude Code (Opus 5.5)，這與 Abyssal Garden 倉庫沒寫模型不同。影片後段另提 Saltline（WebGL＋Three.js、單一 HTML 約 1.4 MB），授權沒有找到，本片不放遊戲畫面；不要和 SEQ 0104 併成同一則。SkillSpector 2.12.0 --no-llm（2026-11-22 台北時間；pattern 命中不是漏洞證明）：Abyssal Garden 1 則 LOW（esbuild 寫 ^0.28.2）；web-ocean 1 則 MEDIUM（掃到 build.mjs 的「npx cache」字樣，該處是在本機 npm-cache/_npx 尋找已有的 esbuild，不是執行未釘版本的 npx 套件）與 1 則 LOW（esbuild 寫 ^0.25.0）。可對照 SEQ 0126、0106。
+
+互動重現：[abyssal-garden-spec](https://wiki.singularityengine.dev/demos/abyssal-garden-spec/)（依公開 prompt.txt 做規格導覽，加本頁自己的 2D 示意畫布，不是原作翻製，不會連網）。GIF：約 12.5–18.5 秒的水下光柱，已裁掉上方出處條與下方字幕（[v98-abyssal-garden.gif](https://wiki.singularityengine.dev/assets/gifs/v98-abyssal-garden.gif)）。
+
+![Abyssal Garden 水下光柱（AI郵報錄製，已裁字幕）](../assets/gifs/v98-abyssal-garden.gif)
