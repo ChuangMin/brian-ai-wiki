@@ -258,5 +258,15 @@
     "source": "影片 108",
     "sourceUrl": "https://x.com/irongiantXBT/status/2122433777943396737",
     "added": "2026-11-17"
+  },
+  {
+    "id": "abyssal-garden-spec",
+    "title": "Abyssal Garden 規格書：prompt 怎麼寫（影片 109 重製）",
+    "desc": "依 AI郵報的查核片與作者公開的 prompt.txt 重製：可逐步或自動走完規格書七個章節，左側是本頁自己的 2D 示意畫布。這不是 Noniv 的 WebGPU 畫面或 97 KB 檔案的翻製，約 180 FPS 為作者自報。Fable 5.2 是貼文與媒體的說法。不會連網。",
+    "category": "前端與 UI 設計",
+    "path": "abyssal-garden-spec/",
+    "source": "影片 109",
+    "sourceUrl": "https://www.facebook.com/reel/1453889810227728",
+    "added": "2026-11-22"
   }
 ]

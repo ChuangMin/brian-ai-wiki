@@ -4,7 +4,7 @@
 
 [每日新聞](news/index.md) — 每天早上的新聞簡報。
 
-[關聯圖](graph/index.html) — 用互動圖看所有條目、分類、來源影片與概念之間的關係（417 個節點、840 條連線）。
+[關聯圖](graph/index.html) — 用互動圖看所有條目、分類、來源影片與概念之間的關係（420 個節點、848 條連線）。
 
 Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片、截圖與推薦清單整理 AI 工具與觀點，依主題分類收錄，並另外標示引流、概念動畫等可信度；之後的新影片會繼續加進來。
 
@@ -14,7 +14,7 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 
 標了引流的條目，連結和說明裡的網址旁邊都會加上 ⚠️。
 
-共 152 則。
+共 153 則。
 
 從既有條目歸納的分工類型見 [Agent 分工模式](docs/agent-patterns.md)。
 
@@ -24,7 +24,7 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 - [記憶與上下文](docs/memory-context.md)（10）— 知識圖譜、程式碼圖譜、長期記憶、跨 agent 交接
 - [Skills／MCP／工具](docs/skills-mcp-tools.md)（21）— 通用的 agent 能力元件：MCP、skill、開發方法論 skill、語音、抽取模型
 - [程式開發與品質](docs/dev-quality.md)（5）— 版控、過程重播、瀏覽器自我驗收、verify＋gate 流程
-- [前端與 UI 設計](docs/frontend-ui.md)（25）— 設計系統、UI linter、設計 skill、介面模板與概念介面
+- [前端與 UI 設計](docs/frontend-ui.md)（26）— 設計系統、UI linter、設計 skill、介面模板與概念介面
 - [3D／動畫與 DCC](docs/dcc-animation.md)（11）— Blender 等 DCC 外掛、運鏡、程序化動畫、遊戲生成
 - [AI 影像與影片](docs/ai-media.md)（6）— AI 生成影片與圖片、prompt、AI 渲染、程式化影片
 - [自動化工作流](docs/automation-workflows.md)（5）— n8n 等流程自動化，規則優先與人工核准閘門
@@ -90,6 +90,7 @@ Brian 的公開 wiki，以繁體中文（zh-Hant、台灣）從 Facebook 影片�
 | 影片 106 | Altair AI：Fable 5.2 八 repo VFX 管線概念儀表板（12 鏡，非實作錄屏） | [reel/1487099606683340](https://www.facebook.com/reel/1487099606683340/) | 2026-11-17 |
 | 影片 107 | DeepResource.ai：Fable 5.2 八 repo 概念 HUD 做 SaaS 登陸頁（說明文來自 @Flandermaxx） | [reel/1122956367317954](https://www.facebook.com/reel/1122956367317954/) | 2026-11-17 |
 | 影片 108 | irongiantXBT：Diogo Almeida《Jev Engineering for Coding Agents》工作筆記第 1 頁（動畫，非實作錄屏） | [status/2122433777943396737](https://x.com/irongiantXBT/status/2122433777943396737) | 2026-11-17 |
+| 影片 109 | AI郵報：Noniv 的 Abyssal Garden（單一 HTML、WebGPU 水下世界；Fable 5.2 為轉述） | ⚠️ [reel/1453889810227728](https://www.facebook.com/reel/1453889810227728) | 2026-11-22 |
 | Facebook 貼文（2026-11-15） | Isaac Wong（@isaac.startup）：7 個 Claude Code 每日指令（/grill-me 等；留言 Claude 加社群） | ⚠️ [社團貼文](https://www.facebook.com/groups/1317626560441303/posts/1436491405221484/) | 2026-11-15 |
 | Facebook 貼文（MIT PE，2026-11-15） | MIT Professional Education：Applied Agentic AI for Organizational Transformation（8 週線上課） | [官方課程頁](https://professional.mit.edu/course-catalog/applied-agentic-ai-organizational-transformation)／[粉專貼文](https://www.facebook.com/MITProfessionalEducation/posts/gain-insights-to-move-from-ai-experimentation-to-scalable-implementation-across-/1601396092028738/) | 2026-11-15 |
 | GitHub | labring/sealos-skills：在 Sealos Cloud 部署應用、資料庫與物件儲存的 agent skill 包 | [labring/sealos-skills](https://github.com/labring/sealos-skills) | 2026-11-14 |
