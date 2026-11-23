@@ -1,9 +1,9 @@
 # AI 影片收藏 Wiki 關聯圖 / Relationship graph
 
 - 頁面 / Page: [graph/index.html](index.html) · [English](index.html?lang=en)
-- 產生時間 / Generated: 2026-11-22 10:16 (UTC+8)
-- 來源 commit / Source commit: `4443f59ac75565552c50cc2e910d24d771154d2f` (ChuangMin/brian-ai-wiki, main)
-- 規模 / Size: 420 nodes · 848 edges · 27 communities · 162 entries · index.html 510038 bytes
+- 產生時間 / Generated: 2026-11-23 08:59 (UTC+8)
+- 來源 commit / Source commit: `36e41614957101b72003627bd4d7f49865ef583e` (ChuangMin/brian-ai-wiki, main)
+- 規模 / Size: 423 nodes · 858 edges · 28 communities · 163 entries · index.html 519091 bytes
 
 ## 怎麼產生的 / How it is built
 

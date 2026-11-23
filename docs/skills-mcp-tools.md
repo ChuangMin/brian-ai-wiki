@@ -334,3 +334,23 @@ Isaac Wong（@isaac.startup）在 Facebook 社團「台灣 Claude Taiwan」發�
 7. `/eli5`（用最簡單的方式解釋）：是通用寫法，不是獨有的公開套件。
 
 本則因宣傳圖是行銷素材，故意沒有做 GIF，公開站也不放海報圖。沒有另做互動 demo（這則是指令清單，不是適合重製的操作畫面）。配樂：不適用（無影片）。
+
+### 0154　Altair AI：Anthropic Academy 七堂免費課學習路徑（概念動畫，非上課錄屏）
+
+淺色概念儀表板依序走完七堂 Anthropic 官方課：Claude 101、AI Fluency、Claude Code 101、Claude Code in Action、Agent Skills、Subagents、MCP。課程頁 2026-11-23 都打得開，報名鈕寫 Register | FREE。官方目錄其實還有更多課；劇院座位數與進度畫面已標示意。另引 2025-05-28 Axios 對 Amodei 的訪問，屬引述而非查核過的預測。來源：影片 110。
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 概念動畫 | — | [影片 110](https://www.facebook.com/reel/2207522713309878) |
+
+Altair AI 約 49.7 秒直式 Reel（1080×1468；2026-11-22 19:44 Asia/Taipei）。短網址 https://www.facebook.com/share/r/1BqmjKZUom/ 。畫面是風格化 CLAUDE CODE／ACADEMY 概念儀表板，不是上課或官方網站錄屏。底部 Follow 橫幅是普通追蹤呼籲，說明文已列出七個課程連結，不標引流。只有配樂、沒有旁白。
+
+中央是七塊扇形觀眾席（標 15 排、每排 98 席、共 1,470 席），底列已寫 PROGRESS, SEATS, LOG: SIMULATED，這些數字與進度都是示意。頂列 COST $0、AT RISK ≤50%、HORIZON 1–5y。建議順序為 basics → fluency → cli → agentic → skills → delegation → mcp。指令列裡的 claude 指令是畫面示意，不能當成現行官方指令手冊。
+
+查證（2026-11-23 台北時間）：七個課程頁都回 200，標題與官方說明大致相符：[Claude 101](https://anthropic.skilljar.com/claude-101)、[AI Fluency: Framework & Foundations](https://anthropic.skilljar.com/ai-fluency-framework-foundations)（官方說明含 ethically，說明文少寫了這個字）、[Claude Code 101](https://anthropic.skilljar.com/claude-code-101)、[Claude Code in Action](https://anthropic.skilljar.com/claude-code-in-action)、[Introduction to agent skills](https://anthropic.skilljar.com/introduction-to-agent-skills)、[Introduction to subagents](https://anthropic.skilljar.com/introduction-to-subagents)、[Introduction to Model Context Protocol](https://anthropic.skilljar.com/introduction-to-model-context-protocol)。七頁報名按鈕都寫 Register | FREE；頁面 JSON-LD 的 isAccessibleForFree 為 false，應理解成要先註冊才能上課，不是已核到的付費牆。Skilljar 目錄裡還有 Claude Platform 101、Introduction to Claude Cowork、認證考試等，影片選了七堂並給建議順序，不是官方完整目錄，也不是官方規定的唯一路徑。[anthropic.com/learn](https://www.anthropic.com/learn) 會轉到 [academy.claude.com](https://academy.claude.com/)（Claude Academy，官網寫 Free courses）；anthropic.com/academy 本次為 404。
+
+畫面另引 2025-05-28 Axios〈[Behind the Curtain: A white-collar bloodbath](https://www.axios.com/2025/05/28/ai-jobs-white-collar-unemployment-anthropic)〉對 Dario Amodei 的訪問：他說 AI 可能讓一半的初階白領工作消失，並在一到五年內把失業率推到 10–20%。這是當時的引述，不是本則查核過的預測；頂列 ≤50% 與 1–5y 只是把這則引述畫成儀表。可對照 SEQ 0094；SEQ 0139 是另一則七個 Claude Code 指令且屬引流，不要併在一起。SkillSpector 不適用。
+
+互動重現：[anthropic-academy-path](https://wiki.singularityengine.dev/demos/anthropic-academy-path/)（可逐步走完七堂建議路徑並連到官方頁；進度為示意，不會代為註冊）。GIF：約 19–25.5 秒，課程從 2／7 走到 3／7，已裁掉底部 Follow 橫幅（[v99-anthropic-academy-path.gif](https://wiki.singularityengine.dev/assets/gifs/v99-anthropic-academy-path.gif)）。
+
+![Anthropic Academy 概念儀表板，課程從 2／7 走到 3／7](../assets/gifs/v99-anthropic-academy-path.gif)

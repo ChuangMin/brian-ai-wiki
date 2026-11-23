@@ -4,7 +4,7 @@
 
 [Daily news](../news/index.md) — morning briefings (Chinese).
 
-[Relationship graph](../graph/index.html?lang=en) — an interactive map of every entry, category, source video and concept (420 nodes, 848 edges).
+[Relationship graph](../graph/index.html?lang=en) — an interactive map of every entry, category, source video and concept (423 nodes, 858 edges).
 
 Brian's public wiki. It collects AI tools and viewpoints from Facebook videos, screenshots, and recommendation lists, files them by topic, and marks credibility such as engagement bait and concept animation. New videos keep getting added.
 
@@ -14,7 +14,7 @@ Credibility tags are separate from categories: ⚠️ engagement bait (traffic f
 
 Entries tagged engagement bait put ⚠️ beside the link and beside URLs in the description.
 
-153 entries.
+154 entries.
 
 Division-of-labor patterns from existing entries: [Agent Division-of-Labor Patterns](docs/agent-patterns.md).
 
@@ -22,7 +22,7 @@ Division-of-labor patterns from existing entries: [Agent Division-of-Labor Patte
 
 - [Agent systems and orchestration](docs/agent-orchestration.md) (27) — multi-agent command, swarms, resume-after-interrupt, commercial agent OSes, and the agent-platform landscape
 - [Memory and context](docs/memory-context.md) (10) — knowledge graphs, code graphs, long-term memory, handoff across agents
-- [Skills / MCP / tools](docs/skills-mcp-tools.md) (21) — shared agent building blocks: MCP, skills, methodology skills, speech, extraction models
+- [Skills / MCP / tools](docs/skills-mcp-tools.md) (22) — shared agent building blocks: MCP, skills, methodology skills, speech, extraction models
 - [Software development and quality](docs/dev-quality.md) (5) — version control, process replay, browser self-check, verify-then-gate
 - [Frontend and UI design](docs/frontend-ui.md) (26) — design systems, UI linters, design skills, interface templates, and concept interfaces
 - [3D / animation and DCC](docs/dcc-animation.md) (11) — Blender and other DCC add-ons, camera moves, procedural animation, game generation
@@ -155,6 +155,7 @@ Division-of-labor patterns from existing entries: [Agent Division-of-Labor Patte
 | Video 107 | DeepResource.ai: a Fable 5.2 concept HUD for a SaaS landing page (caption credits @Flandermaxx) | [reel/1122956367317954](https://www.facebook.com/reel/1122956367317954/) | 2026-11-17 |
 | Video 108 | irongiantXBT: page 1 of Diogo Almeida’s working note “Jev Engineering for Coding Agents” (an animation, not a live session) | [status/2122433777943396737](https://x.com/irongiantXBT/status/2122433777943396737) | 2026-11-17 |
 | Video 109 | AI郵報: Noniv’s Abyssal Garden (a single HTML, WebGPU underwater world; Fable 5.2 is second-hand) | ⚠️ [reel/1453889810227728](https://www.facebook.com/reel/1453889810227728) | 2026-11-22 |
+| Video 110 | Altair AI: a 7-course path through Anthropic Academy (a concept animation, not a class recording) | [reel/2207522713309878](https://www.facebook.com/reel/2207522713309878) | 2026-11-23 |
 | Facebook post (2026-11-15) | Isaac Wong (@isaac.startup): 7 daily Claude Code commands (/grill-me and others; comment Claude to join the community) | ⚠️ [group post](https://www.facebook.com/groups/1317626560441303/posts/1436491405221484/) | 2026-11-15 |
 | Facebook post (MIT PE, 2026-11-15) | MIT Professional Education: Applied Agentic AI for Organizational Transformation (8-week online course) | [official course page](https://professional.mit.edu/course-catalog/applied-agentic-ai-organizational-transformation) / [page post](https://www.facebook.com/MITProfessionalEducation/posts/gain-insights-to-move-from-ai-experimentation-to-scalable-implementation-across-/1601396092028738/) | 2026-11-15 |
 | GitHub | labring/sealos-skills: agent skills for deploying apps, databases, and object storage on Sealos Cloud | [labring/sealos-skills](https://github.com/labring/sealos-skills) | 2026-11-14 |

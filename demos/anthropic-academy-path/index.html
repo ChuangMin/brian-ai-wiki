@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anthropic Academy 七堂課路徑（影片 110 重製）</title>
+<style>
+  :root {
+    --bg: #f3f1ea; --card: #fffcf6; --line: #d8d3c6; --text: #22201b;
+    --muted: #6f6a60; --bright: #111; --accent: #2c2b25; --done: #1f6b4a;
+    --warn: #8a4b12;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Noto Sans TC", sans-serif;
+    line-height: 1.45;
+  }
+  a { color: #163f8a; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 20px 16px 48px; }
+  .home { color: var(--muted); text-decoration: none; font-size: 13px; }
+  h1 { margin: 12px 0 4px; font-size: 22px; color: var(--bright); }
+  h1 small { display: block; font-weight: 400; color: var(--muted); font-size: 13px; margin-top: 4px; }
+  .banner, .quote {
+    border-radius: 8px; padding: 8px 12px; font-size: 13px; margin: 12px 0 16px;
+  }
+  .banner { background: #efe8d8; border: 1px solid #d3c7a8; }
+  .quote { background: #eceae3; border: 1px solid var(--line); color: var(--muted); }
+  button {
+    font: inherit; background: #fff; color: var(--text);
+    border: 1px solid var(--line); border-radius: 6px; padding: 7px 12px; cursor: pointer;
+  }
+  button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  button:hover { border-color: var(--accent); }
+  button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 14px; }
+  .grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 12px; }
+  @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+  .card h2 { margin: 0 0 8px; font-size: 13px; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; }
+  .steps { display: flex; flex-direction: column; gap: 6px; }
+  .step {
+    border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; background: #fff;
+    cursor: pointer; text-align: left; width: 100%;
+  }
+  .step.on { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .step.done { border-color: var(--done); }
+  .step .k { font-size: 11px; color: var(--muted); }
+  .step .t { font-weight: 600; }
+  .explain { min-height: 6em; font-size: 14px; margin: 0; }
+  .path { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }
+  .pill { font-size: 12px; border: 1px solid var(--line); border-radius: 999px; padding: 3px 8px; background: #fff; }
+  .pill.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .foot { margin-top: 18px; font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="home" href="https://wiki.singularityengine.dev/">← AI 影片收藏 Wiki</a>
+  <h1>Anthropic Academy 七堂課路徑<small>依影片 110 的建議順序重製，不是上課錄屏，也不是官方完整目錄</small></h1>
+  <div class="banner">這七個課程頁 2026-11-23 都打得開，報名按鈕寫 Register | FREE（要先註冊）。官方 Skilljar 目錄裡還有更多課程，這個順序是影片的建議，不是官方規定的唯一路徑。畫面上的進度是示意。本頁不會替你註冊或連到課程內容，只提供官方連結。</div>
+  <div class="quote">畫面另引 2025-05-28 Axios 對 Dario Amodei 的訪問：他說 AI 可能讓一半的初階白領工作消失，並在一到五年內把失業率推到 10–20%。這是當時的引述，不是本頁查核過的預測。原文：<a href="https://www.axios.com/2025/05/28/ai-jobs-white-collar-unemployment-anthropic">axios.com</a></div>
+  <div class="row">
+    <button class="primary" id="play" type="button">播放一輪</button>
+    <button id="step" type="button">下一堂</button>
+    <button id="reset" type="button">重設</button>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <h2>建議順序（示意）</h2>
+      <div class="path" id="path"></div>
+      <div class="steps" id="steps"></div>
+    </div>
+    <div class="card">
+      <h2>這一堂</h2>
+      <p class="explain" id="explain"></p>
+    </div>
+  </div>
+  <p class="foot">來源：影片 110。課程目錄：<a href="https://anthropic.skilljar.com/">anthropic.skilljar.com</a>；官網入口 <a href="https://academy.claude.com/">academy.claude.com</a>（Claude Academy）也標示免費課程。</p>
+</div>
+<script>
+const COURSES = [
+  { k: "basics", t: "Claude 101",
+    d: "官方說明：學會用 Claude 做日常工作、了解核心功能，並找到下一步可學的資源。",
+    u: "https://anthropic.skilljar.com/claude-101" },
+  { k: "fluency", t: "AI Fluency: Framework & Foundations",
+    d: "官方說明：學習有效、有效率、合乎倫理且安全地與 AI 合作。畫面卡片有 ethically，說明文少寫了這個字。",
+    u: "https://anthropic.skilljar.com/ai-fluency-framework-foundations" },
+  { k: "cli", t: "Claude Code 101",
+    d: "官方說明：把 Claude Code 放進日常開發流程。",
+    u: "https://anthropic.skilljar.com/claude-code-101" },
+  { k: "agentic", t: "Claude Code in Action",
+    d: "官方說明：跑長時間、可放手的 Claude Code 工作階段：steer、configure、automate、verify。",
+    u: "https://anthropic.skilljar.com/claude-code-in-action" },
+  { k: "skills", t: "Introduction to agent skills",
+    d: "官方說明：建立、設定並分享 Claude Code 的 Skills（可重用的 markdown 指示，在適當時機套用）。",
+    u: "https://anthropic.skilljar.com/introduction-to-agent-skills" },
+  { k: "delegation", t: "Introduction to subagents",
+    d: "官方說明：使用並建立 sub-agent，把工作委派出去，讓主對話保持清楚。",
+    u: "https://anthropic.skilljar.com/introduction-to-subagents" },
+  { k: "mcp", t: "Introduction to Model Context Protocol",
+    d: "官方說明：用 Python 從零建立 MCP 伺服器與用戶端，掌握 tools、resources、prompts。",
+    u: "https://anthropic.skilljar.com/introduction-to-model-context-protocol" }
+];
+const pathEl = document.getElementById("path");
+const stepsEl = document.getElementById("steps");
+const explain = document.getElementById("explain");
+COURSES.forEach((c, i) => {
+  const pill = document.createElement("span");
+  pill.className = "pill";
+  pill.dataset.i = i;
+  pill.textContent = (i + 1) + " " + c.k;
+  pathEl.appendChild(pill);
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = "step";
+  b.dataset.i = i;
+  b.innerHTML = '<div class="k">' + (i + 1) + "／7　" + c.k + '</div><div class="t">' + c.t + "</div>";
+  b.addEventListener("click", () => show(i));
+  stepsEl.appendChild(b);
+});
+let idx = 0, timer = null;
+function show(i) {
+  idx = (i + COURSES.length) % COURSES.length;
+  [...stepsEl.children].forEach((el, n) => {
+    el.classList.toggle("on", n === idx);
+    el.classList.toggle("done", n < idx);
+  });
+  [...pathEl.children].forEach((el, n) => el.classList.toggle("on", n === idx));
+  const c = COURSES[idx];
+  explain.innerHTML = c.d + '<br><a href="' + c.u + '">' + c.u.replace("https://","") + "</a>";
+}
+show(0);
+document.getElementById("step").onclick = () => { clearInterval(timer); timer = null; show(idx + 1); };
+document.getElementById("reset").onclick = () => { clearInterval(timer); timer = null; show(0); };
+document.getElementById("play").onclick = () => {
+  clearInterval(timer);
+  show(0);
+  let n = 0;
+  timer = setInterval(() => {
+    n += 1;
+    if (n >= COURSES.length) { clearInterval(timer); timer = null; return; }
+    show(n);
+  }, 1800);
+};
+</script>
+</body>
+</html>
