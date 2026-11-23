@@ -268,5 +268,15 @@
     "source": "影片 109",
     "sourceUrl": "https://www.facebook.com/reel/1453889810227728",
     "added": "2026-11-22"
+  },
+  {
+    "id": "anthropic-academy-path",
+    "title": "Anthropic Academy 七堂課路徑（影片 110 重製）",
+    "desc": "依 Altair AI 的概念儀表板重製：可逐步或自動走完七堂 Anthropic 官方課的建議順序，並連到課程頁。這不是上課錄屏，也不是官方完整目錄。進度為示意，本頁不會代為註冊。畫面另引 2025-05-28 Axios 對 Amodei 的訪問，屬引述而非查核過的預測。",
+    "category": "Skills／MCP／工具",
+    "path": "anthropic-academy-path/",
+    "source": "影片 110",
+    "sourceUrl": "https://www.facebook.com/reel/2207522713309878",
+    "added": "2026-11-23"
   }
 ]
