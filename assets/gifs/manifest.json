@@ -828,5 +828,15 @@
     "duration": 6.5,
     "size_bytes": 1651372,
     "what_it_shows": "約 19–25.5 秒，課程從 2／7 走到 3／7、劇院扇形繼續填色；已裁掉底部 Follow 橫幅"
+  },
+  {
+    "file": "v100-leon-cook-loop.gif",
+    "video_number": "影片 111",
+    "entry_name": "AI懶人報：Leon Lin 的 Cook（對參考圖設數字門檻的視覺迴圈 skill）",
+    "reel_url": "https://www.facebook.com/reel/1877078416807783",
+    "segment_start": 8.9,
+    "duration": 5.1,
+    "size_bytes": 122116,
+    "what_it_shows": "約 8.9–14.0 秒，從「你叫 AI 做畫面」走到「能跑 ≠ 做完／開源成 Cook」；只有講解字卡與標了「示意」的線稿，沒有 Athenaion 或 Shanshui 畫面。無底部追蹤橫幅，未裁切"
   }
 ]

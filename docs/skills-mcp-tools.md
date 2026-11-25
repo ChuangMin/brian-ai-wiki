@@ -354,3 +354,29 @@ Altair AI 約 49.7 秒直式 Reel（1080×1468；2026-11-22 19:44 Asia/Taipei）
 互動重現：[anthropic-academy-path](https://wiki.singularityengine.dev/demos/anthropic-academy-path/)（可逐步走完七堂建議路徑並連到官方頁；進度為示意，不會代為註冊）。GIF：約 19–25.5 秒，課程從 2／7 走到 3／7，已裁掉底部 Follow 橫幅（[v99-anthropic-academy-path.gif](https://wiki.singularityengine.dev/assets/gifs/v99-anthropic-academy-path.gif)）。
 
 ![Anthropic Academy 概念儀表板，課程從 2／7 走到 3／7](../assets/gifs/v99-anthropic-academy-path.gif)
+
+### 0155　AI懶人報：Leon Lin 的 Cook（對參考圖設數字門檻的視覺迴圈 skill）
+
+taste-skill 作者 Leon Lin 把「用參考圖當目標、把門檻寫成數字」的做法開源成 Cook。官方 README 的校正例子與畫面相同（自評 90、你說 60–70，就先扣約 25）。Athenaion 約 45 小時等數字為作者自報。畫面裡 taste-skill 114.6k 星已過時（2026-11-25 API 為 121,123）。來源：影片 111。
+
+| 可信度 | 星數 | 出處 |
+| --- | --- | --- |
+| 可信度高 | 828（2026-11-25） | [影片 111](https://www.facebook.com/reel/1877078416807783) |
+
+AI懶人報約 50.6 秒直式 Reel（1080×1920；2026-11-24 20:31 Asia/Taipei）。Brian 於 2026-11-25 08:38 Asia/Taipei 在對話傳來 https://www.facebook.com/reel/1877078416807783 ，沒有備註。畫面是翻頁講解卡，不是現場寫程式，也不是演講。片尾是「AI懶人報 YouTube 頻道、追蹤！」，說明文寫追蹤 @ai.lanrenbao，屬普通追蹤呼籲，不標引流。有持續音軌與配樂，曲名未標；未另做逐字聽寫。
+
+說明文：這座古希臘城是 Claude Code 自己寫程式蓋出來的。taste-skill 作者 Leon Lin 把「逼 AI 一路改到像」的做法開源成 Cook。① 目標用圖給（不寫長描述，直接丟參考圖）② 門檻寫成數字（99.9% 像；AI 自評 90、你說只有六七十，之後每輪先扣掉落差）③ 給它時間（你睡覺，它整晚自己改，每輪傳截圖）。用法：在 Claude Code 打 `/cook`，貼上參考圖，問題一次答完就放著。repo 搜尋 Leonxlnx/cook。畫面來源：Leon Lin（@LexnLin）Athenaion、Shanshui、Alpine Lake；GitHub。
+
+畫面對應：開場 Athenaion 古城，標題「不是遊戲」「Leon Lin 用 Claude Code 做的」「是 Claude Code 自己寫程式」「跑了大約 45 小時」。接著 GitHub 風卡片寫 taste-skill Public、114.6k stars、298 watching，並稱作者「開源不到九個月」。再講「能跑 ≠ 做完」，把做法開源成 Cook。① 直接丟圖，標「參考圖（9 張之一）」。② 門檻 99.9%，並寫「他也說：大概做不到」。校正卡：AI「我 90 分」被劃掉，你說 60–70，之後每輪 −25；打分的是沒看過過程的新 agent。③ 給它時間，你睡覺它在改，每改一輪就傳截圖。接著 Shanshui 水墨，寫「10 張參考圖 → 10 幅山水」「連配樂都是程式寫的」。說明文也列 Alpine Lake，本支畫面主要是 Athenaion 與 Shanshui。
+
+查證（2026-11-25 台北時間）：[Leonxlnx/cook](https://github.com/Leonxlnx/cook) 為 MIT（Copyright (c) 2026 Leon Lin），828 星、62 個 fork，建立於 2026-10-31 21:48 UTC（2026-11-01 05:48 Asia/Taipei），HEAD b23cac6。官方安裝指令是 `npx skills add Leonxlnx/cook`，在 Claude Code 打 `/cook`（Codex 為 `$cook`）。README 的 Cook Loop 與影片相符：一次 intake（可接受預設）、用參考圖當門檻、把門檻寫成數字（例如 99.9%）、用你的估分校正模型偏高的自評、過夜迭代、每輪出 stills、未核准前不做最終輸出，並用沒有過程上下文的 critic 打分。`references/target-and-bar.md` 寫 99.9% is probably not reachable. That is the point；校正例子也是「若模型說 90%、使用者說 60 to 70%，就記約 minus 25 的偏移」。
+
+同一 README 的 Made with this — Athenaion 為作者自報，不是本則實測：約 45 小時；55 個子代理、最多 12 路並行；約 4.5 萬行 JavaScript；約 1,100 萬 output tokens；等價 API 花費約 1,800–2,300 美元（實際跑在 Max 方案）；在整合顯示晶片 AMD Radeon 780M 上出 4K；並寫 built by Claude Opus 5.5 to match 9 AI-generated reference images. No external assets。對應貼文 [x.com/LexnLin/status/2111582260818239777](https://x.com/LexnLin/status/2111582260818239777)，倉庫 [Leonxlnx/athenaion](https://github.com/Leonxlnx/athenaion)。同日查證相關展示倉庫：[athenaion](https://github.com/Leonxlnx/athenaion) 735 星、92 個 fork、MIT；[shanshui](https://github.com/Leonxlnx/shanshui) 71 星、11 個 fork、MIT，說明為十幅以程式繪製並動畫的水墨山水，並有合成配樂；[procedural-alpine-lake](https://github.com/Leonxlnx/procedural-alpine-lake) 70 星、16 個 fork，GitHub 未列出 SPDX 授權，說明為全程式渲染的高山湖泊短片，配樂亦為合成。作者展示總頁 [leonlin.de/demos](https://leonlin.de/demos)。
+
+taste-skill 畫面寫 114.6k 星、298 watching，已過時：同日 API 為 121,123 星、8,129 個 fork，MIT，建立於 2026-02-19。影片說「開源不到九個月」，從 2026-02-19 到本片上傳 2026-11-24 約 9 個月又 5 天，略長於九個月。taste-skill 見 SEQ 0030（2026-11-15 記錄 115.7k 星）。SEQ 0141 是另一則把 taste-skill 與其他設計倉庫放進 HUD 的片子，不是 Cook，不要併在一起。同一作者還有 SEQ 0011 earshot。同一上傳帳號另見 SEQ 0087、0131。
+
+SkillSpector 靜態掃描（2026-11-25 台北時間，skillspector 2.12.0，`--no-llm`）對 Leonxlnx/cook（HEAD b23cac6）：issues 5（HIGH 2、MEDIUM 3），risk score 55、severity HIGH、recommendation DO_NOT_INSTALL、max_issue_severity HIGH；覆蓋率 92.3%（12／13 個元件完全檢視，1 個部分檢視，狀態 partial）。兩則 HIGH 都是 AE1，指向 `scripts/side-by-side.mjs`（SKILL.md 以 `node <skill>/scripts/side-by-side.mjs` 呼叫；掃描器寫 referenced artifact was not completely inspected，另有 static parse limit）。三則 MEDIUM 為 README 的未釘版本 `npx skills add Leonxlnx/cook`（RP1），以及 intake.md、templates/ROUNDS.md 的 without asking 類用語（EA2；對應官方「一次問完後自主過夜迴圈」的設計）。這是規則與模式掃描，不是已確認的產品漏洞；DO_NOT_INSTALL 是掃描器依模式給的建議，不能當成已證實的惡意程式。
+
+互動重現：[cook-loop](https://wiki.singularityengine.dev/demos/cook-loop/)（可逐步走完迴圈與校正例子；分數與 Athenaion 數字為示意或作者自報，不會代為安裝，也不重繪那兩件作品的畫面）。GIF：約 8.9–14.0 秒，從「你叫 AI 做畫面」走到「能跑 ≠ 做完／開源成 Cook」，只有講解字卡與標了「示意」的線稿，沒有 Athenaion 或 Shanshui 畫面（[v100-leon-cook-loop.gif](https://wiki.singularityengine.dev/assets/gifs/v100-leon-cook-loop.gif)）。
+
+![翻頁講解卡從「你叫 AI 做畫面」走到「能跑 ≠ 做完／開源成 Cook」](../assets/gifs/v100-leon-cook-loop.gif)
